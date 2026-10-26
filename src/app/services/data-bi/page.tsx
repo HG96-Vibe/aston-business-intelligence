@@ -59,40 +59,23 @@ export default function DataBiPage() {
 
       {/* Five dashboards */}
       <Section>
-        <SectionHead number="03" eyebrow="What we build" title="Five views that answer" em="the questions owners actually ask." intro="Every business is different; the questions are not. We start from these five and adapt them to your sector and systems." />
+        <SectionHead number="03" eyebrow="What we build" title="Five views that answer" em="the questions owners actually ask." intro="Every business is different; the questions are not. We start from these five and adapt them to your sector and systems. Each one is reconciled to your accounts on every refresh — a dashboard that is £3,000 out from the ledger is switched off within a month, so ours shows the check on screen." />
         <FiveViews />
-      </Section>
-
-      {/* Reconciliation promise */}
-      <Section dim>
-        <div className="grid gap-10 md:grid-cols-[1fr_1fr] md:items-center">
-          <SectionHead number="04" eyebrow="Why ours gets used" title="Reconciled to the ledger," em="on every refresh." intro="A dashboard that is £3,000 out from the accounts is switched off within a month. Ours shows the reconciliation on the screen, so finance can see the numbers tie back before anyone else relies on them." />
-          <div className="overflow-hidden rounded-md border border-line bg-paper text-sm">
-            <div className="grid grid-cols-[1.2fr_1fr_1fr_40px] gap-2 border-b border-line bg-paper-dim px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-muted"><span>Figure</span><span className="text-right">Dashboard</span><span className="text-right">Xero</span><span /></div>
-            {d.reconciliation.map(([k, a, b, ok]) => (
-              <div key={k} className="grid grid-cols-[1.2fr_1fr_1fr_40px] gap-2 border-b border-line px-4 py-2.5 last:border-b-0">
-                <span className="text-body">{k}</span><span className="text-right font-mono tabular-nums text-ink">{a}</span><span className="text-right font-mono tabular-nums text-ink">{b}</span>
-                <span className={`text-right ${ok ? "text-emerald-700 dark:text-emerald-300" : "text-accent"}`}>{ok ? "✓" : "!"}</span>
-              </div>
-            ))}
-            <div className="flex justify-between bg-paper-dim px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.1em] text-muted"><span>Reconciled 06:02 today</span><span>4 of 4 tie back</span></div>
-          </div>
-        </div>
       </Section>
 
       {/* Tools */}
       <Section>
         <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:items-start">
-          <SectionHead number="05" eyebrow="Tooling" title="Built in what you" em="already pay for." intro="Power BI by default; Looker Studio or Tableau if that is what you have. No platform to buy, no licences marked up." />
+          <SectionHead number="04" eyebrow="Tooling" title="Built in what you" em="already pay for." intro="Power BI by default; Looker Studio or Tableau if that is what you have. No platform to buy, no licences marked up." />
           <ul className="flex flex-wrap gap-2 md:pt-12">{d.tools.map((t) => <li key={t} className="rounded-full border border-line px-3 py-1 text-sm text-body">{t}</li>)}</ul>
         </div>
       </Section>
 
-      <WeekOne number="06" />
+      <WeekOne number="05" />
 
       {/* Proof */}
       <Section dim>
-        <SectionHead number="07" eyebrow="What changed" title="Before and after," em="in numbers." />
+        <SectionHead number="06" eyebrow="What changed" title="Before and after," em="in numbers." />
         <div className="mt-10"><Placeholder><strong>Placeholder — awaiting a real example.</strong> This block will show one anonymised engagement: month-end days before/after, spreadsheets retired, reports reconciled, hours returned per month.</Placeholder></div>
         <div className="mt-6 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 md:grid-cols-4">
           {[["Month-end close", "5 days", "1 day"], ["Spreadsheets in use", "14", "0"], ["Reports that reconcile", "3 of 11", "11 of 11"], ["Hours on reporting / month", "48", "6"]].map(([k, a, b]) => (
@@ -106,7 +89,7 @@ export default function DataBiPage() {
       {/* FAQ */}
       <Section dim>
         <div className="grid gap-10 md:grid-cols-[1fr_1.4fr]">
-          <SectionHead number="08" eyebrow="Questions" title="Before you ask" />
+          <SectionHead number="07" eyebrow="Questions" title="Before you ask" />
           <div className="border-t border-line">
             {d.faqs.map(([q, a]) => (
               <details key={q} className="group border-b border-line">
