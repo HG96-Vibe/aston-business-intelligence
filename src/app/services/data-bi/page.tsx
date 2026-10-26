@@ -6,6 +6,7 @@ import { dataBi } from "@/lib/offers";
 import { SheetsToScreen } from "@/components/sheets-to-screen";
 import { Convergence } from "@/components/convergence";
 import { TubeMap } from "@/components/tube-map";
+import { FiveViews } from "@/components/five-views";
 
 export const metadata: Metadata = {
   title: "Data & Business Intelligence",
@@ -59,16 +60,7 @@ export default function DataBiPage() {
       {/* Five dashboards */}
       <Section>
         <SectionHead number="03" eyebrow="What we build" title="Five views that answer" em="the questions owners actually ask." intro="Every business is different; the questions are not. We start from these five and adapt them to your sector and systems." />
-        <div className="mt-12 border-t border-line">
-          {d.dashboards.map(([name, q, detail], i) => (
-            <div key={name} className="grid gap-3 border-b border-line py-6 md:grid-cols-[48px_1fr_1.2fr_1.4fr] md:items-baseline md:gap-8">
-              <span className="font-mono text-xs text-accent">{String(i + 1).padStart(2, "0")}</span>
-              <h3 className="text-lg text-ink">{name}</h3>
-              <p className="font-display text-lg font-light italic text-ink">{q}</p>
-              <p className="text-sm font-light leading-relaxed text-muted">{detail}</p>
-            </div>
-          ))}
-        </div>
+        <FiveViews />
       </Section>
 
       {/* Reconciliation promise */}
