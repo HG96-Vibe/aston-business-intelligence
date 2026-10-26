@@ -14,10 +14,9 @@ const sectors = [
   "Property & construction", "Healthcare & care providers", "Logistics & distribution", "Financial services",
 ];
 
-// TODO(Hamid): exact certification names (e.g. "Google Cloud Professional Data Engineer", "NVIDIA DLI …")
 const credentials = [
-  { label: "NVIDIA", detail: "Certified" },
-  { label: "Google Cloud", detail: "Certified" },
+  { label: "NVIDIA", detail: "NVIDIA Certified" },
+  { label: "Google Cloud", detail: "Google Cloud Certified" },
   { label: "Companies House", detail: "No. 15571977" },
   { label: "Based in", detail: "London, UK" },
 ];

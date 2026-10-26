@@ -54,12 +54,23 @@ export default function AboutPage() {
         <div className="mt-10">
           <Placeholder>
             <strong>Placeholder — awaiting details.</strong> This section will show 1–3 named leaders
-            with a photo (optional), title, two-line bio and LinkedIn link. The lead consultant&apos;s
-            NVIDIA and Google Cloud certifications go here too — exact certification names needed.
+            with a photo (optional), title, two-line bio and LinkedIn link.
           </Placeholder>
         </div>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {[1, 2, 3].map((n) => (
+          <div className="rounded-lg border border-line bg-paper p-6">
+            <div className="h-20 w-20 rounded-full bg-paper-dim" />
+            <p className="mt-4 font-semibold text-ink">Hamid Gondal</p>
+            <p className="text-sm text-muted">Founder</p>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              Data and AI systems, product building, and training. Oversees scoping and quality across engagements.
+            </p>
+            <ul className="mt-4 grid gap-1 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-accent">
+              <li>NVIDIA Certified</li>
+              <li>Google Cloud Certified</li>
+            </ul>
+          </div>
+          {[2, 3].map((n) => (
             <div key={n} className="rounded-lg border border-line bg-paper p-6">
               <div className="h-20 w-20 rounded-full bg-paper-dim" />
               <p className="mt-4 font-semibold text-ink">[Name]</p>
