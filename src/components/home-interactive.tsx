@@ -220,7 +220,7 @@ export function LiveDashboard({ number }: { number?: string }) {
   const s = scenes[i];
   return (
     <Section>
-      <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-center">
+      <div className="grid min-w-0 gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-center [&>*]:min-w-0">
         <div>
           <SectionHead number={number} eyebrow="What good looks like" title="One screen the whole business" em="can agree on." intro="Not a demo of a product — there isn't one. This is the kind of view we build on top of the tools you already have, refreshed without anyone touching a spreadsheet." />
           <div className="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs text-muted">
@@ -237,7 +237,7 @@ export function LiveDashboard({ number }: { number?: string }) {
         </div>
 
         {/* Carousel: active card in view, next cards peeking to the right */}
-        <div className="relative md:-mr-[20vw]">
+        <div className="relative min-w-0 md:-mr-[20vw]">
           <div className="md:w-[calc(100%-20vw)]"><Circuit labels={s.sources} dir="in" seed={i} /></div>
           <div className="overflow-hidden">
             <div className="flex gap-6 transition-transform duration-700 ease-[cubic-bezier(.2,.8,.2,1)]" style={{ transform: `translateX(calc(${-i} * (100% - 20vw + 1.5rem)))` }}>

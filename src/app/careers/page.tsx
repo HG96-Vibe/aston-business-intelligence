@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHero, Section, SectionHead } from "@/components/ui";
+import { PageHero, Section, SectionHead, PhotoBand } from "@/components/ui";
 import { CareersForm } from "./careers-form";
 
 export const metadata: Metadata = {
@@ -16,6 +16,7 @@ export default function CareersPage() {
         em="good people."
         intro="ABI works on a project basis, so we don't advertise fixed roles. Instead we keep a pool of specialists — experienced consultants and sharp early-career analysts — and build teams from it as engagements come in."
       />
+      <PhotoBand duotone src="/img/conference.jpg" position="center 40%" note="Project-based · London &amp; remote">Specialists, built into teams <i>as the work comes in.</i></PhotoBand>
 
       <Section>
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr]">

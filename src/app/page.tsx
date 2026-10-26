@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { services } from "@/lib/site";
-import { Button, CtaBand, Section, SectionHead } from "@/components/ui";
+import { Button, CtaBand, Section, SectionHead, PhotoBand } from "@/components/ui";
 import { HeroMotion } from "@/components/hero-motion";
 import { Availability, Guarantee, PricingLadder, ProofStrip, WeekOne, bookHref } from "@/components/offers";
 import { serviceOutcomes } from "@/lib/offers";
@@ -14,6 +14,13 @@ const principles = [
   ["Plain English", "No jargon in meetings, no jargon in reports. If we can't explain a recommendation simply, we haven't finished thinking about it."],
 ];
 
+const serviceImages: Record<string, { src: string; duotone: boolean; position: string }> = {
+  "data-bi": { src: "/img/streaks.jpg", duotone: false, position: "center" },
+  "business-analysis": { src: "/img/corridor.jpg", duotone: true, position: "center 30%" },
+  "ai-consulting": { src: "/img/tablet-pair.jpg", duotone: true, position: "center 35%" },
+  "project-delivery": { src: "/img/conference.jpg", duotone: true, position: "center 40%" },
+};
+
 const credentials = [
   { label: "NVIDIA", detail: "NVIDIA Certified" },
   { label: "Google Cloud", detail: "Google Cloud Certified" },
@@ -24,24 +31,26 @@ const credentials = [
 export default function Home() {
   return (
     <>
-      {/* Hero — light, serif, gold italic phrase */}
-      <section className="relative overflow-hidden">
-        <HeroMotion />
+      {/* Hero — charcoal over the gold dot-wave photograph; live dot grid and traced monogram on top */}
+      <section className="relative overflow-hidden bg-[#0e0d13]">
+        <div className="absolute inset-0 bg-cover bg-[position:70%_center] md:bg-center" style={{ backgroundImage: "url(/img/hero-wave.jpg)" }} aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0e0d13]/95 via-[#0e0d13]/70 to-[#0e0d13]/10" aria-hidden="true" />
+        <HeroMotion forceDark />
         <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pb-24 md:pt-28">
-          <p className="marker">Business intelligence consultancy in London</p>
-          <h1 className="mt-6 max-w-4xl text-[2.6rem] leading-[1.08] text-ink md:text-[4.2rem]">
+          <p className="marker !text-[#ffc93c]">Business intelligence consultancy in London</p>
+          <h1 className="mt-6 max-w-4xl text-[2.6rem] leading-[1.08] text-white md:text-[4.2rem]">
             Business intelligence for companies that want{" "}
-            <span className="em">decisions, not just dashboards.</span>
+            <span className="em !text-[#ffc93c]">decisions, not just dashboards.</span>
           </h1>
-          <p className="mt-8 max-w-2xl text-lg font-light leading-relaxed text-muted md:text-xl">
+          <p className="mt-8 max-w-2xl text-lg font-light leading-relaxed text-white/75 md:text-xl">
             ABI helps UK SMEs see their business clearly, decide faster and deliver what they
             decide — through data analysis, business analysis, AI consulting and project delivery.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Button href={bookHref()}>Book a 30-minute conversation →</Button>
-            <Button href="/scorecard" variant="ghost">Score your reporting in 2 minutes</Button>
+            <Button href="/scorecard" variant="light">Score your reporting in 2 minutes</Button>
           </div>
-          <div className="mt-6"><Availability /></div>
+          <div className="mt-6"><Availability light /></div>
         </div>
 
         {/* Credentials strip */}
@@ -57,6 +66,8 @@ export default function Home() {
         </div>
       </section>
 
+      <PhotoBand src="/img/london-stpauls.jpg" position="center 40%" note="Est. 2024 · London">Built in London, for companies <i>that run on their numbers.</i></PhotoBand>
+
       <Problems number="01" />
 
       <LiveDashboard number="02" />
@@ -71,8 +82,14 @@ export default function Home() {
         />
         <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-2">
           {services.map((s, i) => (
-            <Link key={s.slug} href={s.slug === "data-bi" ? "/services/data-bi" : `/services#${s.slug}`} className="group bg-paper p-7 transition hover:bg-paper-dim">
-              <p className="font-mono text-xs text-accent">{String(i + 1).padStart(2, "0")}</p>
+            <Link key={s.slug} href={s.slug === "data-bi" ? "/services/data-bi" : `/services#${s.slug}`} className="group bg-paper transition hover:bg-paper-dim">
+              <div className={`relative h-40 ${serviceImages[s.slug].duotone ? "duotone" : "bg-[#17161f]"}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={serviceImages[s.slug].src} alt="" className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" style={{ objectPosition: serviceImages[s.slug].position }} loading="lazy" />
+                {!serviceImages[s.slug].duotone && <div className="absolute inset-0 bg-gradient-to-t from-[#17161f]/70 to-transparent" />}
+                <p className="absolute bottom-3 left-7 z-10 font-mono text-xs text-[#ffc93c]">{String(i + 1).padStart(2, "0")}</p>
+              </div>
+              <div className="p-7 pt-5">
               <h3 className="mt-3 text-xl text-ink">{s.title}</h3>
               <p className="mt-2 font-light text-muted">{s.short}</p>
               <ul className="mt-4 grid gap-1 text-sm text-body">
@@ -83,6 +100,7 @@ export default function Home() {
               <p className="mt-5 font-mono text-xs uppercase tracking-[0.12em] text-accent group-hover:underline">
                 Learn more →
               </p>
+              </div>
             </Link>
           ))}
         </div>

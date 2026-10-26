@@ -107,10 +107,29 @@ export function Placeholder({ children }: { children: ReactNode }) {
   return <div className="placeholder">{children}</div>;
 }
 
+/* Full-width photograph with a charcoal wash and one line of copy. Used between sections. */
+export function PhotoBand({ src, position = "center", children, note, tall = false, duotone = false }: { src: string; position?: string; children: ReactNode; note?: string; tall?: boolean; duotone?: boolean }) {
+  return (
+    <section className={`relative overflow-hidden bg-[#17161f] ${tall ? "min-h-[340px] md:min-h-[420px]" : "min-h-[240px] md:min-h-[300px]"}`} aria-label="Photograph">
+      {duotone ? (
+        <div className="duotone absolute inset-0">{/* eslint-disable-next-line @next/next/no-img-element */}<img src={src} alt="" style={{ objectPosition: position }} /></div>
+      ) : (
+        <div className="absolute inset-0 bg-cover" style={{ backgroundImage: `url(${src})`, backgroundPosition: position }} />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#17161f]/55 via-[#17161f]/25 to-[#17161f]/60" />
+      <div className="relative mx-auto flex h-full min-h-[inherit] max-w-6xl items-end justify-between gap-6 px-4 pb-9 pt-16 md:px-6">
+        <p className="max-w-[30ch] font-display text-2xl font-light leading-tight text-white md:text-3xl [&_em]:not-italic [&_em]:text-[#ffc93c] [&_i]:text-[#ffc93c]">{children}</p>
+        {note && <p className="hidden shrink-0 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-white/70 md:block">{note}</p>}
+      </div>
+    </section>
+  );
+}
+
 export function CtaBand() {
   return (
-    <section className="bg-deep text-white">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-16 md:flex-row md:items-center md:justify-between md:px-6">
+    <section className="relative overflow-hidden bg-deep text-white">
+      <div className="absolute inset-0 bg-cover bg-center opacity-[0.14] mix-blend-screen" style={{ backgroundImage: "url(/img/plexus.jpg)" }} aria-hidden="true" />
+      <div className="relative mx-auto flex max-w-6xl flex-col gap-6 px-4 py-16 md:flex-row md:items-center md:justify-between md:px-6">
         <div>
           <h2 className="text-2xl md:text-3xl">Talk to us about <span className="em" style={{ color: "#ffc93c" }}>your business.</span></h2>
           <p className="mt-2 max-w-xl font-light text-white/70">

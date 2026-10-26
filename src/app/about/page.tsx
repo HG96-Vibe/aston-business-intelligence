@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
-import { CtaBand, PageHero, Placeholder, Section, SectionHead } from "@/components/ui";
+import { CtaBand, PageHero, Placeholder, Section, SectionHead, PhotoBand } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "About",
@@ -23,6 +23,7 @@ export default function AboutPage() {
         em="too small for the big firms."
         intro="Aston Business Intelligence was set up to give owner-managed UK companies the kind of data, analysis and delivery capability that used to be reserved for enterprises — at a scale and price that makes sense for them."
       />
+      <PhotoBand src="/img/london-city.jpg" position="center 35%" note="London · Croydon CR0">The City runs on numbers. <i>So should every company in it.</i></PhotoBand>
 
       <Section>
         <div className="grid gap-12 md:grid-cols-2">

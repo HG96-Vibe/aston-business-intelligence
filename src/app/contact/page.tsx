@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
-import { PageHero, Section } from "@/components/ui";
+import { PageHero, Section, PhotoBand } from "@/components/ui";
 import { ContactForm } from "./contact-form";
 import { Availability } from "@/components/offers";
 
@@ -18,6 +18,7 @@ export default function ContactPage() {
         em="slow, broken or unclear."
         intro="A 30-minute conversation is usually enough to establish whether we can help and what it would involve."
       />
+      <PhotoBand src="/img/canary-wharf.jpg" position="center 45%" note="First call within 5 working days">One conversation. <i>A straight answer on whether we can help.</i></PhotoBand>
       <Section>
         <div id="book" className="mb-10 scroll-mt-24 max-w-2xl">
           <p className="marker">Book a conversation</p>

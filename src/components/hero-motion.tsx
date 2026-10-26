@@ -18,7 +18,7 @@ const OUTLINE = [
 ];
 const INK_PARTS = new Set([5, 6]);
 
-export function HeroMotion() {
+export function HeroMotion({ forceDark = false }: { forceDark?: boolean } = {}) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export function HeroMotion() {
     const coarse = matchMedia("(pointer: coarse)").matches;
 
     const theme = () => {
-      const dark = document.documentElement.getAttribute("data-theme") === "dark";
+      const dark = forceDark || document.documentElement.getAttribute("data-theme") === "dark";
       return { gold: dark ? "255,201,60" : "233,179,36", ink: dark ? "243,241,247" : "23,22,31" };
     };
 
