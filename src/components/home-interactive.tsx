@@ -140,6 +140,40 @@ function DashboardCard({ s, live }: { s: Scene; live: boolean }) {
   );
 }
 
+
+/* Generic line glyphs for circuit nodes, keyed by label (no third-party logos). */
+const GLYPHS: Record<string, string> = {
+  ledger: "M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2V4zM9 8h6M9 12h6",
+  grid: "M4 4h16v16H4zM4 10h16M4 15h16M10 4v16",
+  crm: "M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 20a6 6 0 0 1 12 0M17 11a2.5 2.5 0 1 0 0-5M21 20a5 5 0 0 0-4-4.9",
+  bank: "M3 10l9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18",
+  inbox: "M3 13l3-8h12l3 8v6H3zM3 13h5l2 3h4l2-3h5",
+  phone: "M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z",
+  form: "M6 3h12v18H6zM9 8h6M9 12h6M9 16h4",
+  chat: "M4 5h16v11H9l-5 4z",
+  globe: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18",
+  calendar: "M4 6h16v14H4zM4 10h16M8 3v4M16 3v4",
+  chart: "M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-3",
+  doc: "M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6",
+  mail: "M3 6h18v12H3zM3 6l9 7 9-7",
+  bell: "M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4",
+  list: "M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01",
+  invoice: "M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6",
+  scorecard: "M4 5h16v14H4zM8 15l3-4 3 2 3-5",
+  tasks: "M5 7l2 2 4-4M5 13l2 2 4-4M5 19l2 2 4-4M13 6h7M13 12h7M13 18h7",
+  flag: "M6 21V4M6 4h12l-3 4 3 4H6",
+};
+const GLYPH_FOR: Record<string, keyof typeof GLYPHS> = {
+  "Xero": "ledger", "Sheets": "grid", "HubSpot": "crm", "Bank feed": "bank", "Website": "globe", "Calendar": "calendar",
+  "Inbox": "inbox", "Phone": "phone", "Web form": "form", "WhatsApp": "chat",
+  "Power BI": "chart", "Board pack": "doc", "Email digest": "mail", "Slack alert": "bell", "Looker": "chart", "Weekly forecast": "doc",
+  "Rep scorecard": "scorecard", "CRM tasks": "tasks", "CRM": "crm", "Quote draft": "doc", "Invoice": "invoice", "Exception log": "flag",
+};
+function Glyph({ label }: { label: string }) {
+  const d = GLYPHS[GLYPH_FOR[label] ?? "list"];
+  return <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-muted" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={d} /></svg>;
+}
+
 /* Circuit traces: four nodes feeding into (or out of) the card. Gold pulse travels each trace slowly. */
 function Circuit({ labels, dir, seed }: { labels: string[]; dir: "in" | "out"; seed: number }) {
   const xs = [50, 150, 250, 350]; const targets = [140, 180, 220, 260];
@@ -149,8 +183,8 @@ function Circuit({ labels, dir, seed }: { labels: string[]; dir: "in" | "out"; s
         {xs.map((x, i) => {
           const tx = targets[i];
           const d = dir === "in"
-            ? `M${x} 34 V62 Q${x} 72 ${x + Math.sign(tx - x) * 10} 72 H${tx - Math.sign(tx - x) * 10} Q${tx} 72 ${tx} 82 V110`
-            : `M${tx} 0 V28 Q${tx} 38 ${tx + Math.sign(x - tx) * 10} 38 H${x - Math.sign(x - tx) * 10} Q${x} 38 ${x} 48 V76`;
+            ? `M${x} 44 V62 Q${x} 72 ${x + Math.sign(tx - x) * 10} 72 H${tx - Math.sign(tx - x) * 10} Q${tx} 72 ${tx} 82 V110`
+            : `M${tx} 0 V28 Q${tx} 38 ${tx + Math.sign(x - tx) * 10} 38 H${x - Math.sign(x - tx) * 10} Q${x} 38 ${x} 48 V68`;
           return (
             <g key={i}>
               <path d={d} fill="none" className="stroke-line" strokeWidth="1" vectorEffect="non-scaling-stroke" />
@@ -161,9 +195,9 @@ function Circuit({ labels, dir, seed }: { labels: string[]; dir: "in" | "out"; s
       </svg>
       {labels.map((l, i) => (
         <div key={l} className={`absolute flex -translate-x-1/2 flex-col items-center gap-1.5 ${dir === "in" ? "top-0" : "bottom-0"}`} style={{ left: `${(xs[i] / 400) * 100}%` }}>
-          {dir === "out" && <span className="h-5 w-5 rounded border border-line bg-paper" />}
+          {dir === "out" && <span className="grid h-6 w-6 place-items-center rounded border border-line bg-paper"><Glyph label={l} /></span>}
           <span className="whitespace-nowrap font-mono text-[9.5px] uppercase tracking-[0.14em] text-muted">{l}</span>
-          {dir === "in" && <span className="h-5 w-5 rounded border border-line bg-paper" />}
+          {dir === "in" && <span className="grid h-6 w-6 place-items-center rounded border border-line bg-paper"><Glyph label={l} /></span>}
         </div>
       ))}
     </div>
@@ -208,7 +242,16 @@ export function LiveDashboard({ number }: { number?: string }) {
           <div className="overflow-hidden">
             <div className="flex gap-6 transition-transform duration-700 ease-[cubic-bezier(.2,.8,.2,1)]" style={{ transform: `translateX(calc(${-i} * (100% - 20vw + 1.5rem)))` }}>
               {scenes.map((sc, k) => (
-                <div key={sc.title} className="w-full shrink-0 md:w-[calc(100%-20vw)]" style={{ opacity: k === i ? 1 : 0.45, transition: "opacity .6s" }}>
+                <div
+                  key={sc.title}
+                  role={k === i ? undefined : "button"}
+                  tabIndex={k === i ? -1 : 0}
+                  aria-label={k === i ? undefined : `Show ${sc.title}`}
+                  onClick={() => k !== i && setI(k)}
+                  onKeyDown={(e) => { if (k !== i && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); setI(k); } }}
+                  className={`w-full shrink-0 md:w-[calc(100%-20vw)] ${k === i ? "" : "cursor-pointer opacity-45 transition hover:opacity-80 focus:outline-none focus-visible:opacity-90"}`}
+                  style={{ transition: "opacity .6s" }}
+                >
                   <DashboardCard s={sc} live={k === i && live} />
                 </div>
               ))}
