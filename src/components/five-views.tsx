@@ -66,55 +66,83 @@ const views: View[] = [
 
 export function FiveViews() {
   const [cur, setCur] = useState(0);
-  const [tick, setTick] = useState(0); // restarts the rail animation
-  const [auto, setAuto] = useState(true);
-  const wrap = useRef<HTMLDivElement>(null);
+  const [tick, setTick] = useState(0); // restarts the autoplay rail
+  const [within, setWithin] = useState(0); // progress through the current step (scroll mode)
+  const [mode, setMode] = useState<"scroll" | "auto" | "static">("auto");
+  const tall = useRef<HTMLDivElement>(null);
   const visible = useRef(false);
 
+  // Desktop: scroll-driven. Mobile: autoplay. Reduced motion: static tabs.
   useEffect(() => {
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) setAuto(false);
-    const el = wrap.current; if (!el) return;
-    const io = new IntersectionObserver((e) => { visible.current = e[0].isIntersecting; }, { threshold: 0.25 });
-    io.observe(el); return () => io.disconnect();
+    const pick = () => setMode(matchMedia("(prefers-reduced-motion: reduce)").matches ? "static" : matchMedia("(min-width: 768px)").matches ? "scroll" : "auto");
+    pick(); window.addEventListener("resize", pick); return () => window.removeEventListener("resize", pick);
   }, []);
-  useEffect(() => {
-    if (!auto) return;
-    const t = setInterval(() => { if (visible.current) { setCur((c) => (c + 1) % views.length); setTick((k) => k + 1); } }, STEP_MS);
-    return () => clearInterval(t);
-  }, [auto, cur]);
 
-  const go = (i: number) => { setCur(i); setTick((k) => k + 1); };
+  // Scroll mode: map the tall wrapper's progress to the active view.
+  useEffect(() => {
+    if (mode !== "scroll") return;
+    const el = tall.current; if (!el) return;
+    const onScroll = () => {
+      const r = el.getBoundingClientRect(); const total = r.height - window.innerHeight; if (total <= 0) return;
+      const p = Math.min(1, Math.max(0, -r.top / total)) * views.length;
+      const i = Math.min(views.length - 1, Math.floor(p)); setCur(i); setWithin(Math.min(1, p - i));
+    };
+    onScroll(); window.addEventListener("scroll", onScroll, { passive: true }); return () => window.removeEventListener("scroll", onScroll);
+  }, [mode]);
+
+  // Autoplay mode (mobile).
+  useEffect(() => {
+    if (mode !== "auto") return;
+    const el = tall.current; if (!el) return;
+    const io = new IntersectionObserver((e) => { visible.current = e[0].isIntersecting; }, { threshold: 0.25 }); io.observe(el);
+    const t = setInterval(() => { if (visible.current) { setCur((c) => (c + 1) % views.length); setTick((k) => k + 1); } }, STEP_MS);
+    return () => { io.disconnect(); clearInterval(t); };
+  }, [mode, cur]);
+
+  const go = (i: number) => {
+    if (mode === "scroll" && tall.current) {
+      const r = tall.current.getBoundingClientRect(); const total = r.height - window.innerHeight;
+      window.scrollTo({ top: window.scrollY + r.top + ((i + 0.15) / views.length) * total, behavior: "smooth" }); return;
+    }
+    setCur(i); setTick((k) => k + 1);
+  };
   useEffect(() => { // keep the active pill in view on the mobile strip
-    const list = wrap.current?.querySelector<HTMLElement>("[role=tablist]"); const tab = list?.children[cur] as HTMLElement | undefined;
+    const list = tall.current?.querySelector<HTMLElement>("[role=tablist]"); const tab = list?.children[cur] as HTMLElement | undefined;
     if (list && tab && window.innerWidth < 768) list.scrollTo({ left: tab.offsetLeft - 16, behavior: "smooth" });
   }, [cur]);
 
   return (
-    <div ref={wrap} className="mt-12 grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-10">
-      <div role="tablist" aria-label="Dashboard views" className="flex gap-2 overflow-x-auto pb-2 md:block md:overflow-visible md:pb-0">
-        {views.map((v, i) => {
-          const on = i === cur;
-          return (
-            <button key={v.name} role="tab" aria-selected={on} onClick={() => go(i)} className={`relative shrink-0 border-line text-left font-[inherit] transition-colors max-md:w-[220px] max-md:rounded-md max-md:border max-md:p-4 md:block md:w-full md:border-l-2 md:px-5 md:py-4 ${on ? "max-md:border-gold max-md:bg-accent-soft md:border-l-line" : ""}`}>
-              {on && <i key={tick} className="absolute left-[-2px] top-0 hidden w-[2px] bg-gold md:block" style={{ animation: auto ? `fiveviews-rail ${STEP_MS}ms linear forwards` : "none", height: auto ? undefined : "100%" }} />}
-              <span className="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted">0{i + 1} · {v.name}</span>
-              <span className={`mt-1 block font-display text-lg font-light italic leading-snug transition-colors md:text-xl ${on ? "text-accent" : "text-ink"}`}>{v.q}</span>
-              {on && <span className="mt-2 hidden text-sm font-light leading-relaxed text-muted md:block">{v.detail}</span>}
-            </button>
-          );
-        })}
-      </div>
+    <div ref={tall} className={mode === "scroll" ? "md:h-[380vh]" : ""}>
+      <div className={`mt-12 grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-10 ${mode === "scroll" ? "md:sticky md:top-24" : ""}`}>
+        <div role="tablist" aria-label="Dashboard views" className="flex gap-2 overflow-x-auto pb-2 md:block md:overflow-visible md:pb-0">
+          {views.map((v, i) => {
+            const on = i === cur;
+            return (
+              <button key={v.name} role="tab" aria-selected={on} onClick={() => go(i)} className={`relative shrink-0 border-line text-left font-[inherit] transition-colors max-md:w-[220px] max-md:rounded-md max-md:border max-md:p-4 md:block md:w-full md:border-l-2 md:px-5 md:py-4 ${on ? "max-md:border-gold max-md:bg-accent-soft md:border-l-line" : ""}`}>
+                {on && (
+                  <i key={mode === "auto" ? tick : "s"} className="absolute left-[-2px] top-0 hidden w-[2px] bg-gold md:block"
+                    style={mode === "auto" ? { animation: `fiveviews-rail ${STEP_MS}ms linear forwards` } : { height: mode === "scroll" ? `${Math.max(8, within * 100)}%` : "100%" }} />
+                )}
+                <span className="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted">0{i + 1} · {v.name}</span>
+                <span className={`mt-1 block font-display text-lg font-light italic leading-snug transition-colors md:text-xl ${on ? "text-accent" : "text-ink"}`}>{v.q}</span>
+                {on && <span className="mt-2 hidden text-sm font-light leading-relaxed text-muted md:block">{v.detail}</span>}
+              </button>
+            );
+          })}
+        </div>
 
-      <div className="relative md:sticky md:top-24 md:self-start">
-        {views.map((v, i) => (
-          <div key={v.name} aria-hidden={i !== cur} className={`overflow-hidden rounded-[10px] border border-[#ffc93c]/25 bg-[#17161f] text-[11px] text-white shadow-[0_40px_80px_-36px_rgba(0,0,0,.6)] transition-all duration-500 ${i === cur ? "relative opacity-100" : "pointer-events-none absolute inset-0 translate-y-2 opacity-0"}`}>
-            <div className="flex items-center justify-between border-b border-white/10 px-3.5 py-2.5 font-mono text-[10px] uppercase tracking-[0.1em]"><span><span className="mr-2 inline-block h-[7px] w-[7px] rounded-full bg-[#ffc93c]" />{v.name}</span><em className="rounded-[3px] border border-[#ffc93c] px-1.5 py-px text-[9px] not-italic text-[#ffc93c]">example</em></div>
-            {v.panel}
-          </div>
-        ))}
-        <p className="mt-3 text-xs font-light text-muted md:hidden">{views[cur].detail}</p>
+        <div className="relative">
+          {views.map((v, i) => (
+            <div key={v.name} aria-hidden={i !== cur} className={`overflow-hidden rounded-[10px] border border-[#ffc93c]/25 bg-[#17161f] text-[11px] text-white shadow-[0_40px_80px_-36px_rgba(0,0,0,.6)] transition-all duration-500 ${i === cur ? "relative opacity-100" : "pointer-events-none absolute inset-0 translate-y-2 opacity-0"}`}>
+              <div className="flex items-center justify-between border-b border-white/10 px-3.5 py-2.5 font-mono text-[10px] uppercase tracking-[0.1em]"><span><span className="mr-2 inline-block h-[7px] w-[7px] rounded-full bg-[#ffc93c]" />{v.name}</span><em className="rounded-[3px] border border-[#ffc93c] px-1.5 py-px text-[9px] not-italic text-[#ffc93c]">example</em></div>
+              {v.panel}
+            </div>
+          ))}
+          <p className="mt-3 text-xs font-light text-muted md:hidden">{views[cur].detail}</p>
+          {mode === "scroll" && <p className="mt-4 hidden font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted md:block">Scroll to step through · {cur + 1} / {views.length}</p>}
+        </div>
+        <style>{`@keyframes fiveviews-rail { from { height: 0 } to { height: 100% } }`}</style>
       </div>
-      <style>{`@keyframes fiveviews-rail { from { height: 0 } to { height: 100% } }`}</style>
     </div>
   );
 }
