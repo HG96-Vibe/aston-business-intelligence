@@ -68,7 +68,7 @@ export function WeekOne({ number }: { number?: string }) {
 
 export function Guarantee() {
   return (
-    <Section dim>
+    <Section>
       <div className="grid gap-8 rounded-md border border-accent/30 bg-paper p-8 md:grid-cols-[1fr_1.4fr] md:p-10">
         <div>
           <p className="marker">Our guarantee</p>

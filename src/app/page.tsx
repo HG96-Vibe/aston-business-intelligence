@@ -4,17 +4,14 @@ import { Button, CtaBand, Section, SectionHead } from "@/components/ui";
 import { HeroMotion } from "@/components/hero-motion";
 import { Availability, Guarantee, PricingLadder, ProofStrip, WeekOne, bookHref } from "@/components/offers";
 import { serviceOutcomes } from "@/lib/offers";
+import { Problems, Deliverables, Faq } from "@/components/home-blocks";
+import { LiveDashboard, CostCalculator, SectorTabs } from "@/components/home-interactive";
 
 const principles = [
   ["Senior-led, specialist-delivered", "Every engagement is scoped and overseen by a senior consultant and delivered by a team matched to the problem — analysts, engineers, AI specialists or project leads as needed."],
   ["Fixed scope, fixed price", "Our first engagement with you is always a defined piece of work with a defined price. No open-ended day rates until you've seen how we work."],
   ["Built to be handed over", "We document everything and train your people. You should be able to run what we build without us."],
   ["Plain English", "No jargon in meetings, no jargon in reports. If we can't explain a recommendation simply, we haven't finished thinking about it."],
-];
-
-const sectors = [
-  "Professional services", "Training & education", "Recruitment & staffing", "Retail & e-commerce",
-  "Property & construction", "Healthcare & care providers", "Logistics & distribution", "Financial services",
 ];
 
 const credentials = [
@@ -60,9 +57,13 @@ export default function Home() {
         </div>
       </section>
 
+      <Problems number="01" />
+
+      <LiveDashboard number="02" />
+
       <Section dim>
         <SectionHead
-          number="01"
+          number="03"
           eyebrow="What we do"
           title="Four services. One goal:"
           em="a business that runs on evidence."
@@ -87,12 +88,18 @@ export default function Home() {
         </div>
       </Section>
 
-      <PricingLadder compact number="02" />
+      <PricingLadder compact number="04" />
 
-      <WeekOne number="03" />
+      <CostCalculator number="05" />
 
-      <Section dim>
-        <SectionHead number="04" eyebrow="How we work" title="Scoped before it starts." em="Handed over when it's done." />
+      <WeekOne number="06" />
+
+      <Deliverables number="07" />
+
+      <Guarantee />
+
+      <Section>
+        <SectionHead number="08" eyebrow="How we work" title="Scoped before it starts." em="Handed over when it's done." />
         <ol className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-3">
           {[
             ["Discover", "A short, fixed-fee piece of work to understand your business, your data and the decisions that matter. You get a written assessment and a costed plan — whether or not you continue with us."],
@@ -108,10 +115,8 @@ export default function Home() {
         </ol>
       </Section>
 
-      <Guarantee />
-
-      <Section>
-        <SectionHead number="05" eyebrow="Why ABI" title="What you can" em="hold us to." />
+      <Section dim>
+        <SectionHead number="09" eyebrow="Why ABI" title="What you can" em="hold us to." />
         <div className="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2">
           {principles.map(([title, body]) => (
             <div key={title} className="hairline pt-5">
@@ -124,22 +129,9 @@ export default function Home() {
 
       <ProofStrip />
 
-      <Section dim>
-        <div className="grid gap-10 md:grid-cols-[1fr_1.2fr] md:items-start">
-          <SectionHead
-            number="06"
-            eyebrow="Who we work with"
-            title="Owner-managed and"
-            em="growing UK businesses."
-            intro="Typically £1m–£30m turnover: large enough that spreadsheets have stopped working, small enough that a big consultancy doesn't make sense."
-          />
-          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-md border border-line bg-line text-sm md:mt-12">
-            {sectors.map((s) => (
-              <li key={s} className="bg-paper px-4 py-3 text-body">{s}</li>
-            ))}
-          </ul>
-        </div>
-      </Section>
+      <SectorTabs number="10" />
+
+      <Faq number="11" />
 
       <CtaBand />
     </>
