@@ -1,103 +1,150 @@
 import Link from "next/link";
+import { services, site } from "@/lib/site";
+import { Button, CtaBand, Section, SectionHead } from "@/components/ui";
 
-const services = [
+const principles = [
   {
-    title: "BI strategy & roadmap",
-    body: "Audit what you have, define what decisions need data, and plan the shortest path to dashboards people actually use.",
+    title: "Senior-led, specialist-delivered",
+    body: "Every engagement is scoped and overseen by a senior consultant and delivered by a team matched to the problem — analysts, engineers, AI specialists or project leads as needed.",
   },
   {
-    title: "Dashboards & reporting",
-    body: "Power BI, Looker and Tableau builds with clean models underneath, so numbers reconcile and refresh without babysitting.",
+    title: "Fixed scope, fixed price",
+    body: "Our first engagement with you is always a defined piece of work with a defined price. No open-ended day rates until you've seen how we work.",
   },
   {
-    title: "Data engineering",
-    body: "Pipelines, warehousing and modelling — from spreadsheets and SaaS exports to a single trusted source.",
+    title: "Built to be handed over",
+    body: "We document everything and train your people. You should be able to run what we build without us.",
   },
   {
-    title: "Analytics & insight",
-    body: "Answer the questions behind the KPI: churn, margin, funnel, forecasting — with analysis your team can re-run.",
+    title: "Plain English",
+    body: "No jargon in meetings, no jargon in reports. If we can't explain a recommendation simply, we haven't finished thinking about it.",
   },
 ];
 
-const steps = [
-  ["Discovery", "A short, fixed-fee engagement to map your data, decisions and gaps."],
-  ["Build", "Models, pipelines and dashboards delivered in two-week increments you can see and test."],
-  ["Handover", "Documentation, training and a support window so it keeps working after we leave."],
+const sectors = [
+  "Professional services",
+  "Training & education",
+  "Recruitment & staffing",
+  "Retail & e-commerce",
+  "Property & construction",
+  "Healthcare & care providers",
+  "Logistics & distribution",
+  "Financial services",
 ];
 
 export default function Home() {
   return (
     <>
-      <section className="mx-auto max-w-6xl px-4 py-20 md:py-28">
-        <p className="text-sm font-medium uppercase tracking-wider text-sky-600">
-          Business intelligence consultancy · London
-        </p>
-        <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">
-          Turn the data you already have into decisions you can defend.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-slate-600">
-          We design and build the reporting, models and pipelines that let UK
-          businesses stop arguing about the numbers and start acting on them.
-        </p>
-        <div className="mt-8 flex gap-3">
-          <Link
-            href="/contact"
-            className="rounded-md bg-slate-900 px-5 py-3 text-sm font-medium text-white hover:bg-slate-700"
-          >
-            Book a discovery call
-          </Link>
-          <Link
-            href="/services"
-            className="rounded-md border border-slate-300 px-5 py-3 text-sm font-medium hover:bg-slate-50"
-          >
-            See services
-          </Link>
-        </div>
-      </section>
-
-      <section className="border-t border-slate-200 bg-slate-50">
-        <div className="mx-auto max-w-6xl px-4 py-16">
-          <h2 className="text-2xl font-semibold tracking-tight">What we do</h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {services.map((s) => (
-              <div key={s.title} className="rounded-lg border border-slate-200 bg-white p-6">
-                <h3 className="font-semibold">{s.title}</h3>
-                <p className="mt-2 text-sm text-slate-600">{s.body}</p>
-              </div>
-            ))}
+      <section className="bg-ink text-white">
+        <div className="mx-auto max-w-6xl px-4 pb-20 pt-24 md:px-6 md:pb-28 md:pt-36">
+          <p className="eyebrow eyebrow-light">Business intelligence consultancy · London, UK</p>
+          <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.1] md:text-6xl">
+            Business intelligence for companies that want decisions, not just dashboards.
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/75 md:text-xl">
+            Aston helps UK SMEs see their business clearly, decide faster and deliver what they
+            decide — through data analysis, business analysis, AI consulting and project delivery.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Button href="/contact">Talk to us</Button>
+            <Button href="/services" variant="light">What we do</Button>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="text-2xl font-semibold tracking-tight">How an engagement runs</h2>
-        <ol className="mt-8 grid gap-6 md:grid-cols-3">
-          {steps.map(([title, body], i) => (
-            <li key={title} className="rounded-lg border border-slate-200 p-6">
-              <span className="text-sm font-medium text-sky-600">0{i + 1}</span>
-              <h3 className="mt-2 font-semibold">{title}</h3>
-              <p className="mt-2 text-sm text-slate-600">{body}</p>
+      <Section>
+        <SectionHead
+          eyebrow="What we do"
+          title="Four services. One goal: a business that runs on evidence."
+          intro="Most companies don't have a data problem. They have a decision problem — the information exists, but it isn't in front of the right people in a form they can act on."
+        />
+        <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-2">
+          {services.map((s) => (
+            <Link
+              key={s.slug}
+              href={`/services#${s.slug}`}
+              className="group bg-paper p-7 transition hover:bg-paper-dim"
+            >
+              <h3 className="text-xl font-bold text-ink">{s.title}</h3>
+              <p className="mt-2 text-muted">{s.short}</p>
+              <p className="mt-5 text-sm font-semibold text-accent group-hover:underline">
+                Learn more →
+              </p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section dim>
+        <SectionHead
+          eyebrow="How we work"
+          title="Scoped before it starts. Handed over when it's done."
+        />
+        <ol className="mt-12 grid gap-6 md:grid-cols-3">
+          {[
+            ["Discover", "A short, fixed-fee piece of work to understand your business, your data and the decisions that matter. You get a written assessment and a costed plan — whether or not you continue with us."],
+            ["Build", "Delivered in two-week increments you can see and test. Weekly written updates. No surprises at invoice time."],
+            ["Hand over", "Documentation, training and a support window. Your team owns the result."],
+          ].map(([title, body], i) => (
+            <li key={title} className="rounded-lg border border-line bg-paper p-7">
+              <span className="font-mono text-sm text-accent">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="mt-3 text-xl font-bold text-ink">{title}</h3>
+              <p className="mt-3 leading-relaxed text-muted">{body}</p>
             </li>
           ))}
         </ol>
-      </section>
+      </Section>
 
-      <section className="border-t border-slate-200">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-4 px-4 py-16 md:flex-row md:items-center md:justify-between">
+      <Section>
+        <SectionHead eyebrow="Why Aston" title="What you can expect from us" />
+        <div className="mt-12 grid gap-10 md:grid-cols-2">
+          {principles.map((p) => (
+            <div key={p.title}>
+              <h3 className="text-lg font-bold text-ink">{p.title}</h3>
+              <p className="mt-2 leading-relaxed text-muted">{p.body}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section dim>
+        <div className="grid gap-10 md:grid-cols-[1fr_1.2fr] md:items-start">
+          <SectionHead
+            eyebrow="Who we work with"
+            title="Owner-managed and growing UK businesses"
+            intro="Typically £1m–£30m turnover: large enough that spreadsheets have stopped working, small enough that a big consultancy doesn't make sense."
+          />
+          <ul className="grid grid-cols-2 gap-3 text-sm md:pt-10">
+            {sectors.map((s) => (
+              <li key={s} className="rounded-md border border-line bg-paper px-4 py-3 text-body">
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="grid gap-8 rounded-lg border border-line p-8 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight">Got a reporting problem?</h2>
-            <p className="mt-2 text-slate-600">
-              Thirty minutes, no pitch deck. We&apos;ll tell you whether we can help.
+            <p className="eyebrow">A registered UK company</p>
+            <p className="mt-3 text-lg text-body">
+              {site.name} Ltd is registered in England &amp; Wales, company number{" "}
+              <span className="font-mono">{site.companyNumber}</span>. You can verify us on Companies House.
             </p>
           </div>
-          <Link
-            href="/contact"
-            className="rounded-md bg-slate-900 px-5 py-3 text-sm font-medium text-white hover:bg-slate-700"
+          <a
+            href={`https://find-and-update.company-information.service.gov.uk/company/${site.companyNumber}`}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center rounded-md border border-line px-5 py-3 text-sm font-semibold text-ink hover:bg-paper-dim"
           >
-            Book a call
-          </Link>
+            View on Companies House ↗
+          </a>
         </div>
-      </section>
+      </Section>
+
+      <CtaBand />
     </>
   );
 }

@@ -1,1 +1,69 @@
 @import "tailwindcss";
+
+/*
+  Aston design tokens.
+  Layout: generous left-aligned editorial grid, dark "ink" hero, white body,
+  one accent used only for emphasis and primary actions.
+*/
+@theme {
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-body), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
+  --color-ink: #0c1a2b;
+  --color-ink-soft: #16283f;
+  --color-paper: #ffffff;
+  --color-paper-dim: #f4f6f9;
+  --color-line: #dbe1ea;
+  --color-muted: #5b6b80;
+  --color-body: #223042;
+  --color-accent: #0e8a7a;
+  --color-accent-strong: #0b6f63;
+  --color-accent-soft: #e3f3f0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-body);
+  background: var(--color-paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.eyebrow-light {
+  color: #7fd1c4;
+}
+
+.prose-muted p + p {
+  margin-top: 1rem;
+}
+
+.placeholder {
+  border: 1px dashed #d59b2b;
+  background: #fff8e8;
+  color: #7a5200;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

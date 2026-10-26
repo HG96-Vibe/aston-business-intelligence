@@ -1,12 +1,97 @@
 import type { Metadata } from "next";
-import { PageShell } from "@/components/page-shell";
+import Link from "next/link";
+import { services } from "@/lib/site";
+import { Button, CtaBand, PageHero } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Services" };
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "Data & BI, business analysis, AI consulting and project delivery for UK SMEs. Fixed-scope, fixed-price first engagements.",
+};
 
-export default function Page() {
+export default function ServicesPage() {
   return (
-    <PageShell eyebrow="Services" title="What we do" intro="BI strategy, dashboards, data engineering and analytics — scoped as fixed-fee engagements.">
-      <p className="text-sm text-slate-500">Content coming soon.</p>
-    </PageShell>
+    <>
+      <PageHero
+        eyebrow="Services"
+        title="From unclear data to delivered change"
+        intro="Four services that work alone or in sequence: understand the numbers, define what to change, apply AI where it pays, and get it delivered."
+      >
+        <nav className="flex flex-wrap gap-2">
+          {services.map((s) => (
+            <a
+              key={s.slug}
+              href={`#${s.slug}`}
+              className="rounded-full border border-white/25 px-4 py-1.5 text-sm text-white/85 hover:bg-white/10"
+            >
+              {s.title}
+            </a>
+          ))}
+        </nav>
+      </PageHero>
+
+      {services.map((s, i) => (
+        <section
+          key={s.slug}
+          id={s.slug}
+          className={`scroll-mt-20 ${i % 2 === 1 ? "bg-paper-dim" : ""}`}
+        >
+          <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-[1fr_1.3fr] md:px-6 md:py-24">
+            <div>
+              <p className="eyebrow">{String(i + 1).padStart(2, "0")}</p>
+              <h2 className="mt-3 text-3xl font-bold text-ink md:text-4xl">{s.title}</h2>
+              <p className="mt-4 text-lg text-muted">{s.short}</p>
+              <div className="mt-8 rounded-lg border border-accent/30 bg-accent-soft p-5">
+                <p className="eyebrow">Start here</p>
+                <p className="mt-2 font-semibold text-ink">{s.entry}</p>
+                <Link href="/contact" className="mt-3 inline-block text-sm font-semibold text-accent hover:underline">
+                  Ask about this →
+                </Link>
+              </div>
+            </div>
+            <div className="grid gap-8">
+              <div>
+                <h3 className="font-bold text-ink">The problem we usually find</h3>
+                <p className="mt-2 leading-relaxed text-muted">{s.problem}</p>
+              </div>
+              <div>
+                <h3 className="font-bold text-ink">What we do</h3>
+                <ul className="mt-3 grid gap-2">
+                  {s.what.map((w) => (
+                    <li key={w} className="flex gap-3 leading-relaxed text-body">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                      {w}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-ink">What you end up with</h3>
+                <p className="mt-2 leading-relaxed text-muted">{s.outcome}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      <section>
+        <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+          <div className="max-w-2xl">
+            <p className="eyebrow">Not sure which you need?</p>
+            <h2 className="mt-3 text-3xl font-bold text-ink">That&apos;s normal. Start with a conversation.</h2>
+            <p className="mt-4 text-lg text-muted">
+              Most clients come to us with a symptom — slow reporting, a stalled project, pressure
+              to &ldquo;do something with AI&rdquo; — not a service name. Tell us the symptom and we&apos;ll
+              tell you where to start.
+            </p>
+            <div className="mt-8">
+              <Button href="/contact">Talk to us</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CtaBand />
+    </>
   );
 }

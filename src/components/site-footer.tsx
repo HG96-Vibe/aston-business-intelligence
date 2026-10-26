@@ -1,30 +1,48 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { Logo } from "@/components/logo";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-50">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 text-sm text-slate-600 md:grid-cols-3">
+    <footer className="border-t border-line bg-paper-dim">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-[1.4fr_1fr_1fr] md:px-6">
         <div>
-          <p className="font-semibold text-slate-900">{site.name}</p>
-          <p className="mt-2">
-            BI strategy, analytics and data engineering for UK organisations.
+          <Logo />
+          <p className="mt-4 max-w-sm text-sm text-muted">
+            Business intelligence, business analysis, AI consulting and project delivery for UK SMEs.
           </p>
         </div>
-        <nav className="grid gap-2">
-          {site.nav.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-slate-900">
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="grid gap-2">
-          <Link href="/privacy" className="hover:text-slate-900">Privacy policy</Link>
-          <Link href="/terms" className="hover:text-slate-900">Terms</Link>
-          <p className="mt-4 text-xs text-slate-500">
-            {site.name} Ltd · Company no. {site.companyNumber} · Registered in England &amp; Wales
+        <div>
+          <p className="eyebrow">Company</p>
+          <nav className="mt-3 grid gap-2 text-sm">
+            {site.nav.map((item) => (
+              <Link key={item.href} href={item.href} className="text-body hover:text-ink">
+                {item.label}
+              </Link>
+            ))}
+            <Link href="/privacy" className="text-body hover:text-ink">Privacy policy</Link>
+            <Link href="/terms" className="text-body hover:text-ink">Terms</Link>
+          </nav>
+        </div>
+        <div>
+          <p className="eyebrow">Contact</p>
+          <div className="mt-3 grid gap-2 text-sm">
+            <a href={`mailto:${site.emails.hello}`} className="text-body hover:text-ink">{site.emails.hello}</a>
+            <a href={`mailto:${site.emails.careers}`} className="text-body hover:text-ink">{site.emails.careers}</a>
+          </div>
+          <p className="mt-6 text-xs leading-relaxed text-muted">
+            {site.name} Ltd · Company no. {site.companyNumber}
+            <br />
+            Registered in England &amp; Wales
+            <br />
+            {site.registeredOffice}
           </p>
         </div>
+      </div>
+      <div className="border-t border-line">
+        <p className="mx-auto max-w-6xl px-4 py-4 text-xs text-muted md:px-6">
+          © {new Date().getFullYear()} {site.name} Ltd. All rights reserved.
+        </p>
       </div>
     </footer>
   );
