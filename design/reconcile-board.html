@@ -1,0 +1,181 @@
+<title>Reconciliation Section Options</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --ink:#17161f; --paper:#fff; --dim:#f7f5f0; --soft:#fbf3dc; --gold:#e9b324; --accent:#c98a06; --good:#1f9d61; --deep:#17161f;
+    --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; --good:#7fd1a5; --deep:#0d0c12; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; --good:#7fd1a5; --deep:#0d0c12; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:66ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .top { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+  .top button { font:inherit; font-size:13px; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:44px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; }
+  .frame { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--dim); }
+  .sec { padding:64px 48px; }
+  @media (max-width:860px) { .sec { padding:40px 20px; } }
+  .marker { display:inline-flex; align-items:center; gap:12px; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .marker::before { content:""; width:28px; height:1px; background:var(--accent); }
+  h3.t { font-family:var(--serif); font-weight:400; font-size:clamp(1.8rem,3.4vw,2.6rem); line-height:1.12; letter-spacing:-.015em; margin:14px 0 0; color:var(--ink); text-wrap:balance; max-width:20ch; }
+  .em { font-style:italic; font-weight:300; color:var(--accent); }
+  .sub { font-weight:300; color:var(--muted); font-size:1.02rem; max-width:34rem; margin:14px 0 0; }
+  .two { display:grid; grid-template-columns:1fr 1.15fr; gap:48px; align-items:center; }
+  @media (max-width:860px) { .two { grid-template-columns:1fr; } }
+  .mono { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .num { font-family:var(--mono); font-variant-numeric:tabular-nums; }
+
+  /* A live tick */
+  .tbl { background:var(--paper); border:1px solid var(--line); border-radius:8px; overflow:hidden; font-size:13px; }
+  .tbl .r { display:grid; grid-template-columns:1.1fr 1fr 1fr 36px; gap:8px; padding:11px 16px; border-bottom:1px solid var(--line); align-items:center; }
+  .tbl .r.h { background:var(--dim); font-family:var(--mono); font-size:9px; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); padding:8px 16px; }
+  .tbl .r span:nth-child(2), .tbl .r span:nth-child(3) { text-align:right; } .tbl .r .num { color:var(--ink); }
+  .tbl .ok { text-align:right; color:var(--good); opacity:0; transform:scale(.6); transition:all .35s cubic-bezier(.2,.8,.2,1.4); } .tbl .ok.on { opacity:1; transform:none; }
+  .tbl .r.flag .num:last-of-type { color:var(--accent); } .tbl .r.flag .ok { color:var(--accent); }
+  .tbl .r.flag .why { grid-column:1/-1; font-size:11.5px; color:var(--accent); margin-top:-4px; display:none; } .tbl .r.flag.show .why { display:block; }
+  .tbl .ft { display:flex; justify-content:space-between; padding:9px 16px; background:var(--soft); font-family:var(--mono); font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--accent); }
+  .tbl .ft b { font-weight:500; }
+  .sweep { position:relative; } .sweep::after { content:""; position:absolute; left:0; right:0; top:0; height:2px; background:var(--gold); transform:translateY(var(--y,0)); transition:transform .5s; opacity:0; } .sweep.go::after { opacity:1; }
+
+  /* B wired */
+  .wire { position:relative; display:grid; grid-template-columns:1fr 120px 1fr; align-items:center; }
+  .wire .sys { background:var(--paper); border:1px solid var(--line); border-radius:8px; overflow:hidden; font-size:12px; }
+  .wire .sys .hd { padding:9px 14px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:9px; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); display:flex; justify-content:space-between; }
+  .wire .sys .hd i { width:8px; height:8px; border-radius:50%; background:#13b5ea; display:inline-block; margin-right:8px; }
+  .wire .sys .row { display:flex; justify-content:space-between; padding:11px 14px; border-bottom:1px solid var(--line); } .wire .sys .row:last-child { border:0; }
+  .wire .dash { background:#17161f; color:#fff; border:1px solid rgba(255,201,60,.25); border-radius:8px; overflow:hidden; font-size:12px; }
+  .wire .dash .hd { padding:9px 14px; border-bottom:1px solid rgba(255,255,255,.1); font-family:var(--mono); font-size:9px; letter-spacing:1.2px; text-transform:uppercase; display:flex; justify-content:space-between; } .wire .dash .hd i { width:8px; height:8px; border-radius:50%; background:#ffc93c; display:inline-block; margin-right:8px; }
+  .wire .dash .row { display:flex; justify-content:space-between; padding:11px 14px; border-bottom:1px solid rgba(255,255,255,.08); } .wire .dash .row:last-child { border:0; }
+  .wire svg { position:absolute; left:calc(50% - 60px); width:120px; height:100%; top:0; overflow:visible; }
+  .wire svg path { fill:none; stroke:var(--line); stroke-width:1.5; } .wire svg path.g { stroke:var(--gold); stroke-width:2; stroke-dasharray:1; stroke-dashoffset:1; pathLength:1; animation:dr 1.2s ease-out forwards; }
+  .wire svg text { font-family:var(--mono); font-size:11px; fill:var(--good); opacity:0; animation:fi .3s forwards; }
+  @keyframes dr { to { stroke-dashoffset:0; } } @keyframes fi { to { opacity:1; } }
+  @media (max-width:860px) { .wire { grid-template-columns:1fr; gap:14px; } .wire svg { display:none; } }
+
+  /* C morning */
+  .morn { position:relative; margin-top:36px; padding-left:28px; border-left:1px solid var(--line); display:grid; gap:26px; }
+  .morn .ev { position:relative; } .morn .ev::before { content:""; position:absolute; left:-34px; top:6px; width:11px; height:11px; border-radius:50%; background:var(--paper); border:2px solid var(--line); }
+  .morn .ev.k::before { background:var(--gold); border-color:var(--gold); }
+  .morn .ev .tm { font-family:var(--mono); font-size:11px; color:var(--accent); letter-spacing:1px; } .morn .ev h4 { margin:2px 0 0; font-family:var(--serif); font-weight:400; font-size:1.15rem; color:var(--ink); } .morn .ev p { margin:4px 0 0; font-size:13px; color:var(--muted); font-weight:300; max-width:46ch; }
+  .morn .ev .chip { display:inline-block; margin-top:8px; background:var(--soft); border:1px solid var(--gold); color:var(--accent); font-family:var(--mono); font-size:9px; letter-spacing:1px; text-transform:uppercase; padding:3px 8px; border-radius:3px; }
+  .clock { width:150px; height:150px; border-radius:50%; border:2px solid var(--line); position:relative; margin:0 auto; background:var(--paper); }
+  .clock i { position:absolute; left:50%; bottom:50%; transform-origin:bottom; background:var(--ink); border-radius:2px; } .clock .h { width:3px; height:40px; margin-left:-1.5px; transform:rotate(180deg); } .clock .m { width:2px; height:58px; margin-left:-1px; background:var(--gold); animation:min 6s linear infinite; }
+  .clock b { position:absolute; left:50%; top:50%; width:8px; height:8px; margin:-4px; border-radius:50%; background:var(--gold); }
+  .clock small { position:absolute; left:50%; bottom:22px; transform:translateX(-50%); font-family:var(--mono); font-size:9px; letter-spacing:1px; color:var(--muted); white-space:nowrap; }
+  @keyframes min { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+
+  /* D certificate */
+  .cert { background:#fff; color:#222; border:1px solid var(--line); padding:34px 38px; position:relative; box-shadow:0 30px 60px -36px rgba(0,0,0,.35); font-size:12.5px; max-width:560px; margin:0 auto; }
+  .cert::before { content:""; position:absolute; inset:8px; border:1px solid #e6e2d8; pointer-events:none; }
+  .cert h4 { margin:0; font-family:var(--serif); font-weight:400; font-size:1.5rem; letter-spacing:-.01em; } .cert .sm { font-family:var(--mono); font-size:9px; letter-spacing:1.2px; text-transform:uppercase; color:#777; }
+  .cert table { width:100%; border-collapse:collapse; margin-top:18px; } .cert td { padding:9px 0; border-bottom:1px solid #eee; } .cert td:nth-child(n+2) { text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums; } .cert th { font-family:var(--mono); font-size:8.5px; letter-spacing:1px; text-transform:uppercase; color:#777; font-weight:400; text-align:right; padding-bottom:6px; border-bottom:1px solid #222; } .cert th:first-child { text-align:left; }
+  .cert td.ok { color:#1f9d61; }
+  .cert .stamp { position:absolute; right:30px; bottom:60px; width:118px; height:118px; border:3px solid var(--accent); border-radius:50%; color:var(--accent); display:grid; place-items:center; text-align:center; font-family:var(--mono); font-size:9px; letter-spacing:1.5px; text-transform:uppercase; line-height:1.4; transform:rotate(-12deg); opacity:0; animation:stamp .5s cubic-bezier(.2,.8,.2,1.6) 1.2s forwards; }
+  .cert .stamp::before { content:""; position:absolute; inset:5px; border:1px solid var(--accent); border-radius:50%; }
+  @keyframes stamp { from { opacity:0; transform:rotate(-12deg) scale(1.8); } to { opacity:.92; transform:rotate(-12deg) scale(1); } }
+  .cert .sig { margin-top:26px; display:flex; justify-content:space-between; align-items:flex-end; } .cert .sig div { border-top:1px solid #222; padding-top:6px; min-width:160px; font-family:var(--mono); font-size:8.5px; letter-spacing:1px; text-transform:uppercase; color:#777; }
+  :root:not([data-theme="light"]) .cert { background:#1e1d26; color:#eee; } :root:not([data-theme="light"]) .cert::before, :root:not([data-theme="light"]) .cert td { border-color:#2b2935; } :root:not([data-theme="light"]) .cert th, :root:not([data-theme="light"]) .cert .sig div { border-color:#eee; }
+
+  /* E diff */
+  .diff { background:#0d0c12; border:1px solid #2b2935; border-radius:10px; overflow:hidden; font-family:var(--mono); font-size:12px; color:#d9d6e3; box-shadow:0 40px 80px -40px rgba(0,0,0,.6); }
+  .diff .bar { display:flex; justify-content:space-between; padding:9px 14px; border-bottom:1px solid #2b2935; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#6c6980; }
+  .diff .ln { display:grid; grid-template-columns:40px 20px 1fr auto; gap:10px; padding:5px 14px; } .diff .ln .no { color:#3f3d4d; text-align:right; } .diff .ln .pm { color:#3f3d4d; }
+  .diff .ln.add { background:rgba(127,209,165,.12); } .diff .ln.add .pm, .diff .ln.add .v { color:#7fd1a5; } .diff .ln.del { background:rgba(255,179,127,.12); } .diff .ln.del .pm, .diff .ln.del .v { color:#ffb37f; text-decoration:line-through; }
+  .diff .ln .v { text-align:right; }
+  .diff .sum { padding:12px 14px; border-top:1px solid #2b2935; display:flex; justify-content:space-between; font-size:11px; color:#ffc93c; }
+  .diff .c { color:#6c6980; }
+  .toggle { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; margin-top:18px; } .toggle button { font:inherit; font-size:12px; padding:6px 14px; border:0; background:none; color:var(--muted); cursor:pointer; } .toggle button.on { background:var(--ink); color:var(--paper); }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div><h1>"Reconciled to the ledger" — five treatments</h1><p class="lede">Section 04 of the Data &amp; BI page. The point is trust: the dashboard and the accounts agree, and you can see it. Each option proves that differently. (One option also shows what happens when a number <em>doesn't</em> tie back — that honesty is half the pitch.)</p></div>
+    <button type="button" id="theme">Night</button>
+  </div>
+
+  <!-- A -->
+  <div class="label"><span class="n">A</span><h2>The live check</h2><p>The existing table, brought to life: a gold scan line sweeps down, each row ticks green as it passes — and one row is £3,000 out, so it's flagged gold with the reason, not hidden. Footer updates to "3 of 4 tie back · 1 flagged". Loops.</p></div>
+  <div class="frame"><div class="sec two">
+    <div><p class="marker">04 · Why ours gets used</p><h3 class="t">Reconciled to the ledger, <span class="em">on every refresh.</span></h3><p class="sub">A dashboard that is £3,000 out from the accounts is switched off within a month. Ours runs the check every morning and shows it on screen — including the one time a number doesn't tie back.</p></div>
+    <div class="tbl sweep" id="live">
+      <div class="r h"><span>Figure</span><span>Dashboard</span><span>Xero</span><span></span></div>
+      <div class="r"><span>Revenue</span><span class="num">£412,380</span><span class="num">£412,380</span><span class="ok">✓</span></div>
+      <div class="r"><span>Gross margin</span><span class="num">£157,529</span><span class="num">£157,529</span><span class="ok">✓</span></div>
+      <div class="r flag"><span>Debtors</span><span class="num">£188,204</span><span class="num">£191,204</span><span class="ok">!</span><span class="why">£3,000 out — credit note posted in Xero after 06:00 refresh. Flagged, not hidden. Clears on next run.</span></div>
+      <div class="r"><span>Overheads</span><span class="num">£96,110</span><span class="num">£96,110</span><span class="ok">✓</span></div>
+      <div class="ft"><span>Reconciled <b id="lt">06:02</b> today</span><span id="lf">—</span></div>
+    </div>
+  </div></div>
+
+  <!-- B -->
+  <div class="label"><span class="n">B</span><h2>Wired</h2><p>Two systems side by side — your accounting system on the left (paper, blue dot), the dashboard on the right (charcoal, gold dot) — with gold traces drawn figure-to-figure and a tick on each wire. Makes "reconciled" literal: every number is physically connected to its source.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">04 · Why ours gets used</p><h3 class="t">Every figure wired <span class="em">back to the accounts.</span></h3>
+    <div class="wire" style="margin-top:36px">
+      <div class="sys"><div class="hd"><span><i></i>Xero · 06:00 export</span><span>Source</span></div><div class="row"><span>Revenue</span><span class="num">£412,380</span></div><div class="row"><span>Gross margin</span><span class="num">£157,529</span></div><div class="row"><span>Debtors</span><span class="num">£188,204</span></div><div class="row"><span>Overheads</span><span class="num">£96,110</span></div></div>
+      <div></div>
+      <div class="dash"><div class="hd"><span><i></i>Dashboard · 06:02</span><span style="color:#ffc93c">Reconciled</span></div><div class="row"><span>Revenue</span><span class="num">£412,380</span></div><div class="row"><span>Gross margin</span><span class="num">£157,529</span></div><div class="row"><span>Debtors</span><span class="num">£188,204</span></div><div class="row"><span>Overheads</span><span class="num">£96,110</span></div></div>
+      <svg viewBox="0 0 120 200" preserveAspectRatio="none" id="wires"></svg>
+    </div>
+    <p class="mono" style="margin-top:16px">Illustrative figures · any source: Xero, Sage, QuickBooks</p>
+  </div></div>
+
+  <!-- C -->
+  <div class="label"><span class="n">C</span><h2>Six in the morning</h2><p>A clock and a timeline of one morning: 06:00 refresh, 06:02 reconciled, 08:10 finance checks the tie-back, 09:00 the MD opens it already trusting it. Sells the "before anyone relies on it" line through routine rather than a table.</p></div>
+  <div class="frame"><div class="sec two">
+    <div><p class="marker">04 · Why ours gets used</p><h3 class="t">Checked against the accounts <span class="em">before anyone's at their desk.</span></h3>
+      <div class="morn">
+        <div class="ev"><span class="tm">06:00</span><h4>Refresh</h4><p>Pipelines pull from Xero, the CRM and timesheets. Nobody is involved.</p></div>
+        <div class="ev k"><span class="tm">06:02</span><h4>Reconcile</h4><p>Revenue, margin, debtors and overheads are compared to the ledger. Result printed on the dashboard.</p><span class="chip">4 of 4 tie back</span></div>
+        <div class="ev"><span class="tm">08:10</span><h4>Finance glances at the footer</h4><p>Green. They don't open a spreadsheet to check — the check is already there.</p></div>
+        <div class="ev"><span class="tm">09:00</span><h4>The MD opens it</h4><p>Same numbers finance will report at month-end. No "which version is this?".</p></div>
+      </div>
+    </div>
+    <div><div class="clock"><i class="h"></i><i class="m"></i><b></b><small>RECONCILED · 06:02</small></div><p class="mono" style="text-align:center;margin-top:18px">Every working day</p></div>
+  </div></div>
+
+  <!-- D -->
+  <div class="label"><span class="n">D</span><h2>The certificate</h2><p>A reconciliation statement laid out like an audit document — figures, source, variance column all zero — then a gold "RECONCILED" stamp slams onto it. Signature line reads "compiled by: nobody". Formal, a little witty.</p></div>
+  <div class="frame"><div class="sec two">
+    <div><p class="marker">04 · Why ours gets used</p><h3 class="t">Reconciled to the ledger, <span class="em">on every refresh.</span></h3><p class="sub">A dashboard that is £3,000 out from the accounts is switched off within a month. Ours produces this every morning, so finance can see the numbers tie back before anyone else relies on them.</p></div>
+    <div class="cert">
+      <span class="sm">Reconciliation statement · 3 October · 06:02</span>
+      <h4>Dashboard vs Xero</h4>
+      <table><tr><th>Figure</th><th>Dashboard</th><th>Ledger</th><th>Variance</th></tr>
+        <tr><td>Revenue</td><td>£412,380</td><td>£412,380</td><td class="ok">£0</td></tr>
+        <tr><td>Gross margin</td><td>£157,529</td><td>£157,529</td><td class="ok">£0</td></tr>
+        <tr><td>Debtors</td><td>£188,204</td><td>£188,204</td><td class="ok">£0</td></tr>
+        <tr><td>Overheads</td><td>£96,110</td><td>£96,110</td><td class="ok">£0</td></tr></table>
+      <div class="sig"><div>Compiled by: nobody</div><div>Next check: tomorrow 06:00</div></div>
+      <div class="stamp">Reconciled<br>4 / 4<br>06:02</div>
+    </div>
+  </div></div>
+
+  <!-- E -->
+  <div class="label"><span class="n">E</span><h2>The diff</h2><p>A code-review style diff between "accounts" and "dashboard": zero changes. Toggle to "a typical spreadsheet pack" and the diff lights up with red/green lines and a £3,000 variance. The before/after in one panel, in a visual language any technical buyer reads instantly.</p></div>
+  <div class="frame"><div class="sec two">
+    <div><p class="marker">04 · Why ours gets used</p><h3 class="t">Diff against the ledger: <span class="em">zero changes.</span></h3><p class="sub">Most reporting drifts from the accounts because someone retyped a number. Ours is generated from the same source, so the diff is empty — and when it isn't, it says so.</p>
+      <div class="toggle"><button class="on" data-m="ours">Our dashboard</button><button data-m="pack">Typical spreadsheet pack</button></div></div>
+    <div class="diff" id="diff"><div class="bar"><span>diff ledger ↔ <b id="dn">dashboard</b></span><span id="ds">0 changes</span></div><div id="dl"></div><div class="sum"><span id="dsum">✓ identical · reconciled 06:02</span><span>4 figures</span></div></div>
+  </div></div>
+</div>
+
+<script>
+document.getElementById("theme").addEventListener("click", () => { const r=document.documentElement; const dark=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches); r.setAttribute("data-theme",dark?"light":"dark"); theme.textContent=dark?"Night":"Day"; });
+/* A */
+(() => { const t=document.getElementById("live"), rows=[...t.querySelectorAll(".r:not(.h)")], f=document.getElementById("lf");
+  const run=()=>{ rows.forEach(r=>{ r.querySelector(".ok").classList.remove("on"); r.classList.remove("show"); }); f.textContent="checking…"; t.classList.add("go");
+    rows.forEach((r,i)=>setTimeout(()=>{ t.style.setProperty("--y",(r.offsetTop+r.offsetHeight)+"px"); r.querySelector(".ok").classList.add("on"); if(r.classList.contains("flag")) r.classList.add("show"); if(i===rows.length-1){ f.textContent="3 of 4 tie back · 1 flagged"; setTimeout(()=>t.classList.remove("go"),600);} }, 500+i*650)); };
+  run(); setInterval(run,7000); })();
+/* B */
+(() => { const s=document.getElementById("wires"); const ys=[52,90,128,166]; const draw=()=>{ s.innerHTML=ys.map((y,i)=>`<path d="M0 ${y} C 60 ${y}, 60 ${y}, 120 ${y}"/><path class="g" d="M0 ${y} C 60 ${y}, 60 ${y}, 120 ${y}" pathLength="1" style="animation-delay:${i*.35}s"/><text x="60" y="${y-6}" text-anchor="middle" style="animation-delay:${i*.35+1.1}s">✓</text>`).join(""); }; draw(); setInterval(draw,6000); })();
+/* E */
+(() => { const L={ ours:[["Revenue","£412,380",""],["Gross margin","£157,529",""],["Debtors","£188,204",""],["Overheads","£96,110",""]], pack:[["Revenue","£412,380",""],["Gross margin","£157,529","del"],["Gross margin","£154,529","add"],["Debtors","£188,204","del"],["Debtors","£191,204","add"],["Overheads","£96,110",""]] };
+  const el=document.getElementById("dl"); const show=(m)=>{ el.innerHTML=L[m].map((l,i)=>`<div class="ln ${l[2]}"><span class="no">${i+1}</span><span class="pm">${l[2]==="add"?"+":l[2]==="del"?"−":" "}</span><span>${l[0]}</span><span class="v num">${l[1]}</span></div>`).join(""); document.getElementById("dn").textContent=m==="ours"?"dashboard":"month-end pack.xlsx"; document.getElementById("ds").textContent=m==="ours"?"0 changes":"2 figures differ"; document.getElementById("dsum").textContent=m==="ours"?"✓ identical · reconciled 06:02":"✗ £3,000 variance in debtors · margin retyped"; document.getElementById("dsum").style.color=m==="ours"?"#ffc93c":"#ffb37f"; };
+  document.querySelectorAll(".toggle button").forEach(b=>b.addEventListener("click",()=>{ document.querySelectorAll(".toggle button").forEach(x=>x.classList.remove("on")); b.classList.add("on"); show(b.dataset.m); })); show("ours"); })();
+</script>
