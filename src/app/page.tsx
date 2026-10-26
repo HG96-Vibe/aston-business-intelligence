@@ -155,7 +155,7 @@ export default function Home() {
 
       <SectorTabs number="10" />
 
-      <PhotoBand duotone src="/img/corridor.jpg" position="center 30%" note="Est. 2024 · London">Built in London, <i>for companies that run on their numbers.</i></PhotoBand>
+      <PhotoBand duotone src="/img/corridor.jpg" position="center 30%">Built in London, <i>for companies that run on their numbers.</i></PhotoBand>
 
       <Faq number="11" />
 
