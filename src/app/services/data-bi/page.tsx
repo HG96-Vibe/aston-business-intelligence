@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Section, SectionHead, CtaBand, Button } from "@/components/ui";
+import { Section, SectionHead, CtaBand, Button, PhotoBand } from "@/components/ui";
 import { bookHref } from "@/components/offers";
 import { dataBi } from "@/lib/offers";
 import { SheetsToScreen } from "@/components/sheets-to-screen";
@@ -38,6 +38,8 @@ export default function DataBiPage() {
         </div>
       </section>
 
+      <PhotoBand duotone src="/img/paper-stack.jpg" position="center 30%" note="Month-end, as it happens today">Somewhere in your business, <i>someone is doing this tonight.</i></PhotoBand>
+
       {/* Pains → one cause */}
       <Section>
         <SectionHead number="01" eyebrow="Why companies call us" title="Three problems," em="one underlying cause." />
@@ -58,6 +60,8 @@ export default function DataBiPage() {
         <SectionHead number="02" eyebrow="How the work is structured" title="Four stops." em="Alight at any of them." intro="Every journey starts with the Assessment. Continue only if the plan it produces makes sense to you." />
         <TubeMap steps={d.ladder} />
       </Section>
+
+      <PhotoBand duotone src="/img/two-at-monitor.jpg" position="center 40%" note="After the Assessment">One screen, <i>and a conversation about what to do — not which number is right.</i></PhotoBand>
 
       {/* Five dashboards */}
       <Section>
