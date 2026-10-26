@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { services } from "@/lib/site";
 import { Button, CtaBand, Section, SectionHead } from "@/components/ui";
+import { HeroMotion } from "@/components/hero-motion";
+import { CertBadge } from "@/components/cert-badge";
 
 const principles = [
   ["Senior-led, specialist-delivered", "Every engagement is scoped and overseen by a senior consultant and delivered by a team matched to the problem — analysts, engineers, AI specialists or project leads as needed."],
@@ -15,8 +17,6 @@ const sectors = [
 ];
 
 const credentials = [
-  { label: "NVIDIA", detail: "NVIDIA Certified" },
-  { label: "Google Cloud", detail: "Google Cloud Certified" },
   { label: "Companies House", detail: "No. 15571977" },
   { label: "Based in", detail: "London, UK" },
 ];
@@ -26,7 +26,8 @@ export default function Home() {
     <>
       {/* Hero — light, serif, gold italic phrase */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pb-24 md:pt-28">
+        <HeroMotion />
+        <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pb-24 md:pt-28">
           <p className="marker">Business intelligence consultancy in London</p>
           <h1 className="mt-6 max-w-4xl text-[2.6rem] leading-[1.08] text-ink md:text-[4.2rem]">
             Business intelligence for companies that want{" "}
@@ -43,8 +44,10 @@ export default function Home() {
         </div>
 
         {/* Credentials strip */}
-        <div className="hairline">
-          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-4 px-4 py-6 md:grid-cols-4 md:px-6">
+        <div className="hairline relative bg-paper">
+          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-5 px-4 py-6 md:grid-cols-4 md:px-6">
+            <CertBadge src="/brand/certs/nvidia.png" label="NVIDIA" detail="NVIDIA Certified" />
+            <CertBadge src="/brand/certs/google-cloud.png" label="Google Cloud" detail="Google Cloud Certified" />
             {credentials.map((c) => (
               <div key={c.label} className="min-w-0">
                 <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">{c.label}</p>
