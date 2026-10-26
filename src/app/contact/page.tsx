@@ -13,7 +13,8 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Tell us what's slow, broken or unclear"
+        title="Tell us what's"
+        em="slow, broken or unclear."
         intro="A 30-minute conversation is usually enough to tell you whether we can help and what it would involve. No pitch deck."
       />
       <Section>

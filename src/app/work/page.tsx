@@ -43,7 +43,8 @@ export default function WorkPage() {
     <>
       <PageHero
         eyebrow="Work"
-        title="What it looks like when it works"
+        title="What it looks like"
+        em="when it works."
         intro="A selection of engagements, anonymised at our clients' request. Each one describes the problem we found, what we did, and what changed."
       />
 

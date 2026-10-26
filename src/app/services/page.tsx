@@ -14,7 +14,8 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Services"
-        title="From unclear data to delivered change"
+        title="From unclear data to"
+        em="delivered change."
         intro="Four services that work alone or in sequence: understand the numbers, define what to change, apply AI where it pays, and get it delivered."
       >
         <nav className="flex flex-wrap gap-2">

@@ -19,7 +19,8 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About"
-        title="A consultancy built for businesses that are too big for spreadsheets and too small for the big firms"
+        title="Built for businesses too big for spreadsheets,"
+        em="too small for the big firms."
         intro="Aston Business Intelligence was set up to give owner-managed UK companies the kind of data, analysis and delivery capability that used to be reserved for enterprises — at a scale and price that makes sense for them."
       />
 

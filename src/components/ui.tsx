@@ -52,20 +52,25 @@ export function SectionHead({
 export function PageHero({
   eyebrow,
   title,
+  em,
   intro,
   children,
 }: {
   eyebrow?: string;
   title: string;
+  em?: string;
   intro?: string;
   children?: ReactNode;
 }) {
   return (
-    <section className="bg-deep text-white">
+    <section className="border-b border-accent/20 bg-accent-soft">
       <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
-        {eyebrow && <p className="eyebrow eyebrow-light">{eyebrow}</p>}
-        <h1 className="mt-4 max-w-3xl text-4xl font-bold md:text-5xl">{title}</h1>
-        {intro && <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">{intro}</p>}
+        {eyebrow && <p className="marker">{eyebrow}</p>}
+        <h1 className="mt-5 max-w-3xl text-4xl text-ink md:text-5xl">
+          {title}
+          {em && <> <span className="em">{em}</span></>}
+        </h1>
+        {intro && <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-muted">{intro}</p>}
         {children && <div className="mt-8">{children}</div>}
       </div>
     </section>
