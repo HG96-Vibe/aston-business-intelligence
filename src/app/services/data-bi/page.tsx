@@ -7,6 +7,7 @@ import { SheetsToScreen } from "@/components/sheets-to-screen";
 import { Convergence } from "@/components/convergence";
 import { TubeMap } from "@/components/tube-map";
 import { FiveViews } from "@/components/five-views";
+import { ToolHub } from "@/components/tool-hub";
 
 export const metadata: Metadata = {
   title: "Data & Business Intelligence",
@@ -65,9 +66,9 @@ export default function DataBiPage() {
 
       {/* Tools */}
       <Section>
-        <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:items-start">
-          <SectionHead number="04" eyebrow="Tooling" title="Built in what you" em="already pay for." intro="Power BI by default; Looker Studio or Tableau if that is what you have. No platform to buy, no licences marked up." />
-          <ul className="flex flex-wrap gap-2 md:pt-12">{d.tools.map((t) => <li key={t} className="rounded-full border border-line px-3 py-1 text-sm text-body">{t}</li>)}</ul>
+        <div className="grid gap-10 md:grid-cols-[1fr_1.3fr] md:items-center">
+          <SectionHead number="04" eyebrow="Tooling" title="Built in what you" em="already pay for." intro="Power BI by default — it is in most Microsoft 365 plans and your team can learn it. Looker Studio or Tableau if that is what you have. No platform to buy, no licences marked up." />
+          <ToolHub />
         </div>
       </Section>
 
