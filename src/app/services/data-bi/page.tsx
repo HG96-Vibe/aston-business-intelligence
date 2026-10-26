@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Section, SectionHead, CtaBand, Button } from "@/components/ui";
-import { Guarantee, bookHref } from "@/components/offers";
+import { bookHref } from "@/components/offers";
 import { dataBi } from "@/lib/offers";
 import { SheetsToScreen } from "@/components/sheets-to-screen";
 import { Convergence } from "@/components/convergence";
@@ -74,8 +74,6 @@ export default function DataBiPage() {
         <ToolStrip />
       </Section>
 
-
-      <Guarantee />
 
       {/* FAQ */}
       <Section dim>
