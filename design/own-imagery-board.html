@@ -1,0 +1,130 @@
+<title>Your Images Placed</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1180px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:72ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:48px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:#c98a06; letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; max-width:90ch; }
+
+  /* edit grid */
+  .edit { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin-top:16px; } .edit figure { margin:0; } .edit img { width:100%; aspect-ratio:3/2; object-fit:cover; border-radius:6px; display:block; }
+  .edit figcaption { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; } .edit figcaption b { color:var(--fg); font-weight:500; font-family:var(--mono); font-size:10px; margin-right:4px; }
+  .edit .no img { filter:grayscale(1) opacity(.55); }
+  @media (max-width:860px) { .edit { grid-template-columns:repeat(3,1fr); } }
+
+  .hero { border-radius:12px; overflow:hidden; border:1px solid var(--line); position:relative; font-family:var(--sans); color:var(--ink); background:var(--p); }
+  .nav { display:flex; justify-content:space-between; align-items:center; padding:16px 40px; border-bottom:1px solid var(--ln); position:relative; z-index:3; background:var(--navbg,transparent); }
+  .nav .logo { display:flex; align-items:center; gap:8px; font-weight:600; font-size:14px; color:var(--ink); } .nav .logo b { font-family:var(--serif); font-weight:400; font-size:20px; color:var(--gold); font-style:italic; } .nav .logo span small { display:block; font-family:var(--mono); font-size:8px; letter-spacing:2px; color:var(--gold); font-weight:400; }
+  .nav ul { display:flex; gap:26px; list-style:none; margin:0; padding:0; font-size:13.5px; opacity:.85; } .nav .cta { background:var(--btn); color:var(--btnfg); font-size:13px; font-weight:600; padding:9px 16px; border-radius:6px; }
+  .body { position:relative; padding:84px 40px 64px; min-height:560px; overflow:hidden; }
+  .copy { position:relative; z-index:2; max-width:560px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin:0; }
+  h3.h { font-family:var(--serif); font-weight:400; font-size:clamp(2rem,4.2vw,3.4rem); line-height:1.06; letter-spacing:-.02em; margin:22px 0 0; color:var(--ink); } h3.h em { font-style:italic; font-weight:300; color:var(--gold); }
+  .sub { margin:22px 0 0; max-width:48ch; font-weight:300; font-size:1.02rem; line-height:1.6; color:var(--mu); }
+  .ctas { display:flex; gap:12px; flex-wrap:wrap; margin-top:30px; } .b1 { background:var(--btn); color:var(--btnfg); font-weight:600; font-size:14px; padding:12px 18px; border-radius:6px; } .b2 { color:var(--ink); font-weight:500; font-size:14px; padding:12px 18px; border:1px solid var(--ln2); border-radius:6px; }
+  .creds { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; padding:22px 40px; border-top:1px solid var(--ln); background:var(--p2); position:relative; z-index:2; }
+  .creds small { display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--mu); } .creds b { display:block; font-weight:500; font-size:13.5px; margin-top:3px; color:var(--ink); }
+  .light { --p:#f7f5f0; --p2:#fff; --ink:#17161f; --mu:#625f6e; --ln:#e6e2d8; --ln2:#cfcbc0; --gold:#c98a06; --btn:#17161f; --btnfg:#fff; }
+  .dark  { --p:#0e0d13; --p2:#121118; --ink:#f4f1ea; --mu:#bdb9c6; --ln:rgba(255,255,255,.12); --ln2:rgba(255,255,255,.3); --gold:#ffc93c; --btn:#ffc93c; --btnfg:#17161f; }
+  .kpi { position:absolute; z-index:3; background:#17161f; color:#fff; border:1px solid rgba(255,201,60,.3); border-radius:10px; padding:14px 16px; box-shadow:0 30px 60px -30px rgba(0,0,0,.6); font-size:11px; min-width:200px; }
+  .kpi small { display:block; font-family:var(--mono); font-size:8px; letter-spacing:1.2px; text-transform:uppercase; color:rgba(255,255,255,.5); } .kpi b { display:block; font-family:var(--serif); font-weight:400; font-size:26px; line-height:1; margin-top:4px; } .kpi i { font-style:normal; color:#7fd1a5; font-size:10px; } .kpi .ft { margin-top:10px; padding-top:8px; border-top:1px solid rgba(255,255,255,.1); font-family:var(--mono); font-size:7.5px; letter-spacing:.8px; text-transform:uppercase; color:#ffc93c; }
+  @media (max-width:860px) { .nav ul { display:none; } .body { padding:52px 22px 44px; } .creds { grid-template-columns:1fr 1fr; padding:18px 22px; } }
+
+  .A .body { background:url(img/own/01.jpg) center/cover; } .A .body::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(14,13,19,.92) 0%, rgba(14,13,19,.7) 45%, rgba(14,13,19,.05) 100%); }
+  .A .nav { background:rgba(14,13,19,.7); backdrop-filter:blur(8px); }
+  .B .body { background:url(img/own/03.jpg) center/cover; } .B .body::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(14,13,19,.94) 0%, rgba(14,13,19,.78) 48%, rgba(14,13,19,.15) 100%); }
+  .B .nav { background:rgba(14,13,19,.7); backdrop-filter:blur(8px); }
+  .B .band { position:relative; height:240px; background:url(img/own/05.jpg) center 40%/cover; } .B .band::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(23,22,31,.55), rgba(23,22,31,.3)); }
+  .B .band .q { position:absolute; left:40px; bottom:32px; z-index:2; color:#fff; font-family:var(--serif); font-weight:300; font-size:1.6rem; max-width:30ch; line-height:1.2; margin:0; } .B .band .q em { font-style:italic; color:#ffc93c; }
+  .C .body { display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; }
+  .C .pic { position:relative; height:470px; } .C .pic img { width:86%; height:100%; object-fit:cover; object-position:55% 50%; border-radius:220px 220px 14px 14px; display:block; margin-left:auto; } .C .pic::before { content:""; position:absolute; right:-14px; top:14px; width:86%; height:100%; border:1px solid var(--gold); border-radius:220px 220px 14px 14px; } .C .kpi { left:0; bottom:40px; }
+  @media (max-width:860px) { .C .body { grid-template-columns:1fr; } .C .pic { height:320px; } }
+  .D .body { background:#0e0d13 url(img/own/02.jpg) center/cover; } .D .body::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(14,13,19,.97) 0%, rgba(14,13,19,.9) 50%, rgba(14,13,19,.55) 100%); }
+  .D .nav { background:rgba(14,13,19,.7); }
+  .E .body { background:url(img/own/16.jpg) center 30%/cover; } .E .body::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(14,13,19,.9) 0%, rgba(14,13,19,.7) 50%, rgba(14,13,19,.2) 100%); } .E .nav { background:rgba(14,13,19,.7); backdrop-filter:blur(8px); }
+
+  /* F service cards */
+  .svc { padding:56px 40px; background:#fff; border-radius:12px; border:1px solid var(--line); }
+  .svc .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:28px; }
+  .svc .card { border:1px solid #e6e2d8; border-radius:10px; overflow:hidden; background:#fff; }
+  .svc .card .im { position:relative; height:150px; background:#17161f; } .svc .card .im img { width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1) contrast(1.05); mix-blend-mode:luminosity; opacity:.85; }
+  .svc .card .im::after { content:""; position:absolute; inset:0; background:linear-gradient(160deg, rgba(233,179,36,.5), rgba(23,22,31,.15) 60%, rgba(23,22,31,.8)); mix-blend-mode:multiply; }
+  .svc .card .im.raw img { filter:none; mix-blend-mode:normal; opacity:1; } .svc .card .im.raw::after { background:linear-gradient(180deg, transparent 50%, rgba(23,22,31,.6)); mix-blend-mode:normal; }
+  .svc .card .im span { position:absolute; left:14px; bottom:12px; z-index:2; font-family:var(--mono); font-size:9px; letter-spacing:1.2px; text-transform:uppercase; color:#ffc93c; }
+  .svc .card .tx { padding:16px; } .svc .card h4 { margin:0; font-family:var(--serif); font-weight:400; font-size:1.2rem; color:#17161f; } .svc .card p { margin:6px 0 0; font-size:12.5px; color:#625f6e; font-weight:300; line-height:1.5; }
+  .svc .eyebrow { color:#c98a06; } .svc h3 { font-family:var(--serif); font-weight:400; font-size:2rem; margin:12px 0 0; color:#17161f; } .svc h3 em { font-style:italic; font-weight:300; color:#c98a06; }
+  @media (max-width:860px) { .svc .grid4 { grid-template-columns:1fr 1fr; } }
+</style>
+
+<div class="wrap">
+  <h1>Your images, placed</h1>
+  <p class="lede">Seventeen images, sorted into what the brand can use and what would fight it — then five hero treatments and one section treatment using the keepers. Everything here is your own asset; no stock previews.</p>
+
+  <div class="label"><span class="n">0</span><h2>The edit</h2><p>Greyed-out ones I'd park. Not because they're bad images — because they bring blue/cyan/pink and the "AI" clip-art motif that every other AI site uses, and the point of the gold-and-charcoal brand is that nobody else looks like it.</p></div>
+  <div class="edit">
+    <figure><img src="img/own/01.jpg"><figcaption><b>01</b>Gold dot wave — <strong>hero</strong>. Literally our dot grid, photographed.</figcaption></figure>
+    <figure><img src="img/own/02.jpg"><figcaption><b>02</b>Gold plexus — texture behind dark sections, dimmed.</figcaption></figure>
+    <figure><img src="img/own/03.jpg"><figcaption><b>03</b>Gold streaks — <strong>hero</strong> or Data &amp; BI page header.</figcaption></figure>
+    <figure><img src="img/own/04.jpg"><figcaption><b>04</b>Blue/gold wave — usable for AI Consulting if warmed up; borderline.</figcaption></figure>
+    <figure><img src="img/own/05.jpg"><figcaption><b>05</b>St Paul's aerial — <strong>keeper</strong>. Golden light, London, premium.</figcaption></figure>
+    <figure><img src="img/own/06.jpg"><figcaption><b>06</b>Conference — fine in duotone for Careers / About.</figcaption></figure>
+    <figure><img src="img/own/07.jpg"><figcaption><b>07</b>Two people, tablet — good in duotone; AI Consulting page.</figcaption></figure>
+    <figure><img src="img/own/08.jpg"><figcaption><b>08</b>Corridor, golden light — <strong>keeper</strong>. Business Analysis / About.</figcaption></figure>
+    <figure class="no"><img src="img/own/09.jpg"><figcaption><b>09</b>AI bulb, teal — park. Generic AI stock.</figcaption></figure>
+    <figure class="no"><img src="img/own/10.jpg"><figcaption><b>10</b>Bulb in hand — park. Same.</figcaption></figure>
+    <figure class="no"><img src="img/own/11.jpg"><figcaption><b>11</b>Head + brain, cyan — park.</figcaption></figure>
+    <figure class="no"><img src="img/own/12.jpg"><figcaption><b>12</b>Pink brain &amp; book — park. Different brand entirely.</figcaption></figure>
+    <figure class="no"><img src="img/own/13.jpg"><figcaption><b>13</b>Robot hand — park. The most-used AI image on the internet.</figcaption></figure>
+    <figure class="no"><img src="img/own/14.jpg"><figcaption><b>14</b>Hand + globe — park. Dated composite.</figcaption></figure>
+    <figure class="no"><img src="img/own/15.jpg"><figcaption><b>15</b>Port "AI control" — park. Not our sector or look.</figcaption></figure>
+    <figure><img src="img/own/16.jpg"><figcaption><b>16</b>City at golden hour — <strong>keeper</strong>. Portrait; great for bands and mobile.</figcaption></figure>
+    <figure><img src="img/own/17.jpg"><figcaption><b>17</b>Canary Wharf dusk — keeper for About / Contact bands.</figcaption></figure>
+  </div>
+
+  <div class="label"><span class="n">A</span><h2>Gold dot wave (01)</h2><p>The strongest match in the set: it is the hero's dot grid, as a photograph. Dark hero, copy on the left, the wave sweeps in from the right. The live dot-grid animation could sit on top of it so it still reacts to the cursor.</p></div>
+  <div class="hero dark A"><div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+    <div class="body"><div class="copy"><p class="eyebrow">Business intelligence consultancy in London</p><h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3><p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide — through data analysis, business analysis, AI consulting and project delivery.</p><div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting in 2 minutes</span></div></div></div>
+    <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House</b></div><div><small>Based</small><b>London</b></div></div></div>
+
+  <div class="label"><span class="n">B</span><h2>Gold streaks (03) + St Paul's band (05)</h2><p>Streaks as the hero — more motion, more "data flowing" — then the St Paul's aerial as a cinematic band before section 01, carrying one line. Abstract for the brand, London for the place.</p></div>
+  <div class="hero dark B"><div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+    <div class="body"><div class="copy"><p class="eyebrow">Business intelligence consultancy in London</p><h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3><p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide.</p><div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting in 2 minutes</span></div></div></div>
+    <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House</b></div><div><small>Based</small><b>London</b></div></div>
+    <div class="band"><p class="q">Built in London, for companies <em>that run on their numbers.</em></p></div></div>
+
+  <div class="label"><span class="n">C</span><h2>Light hero, St Paul's in the arch (05)</h2><p>Keep the site light: copy on paper, the St Paul's aerial in a tall arch with the gold frame, KPI card over the corner. The golden light in the photo does the colour work. The warmest, most "established firm" of the options.</p></div>
+  <div class="hero light C"><div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+    <div class="body"><div class="copy"><p class="eyebrow">Business intelligence consultancy in London</p><h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3><p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide.</p><div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting</span></div></div>
+      <div class="pic"><img src="img/own/05.jpg" alt=""><div class="kpi"><small>Month-end close</small><b>1 day</b><i>was 5</i><div class="ft">✓ Reconciled to Xero · 06:02</div></div></div></div>
+    <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House</b></div><div><small>Based</small><b>London</b></div></div></div>
+
+  <div class="label"><span class="n">D</span><h2>Plexus texture (02), dimmed</h2><p>The gold network pulled right back to a 10–20% texture across a charcoal hero. Quiet, premium, and it reads as "data" without shouting. Works just as well behind the CTA band and footer on every page.</p></div>
+  <div class="hero dark D"><div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+    <div class="body"><div class="copy"><p class="eyebrow">Business intelligence consultancy in London</p><h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3><p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide — through data analysis, business analysis, AI consulting and project delivery.</p><div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting in 2 minutes</span></div></div></div>
+    <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House</b></div><div><small>Based</small><b>London</b></div></div></div>
+
+  <div class="label"><span class="n">E</span><h2>City at golden hour (16), full-bleed</h2><p>The skyline shot with the Walkie-Talkie catching the sun — the gold is already in the photo. Charcoal gradient from the left, copy on top. The most "London" of the five.</p></div>
+  <div class="hero dark E"><div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+    <div class="body"><div class="copy"><p class="eyebrow">Business intelligence consultancy in London</p><h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3><p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide.</p><div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting in 2 minutes</span></div></div></div>
+    <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House</b></div><div><small>Based</small><b>London</b></div></div></div>
+
+  <div class="label"><span class="n">F</span><h2>Service cards with image headers</h2><p>How imagery enters the rest of the site: each service card gets a photo header. The abstracts run as-is; the people photos run in gold duotone so they match. This is the pattern that fixes "flat" everywhere, not just the hero.</p></div>
+  <div class="svc">
+    <p class="eyebrow">03 · What we do</p><h3>Four services, <em>one team.</em></h3>
+    <div class="grid4">
+      <div class="card"><div class="im raw"><img src="img/own/03.jpg"><span>Data &amp; BI</span></div><div class="tx"><h4>Data &amp; Business Intelligence</h4><p>One set of numbers the whole business trusts, refreshed without anyone touching a spreadsheet.</p></div></div>
+      <div class="card"><div class="im"><img src="img/own/08.jpg"><span>Business Analysis</span></div><div class="tx"><h4>Business Analysis</h4><p>Requirements, process and the case for change — written down before anything is built.</p></div></div>
+      <div class="card"><div class="im"><img src="img/own/07.jpg"><span>AI Consulting</span></div><div class="tx"><h4>AI Consulting</h4><p>Where AI will actually pay back in your business, and where it won't.</p></div></div>
+      <div class="card"><div class="im"><img src="img/own/06.jpg"><span>Project Delivery</span></div><div class="tx"><h4>Project Delivery</h4><p>A fractional lead who gets the thing shipped and hands it over.</p></div></div>
+    </div>
+  </div>
+</div>
