@@ -160,13 +160,13 @@ h3 {
 .duotone::after { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(233,179,36,.18), rgba(23,22,31,.25) 55%, rgba(23,22,31,.8)); pointer-events: none; }
 
 /* Home hero photograph: slow drift + a light band travelling along the dot curve. */
-@keyframes hero-drift { from { transform: scale(1.06) translate(0, 0); } to { transform: scale(1.14) translate(-1.5%, 1%); } }
+@keyframes hero-drift { from { transform: scale(1.06) translate(0, 0); } to { transform: scale(1.16) translate(-2%, 1.5%); } }
 @keyframes hero-sweep { from { mask-position: 120% 0; -webkit-mask-position: 120% 0; } to { mask-position: -20% 0; -webkit-mask-position: -20% 0; } }
-.hero-photo { transform-origin: 70% 50%; animation: hero-drift 26s ease-in-out infinite alternate; }
+.hero-photo { transform-origin: 70% 50%; animation: hero-drift 14s ease-in-out infinite alternate; }
 .hero-shimmer { mix-blend-mode: screen; opacity: .9;
   -webkit-mask-image: linear-gradient(105deg, transparent 35%, #000 50%, transparent 65%); mask-image: linear-gradient(105deg, transparent 35%, #000 50%, transparent 65%);
   -webkit-mask-size: 260% 100%; mask-size: 260% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-  animation: hero-drift 26s ease-in-out infinite alternate, hero-sweep 7s linear infinite; }
+  animation: hero-drift 14s ease-in-out infinite alternate, hero-sweep 7s linear infinite; }
 @media (prefers-reduced-motion: reduce) { .hero-photo { animation: none; transform: scale(1.06); } .hero-shimmer { display: none; } }
 
 /* Surface rhythm: sections that keep their own tokens regardless of theme. */
