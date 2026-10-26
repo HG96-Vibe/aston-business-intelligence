@@ -13,7 +13,7 @@ export function SheetsToScreen() {
   const wrap = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = wrap.current; if (!el) return;
-    const ro = new ResizeObserver(() => setScale(Math.min(1, el.clientWidth / 440)));
+    const ro = new ResizeObserver(() => setScale(Math.min(1.4, el.clientWidth / 440)));
     ro.observe(el); return () => ro.disconnect();
   }, []);
   useEffect(() => {
@@ -26,7 +26,7 @@ export function SheetsToScreen() {
   }, []);
 
   return (
-    <div ref={wrap} className="mx-auto w-full max-w-[440px] overflow-hidden" style={{ height: 360 * scale }} aria-hidden="true">
+    <div ref={wrap} className="mx-auto w-full max-w-[620px] overflow-hidden" style={{ height: 360 * scale }} aria-hidden="true">
     <div className="relative h-[360px] w-[440px] origin-top-left" style={{ transform: `scale(${scale})` }}>
       {files.map((n, i) => {
         const [x, y, r] = pos[i];
