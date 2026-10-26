@@ -11,8 +11,8 @@ export function ContactForm() {
   if (state.status === "ok") {
     return (
       <div className="rounded-lg border border-accent/30 bg-accent-soft p-6">
-        <p className="font-bold text-ink">Thanks — we&apos;ve got it.</p>
-        <p className="mt-2 text-body">We reply to every enquiry within one working day.</p>
+        <p className="font-semibold text-ink">Thanks — we&apos;ve got it.</p>
+        <p className="mt-2 text-body">A member of the team will email you within one working day to confirm a time.</p>
       </div>
     );
   }
@@ -36,6 +36,16 @@ export function ContactForm() {
         </select>
       </div>
       <div className="grid gap-1.5">
+        <label htmlFor="when" className="text-sm font-medium text-ink">When suits you for a call?</label>
+        <select id="when" name="when" className="rounded-md border border-line bg-paper px-3 py-2.5 text-body">
+          <option value="">No preference — you suggest</option>
+          <option>Weekday mornings (9–12)</option>
+          <option>Weekday afternoons (12–5)</option>
+          <option>Early evening (5–7)</option>
+          <option>As soon as possible</option>
+        </select>
+      </div>
+      <div className="grid gap-1.5">
         <label htmlFor="message" className="text-sm font-medium text-ink">Tell us about the problem</label>
         <textarea
           id="message"
@@ -51,7 +61,7 @@ export function ContactForm() {
           {state.message}
         </p>
       )}
-      <SubmitButton pending={pending}>Send message</SubmitButton>
+      <SubmitButton pending={pending}>Request a call</SubmitButton>
       <p className="text-xs text-muted">
         We only use your details to reply to you. See our <a href="/privacy" className="underline">privacy policy</a>.
       </p>

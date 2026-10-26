@@ -3,7 +3,6 @@ import { site } from "@/lib/site";
 import { PageHero, Section } from "@/components/ui";
 import { ContactForm } from "./contact-form";
 import { Availability } from "@/components/offers";
-import { commercial } from "@/lib/offers";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -20,28 +19,21 @@ export default function ContactPage() {
         intro="A 30-minute conversation is usually enough to tell you whether we can help and what it would involve. No pitch deck."
       />
       <Section>
-        <div id="book" className="mb-12 grid scroll-mt-24 gap-6 rounded-md border border-accent/30 bg-accent-soft p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8">
-          <div>
-            <p className="marker">Fastest route</p>
-            <h2 className="mt-3 text-2xl text-ink">Book a 30-minute conversation</h2>
-            <p className="mt-2 max-w-xl font-light text-muted">Pick a slot that suits you. We&apos;ll ask about the problem, tell you whether we can help, and if so what it would cost. No preparation needed.</p>
-            <div className="mt-4"><Availability /></div>
-          </div>
-          {commercial.bookingUrl ? (
-            <a href={commercial.bookingUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-md bg-gold px-5 py-3 text-sm font-semibold text-ink hover:bg-gold-strong">Open the calendar ↗</a>
-          ) : (
-            <p className="rounded-md border border-line bg-paper px-4 py-3 text-sm text-muted">Online booking is being set up — use the form below and we&apos;ll offer times within one working day.</p>
-          )}
+        <div id="book" className="mb-10 scroll-mt-24 max-w-2xl">
+          <p className="marker">Book a conversation</p>
+          <h2 className="mt-3 text-2xl text-ink">Tell us what&apos;s going on and when suits you</h2>
+          <p className="mt-2 font-light text-muted">A member of the team will come back within one working day to confirm a 30-minute slot. No preparation needed.</p>
+          <div className="mt-4"><Availability /></div>
         </div>
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr]">
           <ContactForm />
           <aside className="grid content-start gap-8 text-sm">
             <div>
-              <p className="eyebrow">Email</p>
+              <p className="eyebrow">Prefer email?</p>
               <a href={`mailto:${site.emails.hello}`} className="mt-2 block text-lg font-medium text-ink hover:underline">
                 {site.emails.hello}
               </a>
-              <p className="mt-1 text-muted">For new enquiries and general questions.</p>
+              <p className="mt-1 text-muted">Same inbox, same one-working-day reply.</p>
             </div>
             <div>
               <p className="eyebrow">Careers</p>

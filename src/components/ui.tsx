@@ -119,7 +119,7 @@ export function CtaBand() {
           <p className="mt-3 text-sm text-white/60">Taking on {commercial.newEngagementsPerMonth} new engagements a month · first call within {commercial.firstCallWithin}.</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Button href={commercial.bookingUrl || "/contact#book"}>Book a conversation</Button>
+          <Button href="/contact#book">Book a conversation</Button>
           <Button href="/health-check" variant="light">2-minute health check</Button>
         </div>
       </div>

@@ -14,6 +14,7 @@ export async function submitContact(_prev: FormState, data: FormData): Promise<F
   const company = String(data.get("company") ?? "").trim();
   const phone = String(data.get("phone") ?? "").trim();
   const interest = String(data.get("interest") ?? "").trim();
+  const when = String(data.get("when") ?? "").trim();
   const message = String(data.get("message") ?? "").trim();
 
   if (name.length < 2) return { status: "error", message: "Please enter your name." };
@@ -23,13 +24,14 @@ export async function submitContact(_prev: FormState, data: FormData): Promise<F
   const result = await sendMail({
     to: process.env.MAIL_TO_HELLO ?? site.emails.hello,
     replyTo: email,
-    subject: `Website enquiry — ${name}${company ? ` (${company})` : ""}`,
+    subject: `Call request — ${name}${company ? ` (${company})` : ""}`,
     text: [
       `Name: ${name}`,
       `Email: ${email}`,
       `Company: ${company || "—"}`,
       `Phone: ${phone || "—"}`,
       `Interested in: ${interest || "—"}`,
+      `Preferred time: ${when || "no preference"}`,
       "",
       message,
     ].join("\n"),

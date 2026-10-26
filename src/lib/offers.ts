@@ -3,9 +3,6 @@
    link, the guarantee wording, capacity. Edit this file, push, done.            */
 
 export const commercial = {
-  // Calendar booking link (Calendly / Cal.com / Google appointment page).
-  // Until set, "Book" buttons go to the contact form.
-  bookingUrl: "" as string,
   // Honest capacity statement. Shown in the hero and CTA. Keep it true.
   newEngagementsPerMonth: 3,
   // Typical lead time to a first conversation.

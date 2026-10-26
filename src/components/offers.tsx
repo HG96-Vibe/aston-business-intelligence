@@ -3,7 +3,7 @@ import { offers, commercial, weekOne, proof } from "@/lib/offers";
 import { Section, SectionHead } from "@/components/ui";
 
 export function bookHref() {
-  return commercial.bookingUrl || "/contact#book";
+  return "/contact#book";
 }
 
 export function PricingLadder({ compact = false, number }: { compact?: boolean; number?: string }) {
