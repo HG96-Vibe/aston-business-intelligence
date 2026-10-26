@@ -1,0 +1,223 @@
+<title>Data & BI Hero Options</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --ink:#17161f; --paper:#fff; --dim:#f7f5f0;
+    --gold:#e9b324; --gold-strong:#d9a315; --accent:#c98a06; --soft:#fbf3dc; --deep:#17161f; --good:#1f9d61;
+    --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --gold:#ffc93c; --gold-strong:#e9b324; --accent:#ffc93c; --soft:#26220f; --deep:#0c0b11; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --gold:#ffc93c; --gold-strong:#e9b324; --accent:#ffc93c; --soft:#26220f; --deep:#0c0b11; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:66ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .top { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+  .top button { font:inherit; font-size:13px; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:44px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; }
+  .frame { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--paper); }
+  .sec { padding:64px 48px; position:relative; }
+  .marker { display:inline-flex; align-items:center; gap:12px; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .marker::before { content:""; width:28px; height:1px; background:var(--accent); }
+  h3.t { font-family:var(--serif); font-weight:400; font-size:clamp(2rem,4vw,3.2rem); line-height:1.08; letter-spacing:-.015em; margin:18px 0 0; color:var(--ink); text-wrap:balance; }
+  .em { font-style:italic; font-weight:300; color:var(--accent); }
+  .sub { font-weight:300; color:var(--muted); font-size:1.1rem; max-width:34rem; margin:22px 0 0; line-height:1.6; }
+  .btns { display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; }
+  .btn { display:inline-flex; align-items:center; gap:8px; font:inherit; font-size:14px; font-weight:600; padding:12px 20px; border-radius:6px; text-decoration:none; cursor:pointer; border:0; }
+  .btn.p { background:var(--gold); color:#17161f; } .btn.g { border:1px solid var(--line); color:var(--ink); background:var(--paper); }
+  .mono { font-family:var(--mono); }
+  .split { display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:center; }
+  @media (max-width:860px) { .split { grid-template-columns:1fr; } .sec { padding:44px 20px; } }
+
+  /* A — spreadsheets collapse into one card */
+  .a-stage { position:relative; height:360px; }
+  .sheet { position:absolute; width:210px; border:1px solid var(--line); background:var(--card); border-radius:6px; padding:10px 12px; font-size:10px; color:var(--muted); box-shadow:0 14px 30px -20px rgba(0,0,0,.35); transition:all 1.2s cubic-bezier(.2,.8,.2,1); }
+  .sheet b { display:block; font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); margin-bottom:6px; }
+  .sheet .r { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px; margin-top:4px; } .sheet .r i { height:5px; background:var(--line); border-radius:2px; display:block; }
+  .one { position:absolute; left:50%; top:50%; width:300px; transform:translate(-50%,-50%) scale(.9); opacity:0; border:1px solid var(--line); background:var(--card); border-radius:8px; box-shadow:0 30px 60px -30px rgba(0,0,0,.3); transition:all 1s .9s cubic-bezier(.2,.8,.2,1); font-size:12px; }
+  .one .h { display:flex; justify-content:space-between; padding:10px 14px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); }
+  .one .k { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); } .one .k div { background:var(--card); padding:10px 14px; } .one .k small { display:block; font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); } .one .k b { font-family:var(--serif); font-weight:400; font-size:22px; color:var(--ink); }
+  .one .f { padding:8px 14px; background:var(--dim); font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--good); }
+  .a-stage.go .sheet { opacity:0; transform:translate(var(--tx), var(--ty)) scale(.6) rotate(0); }
+  .a-stage.go .one { opacity:1; transform:translate(-50%,-50%) scale(1); }
+
+  /* B — ledger figure */
+  .ledger { border-left:1px solid var(--line); padding-left:40px; }
+  .ledger .big { font-family:var(--serif); font-weight:300; font-size:4.6rem; line-height:1; color:var(--ink); letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+  .ledger .big small { font-size:1rem; font-family:var(--mono); color:var(--muted); letter-spacing:.1em; display:block; margin-bottom:10px; text-transform:uppercase; }
+  .ledger ul { list-style:none; padding:0; margin:22px 0 0; font-size:13px; }
+  .ledger li { display:flex; justify-content:space-between; padding:9px 0; border-top:1px solid var(--line); color:var(--muted); }
+  .ledger li span:last-child { font-family:var(--mono); color:var(--ink); font-variant-numeric:tabular-nums; }
+  .ledger li.ok { color:var(--good); border-top:1px solid var(--line); border-bottom:1px solid var(--line); font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
+
+  /* C — dark hero */
+  .dark { background:var(--deep); color:#fff; }
+  .dark h3.t { color:#fff; } .dark .sub { color:rgba(255,255,255,.7); } .dark .marker { color:#ffc93c; } .dark .marker::before { background:#ffc93c; } .dark .em { color:#ffc93c; }
+  .dark .btn.g { border-color:rgba(255,255,255,.3); color:#fff; background:transparent; }
+  .gridbg { position:absolute; inset:0; background-image:linear-gradient(rgba(255,201,60,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,201,60,.08) 1px, transparent 1px); background-size:48px 48px; mask-image:linear-gradient(to bottom, rgba(0,0,0,.9), transparent 85%); pointer-events:none; }
+  .strip { position:relative; margin:40px -48px -64px; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,.12); border-top:1px solid rgba(255,255,255,.12); }
+  .strip div { background:var(--deep); padding:18px 24px; } .strip small { display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.5); } .strip b { display:block; font-family:var(--serif); font-weight:400; font-size:26px; margin-top:4px; color:#fff; } .strip i { font-style:normal; font-size:11px; color:#ffc93c; }
+
+  /* E — before/after slider */
+  .cmp { position:relative; margin-top:36px; border:1px solid var(--line); border-radius:10px; overflow:hidden; height:300px; background:var(--card); user-select:none; }
+  .pane { position:absolute; inset:0; padding:20px 24px; font-size:12px; }
+  .pane.before { background:var(--dim); color:var(--muted); }
+  .pane.after { background:var(--card); clip-path:inset(0 0 0 var(--cut, 50%)); }
+  .pane h4 { margin:0 0 12px; font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+  .pane.before h4 { color:var(--muted); }
+  .files { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+  .files div { border:1px solid var(--line); background:var(--paper); border-radius:4px; padding:8px; font-size:9.5px; color:var(--muted); transform:rotate(var(--r)); }
+  .files div b { display:block; color:var(--ink); font-weight:500; font-size:10px; }
+  .after .kp { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+  .after .kp div { background:var(--card); padding:10px 12px; } .after .kp small { display:block; font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); } .after .kp b { font-family:var(--serif); font-weight:400; font-size:22px; color:var(--ink); }
+  .after .ok { margin-top:12px; font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--good); }
+  .handle { position:absolute; top:0; bottom:0; left:var(--cut,50%); width:2px; background:var(--gold); } .handle::after { content:"◂ ▸"; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--gold); color:#17161f; font-size:11px; padding:6px 8px; border-radius:999px; white-space:nowrap; font-weight:700; }
+  .cmp input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:ew-resize; margin:0; }
+  .caps { display:flex; justify-content:space-between; margin-top:10px; font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+
+  /* F — month-end timeline */
+  .tl { margin-top:40px; }
+  .days { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
+  .day { border:1px solid var(--line); border-radius:6px; padding:14px; font-size:12px; color:var(--muted); position:relative; overflow:hidden; background:var(--card); min-height:96px; }
+  .day small { display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .day b { display:block; font-family:var(--serif); font-weight:400; font-size:18px; color:var(--ink); margin-top:6px; }
+  .day::before { content:""; position:absolute; inset:0; background:var(--soft); transform-origin:left; transform:scaleX(var(--f,1)); transition:transform 1.4s cubic-bezier(.2,.8,.2,1); z-index:0; }
+  .day > * { position:relative; }
+  .day.done::before { transform:scaleX(0); }
+  .day.keep::before { background:var(--gold); opacity:.25; }
+  .tlcap { display:flex; justify-content:space-between; align-items:baseline; margin-top:14px; font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .tlcap b { font-family:var(--serif); font-weight:400; font-size:1.6rem; letter-spacing:0; text-transform:none; color:var(--ink); }
+  .tlcap b s { color:var(--muted); text-decoration-color:var(--accent); margin-right:8px; }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div><h1>Data &amp; BI page — hero options</h1><p class="lede">Same copy, five treatments. Each one carries the service's core promise: numbers that reconcile, produced without hands. Night toggle top-right.</p></div>
+    <button type="button" id="theme">Night</button>
+  </div>
+
+  <!-- A -->
+  <div class="label"><span class="n">A</span><h2>Fourteen spreadsheets become one screen</h2><p>On load, the spreadsheets drift in from their scattered positions and collapse into a single reconciled card. Replays every 7 seconds. The whole service in one motion.</p></div>
+  <div class="frame"><div class="sec split">
+    <div>
+      <p class="marker">Services · Data &amp; Business Intelligence</p>
+      <h3 class="t">One set of numbers the whole business trusts, <span class="em">refreshed without anyone touching a spreadsheet.</span></h3>
+      <p class="sub">You already have the data — in Xero, your CRM, a few spreadsheets and one person's head. We join it up, make it reconcile, and put it on the screens that drive decisions.</p>
+      <div class="btns"><a class="btn p" href="#">Book a conversation</a><a class="btn g" href="#">Score your reporting in 2 minutes</a></div>
+    </div>
+    <div class="a-stage" id="astage"></div>
+  </div></div>
+
+  <!-- B -->
+  <div class="label"><span class="n">B</span><h2>The ledger figure</h2><p>No illustration — one large serif number with its reconciliation underneath, set like a bank statement. The quietest and most expensive-looking of the five.</p></div>
+  <div class="frame"><div class="sec split">
+    <div>
+      <p class="marker">Services · Data &amp; Business Intelligence</p>
+      <h3 class="t">One set of numbers the whole business trusts, <span class="em">refreshed without anyone touching a spreadsheet.</span></h3>
+      <p class="sub">You already have the data. We join it up, make it reconcile to the accounts, and put it on the screens that drive decisions.</p>
+      <div class="btns"><a class="btn p" href="#">Book a conversation</a><a class="btn g" href="#">Score your reporting</a></div>
+    </div>
+    <div class="ledger">
+      <div class="big"><small>Revenue · month to date</small><span id="bfig">£412,380</span></div>
+      <ul>
+        <li><span>Xero — invoices raised</span><span>£398,140</span></li>
+        <li><span>HubSpot — closed, not yet invoiced</span><span>£14,240</span></li>
+        <li><span>Sheets — manual adjustments</span><span>£0</span></li>
+        <li class="ok"><span>Reconciled to the ledger</span><span>06:02 today ✓</span></li>
+      </ul>
+    </div>
+  </div></div>
+
+  <!-- C -->
+  <div class="label"><span class="n">C</span><h2>Charcoal hero with KPI strip</h2><p>The only dark page-top on the site, so this service feels like the flagship. Faint gold grid fades downward; a four-figure strip sits on the bottom edge. Bold; breaks the pale-gold pattern deliberately.</p></div>
+  <div class="frame"><div class="sec dark">
+    <div class="gridbg"></div>
+    <div style="position:relative;max-width:720px">
+      <p class="marker">Services · Data &amp; Business Intelligence</p>
+      <h3 class="t">One set of numbers the whole business trusts, <span class="em">refreshed without anyone touching a spreadsheet.</span></h3>
+      <p class="sub">We join up Xero, your CRM and the spreadsheets, make the result reconcile to the accounts, and put it on the screens that drive decisions. Built in Power BI on what you already pay for.</p>
+      <div class="btns"><a class="btn p" href="#">Book a conversation</a><a class="btn g" href="#">Score your reporting</a></div>
+    </div>
+    <div class="strip">
+      <div><small>Month-end close</small><b>1 day</b><i>was 5</i></div>
+      <div><small>Reports that reconcile</small><b>11 of 11</b><i>was 3 of 11</i></div>
+      <div><small>Spreadsheets retired</small><b>14</b><i>to zero</i></div>
+      <div><small>Reporting Assessment</small><b>£2,500</b><i>2 weeks · credited</i></div>
+    </div>
+  </div></div>
+
+  <!-- E -->
+  <div class="label"><span class="n">E</span><h2>Before / after, with a slider</h2><p>Headline on top; below it, Monday 09:00 before (a desk of spreadsheets) and after (one reconciled screen). The visitor drags the gold handle. Interactive, memorable, mobile-friendly.</p></div>
+  <div class="frame"><div class="sec">
+    <div style="max-width:760px">
+      <p class="marker">Services · Data &amp; Business Intelligence</p>
+      <h3 class="t">One set of numbers the whole business trusts, <span class="em">refreshed without anyone touching a spreadsheet.</span></h3>
+      <div class="btns"><a class="btn p" href="#">Book a conversation</a><a class="btn g" href="#">Score your reporting</a></div>
+    </div>
+    <div class="cmp" id="cmp" style="--cut:52%">
+      <div class="pane before"><h4>Monday 09:00 · before</h4>
+        <div class="files">
+          <div style="--r:-1.5deg"><b>Sales_Oct_v3.xlsx</b>edited Fri 18:40</div><div style="--r:1deg"><b>Sales_Oct_v3 (1).xlsx</b>edited Sat 09:12</div><div style="--r:-.5deg"><b>Margin_calc.xlsx</b>links broken</div><div style="--r:1.5deg"><b>Board pack DRAFT.pptx</b>last month's numbers</div>
+          <div style="--r:.8deg"><b>Debtors.xlsx</b>copied from Xero</div><div style="--r:-1.2deg"><b>Pipeline export.csv</b>HubSpot, Thursday</div><div style="--r:.4deg"><b>Costs (Jo).xlsx</b>on Jo's laptop</div><div style="--r:-.8deg"><b>FINAL_FINAL.xlsx</b>which one?</div>
+        </div>
+        <p style="margin:14px 0 0;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase">14 files · 3 people · 5 days to close</p>
+      </div>
+      <div class="pane after"><h4>Monday 09:00 · after</h4>
+        <div class="kp"><div><small>Revenue MTD</small><b>£412k</b></div><div><small>Gross margin</small><b>38.2%</b></div><div><small>Cash runway</small><b>7.4 mo</b></div><div><small>Debtors &gt; 60d</small><b>£61k</b></div></div>
+        <p class="ok">✓ Reconciled to Xero 06:02 · 11 of 11 reports tie back</p>
+        <p style="margin:10px 0 0;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">1 screen · 0 people · closed in 1 day</p>
+      </div>
+      <div class="handle"></div>
+      <input type="range" min="8" max="92" value="52" aria-label="Compare before and after">
+    </div>
+    <div class="caps"><span>◂ Before</span><span>After ▸</span></div>
+  </div></div>
+
+  <!-- F -->
+  <div class="label"><span class="n">F</span><h2>Month-end: five days become one</h2><p>A five-day strip under the headline. On load, days two to five drain away, leaving day one highlighted in gold — the single most quotable outcome of the service, animated. Replays.</p></div>
+  <div class="frame"><div class="sec">
+    <div style="max-width:760px">
+      <p class="marker">Services · Data &amp; Business Intelligence</p>
+      <h3 class="t">One set of numbers the whole business trusts, <span class="em">refreshed without anyone touching a spreadsheet.</span></h3>
+      <p class="sub">We join up Xero, your CRM and the spreadsheets, make the result reconcile to the accounts, and put it on the screens that drive decisions.</p>
+      <div class="btns"><a class="btn p" href="#">Book a conversation</a><a class="btn g" href="#">Score your reporting</a></div>
+    </div>
+    <div class="tl">
+      <div class="days" id="days">
+        <div class="day keep"><small>Day 1</small><b>Close</b>Refresh runs 06:00; reconciliation ✓</div>
+        <div class="day"><small>Day 2</small><b>Chase</b>Waiting on three spreadsheets</div>
+        <div class="day"><small>Day 3</small><b>Rebuild</b>Pivot tables, broken links</div>
+        <div class="day"><small>Day 4</small><b>Argue</b>Two revenue figures</div>
+        <div class="day"><small>Day 5</small><b>Board pack</b>Late, and already stale</div>
+      </div>
+      <div class="tlcap"><span>Month-end close</span><b><s>5 working days</s> 1 day</b></div>
+    </div>
+  </div></div>
+</div>
+
+<script>
+document.getElementById("theme").addEventListener("click", () => { const r=document.documentElement; const dark=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches); r.setAttribute("data-theme",dark?"light":"dark"); theme.textContent=dark?"Night":"Day"; });
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* A */
+const A = document.getElementById("astage");
+const names=["Sales_Oct_v3.xlsx","Margin_calc.xlsx","Debtors.xlsx","Pipeline export.csv","Costs (Jo).xlsx","Board pack.pptx","FINAL_FINAL.xlsx"];
+const pos=[[0,0,-6],[200,20,4],[40,120,3],[230,150,-3],[0,240,5],[210,260,-4],[110,70,2]];
+A.innerHTML = names.map((n,i)=>`<div class="sheet" style="left:${pos[i][0]}px;top:${pos[i][1]}px;transform:rotate(${pos[i][2]}deg);--tx:${180-pos[i][0]}px;--ty:${160-pos[i][1]}px"><b>${n}</b><div class="r"><i></i><i></i><i></i></div><div class="r"><i></i><i></i><i></i></div><div class="r"><i></i><i></i><i></i></div></div>`).join("")
+ + `<div class="one"><div class="h"><span>Finance · month-end</span><span style="color:var(--accent)">live</span></div><div class="k"><div><small>Revenue MTD</small><b>£412k</b></div><div><small>Gross margin</small><b>38.2%</b></div><div><small>Cash runway</small><b>7.4 mo</b></div><div><small>Debtors &gt; 60d</small><b>£61k</b></div></div><div class="f">✓ Reconciled to Xero · 06:02</div></div>`;
+function playA(){ A.classList.remove("go"); void A.offsetWidth; setTimeout(()=>A.classList.add("go"),600); }
+playA(); if(!reduce) setInterval(playA,7000);
+
+/* E */
+const cmp=document.getElementById("cmp"); cmp.querySelector("input").addEventListener("input",e=>cmp.style.setProperty("--cut",e.target.value+"%"));
+
+/* F */
+const days=[...document.querySelectorAll("#days .day")];
+function playF(){ days.forEach(d=>d.classList.remove("done")); setTimeout(()=>{ days.slice(1).forEach((d,i)=>setTimeout(()=>d.classList.add("done"),i*350)); },900); }
+playF(); if(!reduce) setInterval(playF,7000);
+</script>
