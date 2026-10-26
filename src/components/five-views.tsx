@@ -67,9 +67,10 @@ const views: View[] = [
 export function FiveViews() {
   const [cur, setCur] = useState(0);
   const [tick, setTick] = useState(0); // restarts the autoplay rail
-  const [within, setWithin] = useState(0); // progress through the current step (scroll mode)
   const [mode, setMode] = useState<"scroll" | "auto" | "static">("auto");
   const tall = useRef<HTMLDivElement>(null);
+  const rail = useRef<HTMLElement>(null);
+  const curRef = useRef(0);
   const visible = useRef(false);
 
   // Desktop: scroll-driven. Mobile: autoplay. Reduced motion: static tabs.
@@ -78,16 +79,22 @@ export function FiveViews() {
     pick(); window.addEventListener("resize", pick); return () => window.removeEventListener("resize", pick);
   }, []);
 
-  // Scroll mode: map the tall wrapper's progress to the active view.
+  // Scroll mode: rAF-throttled; the rail is driven directly (no re-render), React state only changes on step change.
   useEffect(() => {
     if (mode !== "scroll") return;
     const el = tall.current; if (!el) return;
-    const onScroll = () => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
       const r = el.getBoundingClientRect(); const total = r.height - window.innerHeight; if (total <= 0) return;
-      const p = Math.min(1, Math.max(0, -r.top / total)) * views.length;
-      const i = Math.min(views.length - 1, Math.floor(p)); setCur(i); setWithin(Math.min(1, p - i));
+      const p = Math.min(0.9999, Math.max(0, -r.top / total)) * views.length;
+      const i = Math.floor(p); const within = p - i;
+      if (rail.current) rail.current.style.height = `${Math.max(6, within * 100)}%`;
+      if (i !== curRef.current) { curRef.current = i; setCur(i); }
     };
-    onScroll(); window.addEventListener("scroll", onScroll, { passive: true }); return () => window.removeEventListener("scroll", onScroll);
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update(); window.addEventListener("scroll", onScroll, { passive: true }); window.addEventListener("resize", onScroll);
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); if (raf) cancelAnimationFrame(raf); };
   }, [mode]);
 
   // Autoplay mode (mobile).
@@ -102,7 +109,7 @@ export function FiveViews() {
   const go = (i: number) => {
     if (mode === "scroll" && tall.current) {
       const r = tall.current.getBoundingClientRect(); const total = r.height - window.innerHeight;
-      window.scrollTo({ top: window.scrollY + r.top + ((i + 0.15) / views.length) * total, behavior: "smooth" }); return;
+      window.scrollTo({ top: window.scrollY + r.top + ((i + 0.2) / views.length) * total, behavior: "smooth" }); return;
     }
     setCur(i); setTick((k) => k + 1);
   };
@@ -112,34 +119,39 @@ export function FiveViews() {
   }, [cur]);
 
   return (
-    <div ref={tall} className={mode === "scroll" ? "md:h-[380vh]" : ""}>
-      <div className={`mt-12 grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-10 ${mode === "scroll" ? "md:sticky md:top-24" : ""}`}>
+    <div ref={tall} className={mode === "scroll" ? "md:h-[340vh]" : ""}>
+      <div className={`mt-12 grid gap-8 md:grid-cols-[1fr_1.4fr] md:items-start md:gap-10 ${mode === "scroll" ? "md:sticky md:top-20" : ""}`}>
+        {/* Tabs: fixed height — the description lives under the dashboard so nothing reflows on step change */}
         <div role="tablist" aria-label="Dashboard views" className="flex gap-2 overflow-x-auto pb-2 md:block md:overflow-visible md:pb-0">
           {views.map((v, i) => {
             const on = i === cur;
             return (
-              <button key={v.name} role="tab" aria-selected={on} onClick={() => go(i)} className={`relative shrink-0 border-line text-left font-[inherit] transition-colors max-md:w-[220px] max-md:rounded-md max-md:border max-md:p-4 md:block md:w-full md:border-l-2 md:px-5 md:py-4 ${on ? "max-md:border-gold max-md:bg-accent-soft md:border-l-line" : ""}`}>
+              <button key={v.name} role="tab" aria-selected={on} onClick={() => go(i)} className={`relative shrink-0 border-line text-left font-[inherit] max-md:w-[220px] max-md:rounded-md max-md:border max-md:p-4 md:block md:w-full md:border-l-2 md:px-5 md:py-3.5 ${on ? "max-md:border-gold max-md:bg-accent-soft" : ""}`}>
                 {on && (
-                  <i key={mode === "auto" ? tick : "s"} className="absolute left-[-2px] top-0 hidden w-[2px] bg-gold md:block"
-                    style={mode === "auto" ? { animation: `fiveviews-rail ${STEP_MS}ms linear forwards` } : { height: mode === "scroll" ? `${Math.max(8, within * 100)}%` : "100%" }} />
+                  <i ref={mode === "scroll" ? rail : undefined} key={mode === "auto" ? tick : "s"} className="absolute left-[-2px] top-0 hidden w-[2px] bg-gold md:block"
+                    style={mode === "auto" ? { animation: `fiveviews-rail ${STEP_MS}ms linear forwards` } : { height: mode === "static" ? "100%" : "6%" }} />
                 )}
                 <span className="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted">0{i + 1} · {v.name}</span>
-                <span className={`mt-1 block font-display text-lg font-light italic leading-snug transition-colors md:text-xl ${on ? "text-accent" : "text-ink"}`}>{v.q}</span>
-                {on && <span className="mt-2 hidden text-sm font-light leading-relaxed text-muted md:block">{v.detail}</span>}
+                <span className={`mt-1 block font-display text-lg font-light italic leading-snug transition-colors duration-300 md:text-xl ${on ? "text-accent" : "text-ink"}`}>{v.q}</span>
               </button>
             );
           })}
         </div>
 
-        <div className="relative">
-          {views.map((v, i) => (
-            <div key={v.name} aria-hidden={i !== cur} className={`overflow-hidden rounded-[10px] border border-[#ffc93c]/25 bg-[#17161f] text-[11px] text-white shadow-[0_40px_80px_-36px_rgba(0,0,0,.6)] transition-all duration-500 ${i === cur ? "relative opacity-100" : "pointer-events-none absolute inset-0 translate-y-2 opacity-0"}`}>
-              <div className="flex items-center justify-between border-b border-white/10 px-3.5 py-2.5 font-mono text-[10px] uppercase tracking-[0.1em]"><span><span className="mr-2 inline-block h-[7px] w-[7px] rounded-full bg-[#ffc93c]" />{v.name}</span><em className="rounded-[3px] border border-[#ffc93c] px-1.5 py-px text-[9px] not-italic text-[#ffc93c]">example</em></div>
-              {v.panel}
-            </div>
-          ))}
-          <p className="mt-3 text-xs font-light text-muted md:hidden">{views[cur].detail}</p>
-          {mode === "scroll" && <p className="mt-4 hidden font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted md:block">Scroll to step through · {cur + 1} / {views.length}</p>}
+        {/* Stage: all five cards stacked in one grid cell so the stage keeps the tallest card's height; cards cross-fade on opacity only */}
+        <div>
+          <div className="grid">
+            {views.map((v, i) => (
+              <div key={v.name} aria-hidden={i !== cur} className={`col-start-1 row-start-1 self-start overflow-hidden rounded-[10px] border border-[#ffc93c]/25 bg-[#17161f] text-[11px] text-white shadow-[0_40px_80px_-36px_rgba(0,0,0,.6)] transition-opacity duration-500 ease-out ${i === cur ? "opacity-100" : "pointer-events-none opacity-0"}`} style={{ willChange: "opacity" }}>
+                <div className="flex items-center justify-between border-b border-white/10 px-3.5 py-2.5 font-mono text-[10px] uppercase tracking-[0.1em]"><span><span className="mr-2 inline-block h-[7px] w-[7px] rounded-full bg-[#ffc93c]" />{v.name}</span><em className="rounded-[3px] border border-[#ffc93c] px-1.5 py-px text-[9px] not-italic text-[#ffc93c]">example</em></div>
+                {v.panel}
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 flex min-h-[3.5rem] items-start justify-between gap-6">
+            <p className="max-w-md text-sm font-light leading-relaxed text-muted">{views[cur].detail}</p>
+            {mode === "scroll" && <p className="hidden shrink-0 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted md:block">{cur + 1} / {views.length}</p>}
+          </div>
         </div>
         <style>{`@keyframes fiveviews-rail { from { height: 0 } to { height: 100% } }`}</style>
       </div>
