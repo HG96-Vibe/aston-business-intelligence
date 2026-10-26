@@ -29,18 +29,18 @@ export default function CareersPage() {
                 ["Project leads", "Delivery, vendor management, steering reports. You own the finish line."],
               ].map(([t, b]) => (
                 <li key={t}>
-                  <p className="font-bold text-ink">{t}</p>
+                  <p className="font-semibold text-ink">{t}</p>
                   <p className="text-sm leading-relaxed text-muted">{b}</p>
                 </li>
               ))}
             </ul>
             <div className="rounded-lg border border-line bg-paper-dim p-5 text-sm leading-relaxed text-body">
-              <p className="font-bold text-ink">How it works</p>
+              <p className="font-semibold text-ink">How it works</p>
               <p className="mt-2">Most engagements are remote-first with occasional client visits in the UK. Work is contracted per project, with the option of longer arrangements for people we work well with. Early-career applicants are paired with a senior lead.</p>
             </div>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-ink">Join the talent pool</h2>
+            <h2 className="text-2xl text-ink">Join the talent pool</h2>
             <p className="mt-2 mb-6 text-muted">Takes two minutes. We read every one.</p>
             <CareersForm />
           </div>

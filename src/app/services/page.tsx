@@ -22,7 +22,7 @@ export default function ServicesPage() {
             <a
               key={s.slug}
               href={`#${s.slug}`}
-              className="rounded-full border border-white/25 px-4 py-1.5 text-sm text-white/85 hover:bg-white/10"
+              className="rounded-full border border-line bg-paper px-4 py-1.5 text-sm text-body hover:border-accent"
             >
               {s.title}
             </a>
@@ -38,9 +38,9 @@ export default function ServicesPage() {
         >
           <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-[1fr_1.3fr] md:px-6 md:py-24">
             <div>
-              <p className="eyebrow">{String(i + 1).padStart(2, "0")}</p>
-              <h2 className="mt-3 text-3xl font-bold text-ink md:text-4xl">{s.title}</h2>
-              <p className="mt-4 text-lg text-muted">{s.short}</p>
+              <p className="marker">{String(i + 1).padStart(2, "0")}</p>
+              <h2 className="mt-4 text-3xl text-ink md:text-[2.6rem]">{s.title}</h2>
+              <p className="mt-4 text-lg font-light text-muted">{s.short}</p>
               <div className="mt-8 rounded-lg border border-accent/30 bg-accent-soft p-5">
                 <p className="eyebrow">Start here</p>
                 <p className="mt-2 font-semibold text-ink">{s.entry}</p>
@@ -51,11 +51,11 @@ export default function ServicesPage() {
             </div>
             <div className="grid gap-8">
               <div>
-                <h3 className="font-bold text-ink">The problem we usually find</h3>
+                <h3 className="text-ink">The problem we usually find</h3>
                 <p className="mt-2 leading-relaxed text-muted">{s.problem}</p>
               </div>
               <div>
-                <h3 className="font-bold text-ink">What we do</h3>
+                <h3 className="text-ink">What we do</h3>
                 <ul className="mt-3 grid gap-2">
                   {s.what.map((w) => (
                     <li key={w} className="flex gap-3 leading-relaxed text-body">
@@ -66,7 +66,7 @@ export default function ServicesPage() {
                 </ul>
               </div>
               <div>
-                <h3 className="font-bold text-ink">What you end up with</h3>
+                <h3 className="text-ink">What you end up with</h3>
                 <p className="mt-2 leading-relaxed text-muted">{s.outcome}</p>
               </div>
             </div>
@@ -78,7 +78,7 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
           <div className="max-w-2xl">
             <p className="eyebrow">Not sure which you need?</p>
-            <h2 className="mt-3 text-3xl font-bold text-ink">That&apos;s normal. Start with a conversation.</h2>
+            <h2 className="mt-3 text-3xl text-ink md:text-[2.6rem]">That&apos;s normal. <span className="em">Start with a conversation.</span></h2>
             <p className="mt-4 text-lg text-muted">
               Most clients come to us with a symptom — slow reporting, a stalled project, pressure
               to &ldquo;do something with AI&rdquo; — not a service name. Tell us the symptom and we&apos;ll

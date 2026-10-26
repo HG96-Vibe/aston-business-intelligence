@@ -55,7 +55,7 @@ export function CookieBanner() {
       style={{ bottom: "calc(max(16px, env(safe-area-inset-bottom, 0px)) + 60px)" }}
     >
       <div className="rounded-lg border border-line bg-paper p-5 shadow-xl shadow-black/15">
-        <p className="font-display text-base font-bold text-ink">Cookies on this site</p>
+        <p className="text-base font-semibold text-ink">Cookies on this site</p>
         <p className="mt-2 text-sm leading-relaxed text-muted">
           We use essential storage to make the site work and remember your display preference.
           With your permission we&apos;d also like to use analytics cookies to understand how the

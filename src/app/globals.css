@@ -13,8 +13,8 @@
   --c-deep: #17161f;       /* dark surfaces: hero, CTA band, primary buttons */
   --c-deep-soft: #2a2834;
   --c-paper: #ffffff;
-  --c-paper-dim: #f6f5f1;
-  --c-line: #e4e2db;
+  --c-paper-dim: #f7f5f0;
+  --c-line: #e6e2d8;
   --c-muted: #625f6e;
   --c-body: #24222c;
   --c-gold: #e9b324;
@@ -77,16 +77,48 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 {
+h1, h2 {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
   text-wrap: balance;
 }
+h3 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+/* Gold italic phrase inside a serif heading */
+.em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--c-accent);
+}
+/* Numbered section marker: "— 01  WHAT WE DO" */
+.marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+.marker::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--c-accent);
+}
+.hairline { border-top: 1px solid var(--c-line); }
 
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--c-accent);
 }

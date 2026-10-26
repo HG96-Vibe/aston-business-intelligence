@@ -54,15 +54,15 @@ export default function AboutPage() {
         <div className="mt-10">
           <Placeholder>
             <strong>Placeholder — awaiting details.</strong> This section will show 1–3 named leaders
-            with a photo (optional), title, two-line bio and LinkedIn link. Visitors who have just
-            been contacted by Aston will look for a real person here.
+            with a photo (optional), title, two-line bio and LinkedIn link. The lead consultant&apos;s
+            NVIDIA and Google Cloud certifications go here too — exact certification names needed.
           </Placeholder>
         </div>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {[1, 2, 3].map((n) => (
             <div key={n} className="rounded-lg border border-line bg-paper p-6">
               <div className="h-20 w-20 rounded-full bg-paper-dim" />
-              <p className="mt-4 font-bold text-ink">[Name]</p>
+              <p className="mt-4 font-semibold text-ink">[Name]</p>
               <p className="text-sm text-muted">[Title]</p>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 [Two lines on background and what they look after at Aston.]
@@ -77,7 +77,7 @@ export default function AboutPage() {
         <div className="mt-12 grid gap-10 md:grid-cols-2">
           {values.map(([title, body]) => (
             <div key={title}>
-              <h3 className="text-lg font-bold text-ink">{title}</h3>
+              <h3 className="text-lg text-ink">{title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{body}</p>
             </div>
           ))}

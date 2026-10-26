@@ -21,18 +21,30 @@ export function Section({
 
 export function SectionHead({
   eyebrow,
+  number,
   title,
+  em,
   intro,
 }: {
   eyebrow?: string;
+  number?: string;
   title: string;
+  em?: string;
   intro?: string;
 }) {
   return (
     <div className="max-w-2xl">
-      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2 className="mt-3 text-3xl font-bold text-ink md:text-4xl">{title}</h2>
-      {intro && <p className="mt-4 text-lg leading-relaxed text-muted">{intro}</p>}
+      {eyebrow && (
+        <p className="marker">
+          {number && <span>{number}</span>}
+          <span>{eyebrow}</span>
+        </p>
+      )}
+      <h2 className="mt-4 text-3xl text-ink md:text-[2.6rem]">
+        {title}
+        {em && <> <span className="em">{em}</span></>}
+      </h2>
+      {intro && <p className="mt-5 text-lg font-light leading-relaxed text-muted">{intro}</p>}
     </div>
   );
 }
@@ -67,12 +79,13 @@ export function Button({
 }: {
   href: string;
   children: ReactNode;
-  variant?: "primary" | "secondary" | "light";
+  variant?: "primary" | "secondary" | "light" | "ghost";
 }) {
   const styles = {
     primary: "bg-gold text-ink hover:bg-gold-strong",
     secondary: "border border-line text-ink hover:bg-paper-dim",
     light: "border border-white/30 text-white hover:bg-white/10",
+    ghost: "border border-line bg-paper text-ink hover:bg-paper-dim",
   }[variant];
   return (
     <Link
@@ -93,8 +106,8 @@ export function CtaBand() {
     <section className="bg-deep text-white">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-16 md:flex-row md:items-center md:justify-between md:px-6">
         <div>
-          <h2 className="text-2xl font-bold md:text-3xl">Talk to us about your business</h2>
-          <p className="mt-2 max-w-xl text-white/70">
+          <h2 className="text-2xl md:text-3xl">Talk to us about <span className="em" style={{ color: "#ffc93c" }}>your business.</span></h2>
+          <p className="mt-2 max-w-xl font-light text-white/70">
             A 30-minute call, no slides. We&apos;ll tell you plainly whether and how we can help.
           </p>
         </div>

@@ -58,7 +58,7 @@ export default function WorkPage() {
             <article key={i} className="grid gap-8 rounded-lg border border-line p-8 md:grid-cols-[1fr_1.6fr]">
               <div>
                 <p className="eyebrow">{c.service}</p>
-                <h2 className="mt-3 text-2xl font-bold text-ink">{c.title}</h2>
+                <h2 className="mt-3 text-2xl text-ink">{c.title}</h2>
                 <p className="mt-3 text-sm text-muted">
                   {c.sector} · {c.size}
                 </p>
@@ -103,7 +103,7 @@ export default function WorkPage() {
             ["Handover pack", "Documentation, training session and a defined support window."],
           ].map(([t, b]) => (
             <li key={t} className="rounded-lg border border-line bg-paper p-6">
-              <h3 className="font-bold text-ink">{t}</h3>
+              <h3 className="font-semibold text-ink">{t}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{b}</p>
             </li>
           ))}
