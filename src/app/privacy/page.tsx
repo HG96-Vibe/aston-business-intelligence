@@ -14,7 +14,12 @@ export default function PrivacyPage() {
       <h2>What we collect and why</h2>
       <p><strong>Contact form.</strong> Name, email, company, phone (optional) and your message. We use this to reply to your enquiry and, if you become a client, to manage our relationship. Legal basis: our legitimate interest in responding to enquiries, and performance of a contract where one follows.</p>
       <p><strong>Careers form.</strong> Name, email, LinkedIn URL, area of interest, experience level, your message and your CV. We use this to assess suitability for work with Aston and to contact you about opportunities. Legal basis: our legitimate interest in recruiting, and steps taken at your request prior to entering a contract. We keep applications for 12 months unless you ask us to delete them sooner.</p>
-      <p><strong>Website usage.</strong> Our hosting provider records standard server logs (IP address, browser, pages requested) for security and performance. We do not currently use advertising or tracking cookies.</p>
+      <p><strong>Website usage.</strong> Our hosting provider records standard server logs (IP address, browser, pages requested) for security and performance.</p>
+
+      <h2 id="cookies">Cookies and similar storage</h2>
+      <p><strong>Essential.</strong> We store your display preference (day or night mode) and your cookie choice in your browser&rsquo;s local storage. These are necessary for the site to work as you&rsquo;ve asked and need no consent.</p>
+      <p><strong>Analytics (optional).</strong> If you accept analytics in the banner, we may set cookies to measure how the site is used &mdash; pages visited, approximate location, device type. We use this to improve the site, never for advertising. You can withdraw consent at any time using the &ldquo;Cookie settings&rdquo; link in the footer; we will then stop setting analytics cookies and you can delete existing ones in your browser.</p>
+      <p>We do not use advertising or cross-site tracking cookies.</p>
 
       <h2>Who we share it with</h2>
       <ul>

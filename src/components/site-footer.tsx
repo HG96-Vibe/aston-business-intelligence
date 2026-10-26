@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { Logo } from "@/components/logo";
+import { CookieSettingsLink } from "@/components/cookie-banner";
 
 export function SiteFooter() {
   return (
@@ -22,6 +23,7 @@ export function SiteFooter() {
             ))}
             <Link href="/privacy" className="text-body hover:text-ink">Privacy policy</Link>
             <Link href="/terms" className="text-body hover:text-ink">Terms</Link>
+            <CookieSettingsLink className="text-body" />
           </nav>
         </div>
         <div>
