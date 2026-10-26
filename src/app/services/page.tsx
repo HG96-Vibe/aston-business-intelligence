@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { services } from "@/lib/site";
 import { Button, CtaBand, PageHero } from "@/components/ui";
+import { PricingLadder, bookHref } from "@/components/offers";
+import { offers, serviceOutcomes } from "@/lib/offers";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -42,13 +44,15 @@ export default function ServicesPage() {
               <p className="marker">{String(i + 1).padStart(2, "0")}</p>
               <h2 className="mt-4 text-3xl text-ink md:text-[2.6rem]">{s.title}</h2>
               <p className="mt-4 text-lg font-light text-muted">{s.short}</p>
+              {(() => { const o = offers.find((x) => x.serviceSlug === s.slug); return o ? (
               <div className="mt-8 rounded-lg border border-accent/30 bg-accent-soft p-5">
                 <p className="eyebrow">Start here</p>
-                <p className="mt-2 font-semibold text-ink">{s.entry}</p>
-                <Link href="/contact" className="mt-3 inline-block text-sm font-semibold text-accent hover:underline">
-                  Ask about this →
+                <p className="mt-2 font-semibold text-ink">{o.name}</p>
+                <p className="mt-1 text-sm text-muted">{o.duration} · <span className="font-medium text-ink">{o.price}</span> ex VAT</p>
+                <Link href={bookHref()} className="mt-3 inline-block text-sm font-semibold text-accent hover:underline">
+                  Book a conversation →
                 </Link>
-              </div>
+              </div>) : null; })()}
             </div>
             <div className="grid gap-8">
               <div>
@@ -67,13 +71,23 @@ export default function ServicesPage() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-ink">What you end up with</h3>
-                <p className="mt-2 leading-relaxed text-muted">{s.outcome}</p>
+                <h3 className="text-ink">What changes</h3>
+                <ul className="mt-3 grid gap-2">
+                  {serviceOutcomes[s.slug].map((o) => (
+                    <li key={o} className="flex gap-3 leading-relaxed text-body">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                      {o}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{s.outcome}</p>
               </div>
             </div>
           </div>
         </section>
       ))}
+
+      <PricingLadder />
 
       <section>
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
@@ -86,7 +100,7 @@ export default function ServicesPage() {
               tell you where to start.
             </p>
             <div className="mt-8">
-              <Button href="/contact">Talk to us</Button>
+              <Button href={bookHref()}>Book a conversation</Button>
             </div>
           </div>
         </div>

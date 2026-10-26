@@ -2,6 +2,8 @@ import Link from "next/link";
 import { services } from "@/lib/site";
 import { Button, CtaBand, Section, SectionHead } from "@/components/ui";
 import { HeroMotion } from "@/components/hero-motion";
+import { Availability, Guarantee, PricingLadder, ProofStrip, WeekOne, bookHref } from "@/components/offers";
+import { serviceOutcomes } from "@/lib/offers";
 
 const principles = [
   ["Senior-led, specialist-delivered", "Every engagement is scoped and overseen by a senior consultant and delivered by a team matched to the problem — analysts, engineers, AI specialists or project leads as needed."],
@@ -39,9 +41,10 @@ export default function Home() {
             decide — through data analysis, business analysis, AI consulting and project delivery.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Button href="/contact">Book a 30-minute conversation →</Button>
-            <Button href="/services" variant="ghost">See what we do</Button>
+            <Button href={bookHref()}>Book a 30-minute conversation →</Button>
+            <Button href="/health-check" variant="ghost">Take the 2-minute health check</Button>
           </div>
+          <div className="mt-6"><Availability /></div>
         </div>
 
         {/* Credentials strip */}
@@ -71,6 +74,11 @@ export default function Home() {
               <p className="font-mono text-xs text-accent">{String(i + 1).padStart(2, "0")}</p>
               <h3 className="mt-3 text-xl text-ink">{s.title}</h3>
               <p className="mt-2 font-light text-muted">{s.short}</p>
+              <ul className="mt-4 grid gap-1 text-sm text-body">
+                {serviceOutcomes[s.slug].map((o) => (
+                  <li key={o} className="flex gap-2"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />{o}</li>
+                ))}
+              </ul>
               <p className="mt-5 font-mono text-xs uppercase tracking-[0.12em] text-accent group-hover:underline">
                 Learn more →
               </p>
@@ -79,8 +87,12 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section>
-        <SectionHead number="02" eyebrow="How we work" title="Scoped before it starts." em="Handed over when it's done." />
+      <PricingLadder compact number="02" />
+
+      <WeekOne number="03" />
+
+      <Section dim>
+        <SectionHead number="04" eyebrow="How we work" title="Scoped before it starts." em="Handed over when it's done." />
         <ol className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-3">
           {[
             ["Discover", "A short, fixed-fee piece of work to understand your business, your data and the decisions that matter. You get a written assessment and a costed plan — whether or not you continue with us."],
@@ -96,8 +108,10 @@ export default function Home() {
         </ol>
       </Section>
 
-      <Section dim>
-        <SectionHead number="03" eyebrow="Why ABI" title="What you can" em="hold us to." />
+      <Guarantee />
+
+      <Section>
+        <SectionHead number="05" eyebrow="Why ABI" title="What you can" em="hold us to." />
         <div className="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2">
           {principles.map(([title, body]) => (
             <div key={title} className="hairline pt-5">
@@ -108,10 +122,12 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section>
+      <ProofStrip />
+
+      <Section dim>
         <div className="grid gap-10 md:grid-cols-[1fr_1.2fr] md:items-start">
           <SectionHead
-            number="04"
+            number="06"
             eyebrow="Who we work with"
             title="Owner-managed and"
             em="growing UK businesses."
