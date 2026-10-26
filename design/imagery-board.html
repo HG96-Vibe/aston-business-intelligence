@@ -1,0 +1,124 @@
+<title>Home Hero With Imagery</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1180px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:72ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:48px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:#c98a06; letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; max-width:90ch; }
+
+  .hero { border-radius:12px; overflow:hidden; border:1px solid var(--line); position:relative; font-family:var(--sans); color:var(--ink); background:var(--p); }
+  .nav { display:flex; justify-content:space-between; align-items:center; padding:16px 40px; border-bottom:1px solid var(--ln); position:relative; z-index:3; background:var(--navbg,transparent); }
+  .nav .logo { display:flex; align-items:center; gap:8px; font-weight:600; font-size:14px; color:var(--ink); } .nav .logo b { font-family:var(--serif); font-weight:400; font-size:20px; color:var(--gold); font-style:italic; } .nav .logo span small { display:block; font-family:var(--mono); font-size:8px; letter-spacing:2px; color:var(--gold); font-weight:400; }
+  .nav ul { display:flex; gap:26px; list-style:none; margin:0; padding:0; font-size:13.5px; opacity:.85; } .nav .cta { background:var(--btn); color:var(--btnfg); font-size:13px; font-weight:600; padding:9px 16px; border-radius:6px; }
+  .body { position:relative; padding:84px 40px 64px; min-height:540px; overflow:hidden; }
+  .copy { position:relative; z-index:2; max-width:560px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin:0; }
+  h3.h { font-family:var(--serif); font-weight:400; font-size:clamp(2rem,4.2vw,3.4rem); line-height:1.06; letter-spacing:-.02em; margin:22px 0 0; color:var(--ink); } h3.h em { font-style:italic; font-weight:300; color:var(--gold); }
+  .sub { margin:22px 0 0; max-width:48ch; font-weight:300; font-size:1.02rem; line-height:1.6; color:var(--mu); }
+  .ctas { display:flex; gap:12px; flex-wrap:wrap; margin-top:30px; } .b1 { background:var(--btn); color:var(--btnfg); font-weight:600; font-size:14px; padding:12px 18px; border-radius:6px; } .b2 { color:var(--ink); font-weight:500; font-size:14px; padding:12px 18px; border:1px solid var(--ln2); border-radius:6px; }
+  .avail { margin-top:18px; font-size:12.5px; color:var(--mu); display:flex; align-items:center; gap:8px; } .avail i { width:8px; height:8px; border-radius:50%; background:#2ecc71; box-shadow:0 0 0 3px rgba(46,204,113,.2); }
+  .creds { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; padding:22px 40px; border-top:1px solid var(--ln); background:var(--p2); position:relative; z-index:2; }
+  .creds small { display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--mu); } .creds b { display:block; font-weight:500; font-size:13.5px; margin-top:3px; color:var(--ink); }
+  .kpi { position:absolute; z-index:3; background:#17161f; color:#fff; border:1px solid rgba(255,201,60,.3); border-radius:10px; padding:14px 16px; box-shadow:0 30px 60px -30px rgba(0,0,0,.6); font-size:11px; min-width:200px; }
+  .kpi small { display:block; font-family:var(--mono); font-size:8px; letter-spacing:1.2px; text-transform:uppercase; color:rgba(255,255,255,.5); } .kpi b { display:block; font-family:var(--serif); font-weight:400; font-size:26px; line-height:1; margin-top:4px; } .kpi i { font-style:normal; color:#7fd1a5; font-size:10px; }
+  .kpi .ft { margin-top:10px; padding-top:8px; border-top:1px solid rgba(255,255,255,.1); font-family:var(--mono); font-size:7.5px; letter-spacing:.8px; text-transform:uppercase; color:#ffc93c; }
+  .light { --p:#f7f5f0; --p2:#fff; --ink:#17161f; --mu:#625f6e; --ln:#e6e2d8; --ln2:#cfcbc0; --gold:#c98a06; --btn:#17161f; --btnfg:#fff; }
+  .dark  { --p:#0e0d13; --p2:#121118; --ink:#f4f1ea; --mu:#bdb9c6; --ln:rgba(255,255,255,.12); --ln2:rgba(255,255,255,.3); --gold:#ffc93c; --btn:#ffc93c; --btnfg:#17161f; }
+  .credit { position:absolute; right:12px; bottom:8px; z-index:4; font-family:var(--mono); font-size:8px; letter-spacing:.8px; text-transform:uppercase; color:rgba(255,255,255,.55); }
+  @media (max-width:860px) { .nav ul { display:none; } .body { padding:52px 22px 44px; } .creds { grid-template-columns:1fr 1fr; padding:18px 22px; } }
+
+  /* A full-bleed */
+  .A .body { background:url(img/london-dusk.jpg) center 40%/cover; min-height:600px; }
+  .A .body::before { content:""; position:absolute; inset:0; background:linear-gradient(100deg, rgba(14,13,19,.92) 0%, rgba(14,13,19,.75) 45%, rgba(14,13,19,.25) 100%); }
+  .A .nav { background:rgba(14,13,19,.85); backdrop-filter:blur(8px); }
+
+  /* B split arch */
+  .B .body { display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; }
+  .B .pic { position:relative; height:470px; }
+  .B .pic img { width:86%; height:100%; object-fit:cover; border-radius:220px 220px 14px 14px; display:block; margin-left:auto; }
+  .B .pic::before { content:""; position:absolute; right:-14px; top:14px; width:86%; height:100%; border:1px solid var(--gold); border-radius:220px 220px 14px 14px; }
+  .B .kpi { left:0; bottom:40px; }
+  @media (max-width:860px) { .B .body { grid-template-columns:1fr; } .B .pic { height:320px; } }
+
+  /* C collage */
+  .C .body { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+  .C .stack { position:relative; height:480px; }
+  .C .stack img { position:absolute; object-fit:cover; border-radius:10px; box-shadow:0 30px 60px -30px rgba(0,0,0,.45); }
+  .C .i1 { left:0; top:0; width:62%; height:58%; transform:rotate(-3deg); } .C .i2 { right:0; top:12%; width:48%; height:46%; transform:rotate(2.5deg); } .C .i3 { left:12%; bottom:0; width:46%; height:40%; transform:rotate(1.5deg); }
+  .C .kpi { right:6%; bottom:6%; transform:rotate(-1.5deg); }
+  .C .dash { position:absolute; right:0; bottom:0; width:48%; background:#17161f; border-radius:10px; border:1px solid rgba(255,201,60,.3); padding:12px; color:#fff; box-shadow:0 30px 60px -30px rgba(0,0,0,.6); transform:rotate(-2deg); }
+  .C .dash .r { display:flex; align-items:flex-end; gap:4px; height:46px; margin-top:8px; } .C .dash .r i { flex:1; background:#ffc93c; border-radius:2px 2px 0 0; }
+  .C .dash small { font-family:var(--mono); font-size:8px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.5); }
+  @media (max-width:860px) { .C .body { grid-template-columns:1fr; } .C .stack { height:360px; } }
+
+  /* D abstract */
+  .D .body { background:url(img/gold-network.jpg) right center/cover; min-height:600px; }
+  .D .body::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(14,13,19,.96) 0%, rgba(14,13,19,.85) 45%, rgba(14,13,19,.15) 100%); }
+
+  /* E duotone */
+  .E .body { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:stretch; padding-right:0; padding-bottom:0; padding-top:0; }
+  .E .copy { padding:84px 0 64px; }
+  .E .duo { position:relative; overflow:hidden; background:#17161f; }
+  .E .duo img { width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.1); mix-blend-mode:luminosity; opacity:.9; display:block; }
+  .E .duo::after { content:""; position:absolute; inset:0; background:linear-gradient(160deg, rgba(233,179,36,.55), rgba(23,22,31,.2) 60%, rgba(23,22,31,.85)); mix-blend-mode:multiply; }
+  .E .duo::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg, var(--p) 0%, transparent 18%); z-index:2; }
+  .E .kpi { right:40px; bottom:40px; }
+  @media (max-width:860px) { .E .body { grid-template-columns:1fr; } .E .copy { padding:52px 22px 30px; } .E .duo { height:300px; } }
+
+  /* F keep hero, add photo band */
+  .F .body { min-height:0; padding-bottom:56px; }
+  .F .band { position:relative; height:260px; background:url(img/london-pano.jpg) center 55%/cover; }
+  .F .band::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(23,22,31,.55), rgba(23,22,31,.35)); }
+  .F .band .q { position:absolute; left:40px; bottom:34px; z-index:2; color:#fff; font-family:var(--serif); font-weight:300; font-size:1.7rem; max-width:30ch; line-height:1.2; } .F .band .q em { font-style:italic; color:#ffc93c; }
+  .F .band .t { position:absolute; right:40px; bottom:34px; z-index:2; color:rgba(255,255,255,.75); font-family:var(--mono); font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; }
+  .F .grid { position:absolute; inset:0; background-image:radial-gradient(circle at 1px 1px, #c98a06 1.2px, transparent 0); background-size:26px 26px; opacity:.5; -webkit-mask-image:radial-gradient(ellipse at 80% 50%, #000 0%, transparent 65%); mask-image:radial-gradient(ellipse at 80% 50%, #000 0%, transparent 65%); }
+</style>
+
+<div class="wrap">
+  <h1>Home hero — with imagery</h1>
+  <p class="lede">Same copy and palette as today (charcoal, paper, gold) — what changes is that photography and depth enter the frame. Images are Shutterstock previews (watermarked); any of them can be licensed once you choose a direction, and I can search for alternatives. Each frame shows the credentials strip underneath so you can see the handover.</p>
+
+  <div class="label"><span class="n">A</span><h2>Full-bleed London</h2><p>The Aston Pearl idea done with discipline: the City at dusk full-width, a charcoal gradient from the left so the copy sits on near-black and the skyline glows through on the right. Gold type over gold city lights. One image carries the whole first screen.</p></div>
+  <div class="hero dark A"><div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+    <div class="body"><div class="copy"><p class="eyebrow">Business intelligence consultancy in London</p><h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3><p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide — through data analysis, business analysis, AI consulting and project delivery.</p><div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting in 2 minutes</span></div><p class="avail"><i></i>Taking on 3 new engagements in November</p></div><span class="credit">Shutterstock preview · 1290772471</span></div>
+    <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House</b></div><div><small>Based</small><b>London</b></div></div></div>
+
+  <div class="label"><span class="n">B</span><h2>Split with arch</h2><p>Copy stays on paper on the left; on the right a tall photo in an arched window with a thin gold frame offset behind it, and a charcoal KPI card floating over the corner. Architectural, editorial, and the photo can be a person rather than a skyline — this one is.</p></div>
+  <div class="hero light B"><div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+    <div class="body"><div class="copy"><p class="eyebrow">Business intelligence consultancy in London</p><h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3><p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide.</p><div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting</span></div><p class="avail"><i></i>Taking on 3 new engagements in November</p></div>
+      <div class="pic"><img src="img/woman-charts.jpg" alt=""><div class="kpi"><small>Month-end close</small><b>1 day</b><i>was 5</i><div class="ft">✓ Reconciled to Xero · 06:02</div></div></div><span class="credit" style="color:#625f6e">Shutterstock preview · 2855863325</span></div>
+    <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House</b></div><div><small>Based</small><b>London</b></div></div></div>
+
+  <div class="label"><span class="n">C</span><h2>Collage</h2><p>Three photo cards (a London skyline, a person at work, an abstract gold-data texture) and one charcoal dashboard card, offset and slightly rotated like prints on a desk. Lively and layered — the most "designed" of the set, closest to what Aston Pearl is reaching for, without the colour chaos.</p></div>
+  <div class="hero light C"><div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+    <div class="body"><div class="copy"><p class="eyebrow">Business intelligence consultancy in London</p><h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3><p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide.</p><div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting</span></div></div>
+      <div class="stack"><img class="i1" src="img/london-pano.jpg" alt=""><img class="i2" src="img/woman-monitor.jpg" alt=""><img class="i3" src="img/gold-lines.jpg" alt=""><div class="dash"><small>Revenue vs plan</small><div class="r"><i style="height:50%"></i><i style="height:62%"></i><i style="height:58%"></i><i style="height:70%"></i><i style="height:76%"></i><i style="height:90%"></i></div><small style="color:#ffc93c;display:block;margin-top:8px">✓ 14 / 14 tie back</small></div></div><span class="credit" style="color:#625f6e">Shutterstock previews</span></div>
+    <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House</b></div><div><small>Based</small><b>London</b></div></div></div>
+
+  <div class="label"><span class="n">D</span><h2>Abstract gold data</h2><p>No people, no city: a photographic texture of gold light trails on black, fading in from the right. Keeps the whole thing on-brand (it's literally our colours) and feels premium-tech rather than corporate. Would replace the dot grid rather than sit behind it.</p></div>
+  <div class="hero dark D"><div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+    <div class="body"><div class="copy"><p class="eyebrow">Business intelligence consultancy in London</p><h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3><p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide — through data analysis, business analysis, AI consulting and project delivery.</p><div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting in 2 minutes</span></div><p class="avail"><i></i>Taking on 3 new engagements in November</p></div><span class="credit">Shutterstock preview · 4203926651</span></div>
+    <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House</b></div><div><small>Based</small><b>London</b></div></div></div>
+
+  <div class="label"><span class="n">E</span><h2>Duotone</h2><p>A people photo on the right, but tinted charcoal-and-gold so it belongs to the brand instead of bringing its own colours. Paper on the left feathers into it. This is how you use stock photography without the site looking like stock photography — and every photo you ever add will match.</p></div>
+  <div class="hero light E"><div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+    <div class="body"><div class="copy" style="padding-left:0"><p class="eyebrow">Business intelligence consultancy in London</p><h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3><p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide.</p><div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting</span></div><p class="avail"><i></i>Taking on 3 new engagements in November</p></div>
+      <div class="duo"><img src="img/man-laptop.jpg" alt=""></div>
+      <div class="kpi"><small>Reports that reconcile</small><b>11 / 11</b><i>was 3 / 11</i><div class="ft">✓ Checked 06:02 today</div></div><span class="credit">Shutterstock preview · 2852735467</span></div>
+    <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House</b></div><div><small>Based</small><b>London</b></div></div></div>
+
+  <div class="label"><span class="n">F</span><h2>Keep the hero, add a photo band</h2><p>Lowest-risk: the hero stays exactly as it is (monogram, dot grid), and a full-width cinematic London strip slides in between it and section 01, carrying one line of copy. Imagery enters the site without touching the hero you already like. The same band pattern can then be reused between sections on every page.</p></div>
+  <div class="hero light F"><div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+    <div class="body"><div class="grid"></div><div class="copy"><p class="eyebrow">Business intelligence consultancy in London</p><h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3><p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide.</p><div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting</span></div></div></div>
+    <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House</b></div><div><small>Based</small><b>London</b></div></div>
+    <div class="band"><p class="q">Built in London, for companies <em>that run on their numbers.</em></p><span class="t">Est. 2024 · Croydon, CR0</span><span class="credit">Shutterstock preview · 2596366005</span></div></div>
+</div>
