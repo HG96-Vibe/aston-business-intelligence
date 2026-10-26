@@ -58,19 +58,7 @@ export default function AboutPage() {
           </Placeholder>
         </div>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
-          <div className="rounded-lg border border-line bg-paper p-6">
-            <div className="h-20 w-20 rounded-full bg-paper-dim" />
-            <p className="mt-4 font-semibold text-ink">Hamid Gondal</p>
-            <p className="text-sm text-muted">Founder</p>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
-              Data and AI systems, product building, and training. Oversees scoping and quality across engagements.
-            </p>
-            <ul className="mt-4 grid gap-1 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-accent">
-              <li>NVIDIA Certified</li>
-              <li>Google Cloud Certified</li>
-            </ul>
-          </div>
-          {[2, 3].map((n) => (
+          {[1, 2, 3].map((n) => (
             <div key={n} className="rounded-lg border border-line bg-paper p-6">
               <div className="h-20 w-20 rounded-full bg-paper-dim" />
               <p className="mt-4 font-semibold text-ink">[Name]</p>
