@@ -1,0 +1,106 @@
+<title>Home Hero Light Directions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1180px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:70ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:48px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:#c98a06; letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; max-width:90ch; }
+  .sw { display:flex; gap:6px; margin-left:auto; } .sw i { width:18px; height:18px; border-radius:4px; border:1px solid rgba(0,0,0,.1); }
+
+  .hero { border-radius:12px; overflow:hidden; border:1px solid var(--line); background:var(--p); color:var(--ink); position:relative; font-family:var(--sans); }
+  .nav { display:flex; justify-content:space-between; align-items:center; padding:16px 40px; border-bottom:1px solid var(--ln); background:var(--navbg,transparent); position:relative; z-index:2; }
+  .nav .logo { display:flex; align-items:center; gap:8px; font-weight:600; font-size:14px; letter-spacing:-.01em; color:var(--ink); } .nav .logo b { font-family:var(--serif); font-weight:400; font-size:20px; color:var(--gold); font-style:italic; }
+  .nav .logo span small { display:block; font-family:var(--mono); font-size:8px; letter-spacing:2px; color:var(--gold); font-weight:400; }
+  .nav ul { display:flex; gap:26px; list-style:none; margin:0; padding:0; font-size:13.5px; color:var(--ink); opacity:.85; } .nav .cta { background:var(--btn); color:var(--btnfg); font-size:13px; font-weight:600; padding:9px 16px; border-radius:6px; }
+  .body { position:relative; padding:88px 40px 72px; overflow:hidden; min-height:520px; background:var(--bgimg,var(--p)); }
+  .grid { position:absolute; inset:0; background-image:radial-gradient(circle at 1px 1px, var(--dot) 1.2px, transparent 0); background-size:26px 26px; opacity:.5; -webkit-mask-image:radial-gradient(ellipse at 75% 50%, #000 0%, transparent 70%); mask-image:radial-gradient(ellipse at 75% 50%, #000 0%, transparent 70%); }
+  .mono-svg { position:absolute; right:40px; top:50%; transform:translateY(-50%); width:38%; opacity:.9; }
+  .mono-svg path { fill:none; stroke:var(--gold); stroke-width:1.6; stroke-dasharray:1; pathLength:1; animation:dr 4s ease-in-out infinite alternate; }
+  @keyframes dr { from { stroke-dashoffset:1; opacity:.2; } to { stroke-dashoffset:0; opacity:1; } }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); position:relative; }
+  h3.h { font-family:var(--serif); font-weight:400; font-size:clamp(2rem,4.4vw,3.6rem); line-height:1.06; letter-spacing:-.02em; margin:22px 0 0; max-width:17ch; color:var(--ink); position:relative; }
+  h3.h em { font-style:italic; font-weight:300; color:var(--gold); }
+  .sub { position:relative; margin:24px 0 0; max-width:50ch; font-weight:300; font-size:1.05rem; line-height:1.6; color:var(--mu); }
+  .ctas { position:relative; display:flex; gap:12px; flex-wrap:wrap; margin-top:32px; }
+  .b1 { background:var(--btn); color:var(--btnfg); font-weight:600; font-size:14px; padding:12px 18px; border-radius:6px; } .b2 { color:var(--ink); font-weight:500; font-size:14px; padding:12px 18px; border:1px solid var(--ln2); border-radius:6px; }
+  .avail { position:relative; margin-top:18px; font-size:12.5px; color:var(--mu); display:flex; align-items:center; gap:8px; } .avail i { width:8px; height:8px; border-radius:50%; background:#2ecc71; box-shadow:0 0 0 3px rgba(46,204,113,.2); }
+  .creds { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; padding:22px 40px; border-top:1px solid var(--ln); background:var(--p2); position:relative; }
+  .creds small { display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--mu); } .creds b { display:block; font-weight:500; font-size:13.5px; margin-top:3px; color:var(--ink); }
+  .next { padding:40px; background:var(--p3,var(--p2)); border-top:1px solid var(--ln); } .next h4 { font-family:var(--serif); font-weight:400; font-size:1.6rem; margin:10px 0 0; color:var(--ink); max-width:24ch; line-height:1.15; } .next h4 em { font-style:italic; font-weight:300; color:var(--gold); }
+  @media (max-width:860px) { .nav ul { display:none; } .body { padding:56px 22px 48px; } .mono-svg { display:none; } .creds { grid-template-columns:1fr 1fr; padding:18px 22px; } .next { padding:28px 22px; } }
+
+  /* Q  sage */
+  .sg { --p:#e9eee6; --p2:#f3f6f1; --p3:#ffffff; --ink:#1c2420; --mu:#5d6a62; --ln:#d3dccf; --ln2:#b3c0ad; --gold:#b8860b; --dot:#3f5a4a; --btn:#1c2420; --btnfg:#f3f6f1; }
+  /* R  eucalyptus / mint */
+  .eu { --p:#eaf4ef; --p2:#f4faf6; --p3:#ffffff; --ink:#122a22; --mu:#4f6b60; --ln:#cfe3d8; --ln2:#a9cbb9; --gold:#c08a12; --dot:#1f6f57; --btn:#1f6f57; --btnfg:#f4faf6; }
+  /* S  cool grey / graphite */
+  .cg { --p:#eceef1; --p2:#f5f6f8; --p3:#ffffff; --ink:#15181d; --mu:#5b616b; --ln:#d6dae1; --ln2:#b7bdc7; --gold:#c98a06; --dot:#15181d; --btn:#15181d; --btnfg:#fff; }
+  /* T  stone / greige */
+  .st { --p:#e8e4dc; --p2:#f1eee8; --p3:#faf8f4; --ink:#1f1c18; --mu:#6a645b; --ln:#d4cec2; --ln2:#b9b1a2; --gold:#a8730a; --dot:#1f1c18; --btn:#1f1c18; --btnfg:#f1eee8; }
+  /* U  charcoal hero, light site */
+  .chh { --p:#2a2a30; --p2:#ffffff; --p3:#f7f5f0; --ink:#f4f1ea; --mu:#bcb8c2; --ln:rgba(255,255,255,.12); --ln2:rgba(255,255,255,.3); --gold:#ffc93c; --dot:#ffc93c; --btn:#ffc93c; --btnfg:#17161f;
+         --bgimg:linear-gradient(160deg,#34343b 0%,#232328 70%,#1b1b20 100%); }
+  .chh .creds, .chh .next { --ink:#17161f; --mu:#625f6e; --ln:#e6e2d8; --gold:#c98a06; }
+  /* V  sage → cream wash */
+  .sw2 { --p:#f6f7f3; --p2:#ffffff; --p3:#f6f7f3; --ink:#1c2420; --mu:#5d6a62; --ln:#dfe4da; --ln2:#c2cbbb; --gold:#b8860b; --dot:#3f5a4a; --btn:#1c2420; --btnfg:#fff;
+         --bgimg:radial-gradient(ellipse 55% 70% at 85% 30%,rgba(111,140,120,.28),transparent 60%),radial-gradient(ellipse 40% 50% at 10% 100%,rgba(233,179,36,.14),transparent 60%),#f6f7f3; }
+  /* W  pale slate blue */
+  .sl { --p:#e7ecf2; --p2:#f2f5f9; --p3:#ffffff; --ink:#141a24; --mu:#58606d; --ln:#d1d9e3; --ln2:#afbccb; --gold:#c98a06; --dot:#2b3a52; --btn:#141a24; --btnfg:#fff; }
+  /* X  warm grey + forest accents */
+  .wg { --p:#efece6; --p2:#f7f5f0; --p3:#ffffff; --ink:#1a1f1c; --mu:#5f665f; --ln:#ddd8ce; --ln2:#c1bbae; --gold:#b8860b; --dot:#1f4d3a; --btn:#1f4d3a; --btnfg:#f7f5f0; }
+  .wg h3.h em { color:#1f4d3a; }
+</style>
+
+<div class="wrap">
+  <h1>Home hero — light directions</h1>
+  <p class="lede">Staying light, but off the warm paper. Tinted greys and soft greens as the ground, charcoal or forest for type and buttons, gold kept as the accent (dialled to a deeper bronze where the ground is cool, so it doesn't go mustard). Night mode stays as it is in every case.</p>
+
+  <div class="label"><span class="n">Q</span><h2>Sage</h2><div class="sw"><i style="background:#e9eee6"></i><i style="background:#1c2420"></i><i style="background:#b8860b"></i></div><p>A grey-green ground — think Farrow &amp; Ball rather than mint. Calm, expensive, very British. Charcoal type with a green undertone; the dot grid in deep sage. Quietly different from everyone.</p></div>
+  <div class="hero sg"></div>
+
+  <div class="label"><span class="n">R</span><h2>Eucalyptus</h2><div class="sw"><i style="background:#eaf4ef"></i><i style="background:#1f6f57"></i><i style="background:#c08a12"></i></div><p>Fresher and cooler than sage: a pale mint-grey ground with a deep eucalyptus green for buttons and ink. Reads as clean and modern — health-tech, fintech. The green is the brand here; gold steps back to a supporting role.</p></div>
+  <div class="hero eu"></div>
+
+  <div class="label"><span class="n">S</span><h2>Graphite</h2><div class="sw"><i style="background:#eceef1"></i><i style="background:#15181d"></i><i style="background:#c98a06"></i></div><p>Cool light grey with a hint of blue, near-black type, gold unchanged. The most "serious software" of the light options — precise and technical. Separates from Augustova's warmth without adding a colour.</p></div>
+  <div class="hero cg"></div>
+
+  <div class="label"><span class="n">T</span><h2>Stone</h2><div class="sw"><i style="background:#e8e4dc"></i><i style="background:#1f1c18"></i><i style="background:#a8730a"></i></div><p>A deeper greige — darker than paper, warmer than grey, like unpolished limestone. Gold goes bronze. Feels architectural and solid; the hero reads as a surface rather than a page.</p></div>
+  <div class="hero st"></div>
+
+  <div class="label"><span class="n">U</span><h2>Charcoal hero, light site</h2><div class="sw"><i style="background:#2a2a30"></i><i style="background:#ffffff"></i><i style="background:#ffc93c"></i></div><p>Not black: a mid charcoal with a subtle gradient, gold at full brightness, white paper resuming from the credentials strip down. A strong first frame that still leaves the rest of the site light.</p></div>
+  <div class="hero chh"></div>
+
+  <div class="label"><span class="n">V</span><h2>Sage wash</h2><div class="sw"><i style="background:#f6f7f3"></i><i style="background:#9fb3a6"></i><i style="background:#e9b324"></i></div><p>Near-white ground with a soft sage cloud behind the monogram and a faint gold wash bottom-left. Lighter touch than Q — the green is atmosphere, not a surface. Easy to live with.</p></div>
+  <div class="hero sw2"></div>
+
+  <div class="label"><span class="n">W</span><h2>Pale slate</h2><div class="sw"><i style="background:#e7ecf2"></i><i style="background:#141a24"></i><i style="background:#c98a06"></i></div><p>Light blue-grey, like morning sky over the City. Cool, trustworthy, finance-adjacent without going navy. Gold warms it up nicely.</p></div>
+  <div class="hero sl"></div>
+
+  <div class="label"><span class="n">X</span><h2>Warm grey + forest</h2><div class="sw"><i style="background:#efece6"></i><i style="background:#1f4d3a"></i><i style="background:#b8860b"></i></div><p>Keep a warm-grey ground close to today's, but swap the charcoal buttons and italic for a deep forest green, with bronze-gold as the second accent. The racing-green idea, translated into a light theme.</p></div>
+  <div class="hero wg"></div>
+</div>
+
+<script>
+const tpl = `
+  <div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+  <div class="body"><div class="grid"></div>
+    <svg class="mono-svg" viewBox="0 0 120 100" aria-hidden="true"><path d="M8 92 L34 10 L48 10 L62 52 L52 52 L41 22 L19 92 Z"/><path d="M58 92 L58 10 L86 10 C102 10 108 20 108 30 C108 38 103 44 96 47 C105 50 112 57 112 68 C112 82 102 92 86 92 Z M70 22 L70 42 L84 42 C92 42 96 38 96 32 C96 26 92 22 84 22 Z M70 54 L70 80 L86 80 C95 80 100 75 100 67 C100 59 95 54 86 54 Z"/><circle cx="116" cy="14" r="3" fill="var(--gold)" stroke="none"/></svg>
+    <p class="eyebrow">Business intelligence consultancy in London</p>
+    <h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3>
+    <p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide — through data analysis, business analysis, AI consulting and project delivery.</p>
+    <div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting in 2 minutes</span></div>
+    <p class="avail"><i></i>Taking on 3 new engagements in November · first call within 5 working days</p>
+  </div>
+  <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House · England &amp; Wales</b></div><div><small>Based</small><b>London</b></div></div>
+  <div class="next"><p class="eyebrow">01 · Why companies call us</p><h4>Three problems, <em>one underlying cause.</em></h4></div>`;
+document.querySelectorAll(".hero").forEach(h => h.innerHTML = tpl);
+</script>
