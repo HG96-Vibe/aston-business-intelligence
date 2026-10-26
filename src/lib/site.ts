@@ -7,9 +7,8 @@ export const site = {
   companyNumber: "15571977",
   registeredOffice: "Sunley House, 4 Bedford Park, Croydon CR0 2AP",
   emails: {
-    // TODO(Hamid): confirm spelling — "enquires@" as given, or "enquiries@"?
-    hello: "enquires@astonbusinessintelligence.co.uk",
-    careers: "enquires@astonbusinessintelligence.co.uk",
+    hello: "enquiries@astonbusinessintelligence.co.uk",
+    careers: "enquiries@astonbusinessintelligence.co.uk",
   },
   nav: [
     { href: "/services", label: "Services" },

@@ -124,26 +124,6 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section>
-        <div className="grid gap-8 rounded-lg border border-line p-8 md:grid-cols-[1fr_auto] md:items-center">
-          <div>
-            <p className="eyebrow">A registered UK company</p>
-            <p className="mt-3 text-lg text-body">
-              {site.name} Ltd is registered in England &amp; Wales, company number{" "}
-              <span className="font-mono">{site.companyNumber}</span>. You can verify us on Companies House.
-            </p>
-          </div>
-          <a
-            href={`https://find-and-update.company-information.service.gov.uk/company/${site.companyNumber}`}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center rounded-md border border-line px-5 py-3 text-sm font-semibold text-ink hover:bg-paper-dim"
-          >
-            View on Companies House ↗
-          </a>
-        </div>
-      </Section>
-
       <CtaBand />
     </>
   );
