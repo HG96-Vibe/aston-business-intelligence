@@ -49,9 +49,9 @@ export function HeroMotion({ forceDark = false }: { forceDark?: boolean } = {}) 
       for (let y = g / 2; y < H; y += g) for (let x = g / 2; x < W; x += g) dots.push({ x, y, l: 0 });
     }
     function mono() {
-      // fit the 120x100 monogram into the right ~45% of the hero, never taller than 80% of it
-      const s = Math.min((H * 0.8) / 100, (W * 0.45) / 120);
-      const x = W - 120 * s - W * 0.05;
+      // fit the 120x100 monogram into the left ~50% of the hero, behind the copy, never taller than 85% of it
+      const s = Math.min((H * 0.85) / 100, (W * 0.5) / 120);
+      const x = W * 0.03;
       const y = (H - 100 * s) / 2;
       return { x, y, s };
     }
@@ -80,7 +80,7 @@ export function HeroMotion({ forceDark = false }: { forceDark?: boolean } = {}) 
       ctx.setLineDash([600, 600]); ctx.lineDashOffset = 600 - prog * 600;
       paths.forEach((p, i) => {
         const isInk = INK_PARTS.has(i);
-        ctx.strokeStyle = `rgba(${isInk ? ink : gold},${(isInk ? 0.25 : 0.55) * fade})`;
+        ctx.strokeStyle = `rgba(${isInk ? ink : gold},${(isInk ? 0.18 : 0.4) * fade})`;
         ctx.stroke(p);
       });
       ctx.restore();

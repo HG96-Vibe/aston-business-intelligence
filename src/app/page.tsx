@@ -33,7 +33,11 @@ export default function Home() {
     <>
       {/* Hero — charcoal over the gold dot-wave photograph; live dot grid and traced monogram on top */}
       <section className="relative overflow-hidden bg-[#0e0d13]">
-        <div className="absolute inset-0 bg-cover bg-[position:70%_center] md:bg-center" style={{ backgroundImage: "url(/img/hero-wave.jpg)" }} aria-hidden="true" />
+        {/* Photograph, slowly drifting; a second copy masked to a travelling light band makes the dots shimmer along the curve */}
+        <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+          <div className="hero-photo absolute inset-0 bg-cover bg-[position:70%_center] md:bg-center" style={{ backgroundImage: "url(/img/hero-wave.jpg)" }} />
+          <div className="hero-photo hero-shimmer absolute inset-0 bg-cover bg-[position:70%_center] md:bg-center" style={{ backgroundImage: "url(/img/hero-wave.jpg)" }} />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0e0d13]/95 via-[#0e0d13]/70 to-[#0e0d13]/10" aria-hidden="true" />
         <HeroMotion forceDark />
         <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pb-24 md:pt-28">
