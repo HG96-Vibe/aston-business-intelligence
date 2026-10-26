@@ -1,30 +1,24 @@
 <title>Aston BI Logo Board</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@500;600;700&display=swap">
 <style>
-  /* Layout: a review board. One card per direction; each card shows the lockup on
-     light and ink, the mark alone, and a favicon-size test. */
+  /* Review board. White + gold brand: words in ink, symbol in gold. */
   :root {
-    --bg: #f3f5f8;
-    --fg: #15202e;
-    --muted: #5b6b80;
+    --bg: #f5f4f0;
+    --fg: #17161f;
+    --muted: #605e6e;
     --card: #ffffff;
-    --line: #dde3ea;
-    --ink: #0c1a2b;
+    --line: #e3e1da;
     --paper: #ffffff;
-    --accent: #0e8a7a;
-    --amber: #d59b2b;
+    --ink-preview: #1b1a2e;
+    --gold: #c9a227;
     --font-ui: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0f151d; --fg: #e8edf3; --muted: #93a1b3; --card: #171f2a; --line: #2a3443; color-scheme: dark;
-    }
+    :root:not([data-theme="light"]) { --bg: #121218; --fg: #ebe9f2; --muted: #9b99aa; --card: #1a1a24; --line: #2b2b38; color-scheme: dark; }
   }
-  :root[data-theme="dark"] {
-    --bg: #0f151d; --fg: #e8edf3; --muted: #93a1b3; --card: #171f2a; --line: #2a3443; color-scheme: dark;
-  }
+  :root[data-theme="dark"] { --bg: #121218; --fg: #ebe9f2; --muted: #9b99aa; --card: #1a1a24; --line: #2b2b38; color-scheme: dark; }
   body {
     margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-ui);
     padding-block: 32px 64px;
@@ -33,184 +27,182 @@
   }
   .wrap { max-width: 1100px; margin: 0 auto; }
   h1 { font-family: "Manrope", var(--font-ui); font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
-  .lede { color: var(--muted); max-width: 60ch; line-height: 1.55; margin: 10px 0 0; }
-  .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 22px 0 28px; }
+  .lede { color: var(--muted); max-width: 62ch; line-height: 1.55; margin: 10px 0 0; }
+  .palette { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
+  .palette div { display: grid; gap: 4px; font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+  .palette span { display: block; width: 72px; height: 28px; border-radius: 6px; border: 1px solid rgba(0,0,0,.1); }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin: 22px 0 28px; }
   .toolbar label { font-size: 13px; color: var(--muted); display: inline-flex; gap: 8px; align-items: center; }
   .toolbar input[type=color] { width: 34px; height: 26px; border: 1px solid var(--line); border-radius: 6px; padding: 0; background: none; }
   .toolbar button { font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); color: var(--fg); cursor: pointer; }
-  .toolbar button:focus-visible, .toolbar input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .toolbar button:focus-visible, .toolbar input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
   .grid { display: grid; gap: 22px; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-  .card-head { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; padding: 16px 18px 0; flex-wrap: wrap; }
+  .card-head { padding: 16px 18px 0; }
   .card-head h2 { font-family: "Manrope", var(--font-ui); font-size: 1.05rem; margin: 0; display: flex; gap: 10px; align-items: baseline; }
-  .num { font-family: var(--font-mono); font-size: 12px; color: var(--accent); letter-spacing: .08em; }
-  .card-head p { margin: 0; color: var(--muted); font-size: 13.5px; max-width: 58ch; line-height: 1.5; }
-  .swatches { display: flex; gap: 6px; }
-  .swatches span { width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(0,0,0,.12); }
+  .num { font-family: var(--font-mono); font-size: 12px; color: var(--gold); letter-spacing: .08em; }
+  .card-head p { margin: 6px 0 0; color: var(--muted); font-size: 13.5px; max-width: 70ch; line-height: 1.5; }
 
-  .stage { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 14px; border-top: 1px solid var(--line); }
-  .stage > div { min-width: 0; display: grid; place-items: center; padding: 34px 20px; }
+  .stage { display: grid; grid-template-columns: 1fr 1fr; margin-top: 14px; border-top: 1px solid var(--line); }
+  .stage > div { min-width: 0; display: grid; place-items: center; padding: 36px 20px; }
   .on-paper { background: var(--paper); }
-  .on-ink { background: var(--ink); }
+  .on-ink { background: var(--ink-preview); }
   .stage svg { max-width: 100%; height: auto; }
   .tests { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
   .tests > div { min-width: 0; display: grid; place-items: center; gap: 8px; padding: 18px 10px; border-right: 1px solid var(--line); }
   .tests > div:last-child { border-right: 0; }
   .tests small { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
-  .tests .on-ink small { color: #9fb0c3; }
+  .tests .on-ink small { color: #a7a5b8; }
   .fav { display: flex; gap: 10px; align-items: center; }
   .fav svg { width: 16px; height: 16px; }
   .fav svg + svg { width: 32px; height: 32px; }
-
   .notes { padding: 14px 18px 18px; font-size: 13.5px; color: var(--muted); line-height: 1.55; border-top: 1px solid var(--line); }
   .notes b { color: var(--fg); font-weight: 600; }
-
-  @media (max-width: 640px) {
-    .stage { grid-template-columns: 1fr; }
-    .tests { grid-template-columns: 1fr 1fr 1fr; }
-  }
+  @media (max-width: 640px) { .stage { grid-template-columns: 1fr; } }
 </style>
 
 <div class="wrap">
-  <h1>Aston BI — logo directions</h1>
-  <p class="lede">Six distinct routes. Each shown as the full lockup on white and on ink, the mark on its own, and at 16px / 32px to check it survives as a favicon. Pick a direction (or two) and I'll refine from there.</p>
+  <h1>Aston BI — logo directions, white &amp; gold</h1>
+  <p class="lede">Wordmark stays "Aston BI" in every option; what changes is the symbol beside or around it. Words are set in ink so they read; gold is reserved for the symbol so it stays precious. Each option is shown on white and on ink, as the symbol alone, and at 16 / 32 px.</p>
+
+  <div class="palette" id="palette"></div>
 
   <div class="toolbar">
-    <label>Accent <input type="color" id="accent" value="#0e8a7a"></label>
-    <label>Ink <input type="color" id="ink" value="#0c1a2b"></label>
-    <button type="button" id="reset">Reset colours</button>
-    <span style="font-size:12px;color:var(--muted)">Try the accent in amber, cobalt or coral to see how each mark holds up.</span>
+    <label>Gold <input type="color" id="gold" value="#c9a227"></label>
+    <label>Gold on dark <input type="color" id="goldlt" value="#f2c811"></label>
+    <label>Ink <input type="color" id="ink" value="#1b1a2e"></label>
+    <button type="button" id="preset-charcoal">Ink: charcoal</button>
+    <button type="button" id="preset-indigo">Ink: indigo (as DA guide)</button>
+    <button type="button" id="reset">Reset</button>
   </div>
 
   <div class="grid" id="board"></div>
 </div>
 
 <script>
-/* Each logo is a function (ink, accent, variant) -> SVG string.
-   variant: "lockup" | "mark". Marks are drawn on a 48×48 grid. */
+/* Each logo: (ink, gold, variant) -> SVG. Marks on a 48×48 grid. Wordmark in `ink`; symbol in `gold`. */
+const word = (ink, x, y, size, font = "Manrope", weight = 800, ls = -0.6) =>
+  `<text x="${x}" y="${y}" font-family="${font}" font-weight="${weight}" font-size="${size}" letter-spacing="${ls}" fill="${ink}">Aston<tspan font-weight="${weight === 800 ? 500 : 400}" dx="7">BI</tspan></text>`;
+
 const L = {};
 
-/* 01 — Ascent: three rising bars where the tallest is the accent. Honest BI signal, refined. */
-L.ascent = (ink, ac, v) => {
-  const mark = `<rect x="4" y="26" width="10" height="18" rx="2" fill="${ink}" opacity=".45"/>
-    <rect x="19" y="16" width="10" height="28" rx="2" fill="${ink}" opacity=".7"/>
-    <rect x="34" y="4" width="10" height="40" rx="2" fill="${ac}"/>`;
+/* 01 — Facet: an A cut like a gemstone — three gold facets, light and dark. Gold made literal, without a chart. */
+L.facet = (ink, g, v) => {
+  const mark = `
+    <path d="M24 5 L42 43 H30.5 L24 29 Z" fill="${g}"/>
+    <path d="M24 5 L6 43 H17.5 L24 29 Z" fill="${g}" opacity=".62"/>
+    <path d="M17.5 43 L24 29 L30.5 43 Z" fill="${g}" opacity=".32"/>`;
   if (v === "mark") return `<svg viewBox="0 0 48 48" width="64" height="64">${mark}</svg>`;
-  return `<svg viewBox="0 0 300 48" width="300" height="48">
-    <g transform="translate(0,0) scale(1)">${mark}</g>
-    <text x="62" y="33" font-family="Manrope" font-weight="800" font-size="28" letter-spacing="-0.5" fill="${ink}">Aston<tspan font-weight="500" opacity=".7"> BI</tspan></text>
+  return `<svg viewBox="0 0 240 48" width="240" height="48">${mark}${word(ink, 58, 34, 30)}</svg>`;
+};
+
+/* 02 — Hallmark: a small gold roundel with a rising tick inside, like a hallmark stamped on gold. Sits after the name as a seal. */
+L.hallmark = (ink, g, v) => {
+  const mark = `
+    <circle cx="24" cy="24" r="19" fill="none" stroke="${g}" stroke-width="3"/>
+    <path d="M14 29 L21 22 L26 27 L34 17" fill="none" stroke="${g}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M28 17 H34 V23" fill="none" stroke="${g}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>`;
+  if (v === "mark") return `<svg viewBox="0 0 48 48" width="64" height="64">${mark}</svg>`;
+  return `<svg viewBox="0 0 236 48" width="236" height="48">${word(ink, 0, 34, 30)}<g transform="translate(188,0)">${mark}</g></svg>`;
+};
+
+/* 03 — Bracket: the words framed by a gold corner bracket, top-left and bottom-right — a viewfinder. "We bring the business into focus." */
+L.bracket = (ink, g, v) => {
+  const mark = `
+    <path d="M8 20 V8 H20" fill="none" stroke="${g}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M40 28 V40 H28" fill="none" stroke="${g}" stroke-width="4" stroke-linecap="round"/>
+    <text x="24" y="33" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="24" fill="${ink}">A</text>`;
+  if (v === "mark") return `<svg viewBox="0 0 48 48" width="64" height="64">${mark}</svg>`;
+  return `<svg viewBox="0 0 230 56" width="230" height="56">
+    <path d="M3 17 V4 H16" fill="none" stroke="${g}" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M226 39 V52 H213" fill="none" stroke="${g}" stroke-width="3.5" stroke-linecap="round"/>
+    ${word(ink, 28, 38, 30)}
   </svg>`;
 };
 
-/* 02 — Apex: a geometric "A" with the crossbar removed and replaced by a single accent point — the one number that matters. */
-L.apex = (ink, ac, v) => {
-  const mark = `<path d="M24 4 L44 44 H35.5 L24 19.5 L12.5 44 H4 Z" fill="${ink}"/>
-    <circle cx="24" cy="36" r="5" fill="${ac}"/>`;
+/* 04 — Keystone: a gold hexagon (a nut, a cell, a keystone) holding a white A — solid enough for a favicon, quiet in the lockup. */
+L.keystone = (ink, g, v) => {
+  const mark = `
+    <path d="M24 3 L42 13.5 V34.5 L24 45 L6 34.5 V13.5 Z" fill="${g}"/>
+    <text x="24" y="33" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="24" fill="#ffffff">A</text>`;
   if (v === "mark") return `<svg viewBox="0 0 48 48" width="64" height="64">${mark}</svg>`;
-  return `<svg viewBox="0 0 330 48" width="330" height="48">${mark}
-    <text x="60" y="33" font-family="Manrope" font-weight="700" font-size="27" letter-spacing="-0.3" fill="${ink}">Aston Business Intelligence</text>
+  return `<svg viewBox="0 0 240 48" width="240" height="48">${mark}${word(ink, 58, 34, 30)}</svg>`;
+};
+
+/* 05 — Underscore: serif wordmark with a single gold stroke beneath "Aston" that lifts at the end — a signature line, an upward turn. Most advisory. */
+L.underscore = (ink, g, v) => {
+  const mark = `
+    <text x="24" y="31" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="32" fill="${ink}">A</text>
+    <path d="M9 40 H30 L39 32" fill="none" stroke="${g}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+  if (v === "mark") return `<svg viewBox="0 0 48 48" width="64" height="64">${mark}</svg>`;
+  return `<svg viewBox="0 0 230 56" width="230" height="56">
+    <text x="0" y="34" font-family="Fraunces" font-weight="600" font-size="34" letter-spacing="-0.5" fill="${ink}">Aston <tspan font-weight="500" font-size="30">BI</tspan></text>
+    <path d="M2 46 H118 L132 36" fill="none" stroke="${g}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>`;
 };
 
-/* 03 — Signal: the "A" is drawn as a line chart — a rise, a peak, a step down to the crossbar. Reads as both letter and trend. */
-L.signal = (ink, ac, v) => {
-  const mark = `<path d="M5 42 L18 8 L30 30 L36 20 L43 42" fill="none" stroke="${ink}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
-    <path d="M13 31 H28" stroke="${ac}" stroke-width="5" stroke-linecap="round"/>`;
+/* 06 — Compass: a four-point star / compass needle in gold, north point longest — direction, decision, "which way". */
+L.compass = (ink, g, v) => {
+  const mark = `
+    <path d="M24 3 L28 20 L45 24 L28 28 L24 45 L20 28 L3 24 L20 20 Z" fill="${g}"/>
+    <path d="M24 3 L28 20 L24 24 L20 20 Z" fill="${ink}" opacity=".9"/>`;
   if (v === "mark") return `<svg viewBox="0 0 48 48" width="64" height="64">${mark}</svg>`;
-  return `<svg viewBox="0 0 300 48" width="300" height="48">${mark}
-    <text x="60" y="33" font-family="Space Grotesk" font-weight="700" font-size="28" letter-spacing="-0.6" fill="${ink}">aston<tspan fill="${ac}">bi</tspan></text>
-  </svg>`;
-};
-
-/* 04 — Ledger: wordmark-led, serif, with a hairline rule that becomes a tiny accent bar — "intelligence" as the quiet editorial voice. */
-L.ledger = (ink, ac, v) => {
-  const mark = `<rect x="6" y="40" width="36" height="3" fill="${ink}" opacity=".35"/>
-    <rect x="6" y="40" width="12" height="3" fill="${ac}"/>
-    <text x="24" y="34" text-anchor="middle" font-family="Fraunces" font-weight="700" font-size="34" fill="${ink}">A</text>`;
-  if (v === "mark") return `<svg viewBox="0 0 48 48" width="64" height="64">${mark}</svg>`;
-  return `<svg viewBox="0 0 330 56" width="330" height="56">
-    <text x="0" y="30" font-family="Fraunces" font-weight="600" font-size="31" letter-spacing="-0.4" fill="${ink}">Aston Business Intelligence</text>
-    <rect x="1" y="42" width="328" height="2" fill="${ink}" opacity=".25"/>
-    <rect x="1" y="42" width="42" height="2" fill="${ac}"/>
-  </svg>`;
-};
-
-/* 05 — Nodes: three points connected, the final node filled — data → decision. Nothing chart-shaped. */
-L.nodes = (ink, ac, v) => {
-  const mark = `<path d="M9 38 L24 12 L39 30" fill="none" stroke="${ink}" stroke-width="3.5" stroke-linejoin="round" opacity=".55"/>
-    <circle cx="9" cy="38" r="5" fill="${ink}"/>
-    <circle cx="24" cy="12" r="5" fill="${ink}"/>
-    <circle cx="39" cy="30" r="7" fill="${ac}"/>`;
-  if (v === "mark") return `<svg viewBox="0 0 48 48" width="64" height="64">${mark}</svg>`;
-  return `<svg viewBox="0 0 300 48" width="300" height="48">${mark}
-    <text x="60" y="33" font-family="IBM Plex Sans" font-weight="600" font-size="27" letter-spacing="-0.3" fill="${ink}">Aston <tspan font-weight="400">Business Intelligence</tspan></text>
-  </svg>`;
-};
-
-/* 06 — Aperture: a square frame with one corner opened by an accent block — a window onto the business, a tile from a dashboard. Monogram sits inside. */
-L.aperture = (ink, ac, v) => {
-  const mark = `<rect x="4" y="4" width="40" height="40" rx="8" fill="${ink}"/>
-    <rect x="28" y="4" width="16" height="16" rx="0" fill="${ac}" style="clip-path:inset(0 0 0 0 round 0 8px 0 0)"/>
-    <path d="M44 4 H36 a8 8 0 0 1 8 8 Z" fill="${ac}"/>
-    <text x="24" y="35" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="26" fill="#ffffff">A</text>`;
-  if (v === "mark") return `<svg viewBox="0 0 48 48" width="64" height="64">${mark}</svg>`;
-  return `<svg viewBox="0 0 300 48" width="300" height="48">${mark}
-    <text x="60" y="33" font-family="Manrope" font-weight="700" font-size="28" letter-spacing="-0.5" fill="${ink}">Aston</text>
-    <text x="146" y="33" font-family="IBM Plex Mono" font-weight="500" font-size="20" letter-spacing="1" fill="${ac}">BI</text>
-  </svg>`;
+  return `<svg viewBox="0 0 240 48" width="240" height="48">${mark}${word(ink, 58, 34, 30, "Sora", 700, -0.8)}</svg>`;
 };
 
 const meta = [
-  ["ascent","Ascent","Three rising bars, tallest in the accent. The most literal BI signal — safe, recognisable, scales perfectly. Risk: it looks like every analytics startup.","Manrope 800"],
-  ["apex","Apex","A geometric A with the crossbar replaced by a single point: the one number that matters. Strong, serious, works as a stamp. Full name in the lockup suits a consultancy.","Manrope 700"],
-  ["signal","Signal","The A drawn as a trend line with an accent crossbar. Letter and chart at once. Lowercase wordmark gives it a modern, product-like feel — the least corporate option.","Space Grotesk 700"],
-  ["ledger","Ledger","Wordmark-led with a serif. Quiet, editorial, FT-adjacent. Says 'advisory' more than 'software'. The mark alone is weakest, but the wordmark is the most distinctive.","Fraunces 600"],
-  ["nodes","Nodes","Three connected points, the last filled: data → insight → decision. Avoids the bar-chart cliché entirely. Reads well at tiny sizes.","IBM Plex Sans 600/400"],
-  ["aperture","Aperture","A solid tile with one corner in accent and the monogram inside — a window onto the business, or a dashboard tile. Boldest as an app icon / social avatar. Mono 'BI' nods to the technical side.","Manrope 700 + Plex Mono"],
+  ["facet","Facet","An A cut like a gemstone: three gold facets at different depths. Gold made literal without a bar chart. Distinctive, and the mark alone is strong.","Manrope 800 / 500"],
+  ["hallmark","Hallmark","A gold roundel with a rising tick — like a hallmark stamped on precious metal. Sits after the name as a seal of quality. Very calm.","Manrope 800 / 500"],
+  ["bracket","Bracket","The wordmark framed by two gold corner brackets, a viewfinder. 'We bring the business into focus.' Mark alone is the A inside the brackets.","Manrope 800 / 500"],
+  ["keystone","Keystone","A solid gold hexagon with a white A. The most robust at small sizes and as an avatar; quiet next to the words.","Manrope 800 / 500"],
+  ["underscore","Underscore","Serif wordmark with a single gold stroke beneath that turns upward at the end — a signature line. Most advisory, least 'tech'.","Fraunces 600 / 500"],
+  ["compass","Compass","A gold four-point compass with the north needle in ink — direction and decision. Geometric wordmark to match.","Sora 700"],
 ];
+
+const best = {
+  facet: "header, documents, proposals — anywhere the mark gets space.",
+  hallmark: "email signatures, report footers, a seal on deliverables.",
+  bracket: "website header and hero; presentations.",
+  keystone: "favicon, LinkedIn avatar, app icon; works everywhere.",
+  underscore: "letterheads, proposals, a more premium advisory voice.",
+  compass: "a slightly more energetic feel; social and slides.",
+};
 
 function render() {
   const ink = document.getElementById("ink").value;
-  const ac = document.getElementById("accent").value;
-  const board = document.getElementById("board");
-  board.innerHTML = meta.map(([key, name, desc, type], i) => {
+  const g = document.getElementById("gold").value;
+  const glt = document.getElementById("goldlt").value;
+  document.getElementById("palette").innerHTML = [
+    ["#ffffff","Paper"],[ink,"Ink"],[g,"Gold"],[glt,"Gold on dark"],["#f5f4f0","Warm grey"]
+  ].map(([c,n]) => `<div><span style="background:${c}"></span>${n}<br>${c}</div>`).join("");
+
+  document.getElementById("board").innerHTML = meta.map(([key, name, desc, type], i) => {
     const f = L[key];
-    const onInk = (v) => f("#ffffff", ac, v);
+    const onInk = (v) => f("#ffffff", glt, v);
     return `<article class="card" id="${key}">
-      <div class="card-head">
-        <div>
-          <h2><span class="num">0${i+1}</span> ${name}</h2>
-          <p>${desc}</p>
-        </div>
-        <div class="swatches" title="${type}"><span style="background:${ink}"></span><span style="background:${ac}"></span><span style="background:#ffffff"></span></div>
-      </div>
+      <div class="card-head"><h2><span class="num">0${i+1}</span> ${name}</h2><p>${desc}</p></div>
       <div class="stage">
-        <div class="on-paper">${f(ink, ac, "lockup")}</div>
+        <div class="on-paper">${f(ink, g, "lockup")}</div>
         <div class="on-ink">${onInk("lockup")}</div>
       </div>
       <div class="tests">
-        <div class="on-paper">${f(ink, ac, "mark")}<small>Mark</small></div>
-        <div class="on-ink">${onInk("mark")}<small>Mark · reversed</small></div>
-        <div class="on-paper"><div class="fav">${f(ink, ac, "mark")}${f(ink, ac, "mark")}</div><small>16 / 32 px</small></div>
+        <div class="on-paper">${f(ink, g, "mark")}<small>Symbol</small></div>
+        <div class="on-ink">${onInk("mark")}<small>Symbol · reversed</small></div>
+        <div class="on-paper"><div class="fav">${f(ink, g, "mark")}${f(ink, g, "mark")}</div><small>16 / 32 px</small></div>
       </div>
-      <div class="notes"><b>Type:</b> ${type}. <b>Best for:</b> ${
-        {ascent:"header, email signature, documents.",
-         apex:"formal documents, proposals, stamps on reports.",
-         signal:"a younger, tech-forward positioning; social media.",
-         ledger:"proposals, letterheads, a more advisory tone.",
-         nodes:"favicon, app icon, slide footers — anywhere small.",
-         aperture:"LinkedIn avatar, app icon, bold brand moments."}[key]
-      }</div>
+      <div class="notes"><b>Type:</b> ${type}. <b>Best for:</b> ${best[key]}</div>
     </article>`;
   }).join("");
 }
 
-document.getElementById("ink").addEventListener("input", render);
-document.getElementById("accent").addEventListener("input", render);
+for (const id of ["ink","gold","goldlt"]) document.getElementById(id).addEventListener("input", render);
+document.getElementById("preset-charcoal").addEventListener("click", () => { document.getElementById("ink").value = "#17161f"; render(); });
+document.getElementById("preset-indigo").addEventListener("click", () => { document.getElementById("ink").value = "#1e1b4b"; render(); });
 document.getElementById("reset").addEventListener("click", () => {
-  document.getElementById("ink").value = "#0c1a2b";
-  document.getElementById("accent").value = "#0e8a7a";
+  document.getElementById("ink").value = "#1b1a2e";
+  document.getElementById("gold").value = "#c9a227";
+  document.getElementById("goldlt").value = "#f2c811";
   render();
 });
 render();
