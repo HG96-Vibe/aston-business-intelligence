@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { services } from "@/lib/site";
-import { Button, CtaBand, Section, SectionHead, PhotoBand } from "@/components/ui";
+import { Button, CtaBand, Section, SectionHead } from "@/components/ui";
 import { HeroMotion } from "@/components/hero-motion";
 import { Availability, Guarantee, PricingLadder, ProofStrip, WeekOne, bookHref } from "@/components/offers";
 import { serviceOutcomes } from "@/lib/offers";
@@ -71,8 +71,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <PhotoBand src="/img/london-stpauls.jpg" position="center 40%" note="Est. 2024 · London">Built in London, for companies <i>that run on their numbers.</i></PhotoBand>
 
       <Problems number="01" />
 
