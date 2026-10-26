@@ -1,0 +1,138 @@
+<title>Six Problems Options</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --ink:#17161f; --paper:#fff; --dim:#f7f5f0; --soft:#fbf3dc; --gold:#e9b324; --accent:#c98a06; --good:#1f9d61;
+    --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:66ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .top { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+  .top button { font:inherit; font-size:13px; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:44px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; max-width:90ch; }
+  .frame { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--dim); }
+  .sec { padding:64px 48px; }
+  @media (max-width:860px) { .sec { padding:40px 20px; } }
+  .marker { font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0; }
+  h3.t { font-family:var(--serif); font-weight:400; font-size:clamp(1.8rem,3.4vw,2.6rem); line-height:1.12; letter-spacing:-.015em; margin:14px 0 0; color:var(--ink); text-wrap:balance; max-width:24ch; }
+  .em { font-style:italic; font-weight:300; color:var(--accent); }
+  .q { font-family:var(--serif); font-style:italic; font-weight:300; color:var(--ink); }
+  .mono { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .fix { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+  .btn { display:inline-flex; align-items:center; gap:8px; font:inherit; font-size:13px; font-weight:600; padding:9px 14px; border-radius:6px; text-decoration:none; cursor:pointer; border:0; background:var(--gold); color:#17161f; }
+
+  /* A inbox */
+  .inbox { margin-top:36px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .msg { background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:14px 16px; display:grid; grid-template-columns:36px 1fr; gap:12px; opacity:0; transform:translateY(8px); animation:in .5s ease-out forwards; }
+  .msg .av { width:36px; height:36px; border-radius:50%; background:var(--ink); color:var(--paper); display:grid; place-items:center; font-family:var(--mono); font-size:11px; }
+  .msg .hd { display:flex; justify-content:space-between; align-items:baseline; gap:10px; } .msg .hd b { font-weight:500; font-size:13px; } .msg .hd small { font-family:var(--mono); font-size:9px; color:var(--muted); }
+  .msg .q { display:block; font-size:1.1rem; line-height:1.3; margin-top:4px; }
+  .msg .re { margin-top:10px; padding:8px 10px; border-left:2px solid var(--gold); background:var(--soft); font-size:12px; color:var(--muted); } .msg .re b { display:block; font-family:var(--mono); font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:2px; }
+  @keyframes in { to { opacity:1; transform:none; } }
+  @media (max-width:860px) { .inbox { grid-template-columns:1fr; } }
+
+  /* C symptom → diagnosis */
+  .dx { margin-top:32px; border-top:1px solid var(--line); }
+  .dx .hdr { display:grid; grid-template-columns:40px 1.2fr 1.2fr 180px; gap:24px; padding:10px 0; font-family:var(--mono); font-size:9px; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--line); }
+  .dx .row { display:grid; grid-template-columns:40px 1.2fr 1.2fr 180px; gap:24px; padding:22px 0; border-bottom:1px solid var(--line); align-items:start; }
+  .dx .row .n { font-family:var(--mono); font-size:10px; color:var(--accent); padding-top:6px; } .dx .row .q { font-size:1.25rem; line-height:1.25; } .dx .row .d { font-size:13.5px; font-weight:300; color:var(--muted); } .dx .row .d b { display:block; font-weight:500; color:var(--fg); font-family:var(--sans); margin-bottom:2px; }
+  .dx .row .tag { justify-self:end; font-family:var(--mono); font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--accent); border:1px solid var(--gold); border-radius:999px; padding:4px 10px; white-space:nowrap; }
+  @media (max-width:860px) { .dx .hdr { display:none; } .dx .row { grid-template-columns:1fr; gap:8px; } .dx .row .tag { justify-self:start; } }
+
+  /* D checklist */
+  .chk { display:grid; grid-template-columns:1.5fr 1fr; gap:36px; margin-top:32px; align-items:start; }
+  .chk label { display:grid; grid-template-columns:22px 1fr; gap:14px; align-items:start; padding:16px 18px; border:1px solid var(--line); background:var(--paper); border-radius:8px; cursor:pointer; margin-bottom:10px; }
+  .chk label.on { border-color:var(--gold); background:var(--soft); } .chk input { margin-top:5px; accent-color:var(--gold); }
+  .chk label .q { display:block; font-size:1.15rem; line-height:1.3; } .chk label small { display:block; font-size:12.5px; color:var(--muted); font-weight:300; margin-top:3px; }
+  .chk .res { position:sticky; top:20px; border:1px solid var(--line); background:var(--paper); border-radius:8px; padding:22px; }
+  .chk .res .big { font-family:var(--serif); font-weight:300; font-size:3rem; line-height:1; color:var(--ink); } .chk .res .big span { font-size:1.2rem; color:var(--muted); }
+  .chk .res p { font-size:13.5px; color:var(--muted); font-weight:300; margin:10px 0 0; } .chk .res .btn { margin-top:16px; }
+  .chk .res ul { margin:12px 0 0; padding:0; list-style:none; font-size:12.5px; } .chk .res li { padding:5px 0; border-top:1px solid var(--line); color:var(--fg); display:flex; justify-content:space-between; } .chk .res li span { font-family:var(--mono); font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--accent); }
+  @media (max-width:860px) { .chk { grid-template-columns:1fr; } }
+
+  /* E quote marquee */
+  .mq { margin-top:36px; overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+  .mq .track { display:flex; gap:48px; width:max-content; animation:mq 50s linear infinite; } .mq:hover .track { animation-play-state:paused; }
+  .mq .item { width:420px; flex:none; } .mq .item .q { font-size:1.7rem; line-height:1.2; display:block; } .mq .item .fix { display:block; margin-top:12px; } .mq .item p { font-size:13px; color:var(--muted); font-weight:300; margin:8px 0 0; }
+  @keyframes mq { to { transform:translateX(-50%); } }
+  .mq2 { margin-top:28px; } .mq2 .track { animation-direction:reverse; animation-duration:58s; }
+
+  /* F photo cards */
+  .pc { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:36px; }
+  .pc .card { background:var(--paper); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .pc .im { position:relative; height:170px; background:#17161f; overflow:hidden; } .pc .im img { width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1) sepia(1) saturate(1.9) hue-rotate(-6deg) brightness(.72) contrast(1.15); }
+  .pc .im::after { content:""; position:absolute; inset:0; background:linear-gradient(160deg, rgba(233,179,36,.18), rgba(23,22,31,.25) 55%, rgba(23,22,31,.85)); }
+  .pc .im .q { position:absolute; left:16px; right:16px; bottom:14px; z-index:2; color:#fff; font-size:1.15rem; line-height:1.25; }
+  .pc .tx { padding:14px 16px 16px; } .pc .tx p { margin:0; font-size:13px; color:var(--muted); font-weight:300; } .pc .tx .fix { display:block; margin-top:10px; }
+  @media (max-width:860px) { .pc { grid-template-columns:1fr; } }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div><h1>"Six problems" — five treatments</h1><p class="lede">Section 01 of the home page. Today it's a 3×2 grid of quote tiles. The quotes are the strongest copy on the site — these make more of them.</p></div>
+    <button type="button" id="theme">Night</button>
+  </div>
+
+  <div class="label"><span class="n">A</span><h2>The inbox</h2><p>The six quotes as messages arriving from the people who actually say them — FD, MD, Ops lead — with a time stamp (Mon 07:52) and a short gold reply from ABI naming the fix. They drop in one by one. Human, specific, and it shows you understand who says what.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">01 · Recognise any of these?</p><h3 class="t">Six messages <span class="em">we get every month.</span></h3>
+    <div class="inbox" id="inbox"></div>
+  </div></div>
+
+  <div class="label"><span class="n">C</span><h2>Symptom → diagnosis</h2><p>An editorial table: what you say, what it actually is, and the step that fixes it as a tag on the right. Numbered rows, all visible, no clicking. Reads like a consultant's notes — confident and fast to scan.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">01 · Recognise any of these?</p><h3 class="t">What you say, <span class="em">and what it actually is.</span></h3>
+    <div class="dx" id="dx"><div class="hdr"><span></span><span>What you say</span><span>What it actually is</span><span style="text-align:right">The fix</span></div></div>
+  </div></div>
+
+  <div class="label"><span class="n">D</span><h2>Tick the ones you recognise</h2><p>Interactive: six checkboxes, a live count ("3 of 6"), a line of context ("most companies we meet tick three or more"), and the fixes for the ones you ticked listed in the panel — then one button to the Scorecard or Assessment. The section becomes a two-second self-diagnosis and a lead qualifier.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">01 · Recognise any of these?</p><h3 class="t">Tick the ones <span class="em">that sound like you.</span></h3>
+    <div class="chk"><div id="chk"></div><div class="res"><div class="big"><span id="cnt">0</span><span> of 6</span></div><p id="ctx">Most companies we meet tick three or more.</p><ul id="fixes"></ul><a class="btn" href="#">Book a conversation →</a></div></div>
+  </div></div>
+
+  <div class="label"><span class="n">E</span><h2>Quote marquee</h2><p>The quotes in large italic serif, scrolling slowly in two opposite-direction rows, the fix in gold under each. Hover pauses. Cinematic and unexpected on a consultancy site — a moment of pace between the hero and the dashboard.</p></div>
+  <div class="frame"><div class="sec" style="padding-left:0;padding-right:0">
+    <div style="padding:0 48px"><p class="marker">01 · Recognise any of these?</p><h3 class="t">Things owners say <span class="em">on the first call.</span></h3></div>
+    <div class="mq"><div class="track" id="mq1"></div></div>
+    <div class="mq mq2"><div class="track" id="mq2"></div></div>
+  </div></div>
+
+  <div class="label"><span class="n">F</span><h2>Photo cards</h2><p>Same six tiles, each with a gold-duotone photograph behind the quote — the night-shift finance manager, the paper stack, the meeting room. Uses the imagery you've already licensed. The most visual option and the one most in step with the rest of the new look.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">01 · Recognise any of these?</p><h3 class="t">Six problems every growing business knows, <span class="em">and what we do about them.</span></h3>
+    <div class="pc" id="pc"></div>
+  </div></div>
+</div>
+
+<script>
+document.getElementById("theme").addEventListener("click", () => { const r=document.documentElement; const dark=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches); r.setAttribute("data-theme",dark?"light":"dark"); theme.textContent=dark?"Night":"Day"; });
+const P=[
+ {q:"Month-end takes a week and I still don't trust it.", d:"Numbers are assembled by hand from four places; every step is a chance to break something.", dx:"Manual assembly", fix:"Reporting Assessment", who:"Finance Director", ini:"FD", t:"Mon 07:52", img:"paper-stack"},
+ {q:"Two reports, same thing, different numbers.", d:"Two definitions of ‘revenue’, two spreadsheets, and a meeting spent arguing about which is right.", dx:"No single definition", fix:"One data model, reconciled", who:"Managing Director", ini:"MD", t:"Tue 09:14", img:"two-at-monitor"},
+ {q:"If one person left, nobody could run the reports.", d:"The process lives in one person's head and one person's laptop.", dx:"Key-person risk", fix:"Documented, automated, handed over", who:"Operations Lead", ini:"OP", t:"Tue 17:40", img:"night-manager"},
+ {q:"I know total margin. I don't know margin by client.", d:"So you can't see which customers cost you money, and you price them all the same.", dx:"Costs not allocated", fix:"Margin by client, product, job", who:"Owner", ini:"CEO", t:"Wed 08:05", img:"wall-dashboard"},
+ {q:"Everyone says do AI. Nobody says where.", d:"You've seen the demos; you haven't seen the business case for your business.", dx:"No use-case, no baseline", fix:"AI Readiness Assessment", who:"Managing Director", ini:"MD", t:"Thu 12:30", img:"tablet-pair"},
+ {q:"The supplier's late and nobody owns it.", d:"The project is live, the vendor is drifting, and your team has day jobs.", dx:"No one accountable", fix:"Fractional Project Lead", who:"Operations Lead", ini:"OP", t:"Fri 16:22", img:"conference"},
+];
+/* A */
+document.getElementById("inbox").innerHTML=P.map((p,i)=>`<div class="msg" style="animation-delay:${i*.35}s"><div class="av">${p.ini}</div><div><div class="hd"><b>${p.who}</b><small>${p.t}</small></div><span class="q">“${p.q}”</span><div class="re"><b>ABI · reply</b>${p.d} → <strong style="font-weight:500;color:var(--fg)">${p.fix}</strong></div></div></div>`).join("");
+/* C */
+document.getElementById("dx").insertAdjacentHTML("beforeend",P.map((p,i)=>`<div class="row"><span class="n">0${i+1}</span><span class="q">“${p.q}”</span><span class="d"><b>${p.dx}</b>${p.d}</span><span class="tag">${p.fix}</span></div>`).join(""));
+/* D */
+(()=>{const c=document.getElementById("chk"); c.innerHTML=P.map((p,i)=>`<label><input type="checkbox" data-i="${i}"><span><span class="q">“${p.q}”</span><small>${p.d}</small></span></label>`).join("");
+ const upd=()=>{const on=[...c.querySelectorAll("input")].filter(b=>b.checked); c.querySelectorAll("label").forEach(l=>l.classList.toggle("on",l.querySelector("input").checked)); cnt.textContent=on.length; ctx.textContent=on.length===0?"Most companies we meet tick three or more.":on.length<3?"Good — one clear place to start.":on.length<5?"Typical. All of these share one cause: the numbers are assembled by hand.":"You're not alone — and all six have the same first step."; fixes.innerHTML=on.map(b=>`<li>${P[+b.dataset.i].fix}<span>step</span></li>`).join("");};
+ c.addEventListener("change",upd); upd();})();
+/* E */
+const mqItem=p=>`<div class="item"><span class="q">“${p.q}”</span><span class="fix">→ ${p.fix}</span><p>${p.d}</p></div>`;
+document.getElementById("mq1").innerHTML=[...P.slice(0,3),...P.slice(0,3)].map(mqItem).join(""); document.getElementById("mq2").innerHTML=[...P.slice(3),...P.slice(3)].map(mqItem).join("");
+/* F */
+document.getElementById("pc").innerHTML=P.map(p=>`<div class="card"><div class="im"><img src="img/${p.img}.jpg" alt=""><span class="q">“${p.q}”</span></div><div class="tx"><p>${p.d}</p><span class="fix">→ ${p.fix}</span></div></div>`).join("");
+</script>
