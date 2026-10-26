@@ -1,0 +1,162 @@
+<title>Tooling Section Options</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --ink:#17161f; --paper:#fff; --dim:#f7f5f0; --soft:#fbf3dc; --gold:#e9b324; --accent:#c98a06; --good:#1f9d61; --deep:#17161f;
+    --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; --good:#7fd1a5; --deep:#0d0c12; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; --good:#7fd1a5; --deep:#0d0c12; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:66ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .top { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+  .top button { font:inherit; font-size:13px; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:44px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; }
+  .frame { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--paper); }
+  .sec { padding:64px 48px; }
+  @media (max-width:860px) { .sec { padding:40px 20px; } }
+  .marker { display:inline-flex; align-items:center; gap:12px; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .marker::before { content:""; width:28px; height:1px; background:var(--accent); }
+  h3.t { font-family:var(--serif); font-weight:400; font-size:clamp(1.8rem,3.4vw,2.6rem); line-height:1.12; letter-spacing:-.015em; margin:14px 0 0; color:var(--ink); text-wrap:balance; max-width:20ch; }
+  .em { font-style:italic; font-weight:300; color:var(--accent); }
+  .sub { font-weight:300; color:var(--muted); font-size:1.02rem; max-width:34rem; margin:14px 0 0; }
+  .two { display:grid; grid-template-columns:1fr 1.3fr; gap:48px; align-items:center; }
+  @media (max-width:860px) { .two { grid-template-columns:1fr; } }
+  .mono { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .num { font-family:var(--mono); font-variant-numeric:tabular-nums; }
+
+  /* A hub */
+  .hub svg { width:100%; height:auto; display:block; overflow:visible; }
+  .hub .box { fill:var(--paper); stroke:var(--line); stroke-width:1.5; } .hub .box.on { fill:var(--soft); stroke:var(--gold); } .hub .box.dk { fill:var(--ink); stroke:var(--ink); }
+  .hub text { font-family:var(--sans); font-size:12.5px; fill:var(--ink); } .hub text.sm { font-family:var(--mono); font-size:8px; letter-spacing:1.2px; fill:var(--muted); text-transform:uppercase; } .hub text.w { fill:var(--paper); } .hub text.g { fill:var(--accent); font-family:var(--mono); font-size:8px; letter-spacing:1.2px; text-transform:uppercase; }
+  .hub .tr { fill:none; stroke:var(--line); stroke-width:1.5; } .hub .tg { fill:none; stroke:var(--gold); stroke-width:2; stroke-dasharray:22 400; animation:flow 5.5s linear infinite; }
+  @keyframes flow { to { stroke-dashoffset:-422; } }
+
+  /* B three shelves */
+  .shelves { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:36px; }
+  .shelf { border:1px solid var(--line); border-radius:8px; padding:22px; background:var(--dim); }
+  .shelf.g { background:var(--soft); border-color:var(--gold); } .shelf.x { background:var(--paper); border-style:dashed; }
+  .shelf h4 { margin:0; font-family:var(--serif); font-weight:400; font-size:1.15rem; color:var(--ink); } .shelf .mono { display:block; margin-bottom:10px; }
+  .shelf ul { list-style:none; margin:14px 0 0; padding:0; display:grid; gap:8px; } .shelf li { display:flex; justify-content:space-between; font-size:13.5px; border-bottom:1px solid var(--line); padding-bottom:8px; } .shelf li span:last-child { font-family:var(--mono); font-size:10px; color:var(--muted); letter-spacing:.5px; }
+  .shelf.x li { color:var(--muted); text-decoration:line-through; text-decoration-color:var(--accent); }
+  .shelf p { margin:14px 0 0; font-size:12.5px; color:var(--muted); font-weight:300; }
+  @media (max-width:860px) { .shelves { grid-template-columns:1fr; } }
+
+  /* C the software bill */
+  .bill { background:#fff; color:#222; border:1px solid var(--line); max-width:420px; margin:0 auto; padding:26px 28px; font-family:var(--mono); font-size:11.5px; box-shadow:0 30px 60px -36px rgba(0,0,0,.35); position:relative; }
+  .bill::after { content:""; position:absolute; left:0; right:0; bottom:-10px; height:10px; background:radial-gradient(circle at 10px -4px, transparent 9px, #fff 10px) 0 0/20px 10px; }
+  .bill h4 { margin:0 0 4px; font-family:var(--serif); font-weight:400; font-size:1.3rem; text-align:center; } .bill .c { text-align:center; color:#777; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; }
+  .bill table { width:100%; border-collapse:collapse; margin-top:16px; } .bill td { padding:7px 0; border-bottom:1px dashed #ddd; } .bill td:last-child { text-align:right; white-space:nowrap; } .bill td small { display:block; color:#777; font-size:9.5px; }
+  .bill tr.tot td { border-bottom:0; border-top:2px solid #222; padding-top:10px; font-size:15px; font-weight:500; } .bill tr.tot td:last-child { color:var(--accent); }
+  .bill .ft { margin-top:14px; text-align:center; color:#777; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; }
+  :root:not([data-theme="light"]) .bill { background:#1e1d26; color:#eee; } :root:not([data-theme="light"]) .bill::after { background:radial-gradient(circle at 10px -4px, transparent 9px, #1e1d26 10px) 0 0/20px 10px; } :root:not([data-theme="light"]) .bill td { border-color:#3a3845; } :root:not([data-theme="light"]) .bill tr.tot td { border-top-color:#eee; }
+
+  /* D connected sources panel */
+  .panel { background:#17161f; color:#fff; border:1px solid rgba(255,201,60,.25); border-radius:10px; overflow:hidden; font-size:12px; box-shadow:0 40px 80px -36px rgba(0,0,0,.6); }
+  .panel .hd { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; border-bottom:1px solid rgba(255,255,255,.1); font-family:var(--mono); font-size:9px; letter-spacing:1px; text-transform:uppercase; } .panel .hd em { font-style:normal; color:#ffc93c; border:1px solid #ffc93c; border-radius:3px; padding:1px 6px; font-size:8px; }
+  .panel .grp { padding:10px 14px 4px; font-family:var(--mono); font-size:8px; letter-spacing:1.2px; text-transform:uppercase; color:rgba(255,255,255,.45); }
+  .panel .src { display:grid; grid-template-columns:1fr auto auto; gap:14px; align-items:center; padding:9px 14px; border-top:1px solid rgba(255,255,255,.06); }
+  .panel .src b { font-weight:500; } .panel .src b small { display:block; font-weight:300; color:rgba(255,255,255,.5); font-size:10.5px; }
+  .panel .src .st { font-family:var(--mono); font-size:8.5px; letter-spacing:1px; text-transform:uppercase; color:#7fd1a5; } .panel .src .st::before { content:""; display:inline-block; width:6px; height:6px; border-radius:50%; background:#7fd1a5; margin-right:6px; }
+  .panel .src .st.off { color:rgba(255,255,255,.35); } .panel .src .st.off::before { background:rgba(255,255,255,.3); }
+  .panel .src .t { font-family:var(--mono); font-size:8.5px; color:rgba(255,255,255,.4); }
+  .panel .ft { display:flex; justify-content:space-between; padding:8px 14px; border-top:1px solid rgba(255,255,255,.1); background:rgba(255,201,60,.1); font-family:var(--mono); font-size:8px; letter-spacing:.8px; text-transform:uppercase; color:#ffc93c; }
+
+  /* F sentence */
+  .sent { font-family:var(--serif); font-weight:300; font-size:clamp(1.5rem,3vw,2.3rem); line-height:1.5; color:var(--ink); margin-top:36px; max-width:28ch; }
+  .sent select { font:inherit; font-size:.9em; font-style:italic; color:var(--accent); background:var(--soft); border:0; border-bottom:2px solid var(--gold); border-radius:4px 4px 0 0; padding:0 6px; cursor:pointer; appearance:none; -webkit-appearance:none; }
+  .sent select:focus { outline:2px solid var(--gold); }
+  .verdict { margin-top:26px; display:inline-flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px; padding:12px 16px; background:var(--dim); font-size:13.5px; } .verdict i { width:9px; height:9px; border-radius:50%; background:var(--good); } .verdict b { font-weight:500; } .verdict span { color:var(--muted); font-weight:300; }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div><h1>"Built in what you already pay for" — five treatments</h1><p class="lede">Section 04 of the Data &amp; BI page. Today it's a row of ten chips. The message underneath is commercial — <em>no platform to buy, no licences marked up</em> — so these make that visible. Text wordmarks only, no third-party logos.</p></div>
+    <button type="button" id="theme">Night</button>
+  </div>
+
+  <!-- A -->
+  <div class="label"><span class="n">A</span><h2>The hub</h2><p>Your systems on the left, one model in the middle, Power BI on the right. Gold pulses flow left-to-right like the home page circuits. Each source is labelled "you have it"; the model layer "we build it"; the screen "included in Microsoft 365". Architecture, made friendly.</p></div>
+  <div class="frame"><div class="sec two">
+    <div><p class="marker">04 · Tooling</p><h3 class="t">Built in what you <span class="em">already pay for.</span></h3><p class="sub">Power BI by default — it is in most Microsoft 365 plans and your team can learn it. Looker Studio or Tableau if that is what you have. No platform to buy, no licences marked up.</p></div>
+    <div class="hub"><svg viewBox="0 0 560 330">
+      <text class="sm" x="0" y="14">You already have</text><text class="sm" x="232" y="14">We build</text><text class="sm" x="430" y="14">Your team opens</text>
+      <g id="hubsrc"></g>
+      <rect class="box on" x="232" y="100" width="130" height="130" rx="8"/><text x="297" y="150" text-anchor="middle">One data</text><text x="297" y="168" text-anchor="middle">model</text><text class="g" x="297" y="196" text-anchor="middle">dbt · SQL · documented</text>
+      <rect class="box dk" x="430" y="120" width="130" height="90" rx="8"/><text class="w" x="495" y="160" text-anchor="middle">Power BI</text><text class="g" x="495" y="182" text-anchor="middle">in Microsoft 365</text>
+      <path class="tr" d="M362 165 H430"/><path class="tg" d="M362 165 H430"/>
+      <text class="sm" x="430" y="240">or Looker Studio · Tableau</text>
+    </svg></div>
+  </div></div>
+
+  <!-- B -->
+  <div class="label"><span class="n">B</span><h2>Three shelves</h2><p>Three columns: what you already have (your accounting, CRM, sheets), what we add at no licence cost (Power BI in M365, dbt, SQL), and what you never buy (struck through: a BI platform, a data warehouse subscription, per-seat markups). The pricing argument as a layout.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">04 · Tooling</p><h3 class="t">Built in what you <span class="em">already pay for.</span></h3>
+    <div class="shelves">
+      <div class="shelf"><span class="mono">Shelf one</span><h4>You already have</h4><ul><li>Xero / Sage / QuickBooks<span>accounts</span></li><li>HubSpot or your CRM<span>pipeline</span></li><li>Excel · Google Sheets<span>the rest</span></li><li>Microsoft 365<span>most SMEs</span></li></ul><p>We connect to these as they are. Nothing migrates.</p></div>
+      <div class="shelf g"><span class="mono">Shelf two</span><h4>We add, at no licence cost</h4><ul><li>Power BI<span>in M365 · £0</span></li><li>dbt<span>open source · £0</span></li><li>SQL Server · BigQuery<span>what you have</span></li><li>Documentation<span>yours</span></li></ul><p>Your team can learn all of it. We train them.</p></div>
+      <div class="shelf x"><span class="mono">Shelf three</span><h4>You never buy</h4><ul><li>A "BI platform"<span>£20–60k/yr</span></li><li>A warehouse subscription<span>until you need one</span></li><li>Per-seat licence markups<span>0%</span></li><li>Our proprietary anything<span>none</span></li></ul><p>If you outgrow this, we'll say so in writing first.</p></div>
+    </div>
+  </div></div>
+
+  <!-- C -->
+  <div class="label"><span class="n">C</span><h2>The software bill</h2><p>A till receipt for the new software a Data &amp; BI engagement requires: Power BI £0 (included), dbt £0, our platform £0, licence markup £0 — total new software: £0.00. Funny, true, and it makes the commercial point faster than any paragraph.</p></div>
+  <div class="frame"><div class="sec two">
+    <div><p class="marker">04 · Tooling</p><h3 class="t">New software required: <span class="em">none.</span></h3><p class="sub">We build on the tools you already pay for. Power BI is in most Microsoft 365 plans; the modelling layer is open source; there is no ABI platform to subscribe to. The only invoice is ours.</p></div>
+    <div class="bill">
+      <h4>Software bill</h4><div class="c">Data &amp; BI engagement · itemised</div>
+      <table>
+        <tr><td>Power BI<small>already in your Microsoft 365</small></td><td>£0.00</td></tr>
+        <tr><td>dbt (modelling layer)<small>open source</small></td><td>£0.00</td></tr>
+        <tr><td>SQL Server / BigQuery<small>whichever you have</small></td><td>£0.00</td></tr>
+        <tr><td>Connectors to Xero, HubSpot, Sheets<small>native</small></td><td>£0.00</td></tr>
+        <tr><td>ABI platform subscription<small>there isn't one</small></td><td>£0.00</td></tr>
+        <tr><td>Licence markup<small>we don't resell</small></td><td>0%</td></tr>
+        <tr class="tot"><td>Total new software</td><td>£0.00</td></tr>
+      </table>
+      <div class="ft">Looker Studio or Tableau if you have them · Thank you</div>
+    </div>
+  </div></div>
+
+  <!-- D -->
+  <div class="label"><span class="n">D</span><h2>Connected sources</h2><p>A charcoal settings panel like the one your dashboard would actually have: sources grouped (Accounts, Sales, Operations, Files) with green "connected" dots and last-sync times; destination at the bottom. Reads as product, not brochure.</p></div>
+  <div class="frame"><div class="sec two">
+    <div><p class="marker">04 · Tooling</p><h3 class="t">Plugs into what <span class="em">you already run.</span></h3><p class="sub">Native connectors for the accounting, CRM and file tools most UK SMEs use. Built in Power BI by default — Looker Studio or Tableau if that is what you have. No platform to buy, no licences marked up.</p></div>
+    <div class="panel">
+      <div class="hd"><span>Sources · settings</span><em>example</em></div>
+      <div class="grp">Accounts</div><div class="src"><b>Xero<small>also Sage, QuickBooks</small></b><span class="st">Connected</span><span class="t">06:00 daily</span></div>
+      <div class="grp">Sales</div><div class="src"><b>HubSpot<small>or your CRM</small></b><span class="st">Connected</span><span class="t">hourly</span></div>
+      <div class="grp">Operations</div><div class="src"><b>Timesheets · job costing<small>via SQL Server</small></b><span class="st">Connected</span><span class="t">nightly</span></div>
+      <div class="grp">Files</div><div class="src"><b>Google Sheets · Excel<small>the spreadsheets that matter</small></b><span class="st">Connected</span><span class="t">on change</span></div>
+      <div class="src"><b>Your next system<small>add when needed</small></b><span class="st off">Not yet</span><span class="t">—</span></div>
+      <div class="ft"><span>Model: dbt · SQL</span><span>Destination: Power BI (M365) · 0 licences bought</span></div>
+    </div>
+  </div></div>
+
+  <!-- F -->
+  <div class="label"><span class="n">F</span><h2>The sentence</h2><p>One big serif sentence with three dropdowns: "We'll connect <em>Xero</em> and <em>HubSpot</em>, and build it in <em>Power BI</em>." Change any of them and a line underneath confirms it's a standard setup with no new licences. Personal and quick, and it quietly qualifies the lead.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">04 · Tooling</p><h3 class="t">Built in what you <span class="em">already pay for.</span></h3>
+    <p class="sent">We'll connect <select id="s1"><option>Xero</option><option>Sage</option><option>QuickBooks</option><option>something else</option></select> and <select id="s2"><option>HubSpot</option><option>Pipedrive</option><option>Salesforce</option><option>a spreadsheet</option><option>no CRM yet</option></select>, and build it in <select id="s3"><option>Power BI</option><option>Looker Studio</option><option>Tableau</option></select>.</p>
+    <div class="verdict"><i></i><div><b id="v1">Standard setup.</b> <span id="v2">Native connectors for both; Power BI is already in your Microsoft 365. New licences: none.</span></div></div>
+  </div></div>
+</div>
+
+<script>
+document.getElementById("theme").addEventListener("click", () => { const r=document.documentElement; const dark=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches); r.setAttribute("data-theme",dark?"light":"dark"); theme.textContent=dark?"Night":"Day"; });
+/* A */
+(() => { const src=[["Xero · Sage · QuickBooks","accounts"],["HubSpot / your CRM","pipeline"],["Timesheets · SQL Server","operations"],["Excel · Google Sheets","the rest"]]; const g=document.getElementById("hubsrc");
+  g.innerHTML=src.map((s,i)=>{ const y=40+i*68; return `<rect class="box" x="0" y="${y}" width="170" height="48" rx="6"/><text x="12" y="${y+21}">${s[0]}</text><text class="sm" x="12" y="${y+37}">${s[1]}</text><path class="tr" d="M170 ${y+24} C 200 ${y+24}, 200 165, 232 165"/><path class="tg" d="M170 ${y+24} C 200 ${y+24}, 200 165, 232 165" style="animation-delay:${i*-1.3}s"/>`; }).join(""); })();
+/* F */
+(() => { const v1=document.getElementById("v1"), v2=document.getElementById("v2"); const upd=()=>{ const a=s1.value,b=s2.value,c=s3.value; const odd=a==="something else"; const nocrm=b==="no CRM yet"; const sheet=b==="a spreadsheet";
+  if(odd){ v1.textContent="Probably fine."; v2.textContent="We've connected most UK accounting systems; tell us which and we'll confirm in the first call."; }
+  else if(nocrm){ v1.textContent="Standard setup."; v2.textContent=`${a} connects natively. We'll build pipeline from whatever you track deals in today, and ${c} ${c==="Power BI"?"is already in your Microsoft 365":"is what you have"}. New licences: none.`; }
+  else { v1.textContent="Standard setup."; v2.textContent=`Native connectors for ${a} and ${sheet?"your spreadsheet":b}; ${c} ${c==="Power BI"?"is already in your Microsoft 365":"is what you already have"}. New licences: none.`; } };
+  [s1,s2,s3].forEach(s=>s.addEventListener("change",upd)); upd(); })();
+</script>
