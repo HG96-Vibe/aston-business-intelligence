@@ -14,9 +14,14 @@ const TOOLS: { id: string; name: string; w: number; h: number }[] = [
   { id: "mysql", name: "MySQL", w: 236, h: 56 },
   { id: "python", name: "Python", w: 160, h: 52 },
   { id: "tableau", name: "Tableau", w: 279, h: 56 },
+  { id: "quickbooks", name: "QuickBooks", w: 160, h: 46 },
+  { id: "salesforce", name: "Salesforce", w: 228, h: 52 },
+  { id: "azure", name: "Microsoft Azure", w: 555, h: 36 },
+  { id: "snowflake", name: "Snowflake", w: 160, h: 46 },
+  { id: "shopify", name: "Shopify", w: 552, h: 40 },
 ];
 
-const LOOP_S = 40;
+const LOOP_S = 55;
 
 function Logos({ ariaHidden }: { ariaHidden?: boolean }) {
   return (
