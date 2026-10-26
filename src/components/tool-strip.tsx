@@ -1,9 +1,9 @@
-/* "Works with" strip: third-party logos rendered as single-colour masks in the page's ink colour,
-   one optical height, muted until hover. Masks live in /public/brand/tools (alpha-only PNGs). */
+/* "Works with" strip: third-party logos in their own colours, backgrounds removed, one optical height.
+   Night variants flip black wordmark text to off-white so Power BI / Tableau stay legible in dark mode. */
 
 const TOOLS: { id: string; name: string; w: number; h?: number }[] = [
   { id: "power-bi", name: "Power BI", w: 588 },
-  { id: "excel", name: "Microsoft Excel", w: 143, h: 30 },
+  { id: "excel", name: "Microsoft Excel", w: 172, h: 30 },
   { id: "xero", name: "Xero", w: 593, h: 22 },
   { id: "sage", name: "Sage", w: 284 },
   { id: "hubspot", name: "HubSpot", w: 563, h: 24 },
@@ -19,16 +19,13 @@ export function ToolStrip() {
       <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted">Works with</p>
       <ul className="mt-5 flex flex-wrap items-center gap-x-10 gap-y-6 md:justify-between">
         {TOOLS.map((t) => {
-          const h = t.h ?? 26;
+          const h = t.h ?? 26, w = Math.round((t.w / 160) * h);
           return (
             <li key={t.id} className="flex items-center">
-              <span
-                role="img"
-                aria-label={t.name}
-                title={t.name}
-                className="block bg-ink opacity-55 transition-opacity hover:opacity-100"
-                style={{ height: h, width: (t.w / 160) * h, WebkitMaskImage: `url(/brand/tools/${t.id}.png)`, maskImage: `url(/brand/tools/${t.id}.png)`, WebkitMaskSize: "contain", maskSize: "contain", WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat", WebkitMaskPosition: "center", maskPosition: "center" }}
-              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/brand/tools/${t.id}.png`} alt={t.name} title={t.name} width={w} height={h} className="logo-day block" style={{ height: h, width: w }} loading="lazy" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/brand/tools/${t.id}-dark.png`} alt={t.name} title={t.name} width={w} height={h} className="logo-night block" style={{ height: h, width: w }} loading="lazy" />
             </li>
           );
         })}
