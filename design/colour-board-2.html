@@ -1,0 +1,112 @@
+<title>Home Hero Gradient Directions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1180px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:70ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:48px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:#c98a06; letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; max-width:90ch; }
+  .sw { display:flex; gap:6px; margin-left:auto; } .sw i { width:18px; height:18px; border-radius:4px; border:1px solid rgba(0,0,0,.1); }
+
+  .hero { border-radius:12px; overflow:hidden; border:1px solid var(--line); background:var(--p); color:var(--ink); position:relative; font-family:var(--sans); }
+  .nav { display:flex; justify-content:space-between; align-items:center; padding:16px 40px; border-bottom:1px solid var(--ln); background:var(--navbg,transparent); position:relative; z-index:2; }
+  .nav .logo { display:flex; align-items:center; gap:8px; font-weight:600; font-size:14px; letter-spacing:-.01em; color:var(--ink); } .nav .logo b { font-family:var(--serif); font-weight:400; font-size:20px; color:var(--gold); font-style:italic; }
+  .nav .logo span small { display:block; font-family:var(--mono); font-size:8px; letter-spacing:2px; color:var(--gold); font-weight:400; }
+  .nav ul { display:flex; gap:26px; list-style:none; margin:0; padding:0; font-size:13.5px; color:var(--ink); opacity:.85; } .nav .cta { background:var(--btn); color:var(--btnfg); font-size:13px; font-weight:600; padding:9px 16px; border-radius:6px; }
+  .body { position:relative; padding:88px 40px 72px; overflow:hidden; min-height:520px; background:var(--bgimg,var(--p)); background-size:var(--bgsize,auto); animation:var(--anim,none); }
+  .grid { position:absolute; inset:0; background-image:radial-gradient(circle at 1px 1px, var(--dot) 1.2px, transparent 0); background-size:26px 26px; opacity:.45; -webkit-mask-image:radial-gradient(ellipse at 75% 50%, #000 0%, transparent 70%); mask-image:radial-gradient(ellipse at 75% 50%, #000 0%, transparent 70%); }
+  .mono-svg { position:absolute; right:40px; top:50%; transform:translateY(-50%); width:38%; opacity:.9; }
+  .mono-svg path { fill:none; stroke:var(--gold); stroke-width:1.6; stroke-dasharray:1; pathLength:1; animation:dr 4s ease-in-out infinite alternate; }
+  @keyframes dr { from { stroke-dashoffset:1; opacity:.2; } to { stroke-dashoffset:0; opacity:1; } }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); position:relative; }
+  h3.h { font-family:var(--serif); font-weight:400; font-size:clamp(2rem,4.4vw,3.6rem); line-height:1.06; letter-spacing:-.02em; margin:22px 0 0; max-width:17ch; color:var(--ink); position:relative; }
+  h3.h em { font-style:italic; font-weight:300; color:var(--gold); }
+  .sub { position:relative; margin:24px 0 0; max-width:50ch; font-weight:300; font-size:1.05rem; line-height:1.6; color:var(--mu); }
+  .ctas { position:relative; display:flex; gap:12px; flex-wrap:wrap; margin-top:32px; }
+  .b1 { background:var(--btn); color:var(--btnfg); font-weight:600; font-size:14px; padding:12px 18px; border-radius:6px; } .b2 { color:var(--ink); font-weight:500; font-size:14px; padding:12px 18px; border:1px solid var(--ln2); border-radius:6px; }
+  .avail { position:relative; margin-top:18px; font-size:12.5px; color:var(--mu); display:flex; align-items:center; gap:8px; } .avail i { width:8px; height:8px; border-radius:50%; background:#2ecc71; box-shadow:0 0 0 3px rgba(46,204,113,.2); }
+  .creds { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; padding:22px 40px; border-top:1px solid var(--ln); background:var(--p2); position:relative; }
+  .creds small { display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--mu); } .creds b { display:block; font-weight:500; font-size:13.5px; margin-top:3px; color:var(--ink); }
+  .next { padding:40px; background:var(--p3,var(--p2)); border-top:1px solid var(--ln); } .next h4 { font-family:var(--serif); font-weight:400; font-size:1.6rem; margin:10px 0 0; color:var(--ink); max-width:24ch; line-height:1.15; } .next h4 em { font-style:italic; font-weight:300; color:var(--gold); }
+  @keyframes drift { 0% { background-position:0% 50%; } 100% { background-position:100% 50%; } }
+  @media (max-width:860px) { .nav ul { display:none; } .body { padding:56px 22px 48px; } .mono-svg { display:none; } .creds { grid-template-columns:1fr 1fr; padding:18px 22px; } .next { padding:28px 22px; } }
+
+  /* I  indigo → violet */
+  .iv { --p:#1b1464; --p2:#120e3f; --p3:#0e0b30; --ink:#f5f2ff; --mu:#c3bde6; --ln:rgba(255,255,255,.12); --ln2:rgba(255,255,255,.3); --gold:#ffc93c; --dot:#ffffff; --btn:#ffc93c; --btnfg:#1b1464;
+        --bgimg:linear-gradient(135deg,#1b1464 0%,#3b2aa8 55%,#6a3fd0 100%); }
+  /* J  deep space: indigo → black */
+  .ds { --p:#07061a; --p2:#0a0920; --p3:#0d0b28; --ink:#f3f1ff; --mu:#a9a5c9; --ln:rgba(255,255,255,.1); --ln2:rgba(255,255,255,.28); --gold:#ffc93c; --dot:#8f85ff; --btn:#ffc93c; --btnfg:#07061a;
+        --bgimg:radial-gradient(ellipse 70% 80% at 85% 20%,rgba(79,70,229,.55),transparent 60%),radial-gradient(ellipse 50% 60% at 10% 100%,rgba(124,58,237,.35),transparent 60%),#07061a; }
+  /* K  aurora */
+  .au { --p:#0b1020; --p2:#0e1428; --p3:#101733; --ink:#f3f4ff; --mu:#aab1cf; --ln:rgba(255,255,255,.1); --ln2:rgba(255,255,255,.28); --gold:#ffc93c; --dot:#ffffff; --btn:#ffc93c; --btnfg:#0b1020;
+        --bgimg:radial-gradient(ellipse 60% 70% at 80% 30%,rgba(99,102,241,.6),transparent 60%),radial-gradient(ellipse 50% 60% at 60% 90%,rgba(20,184,166,.35),transparent 60%),radial-gradient(ellipse 40% 50% at 95% 80%,rgba(255,201,60,.22),transparent 60%),#0b1020; --bgsize:200% 200%; --anim:drift 14s ease-in-out infinite alternate; }
+  /* L  sapphire → emerald */
+  .se { --p:#0a1f3a; --p2:#0b1a30; --p3:#0c1528; --ink:#f1f5f2; --mu:#a8bcc0; --ln:rgba(255,255,255,.1); --ln2:rgba(255,255,255,.28); --gold:#ffc93c; --dot:#ffffff; --btn:#ffc93c; --btnfg:#0a1f3a;
+        --bgimg:linear-gradient(120deg,#0a1f3a 0%,#0f3d5c 50%,#0f5c4e 100%); }
+  /* M  dusk: indigo → gold */
+  .du { --p:#1c1340; --p2:#160f33; --p3:#120c2a; --ink:#fff6e6; --mu:#d4c7c9; --ln:rgba(255,255,255,.12); --ln2:rgba(255,255,255,.3); --gold:#ffd166; --dot:#ffffff; --btn:#ffd166; --btnfg:#1c1340;
+        --bgimg:linear-gradient(110deg,#1c1340 0%,#4a2a8a 40%,#b2652e 78%,#e9b324 100%); }
+  /* N  plum → indigo */
+  .pl { --p:#2a0f3d; --p2:#200c30; --p3:#180a25; --ink:#f8f1ff; --mu:#cdbcd9; --ln:rgba(255,255,255,.12); --ln2:rgba(255,255,255,.3); --gold:#ffc93c; --dot:#ffffff; --btn:#ffc93c; --btnfg:#2a0f3d;
+        --bgimg:linear-gradient(135deg,#3a0f4f 0%,#2a1a7a 60%,#1b2a8c 100%); }
+  /* O  light mesh: ivory with indigo/gold wash */
+  .lm { --p:#fbfaf6; --p2:#ffffff; --p3:#f6f4ee; --ink:#15132a; --mu:#5e5a74; --ln:#e6e3f0; --ln2:#cbc6dd; --gold:#c98a06; --dot:#4f46e5; --btn:#15132a; --btnfg:#fff;
+        --bgimg:radial-gradient(ellipse 50% 60% at 85% 25%,rgba(99,102,241,.22),transparent 60%),radial-gradient(ellipse 40% 50% at 70% 95%,rgba(233,179,36,.22),transparent 60%),#fbfaf6; }
+  /* P  indigo hero on light site */
+  .ih { --p:#1e1b4b; --p2:#ffffff; --p3:#f7f5f0; --ink:#f5f2ff; --mu:#c3bde6; --ln:rgba(255,255,255,.12); --ln2:rgba(255,255,255,.3); --gold:#ffc93c; --dot:#ffffff; --btn:#ffc93c; --btnfg:#1e1b4b;
+        --bgimg:linear-gradient(160deg,#1e1b4b 0%,#312e81 60%,#3730a3 100%); }
+  .ih .creds, .ih .next { --ink:#17161f; --mu:#625f6e; --ln:#e6e2d8; --gold:#c98a06; }
+</style>
+
+<div class="wrap">
+  <h1>Home hero — gradient directions</h1>
+  <p class="lede">Gradients, with indigo as the anchor in most. Gold stays as the accent and button colour everywhere — on indigo it reads even brighter than on charcoal. Two of these (O and P) keep the rest of the site light and only colour the hero; the others go dark site-wide.</p>
+
+  <div class="label"><span class="n">I</span><h2>Indigo → violet</h2><div class="sw"><i style="background:#1b1464"></i><i style="background:#6a3fd0"></i><i style="background:#ffc93c"></i></div><p>A clean diagonal from deep indigo to violet. Saturated, modern, unmistakably "tech". Gold pops hard against it. The most literal answer to "indigo gradient".</p></div>
+  <div class="hero iv"></div>
+
+  <div class="label"><span class="n">J</span><h2>Deep space</h2><div class="sw"><i style="background:#07061a"></i><i style="background:#4f46e5"></i><i style="background:#ffc93c"></i></div><p>Near-black with an indigo nebula glowing top-right behind the monogram and a violet bloom bottom-left. Dark and quiet with colour where it matters. Premium rather than loud.</p></div>
+  <div class="hero ds"></div>
+
+  <div class="label"><span class="n">K</span><h2>Aurora</h2><div class="sw"><i style="background:#0b1020"></i><i style="background:#6366f1"></i><i style="background:#14b8a6"></i></div><p>Indigo, a touch of teal and a hint of gold as soft overlapping lights that drift very slowly (14s). Alive without being a video. The most "striking" of the set on a large screen.</p></div>
+  <div class="hero au"></div>
+
+  <div class="label"><span class="n">L</span><h2>Sapphire → emerald</h2><div class="sw"><i style="background:#0a1f3a"></i><i style="background:#0f3d5c"></i><i style="background:#0f5c4e"></i></div><p>Deep blue sliding into deep green. Cooler and more corporate than indigo-violet; reads as finance-meets-sustainability. Gold sits comfortably on both ends.</p></div>
+  <div class="hero se"></div>
+
+  <div class="label"><span class="n">M</span><h2>Dusk</h2><div class="sw"><i style="background:#1c1340"></i><i style="background:#b2652e"></i><i style="background:#e9b324"></i></div><p>Indigo on the left warming through amber into gold on the right, so the brand colour <em>is</em> the gradient. Dramatic; the copy sits on the cool side, the monogram on the warm side. Needs care with contrast on the gold end.</p></div>
+  <div class="hero du"></div>
+
+  <div class="label"><span class="n">N</span><h2>Plum → indigo</h2><div class="sw"><i style="background:#3a0f4f"></i><i style="background:#2a1a7a"></i><i style="background:#1b2a8c"></i></div><p>Warmer than I: starts in deep plum and cools into indigo-blue. Rich and slightly regal. Less common than straight indigo, so more ownable.</p></div>
+  <div class="hero pl"></div>
+
+  <div class="label"><span class="n">O</span><h2>Light mesh</h2><div class="sw"><i style="background:#fbfaf6"></i><i style="background:#c7c4f5"></i><i style="background:#f3dfa3"></i></div><p>Stay light, but replace flat paper with a soft indigo wash top-right and a gold wash bottom — colour as atmosphere behind a near-white ground. Premium without going dark; everything else on the site stays as-is.</p></div>
+  <div class="hero lm"></div>
+
+  <div class="label"><span class="n">P</span><h2>Indigo hero, light site</h2><div class="sw"><i style="background:#1e1b4b"></i><i style="background:#ffffff"></i><i style="background:#ffc93c"></i></div><p>Only the hero goes indigo; the credentials strip and everything below return to white paper. A strong opening frame without committing the whole site to dark. Easiest to adopt — one section changes.</p></div>
+  <div class="hero ih"></div>
+</div>
+
+<script>
+const tpl = `
+  <div class="nav"><div class="logo"><b>ABi</b><span>Aston Business<small>INTELLIGENCE</small></span></div><ul><li>Services</li><li>Scorecard</li><li>Work</li><li>About</li><li>Careers</li><li>Contact</li></ul><span class="cta">Talk to us</span></div>
+  <div class="body"><div class="grid"></div>
+    <svg class="mono-svg" viewBox="0 0 120 100" aria-hidden="true"><path d="M8 92 L34 10 L48 10 L62 52 L52 52 L41 22 L19 92 Z"/><path d="M58 92 L58 10 L86 10 C102 10 108 20 108 30 C108 38 103 44 96 47 C105 50 112 57 112 68 C112 82 102 92 86 92 Z M70 22 L70 42 L84 42 C92 42 96 38 96 32 C96 26 92 22 84 22 Z M70 54 L70 80 L86 80 C95 80 100 75 100 67 C100 59 95 54 86 54 Z"/><circle cx="116" cy="14" r="3" fill="var(--gold)" stroke="none"/></svg>
+    <p class="eyebrow">Business intelligence consultancy in London</p>
+    <h3 class="h">Business intelligence for companies that want <em>decisions, not just dashboards.</em></h3>
+    <p class="sub">ABI helps UK SMEs see their business clearly, decide faster and deliver what they decide — through data analysis, business analysis, AI consulting and project delivery.</p>
+    <div class="ctas"><span class="b1">Book a 30-minute conversation →</span><span class="b2">Score your reporting in 2 minutes</span></div>
+    <p class="avail"><i></i>Taking on 3 new engagements in November · first call within 5 working days</p>
+  </div>
+  <div class="creds"><div><small>Certified</small><b>NVIDIA Certified</b></div><div><small>Certified</small><b>Google Cloud Certified</b></div><div><small>Registered</small><b>Companies House · England &amp; Wales</b></div><div><small>Based</small><b>London</b></div></div>
+  <div class="next"><p class="eyebrow">01 · Why companies call us</p><h4>Three problems, <em>one underlying cause.</em></h4></div>`;
+document.querySelectorAll(".hero").forEach(h => h.innerHTML = tpl);
+</script>
