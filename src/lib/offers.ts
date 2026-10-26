@@ -116,9 +116,9 @@ export const proof = {
 /* ─── Data & BI deep-dive ────────────────────────────────────────────────── */
 export const dataBi = {
   pains: [
-    ["Month-end is slow and manual", "Numbers are assembled by hand from several systems. It takes days, and every step is a chance to introduce an error."],
-    ["Nobody fully trusts the numbers", "Two reports show two figures for the same thing. Meetings are spent arguing about which is right instead of what to do."],
-    ["You can't see where the money is made", "Total margin is known. Margin by client, product or job is not — so pricing and effort are spread evenly across customers that are not equal."],
+    ["Month-end is slow and manual", "Numbers pulled from several systems by hand. Days, not hours — and every step can break."],
+    ["Nobody fully trusts the numbers", "Two reports, two figures for the same thing. Meetings spent arguing about which is right."],
+    ["You can't see where the money is made", "Total margin is known. Margin by client, product or job is not."],
   ],
   ladder: [
     { step: "01", name: "Reporting Assessment", price: "£2,500", duration: "2 weeks", body: "Inventory of every report and data source, reconciliation of your key figures to the accounts, and a costed, prioritised plan. The fee is credited against any of the steps below.", forWho: "Where every client starts." },

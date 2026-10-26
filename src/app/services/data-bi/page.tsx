@@ -4,6 +4,7 @@ import { Section, SectionHead, CtaBand, Placeholder, Button } from "@/components
 import { WeekOne, Guarantee, bookHref } from "@/components/offers";
 import { dataBi } from "@/lib/offers";
 import { SheetsToScreen } from "@/components/sheets-to-screen";
+import { Convergence } from "@/components/convergence";
 
 export const metadata: Metadata = {
   title: "Data & Business Intelligence",
@@ -33,18 +34,23 @@ export default function DataBiPage() {
         </div>
       </section>
 
-      {/* Pains */}
+      {/* Pains → one cause */}
       <Section>
-        <SectionHead number="01" eyebrow="Why companies call us" title="Three problems," em="one underlying cause." intro="They look like three issues. They are one: the numbers are assembled by hand, so they are slow, inconsistent and shallow." />
-        <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-3">
-          {d.pains.map(([t, b]) => (
-            <div key={t} className="bg-paper p-6"><h3 className="text-lg text-ink">{t}</h3><p className="mt-2 text-sm font-light leading-relaxed text-muted">{b}</p></div>
-          ))}
-        </div>
+        <SectionHead number="01" eyebrow="Why companies call us" title="Three problems," em="one underlying cause." />
+        <Convergence
+          problems={d.pains.map(([t, b]) => [t, b] as [string, string])}
+          cause={{
+            label: "The cause",
+            title: "The numbers are assembled by hand.",
+            body: "So they are slow, inconsistent and shallow — and every month someone rebuilds them from scratch. Fix the assembly and all three symptoms go.",
+            cta: "How we fix it: the Reporting Assessment",
+            href: "#ladder",
+          }}
+        />
       </Section>
 
       {/* Ladder */}
-      <Section dim>
+      <Section dim id="ladder">
         <SectionHead number="02" eyebrow="How the work is structured" title="Four steps." em="Each one stands on its own." intro="Start with the Assessment. Continue only if the plan it produces makes sense to you. Prices exclude VAT." />
         <ol className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-4">
           {d.ladder.map((l, i) => (
