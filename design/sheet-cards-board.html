@@ -1,0 +1,206 @@
+<title>Spreadsheet Card Styles</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --ink:#17161f; --paper:#fff; --soft:#fbf3dc; --gold:#e9b324; --accent:#c98a06; --good:#1f9d61; --bad:#c2410c; --xl:#1d6f42; --grid:#d9d9d9; --cellhead:#f3f3f3;
+    --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; --grid:#33313d; --cellhead:#201f28; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; --grid:#33313d; --cellhead:#201f28; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:66ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .top { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+  .top button { font:inherit; font-size:13px; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:44px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; }
+  .frame { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--soft); padding:40px; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+  .frame.single { grid-template-columns:1fr; }
+  @media (max-width:860px) { .frame { grid-template-columns:1fr; padding:20px; } }
+  .stage { position:relative; height:400px; width:100%; max-width:520px; margin:0 auto; }
+  .still { display:flex; flex-wrap:wrap; gap:14px; align-items:flex-start; justify-content:center; }
+  .c { position:absolute; transition:transform 1.2s cubic-bezier(.2,.8,.2,1), opacity 1.2s; box-shadow:0 18px 40px -22px rgba(0,0,0,.4); }
+  .stage.go .c { opacity:0; transform:translate(var(--tx),var(--ty)) scale(.55) rotate(0) !important; }
+  .one { position:absolute; left:50%; top:50%; width:320px; transform:translate(-50%,-50%) scale(.9); opacity:0; border:1px solid var(--line); background:var(--card); border-radius:8px; box-shadow:0 30px 60px -30px rgba(0,0,0,.3); transition:all 1s .9s cubic-bezier(.2,.8,.2,1); font-size:12px; }
+  .one .h { display:flex; justify-content:space-between; padding:10px 14px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); }
+  .one .k { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); } .one .k div { background:var(--card); padding:10px 14px; } .one .k small { display:block; font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); } .one .k b { font-family:var(--serif); font-weight:400; font-size:22px; color:var(--ink); }
+  .one .f { padding:8px 14px; background:var(--soft); font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--good); }
+  .stage.go .one { opacity:1; transform:translate(-50%,-50%) scale(1); }
+  .cap { font-size:13px; color:var(--muted); font-weight:300; max-width:34ch; }
+  .cap b { color:var(--fg); font-weight:500; display:block; font-family:var(--serif); font-size:1.3rem; margin-bottom:6px; }
+
+  /* ── 1 Excel-faithful grid ── */
+  .xl { width:240px; background:#fff; border:1px solid var(--grid); border-radius:3px; font-family:var(--sans); font-size:9px; color:#222; overflow:hidden; }
+  .xl .tb { display:flex; align-items:center; gap:6px; padding:4px 7px; background:var(--xl); color:#fff; font-size:9px; font-weight:600; }
+  .xl .tb i { width:10px; height:10px; background:#fff; border-radius:2px; display:inline-block; opacity:.9; }
+  .xl .fx { display:flex; gap:6px; padding:3px 7px; border-bottom:1px solid var(--grid); font-family:var(--mono); font-size:8px; color:#444; background:#fafafa; }
+  .xl .fx span:first-child { color:#777; min-width:22px; }
+  .xl table { border-collapse:collapse; width:100%; }
+  .xl td, .xl th { border:1px solid var(--grid); padding:2px 4px; font-weight:400; text-align:left; white-space:nowrap; height:14px; font-size:8.5px; }
+  .xl th { background:var(--cellhead); color:#666; text-align:center; font-size:8px; }
+  .xl td.n { text-align:right; font-variant-numeric:tabular-nums; }
+  .xl td.err { color:#c00; font-weight:600; }
+  .xl td.sel { outline:2px solid var(--xl); outline-offset:-2px; }
+  .xl td.hl { background:#fff2a8; }
+  .xl .tabs { display:flex; gap:2px; padding:3px 6px 0; background:#f3f3f3; border-top:1px solid var(--grid); font-size:8px; }
+  .xl .tabs span { padding:2px 8px; background:#fff; border:1px solid var(--grid); border-bottom:0; border-radius:3px 3px 0 0; color:#555; } .xl .tabs span.on { color:var(--xl); font-weight:600; border-bottom:2px solid var(--xl); }
+  :root[data-theme="dark"] .xl, :root:not([data-theme="light"]) .xl { background:#1e1d26; color:#ddd; } :root:not([data-theme="light"]) .xl .fx { background:#17161f; color:#aaa; } :root:not([data-theme="light"]) .xl .tabs { background:#17161f; } :root:not([data-theme="light"]) .xl .tabs span { background:#1e1d26; color:#aaa; } :root:not([data-theme="light"]) .xl td.hl { background:#4a3f12; }
+
+  /* ── 2 Window chrome ── */
+  .win { width:250px; border-radius:7px; overflow:hidden; border:1px solid var(--line); background:var(--card); font-size:9px; }
+  .win .bar { display:flex; align-items:center; gap:5px; padding:6px 8px; background:var(--cellhead); border-bottom:1px solid var(--line); }
+  .win .bar i { width:8px; height:8px; border-radius:50%; display:inline-block; } .win .bar i:nth-child(1){background:#ff5f57}.win .bar i:nth-child(2){background:#febc2e}.win .bar i:nth-child(3){background:#28c840}
+  .win .bar span { margin-left:6px; font-family:var(--mono); font-size:8.5px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .win .bar em { margin-left:auto; font-style:normal; font-size:8px; color:var(--bad); font-weight:600; }
+  .win .body { padding:0; }
+  .win table { border-collapse:collapse; width:100%; } .win td { border:1px solid var(--grid); padding:2px 5px; font-size:8.5px; white-space:nowrap; } .win td.n{text-align:right} .win td.err{color:var(--bad);font-weight:600} .win td.h{background:var(--cellhead);color:var(--muted)}
+  .win .foot { display:flex; justify-content:space-between; padding:4px 8px; font-family:var(--mono); font-size:7.5px; color:var(--muted); background:var(--cellhead); border-top:1px solid var(--line); }
+
+  /* ── 3 Printouts ── */
+  .pr { width:200px; background:#fffdf7; border:1px solid #e6dcc4; padding:12px 12px 16px; font-size:8px; color:#333; position:relative; font-family:var(--mono); box-shadow:0 1px 0 #e6dcc4, 0 18px 40px -22px rgba(0,0,0,.4); }
+  .pr h5 { margin:0 0 6px; font-family:var(--sans); font-weight:600; font-size:9px; color:#111; }
+  .pr table { border-collapse:collapse; width:100%; } .pr td { border-bottom:1px solid #eee; padding:2px 2px; } .pr td.n{text-align:right}
+  .pr .ring { position:absolute; width:46px; height:46px; border:5px solid rgba(120,72,20,.18); border-radius:50%; right:-10px; top:-8px; }
+  .pr .hl { background:rgba(255,230,0,.5); }
+  .pr .note { position:absolute; right:10px; bottom:6px; font-family:"Caveat",cursive; font-size:13px; color:#1f4fb8; transform:rotate(-4deg); }
+  .pr .circ { outline:2px solid #d33; outline-offset:1px; border-radius:50%; }
+  .pr .clip { position:absolute; left:14px; top:-7px; width:10px; height:22px; border:2px solid #999; border-radius:6px; background:transparent; }
+
+  /* ── 4 Email attachments ── */
+  .em { width:260px; background:var(--card); border:1px solid var(--line); border-radius:6px; font-size:9px; overflow:hidden; }
+  .em .hd { padding:7px 10px; border-bottom:1px solid var(--line); }
+  .em .hd b { display:block; font-weight:600; color:var(--ink); font-size:10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .em .hd span { color:var(--muted); font-size:8.5px; }
+  .em .bd { padding:6px 10px; color:var(--muted); font-size:8.5px; line-height:1.4; }
+  .em .att { display:flex; gap:6px; padding:0 10px 8px; flex-wrap:wrap; }
+  .em .att span { display:inline-flex; gap:4px; align-items:center; border:1px solid var(--line); border-radius:4px; padding:2px 6px; font-family:var(--mono); font-size:7.5px; color:var(--ink); background:var(--cellhead); }
+  .em .att span i { width:7px; height:9px; background:var(--xl); border-radius:1px; display:inline-block; }
+  .em .att span i.ppt { background:#c43e1c; } .em .att span i.csv { background:#777; }
+
+  /* ── 5 Mixed desk ── */
+  .csv { width:220px; background:#fff; border:1px solid var(--line); padding:8px 10px; font-family:var(--mono); font-size:7.5px; color:#333; line-height:1.5; white-space:pre; overflow:hidden; border-radius:3px; }
+  .csv b { display:block; color:#777; font-weight:500; margin-bottom:3px; border-bottom:1px solid #eee; }
+  .ppt { width:220px; aspect-ratio:16/9; background:#fff; border:1px solid var(--line); border-radius:3px; padding:10px 12px; font-size:8px; position:relative; }
+  .ppt h6 { margin:0 0 6px; font-family:var(--sans); font-size:9px; font-weight:600; color:#111; }
+  .ppt .bars { display:flex; align-items:flex-end; gap:5px; height:46px; } .ppt .bars i { flex:1; background:#4472c4; } .ppt .bars i:nth-child(2n){background:#ed7d31}
+  .ppt .stale { position:absolute; right:8px; top:8px; font-size:7px; color:#999; font-family:var(--mono); }
+  .sticky { width:120px; height:110px; background:#fff59a; padding:12px; font-family:"Caveat",cursive; font-size:15px; line-height:1.15; color:#333; box-shadow:0 10px 24px -14px rgba(0,0,0,.45); }
+  :root:not([data-theme="light"]) .csv { background:#1e1d26; color:#ccc; } :root:not([data-theme="light"]) .ppt { background:#1e1d26; } :root:not([data-theme="light"]) .ppt h6 { color:#eee; }
+
+  /* ── 6 Monochrome ── */
+  .mono-c { width:230px; background:var(--card); border:1px solid var(--line); border-radius:4px; font-size:8.5px; overflow:hidden; }
+  .mono-c .t { display:flex; justify-content:space-between; padding:5px 8px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:8px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); }
+  .mono-c .t em { font-style:normal; color:var(--accent); }
+  .mono-c table { border-collapse:collapse; width:100%; } .mono-c td { border:1px solid var(--line); padding:2px 5px; white-space:nowrap; color:var(--muted); } .mono-c td.n{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)} .mono-c td.err{color:var(--accent);font-weight:600} .mono-c td.h{color:var(--muted);font-family:var(--mono);font-size:7.5px;text-transform:uppercase;letter-spacing:.06em}
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div><h1>Spreadsheet cards — six levels of realism</h1><p class="lede">Each option is shown as the still set and inside the collapse animation (replays every 7s). The question is how literal the "before" should look next to a very clean "after".</p></div>
+    <button type="button" id="theme">Night</button>
+  </div>
+
+  <div id="board"></div>
+</div>
+
+<script>
+document.getElementById("theme").addEventListener("click", () => { const r=document.documentElement; const dark=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches); r.setAttribute("data-theme",dark?"light":"dark"); theme.textContent=dark?"Night":"Day"; });
+
+const ONE = `<div class="one"><div class="h"><span>Finance · month-end</span><span style="color:var(--accent)">live</span></div><div class="k"><div><small>Revenue MTD</small><b>£412k</b></div><div><small>Gross margin</small><b>38.2%</b></div><div><small>Cash runway</small><b>7.4 mo</b></div><div><small>Debtors &gt; 60d</small><b>£61k</b></div></div><div class="f">✓ Reconciled to Xero · 06:02</div></div>`;
+
+/* card renderers */
+const xl = (name, rows, opts={}) => `<div class="xl"><div class="tb"><i></i>${name}${opts.auto?'<span style="margin-left:auto;font-weight:400;opacity:.8">AutoSave ● Off</span>':''}</div><div class="fx"><span>${opts.cell||"D7"}</span><span>${opts.formula||"=SUM(D2:D6)"}</span></div><table><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>${rows.map((r,i)=>`<tr><th>${i+1}</th>${r.map(c=>`<td class="${c.k||""}">${c.v}</td>`).join("")}</tr>`).join("")}</table><div class="tabs"><span class="on">${opts.tab||"Oct"}</span><span>Sep</span><span>Working</span><span>Sheet4</span></div></div>`;
+const R = (a,b,c,d,k)=>[{v:a},{v:b},{v:c,k:"n"},{v:d,k:"n "+(k||"")}];
+
+const sets = {
+  A: {
+    title: "Excel-faithful grid",
+    desc: "Green title bar, formula bar, column letters, row numbers, sheet tabs, one selected cell and a #REF! error. Instantly recognisable without using any logo.",
+    cards: [
+      xl("Sales_Oct_v3.xlsx",[R("Client","Inv","Net","Gross"),R("Acme","1042","12,400","14,880"),R("Birch","1043","8,150","9,780"),R("Cole","1044","#REF!","#REF!","err"),R("Total","","20,550","24,660","sel")],{cell:"D5",formula:"=C5*1.2"}),
+      xl("Margin_calc.xlsx",[R("Line","Rev","Cost","Margin"),R("Services","238k","142k","40%"),R("Licences","112k","71k","37%"),R("Support","62k","51k","18%","hl"),R("Total","412k","264k","36%")],{tab:"Q3",auto:true}),
+      xl("Debtors.xlsx",[R("Client","Due","Days","£"),R("Dunn","12 Sep","44","18,200"),R("Ealing","28 Aug","59","22,900","hl"),R("Fox","2 Aug","85","20,100","err"),R("Total","","","61,200")],{cell:"D4",formula:"=TODAY()-B4"}),
+      xl("FINAL_FINAL.xlsx",[R("Month","Plan","Actual","Var"),R("Jul","380k","391k","+11k"),R("Aug","390k","388k","-2k"),R("Sep","400k","#N/A","#N/A","err"),R("Oct","410k","412k","+2k")],{cell:"C4",formula:"='Sep (old)'!C4"}),
+      xl("Costs (Jo).xlsx",[R("Supplier","Ref","Net","VAT"),R("Pear Ltd","P-221","4,100","820"),R("Oak & Co","O-118","2,350","470"),R("Ash","A-9","1,980","396"),R("Total","","8,430","1,686","sel")]),
+    ],
+  },
+  B: {
+    title: "Window chrome",
+    desc: "macOS-style windows with a file path, a red 'unsaved' flag, and a status bar showing the last edit. Reads as a messy desktop rather than a document.",
+    cards: [
+      `<div class="win"><div class="bar"><i></i><i></i><i></i><span>~/Shared/Finance/Sales_Oct_v3.xlsx</span><em>● Edited</em></div><table><tr><td class="h">Client</td><td class="h">Net</td><td class="h">Gross</td></tr><tr><td>Acme</td><td class="n">12,400</td><td class="n">14,880</td></tr><tr><td>Birch</td><td class="n">8,150</td><td class="n">9,780</td></tr><tr><td>Cole</td><td class="n err">#REF!</td><td class="n err">#REF!</td></tr></table><div class="foot"><span>Last edit: Fri 18:40 · Jo</span><span>3 sheets</span></div></div>`,
+      `<div class="win"><div class="bar"><i></i><i></i><i></i><span>Downloads/Sales_Oct_v3 (1).xlsx</span></div><table><tr><td class="h">Client</td><td class="h">Net</td><td class="h">Gross</td></tr><tr><td>Acme</td><td class="n">12,400</td><td class="n">14,880</td></tr><tr><td>Birch</td><td class="n">8,950</td><td class="n">10,740</td></tr><tr><td>Cole</td><td class="n">6,200</td><td class="n">7,440</td></tr></table><div class="foot"><span>Last edit: Sat 09:12 · Sam</span><span>different totals</span></div></div>`,
+      `<div class="win"><div class="bar"><i></i><i></i><i></i><span>Desktop/Margin_calc.xlsx</span><em>● Links broken</em></div><table><tr><td class="h">Line</td><td class="h">Rev</td><td class="h">Margin</td></tr><tr><td>Services</td><td class="n">238k</td><td class="n">40%</td></tr><tr><td>Licences</td><td class="n">112k</td><td class="n">37%</td></tr><tr><td>Support</td><td class="n">62k</td><td class="n err">#VALUE!</td></tr></table><div class="foot"><span>Last edit: 3 weeks ago</span><span>ext. link: Debtors.xlsx</span></div></div>`,
+      `<div class="win"><div class="bar"><i></i><i></i><i></i><span>Outlook/Board pack DRAFT (2).pptx</span></div><table><tr><td class="h">KPI</td><td class="h">Sep</td><td class="h">Oct</td></tr><tr><td>Revenue</td><td class="n">391k</td><td class="n">—</td></tr><tr><td>Margin</td><td class="n">38%</td><td class="n">—</td></tr><tr><td>Cash</td><td class="n">6.1mo</td><td class="n">—</td></tr></table><div class="foot"><span>Slide 4 of 18</span><span>last month's numbers</span></div></div>`,
+      `<div class="win"><div class="bar"><i></i><i></i><i></i><span>Jo's laptop/Costs (Jo).xlsx</span><em>● Offline</em></div><table><tr><td class="h">Supplier</td><td class="h">Net</td><td class="h">VAT</td></tr><tr><td>Pear Ltd</td><td class="n">4,100</td><td class="n">820</td></tr><tr><td>Oak & Co</td><td class="n">2,350</td><td class="n">470</td></tr><tr><td>Ash</td><td class="n">1,980</td><td class="n">396</td></tr></table><div class="foot"><span>Not on the shared drive</span><span>v?</span></div></div>`,
+    ],
+  },
+  C: {
+    title: "Printouts on a desk",
+    desc: "Off-white paper, monospace figures, highlighter, a coffee ring, a handwritten note and a paperclip. Analogue and slightly witty; the most 'editorial' of the six.",
+    cards: [
+      `<div class="pr"><div class="clip"></div><div class="ring"></div><h5>Sales — October (v3)</h5><table><tr><td>Acme</td><td class="n">12,400</td></tr><tr><td>Birch</td><td class="n">8,150</td></tr><tr><td class="hl">Cole</td><td class="n hl">??</td></tr><tr><td>Total</td><td class="n">20,550</td></tr></table><div class="note">which version?</div></div>`,
+      `<div class="pr"><h5>Margin by line — Q3</h5><table><tr><td>Services</td><td class="n">40%</td></tr><tr><td>Licences</td><td class="n">37%</td></tr><tr><td>Support</td><td class="n"><span class="circ">18%</span></td></tr><tr><td>Blended</td><td class="n">36%</td></tr></table><div class="note">check w/ Jo</div></div>`,
+      `<div class="pr"><div class="ring" style="left:-12px;right:auto;top:auto;bottom:-10px"></div><h5>Debtors &gt; 60 days</h5><table><tr><td>Dunn</td><td class="n">18,200</td></tr><tr><td class="hl">Ealing</td><td class="n hl">22,900</td></tr><tr><td>Fox</td><td class="n">20,100</td></tr><tr><td>Total</td><td class="n">61,200</td></tr></table><div class="note">chase Mon</div></div>`,
+      `<div class="pr"><h5>Board pack — DRAFT</h5><table><tr><td>Revenue</td><td class="n">391k</td></tr><tr><td>Margin</td><td class="n">38%</td></tr><tr><td>Cash</td><td class="n">6.1 mo</td></tr><tr><td>Headcount</td><td class="n">42</td></tr></table><div class="note" style="color:#c22">Sept figures!</div></div>`,
+      `<div class="pr"><div class="clip"></div><h5>Costs (Jo)</h5><table><tr><td>Pear Ltd</td><td class="n">4,100</td></tr><tr><td>Oak &amp; Co</td><td class="n">2,350</td></tr><tr><td>Ash</td><td class="n">1,980</td></tr><tr><td>Total</td><td class="n">8,430</td></tr></table><div class="note">+ the ones in my inbox</div></div>`,
+    ],
+  },
+  D: {
+    title: "The way they actually arrive — emails",
+    desc: "Forwarded-forwarded emails with attachment chips. Tells the real story: the numbers travel by inbox, and nobody knows which attachment is current.",
+    cards: [
+      `<div class="em"><div class="hd"><b>FW: FW: October numbers v3</b><span>Jo → Sam, Priya · Fri 18:42</span></div><div class="bd">Latest attached, ignore the one from this morning. Cole is still showing #REF — I think it's the link to Debtors.</div><div class="att"><span><i></i>Sales_Oct_v3.xlsx</span><span><i></i>Debtors.xlsx</span></div></div>`,
+      `<div class="em"><div class="hd"><b>RE: FW: FW: October numbers v3</b><span>Sam → Jo, Priya · Sat 09:14</span></div><div class="bd">Mine has different totals for Birch? Attaching my version. Which is right?</div><div class="att"><span><i></i>Sales_Oct_v3 (1).xlsx</span></div></div>`,
+      `<div class="em"><div class="hd"><b>Board pack draft — needs Oct figures</b><span>Priya → Jo · Mon 08:03</span></div><div class="bd">Still has September in it. Can you drop the new numbers in slide 4 and 11 before 2pm?</div><div class="att"><span><i class="ppt"></i>Board pack DRAFT (2).pptx</span></div></div>`,
+      `<div class="em"><div class="hd"><b>Pipeline export</b><span>HubSpot → Jo · Thu 17:30</span></div><div class="bd">Your scheduled export is attached. 1,204 rows.</div><div class="att"><span><i class="csv"></i>pipeline-export-2026-10-23.csv</span></div></div>`,
+      `<div class="em"><div class="hd"><b>Costs — sorry, from my laptop</b><span>Jo → Priya · Mon 11:51</span></div><div class="bd">This is the one I've been using. Not on the shared drive yet.</div><div class="att"><span><i></i>Costs (Jo).xlsx</span><span><i></i>FINAL_FINAL.xlsx</span></div></div>`,
+    ],
+  },
+  E: {
+    title: "Mixed desk",
+    desc: "Two Excel grids, a raw CSV, a PowerPoint slide with last month's chart, and a sticky note. Shows that the problem is not one tool but five.",
+    cards: [
+      xl("Sales_Oct_v3.xlsx",[R("Client","Inv","Net","Gross"),R("Acme","1042","12,400","14,880"),R("Birch","1043","8,150","9,780"),R("Cole","1044","#REF!","#REF!","err"),R("Total","","20,550","24,660","sel")],{cell:"D5",formula:"=C5*1.2"}),
+      `<div class="csv"><b>pipeline-export-2026-10-23.csv</b>deal_id,stage,amount,close_date,owner
+D-2291,Proposal,18500,2026-11-04,sam
+D-2292,Qualified,7200,,priya
+D-2293,Negotiation,42000,2026-10-31,sam
+D-2294,Proposal,,2026-11-12,jo
+D-2295,Closed Won,15800,2026-10-22,sam</div>`,
+      `<div class="ppt"><span class="stale">Updated 3 Sep</span><h6>Revenue vs plan — September</h6><div class="bars"><i style="height:60%"></i><i style="height:64%"></i><i style="height:70%"></i><i style="height:66%"></i><i style="height:82%"></i><i style="height:78%"></i></div></div>`,
+      xl("Debtors.xlsx",[R("Client","Due","Days","£"),R("Dunn","12 Sep","44","18,200"),R("Ealing","28 Aug","59","22,900","hl"),R("Fox","2 Aug","85","20,100","err"),R("Total","","","61,200")],{cell:"D4",formula:"=TODAY()-B4"}),
+      `<div class="sticky">Which revenue number is right — Jo's or Sam's??<br><br>Board 2pm</div>`,
+    ],
+  },
+  F: {
+    title: "Monochrome, on-brand",
+    desc: "Real cell data but drawn entirely in the site's hairline style — no green, no OS chrome. Errors in gold rather than red. Most restrained; keeps the hero premium.",
+    cards: [
+      `<div class="mono-c"><div class="t"><span>Sales_Oct_v3.xlsx</span><em>edited Fri 18:40</em></div><table><tr><td class="h">Client</td><td class="h">Net</td><td class="h">Gross</td></tr><tr><td>Acme</td><td class="n">12,400</td><td class="n">14,880</td></tr><tr><td>Birch</td><td class="n">8,150</td><td class="n">9,780</td></tr><tr><td>Cole</td><td class="n err">#REF!</td><td class="n err">#REF!</td></tr><tr><td>Total</td><td class="n">20,550</td><td class="n">24,660</td></tr></table></div>`,
+      `<div class="mono-c"><div class="t"><span>Sales_Oct_v3 (1).xlsx</span><em>different totals</em></div><table><tr><td class="h">Client</td><td class="h">Net</td><td class="h">Gross</td></tr><tr><td>Acme</td><td class="n">12,400</td><td class="n">14,880</td></tr><tr><td>Birch</td><td class="n">8,950</td><td class="n">10,740</td></tr><tr><td>Cole</td><td class="n">6,200</td><td class="n">7,440</td></tr><tr><td>Total</td><td class="n">27,550</td><td class="n">33,060</td></tr></table></div>`,
+      `<div class="mono-c"><div class="t"><span>Margin_calc.xlsx</span><em>links broken</em></div><table><tr><td class="h">Line</td><td class="h">Rev</td><td class="h">Margin</td></tr><tr><td>Services</td><td class="n">238k</td><td class="n">40%</td></tr><tr><td>Licences</td><td class="n">112k</td><td class="n">37%</td></tr><tr><td>Support</td><td class="n">62k</td><td class="n err">#VALUE!</td></tr><tr><td>Blended</td><td class="n">412k</td><td class="n">36%</td></tr></table></div>`,
+      `<div class="mono-c"><div class="t"><span>Board pack DRAFT.pptx</span><em>Sept figures</em></div><table><tr><td class="h">KPI</td><td class="h">Sep</td><td class="h">Oct</td></tr><tr><td>Revenue</td><td class="n">391k</td><td class="n">—</td></tr><tr><td>Margin</td><td class="n">38%</td><td class="n">—</td></tr><tr><td>Cash</td><td class="n">6.1 mo</td><td class="n">—</td></tr><tr><td>Debtors</td><td class="n">58k</td><td class="n">—</td></tr></table></div>`,
+      `<div class="mono-c"><div class="t"><span>Costs (Jo).xlsx</span><em>on Jo's laptop</em></div><table><tr><td class="h">Supplier</td><td class="h">Net</td><td class="h">VAT</td></tr><tr><td>Pear Ltd</td><td class="n">4,100</td><td class="n">820</td></tr><tr><td>Oak &amp; Co</td><td class="n">2,350</td><td class="n">470</td></tr><tr><td>Ash</td><td class="n">1,980</td><td class="n">396</td></tr><tr><td>Total</td><td class="n">8,430</td><td class="n">1,686</td></tr></table></div>`,
+    ],
+  },
+};
+
+const pos=[[0,0,-5],[250,10,4],[30,150,2],[260,170,-3],[110,290,3]];
+const board=document.getElementById("board");
+Object.entries(sets).forEach(([k,s])=>{
+  const stage = s.cards.map((c,i)=>`<div class="c" style="left:${pos[i][0]}px;top:${pos[i][1]}px;transform:rotate(${pos[i][2]}deg);--tx:${200-pos[i][0]}px;--ty:${160-pos[i][1]}px">${c}</div>`).join("")+ONE;
+  board.insertAdjacentHTML("beforeend",`
+    <div class="label"><span class="n">${k}</span><h2>${s.title}</h2><p>${s.desc}</p></div>
+    <div class="frame">
+      <div class="stage" data-stage>${stage}</div>
+      <div><div class="cap"><b>${s.title}</b>${s.desc}</div><div class="still" style="margin-top:18px;transform:scale(.78);transform-origin:top left;width:128%">${s.cards.slice(0,2).join("")}</div></div>
+    </div>`);
+});
+const stages=[...document.querySelectorAll("[data-stage]")];
+function play(){ stages.forEach(st=>{ st.classList.remove("go"); }); setTimeout(()=>stages.forEach(st=>st.classList.add("go")),1500); }
+play(); if(!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(play,7500);
+</script>
