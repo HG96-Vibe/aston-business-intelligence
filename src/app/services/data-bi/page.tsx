@@ -8,6 +8,7 @@ import { Convergence } from "@/components/convergence";
 import { TubeMap } from "@/components/tube-map";
 import { FiveViews } from "@/components/five-views";
 import { ToolHub } from "@/components/tool-hub";
+import { ToolStrip } from "@/components/tool-strip";
 
 export const metadata: Metadata = {
   title: "Data & Business Intelligence",
@@ -70,6 +71,7 @@ export default function DataBiPage() {
           <SectionHead number="04" eyebrow="Tooling" title="Built in what you" em="already pay for." intro="Power BI by default — it is in most Microsoft 365 plans and your team can learn it. Looker Studio or Tableau if that is what you have. No platform to buy, no licences marked up." />
           <ToolHub />
         </div>
+        <ToolStrip />
       </Section>
 
       <WeekOne number="05" />
