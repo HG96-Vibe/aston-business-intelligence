@@ -50,6 +50,14 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
+      {/* The full name, large, scrolling slowly along the bottom edge and cut by it. Decorative. */}
+      <div className="relative z-[2] mx-auto max-w-6xl overflow-hidden px-4 md:px-6" aria-hidden="true">
+        <div className="footer-name -mb-[0.16em] flex w-max whitespace-nowrap font-display text-[clamp(3rem,9vw,8rem)] font-light leading-[0.78] tracking-[-0.02em] text-[#ffc93c] motion-reduce:animate-none">
+          {[0, 1].map((k) => (
+            <span key={k} className="pr-[0.5em]">Aston Business <em className="font-extralight">Intelligence</em>&nbsp;&nbsp;·&nbsp;&nbsp;Aston Business <em className="font-extralight">Intelligence</em>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+          ))}
+        </div>
+      </div>
     </footer>
   );
 }

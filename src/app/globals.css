@@ -174,3 +174,7 @@ h3 {
 .tone-gold { --c-ink:#17161f; --c-ink-soft:#2a2410; --c-deep:#17161f; --c-deep-soft:#2a2834; --c-paper:#c9962b; --c-paper-dim:#d5a63f; --c-line:rgba(0,0,0,.16); --c-muted:#4a3a12; --c-body:#2a2410; --c-gold:#17161f; --c-gold-strong:#000; --c-accent:#17161f; --c-accent-strong:#000; --c-accent-soft:#d5a63f; color-scheme:light; }
 .tone-gold .bg-gold { color:#f4f1ea; }
 .tone-gold input[type="range"] { accent-color:#17161f; }
+
+/* Footer name marquee */
+@keyframes footer-name { to { transform: translateX(-50%); } }
+.footer-name { animation: footer-name 55s linear infinite; }
