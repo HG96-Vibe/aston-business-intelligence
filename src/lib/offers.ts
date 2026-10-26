@@ -140,11 +140,12 @@ export const dataBi = {
     ["Overheads", "£96,110", "£96,110", true],
   ] as [string, string, string, boolean][],
   tools: ["Power BI", "Xero", "Sage", "QuickBooks", "HubSpot", "Google Sheets", "Excel", "SQL Server", "BigQuery", "dbt"],
+  // [question, [emphasised short answer, rest of the short line], full answer]
   faqs: [
-    ["Which tool will you build in?", "Power BI by default — it is included in most Microsoft 365 plans and your team can learn it. If you already use Looker Studio or Tableau, we build in that. We never resell licences."],
-    ["Our data is a mess. Do we need to clean it first?", "No. Finding and fixing the mess is most of the Assessment. If a source is unusable we will say so in writing and propose the cheapest way to make it usable."],
-    ["Will this replace our finance team or our accountant?", "No. It removes the manual assembly work so they spend their time on judgement rather than copying numbers between spreadsheets."],
-    ["How do we know the dashboard is right?", "Every refresh is reconciled to your accounting system and the reconciliation is visible on the dashboard. If a number does not tie back, it is flagged — not hidden."],
-    ["What happens after you leave?", "You receive documentation, a recorded training session, and a defined support window. Managed BI is optional; many clients run it themselves."],
-  ],
+    ["Which tool will you build in?", ["Power BI", ", by default."], "It is included in most Microsoft 365 plans and your team can learn it. If you already use Looker Studio or Tableau, we build in that. We never resell licences."],
+    ["Our data is a mess. Do we need to clean it first?", ["No.", " That is what the Assessment is for."], "Finding and fixing the mess is most of the Assessment. If a source is unusable we will say so in writing and propose the cheapest way to make it usable."],
+    ["Will this replace our finance team or our accountant?", ["No.", " It removes the copying, not the people."], "It removes the manual assembly work so they spend their time on judgement rather than copying numbers between spreadsheets."],
+    ["How do we know the dashboard is right?", ["It is reconciled", " on every refresh."], "Every refresh is reconciled to your accounting system and the reconciliation is visible on the dashboard. If a number does not tie back, it is flagged — not hidden."],
+    ["What happens after you leave?", ["You own it.", " We are optional."], "You receive documentation, a recorded training session, and a defined support window. Managed BI is optional; many clients run it themselves."],
+  ] as [string, [string, string], string][],
 };

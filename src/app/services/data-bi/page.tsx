@@ -75,20 +75,21 @@ export default function DataBiPage() {
       </Section>
 
 
-      {/* FAQ */}
+      {/* FAQ — short answer first */}
       <Section dim>
-        <div className="grid gap-10 md:grid-cols-[1fr_1.4fr]">
-          <SectionHead number="05" eyebrow="Questions" title="Before you ask" />
-          <div className="border-t border-line">
-            {d.faqs.map(([q, a]) => (
-              <details key={q} className="group border-b border-line">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-display text-lg text-ink [&::-webkit-details-marker]:hidden">{q}<span className="font-mono text-accent group-open:hidden">+</span><span className="hidden font-mono text-accent group-open:inline">–</span></summary>
-                <p className="max-w-[60ch] pb-5 font-light leading-relaxed text-muted">{a}</p>
-              </details>
-            ))}
-            <p className="pt-6 text-sm text-muted">See also: <Link href="/services/business-analysis" className="underline hover:text-ink">Business Analysis</Link> · <Link href="/services/ai-consulting" className="underline hover:text-ink">AI Consulting</Link></p>
-          </div>
-        </div>
+        <SectionHead number="05" eyebrow="Questions" title="Before you ask." />
+        <dl className="mt-10 border-t border-line">
+          {d.faqs.map(([q, [lead, rest], a], i) => (
+            <div key={q} className="grid gap-3 border-b border-line py-7 md:grid-cols-[1.1fr_1.4fr] md:gap-10">
+              <dt className="font-display text-xl leading-snug text-ink md:text-2xl"><span className="mb-2 block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-accent">0{i + 1}</span>{q}</dt>
+              <dd className="m-0">
+                <p className="font-display text-xl leading-tight text-ink md:text-2xl"><em className="not-italic text-accent">{lead}</em>{rest}</p>
+                <p className="mt-3 max-w-[60ch] text-sm font-light leading-relaxed text-muted">{a}</p>
+              </dd>
+            </div>
+          ))}
+        </dl>
+        <p className="pt-6 text-sm text-muted">See also: <Link href="/services/business-analysis" className="underline hover:text-ink">Business Analysis</Link> · <Link href="/services/ai-consulting" className="underline hover:text-ink">AI Consulting</Link></p>
       </Section>
 
       <CtaBand />
