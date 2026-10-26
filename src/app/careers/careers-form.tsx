@@ -55,7 +55,7 @@ export function CareersForm() {
       )}
       <SubmitButton pending={pending}>Join the talent pool</SubmitButton>
       <p className="text-xs text-muted">
-        We keep applications for 12 months and only use them to contact you about work with Aston. See our <a href="/privacy" className="underline">privacy policy</a>.
+        We keep applications for 12 months and only use them to contact you about work with ABI. See our <a href="/privacy" className="underline">privacy policy</a>.
       </p>
     </form>
   );

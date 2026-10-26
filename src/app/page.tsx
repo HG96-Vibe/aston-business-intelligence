@@ -35,7 +35,7 @@ export default function Home() {
             <span className="em">decisions, not just dashboards.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg font-light leading-relaxed text-muted md:text-xl">
-            Aston helps UK SMEs see their business clearly, decide faster and deliver what they
+            ABI helps UK SMEs see their business clearly, decide faster and deliver what they
             decide — through data analysis, business analysis, AI consulting and project delivery.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
@@ -97,7 +97,7 @@ export default function Home() {
       </Section>
 
       <Section dim>
-        <SectionHead number="03" eyebrow="Why Aston" title="What you can" em="hold us to." />
+        <SectionHead number="03" eyebrow="Why ABI" title="What you can" em="hold us to." />
         <div className="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2">
           {principles.map(([title, body]) => (
             <div key={title} className="hairline pt-5">

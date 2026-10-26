@@ -14,7 +14,7 @@ export default function CareersPage() {
         eyebrow="Careers"
         title="We're always looking for"
         em="good people."
-        intro="Aston works on a project basis, so we don't advertise fixed roles. Instead we keep a pool of specialists — experienced consultants and sharp early-career analysts — and build teams from it as engagements come in."
+        intro="ABI works on a project basis, so we don't advertise fixed roles. Instead we keep a pool of specialists — experienced consultants and sharp early-career analysts — and build teams from it as engagements come in."
       />
 
       <Section>

@@ -1,6 +1,6 @@
 export const site = {
   name: "Aston Business Intelligence",
-  shortName: "Aston",
+  shortName: "ABI",
   url: "https://astonbusinessintelligence.co.uk",
   description:
     "Aston Business Intelligence helps UK SMEs see their business clearly, decide faster and deliver what they decide — through data analysis, business analysis, AI consulting and project delivery.",

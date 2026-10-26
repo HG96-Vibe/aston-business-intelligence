@@ -65,7 +65,7 @@ export default function AboutPage() {
               <p className="mt-4 font-semibold text-ink">[Name]</p>
               <p className="text-sm text-muted">[Title]</p>
               <p className="mt-3 text-sm leading-relaxed text-muted">
-                [Two lines on background and what they look after at Aston.]
+                [Two lines on background and what they look after at ABI.]
               </p>
             </div>
           ))}

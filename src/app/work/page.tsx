@@ -15,7 +15,7 @@ const cases = [
     service: "Data & BI",
     title: "[One-line outcome, e.g. Replaced month-end spreadsheets with a live finance dashboard]",
     problem: "[What was broken before — 2 sentences.]",
-    did: "[What Aston actually delivered — 2–3 sentences.]",
+    did: "[What ABI actually delivered — 2–3 sentences.]",
     result: ["[Metric 1, e.g. Month-end reporting from 5 days to same-day]", "[Metric 2]"],
   },
   {
