@@ -28,14 +28,11 @@ export function SiteFooter() {
           <p className="eyebrow">Contact</p>
           <div className="mt-3 grid gap-2 text-sm">
             <a href={`mailto:${site.emails.hello}`} className="text-body hover:text-ink">{site.emails.hello}</a>
-            <a href={`mailto:${site.emails.careers}`} className="text-body hover:text-ink">{site.emails.careers}</a>
           </div>
           <p className="mt-6 text-xs leading-relaxed text-muted">
-            {site.name} Ltd · Company no. {site.companyNumber}
+            {site.name} Ltd is a company registered in England &amp; Wales, no. {site.companyNumber}.
             <br />
-            Registered in England &amp; Wales
-            <br />
-            {site.registeredOffice}
+            Registered office: {site.registeredOffice}
           </p>
         </div>
       </div>

@@ -5,11 +5,11 @@ export const site = {
   description:
     "Aston Business Intelligence helps UK SMEs see their business clearly, decide faster and deliver what they decide — through data analysis, business analysis, AI consulting and project delivery.",
   companyNumber: "15571977",
-  // TODO(Hamid): registered office address from Companies House
-  registeredOffice: "[Registered office address]",
+  registeredOffice: "Sunley House, 4 Bedford Park, Croydon CR0 2AP",
   emails: {
-    hello: "hello@astonbusinessintelligence.co.uk",
-    careers: "careers@astonbusinessintelligence.co.uk",
+    // TODO(Hamid): confirm spelling — "enquires@" as given, or "enquiries@"?
+    hello: "enquires@astonbusinessintelligence.co.uk",
+    careers: "enquires@astonbusinessintelligence.co.uk",
   },
   nav: [
     { href: "/services", label: "Services" },

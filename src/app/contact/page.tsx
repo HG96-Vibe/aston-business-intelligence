@@ -29,11 +29,8 @@ export default function ContactPage() {
             </div>
             <div>
               <p className="eyebrow">Careers</p>
-              <a href={`mailto:${site.emails.careers}`} className="mt-2 block text-lg font-medium text-ink hover:underline">
-                {site.emails.careers}
-              </a>
-              <p className="mt-1 text-muted">
-                Or use the form on our <a href="/careers" className="underline">careers page</a>.
+              <p className="mt-2 text-body">
+                Use the form on our <a href="/careers" className="underline">careers page</a> to join the talent pool.
               </p>
             </div>
             <div>
