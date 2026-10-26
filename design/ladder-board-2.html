@@ -1,0 +1,327 @@
+<title>Four Steps Round Two</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --ink:#17161f; --paper:#fff; --dim:#f7f5f0; --soft:#fbf3dc; --gold:#e9b324; --accent:#c98a06; --good:#1f9d61; --deep:#17161f;
+    --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; --deep:#0d0c12; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; --deep:#0d0c12; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:66ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .top { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+  .top button { font:inherit; font-size:13px; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:44px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; }
+  .frame { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--dim); }
+  .sec { padding:64px 48px; }
+  @media (max-width:860px) { .sec { padding:40px 20px; } }
+  .marker { display:inline-flex; align-items:center; gap:12px; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .marker::before { content:""; width:28px; height:1px; background:var(--accent); }
+  h3.t { font-family:var(--serif); font-weight:400; font-size:clamp(1.8rem,3.4vw,2.6rem); line-height:1.12; letter-spacing:-.015em; margin:14px 0 0; color:var(--ink); text-wrap:balance; max-width:22ch; }
+  .em { font-style:italic; font-weight:300; color:var(--accent); }
+  .sub { font-weight:300; color:var(--muted); font-size:1.05rem; max-width:40rem; margin:14px 0 0; }
+  .price { font-family:var(--serif); font-weight:400; color:var(--ink); }
+  .dur { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .who { font-size:12px; font-style:italic; color:var(--accent); }
+  .note { margin-top:28px; font-size:12.5px; color:var(--muted); font-weight:300; }
+  .dark { background:var(--deep); color:#f3f1f7; } .dark h3.t, .dark .price { color:#fff; } .dark .sub, .dark .dur { color:#a09db0; }
+
+  /* G tube map */
+  .tube { margin-top:48px; }
+  .tube svg { width:100%; height:auto; display:block; overflow:visible; }
+  .tube .st { font-family:var(--serif); font-size:17px; fill:var(--ink); }
+  .tube .fare { font-family:var(--serif); font-size:15px; fill:var(--ink); }
+  .tube .tm { font-family:var(--mono); font-size:8.5px; letter-spacing:1.2px; fill:var(--muted); text-transform:uppercase; }
+  .tube .exit { font-family:var(--mono); font-size:7.5px; letter-spacing:1px; fill:var(--accent); }
+  .tube .ln { stroke:var(--gold); stroke-width:9; stroke-linecap:round; fill:none; stroke-dasharray:1; stroke-dashoffset:1; animation:draw 2.4s ease-out .2s forwards; }
+  .tube .br { stroke:var(--line); stroke-width:9; stroke-linecap:round; stroke-dasharray:14 12; fill:none; }
+  .tube .stn { fill:var(--paper); stroke:var(--ink); stroke-width:3.5; }
+  .tube .ich { fill:var(--paper); stroke:var(--ink); stroke-width:4; }
+  .dark .tube .stn, .dark .tube .ich { stroke:#fff; fill:var(--deep); } .dark .tube .st, .dark .tube .fare { fill:#fff; }
+  @keyframes draw { to { stroke-dashoffset:0; } }
+  .roundel { display:inline-grid; place-items:center; width:64px; height:64px; border-radius:50%; border:7px solid var(--gold); position:relative; margin-top:36px; }
+  .roundel::after { content:"ABI LINE"; position:absolute; background:var(--ink); color:var(--paper); font-family:var(--mono); font-size:8px; letter-spacing:1.5px; padding:3px 12px; }
+
+  /* H blueprint */
+  .bp { margin-top:40px; border:1px solid rgba(255,255,255,.12); border-radius:8px; background:#1b2330 radial-gradient(circle at 1px 1px, rgba(255,255,255,.07) 1px, transparent 0) 0 0/20px 20px; padding:30px; position:relative; }
+  .bp svg { width:100%; height:auto; display:block; overflow:visible; }
+  .bp .ttl { position:absolute; right:20px; bottom:16px; border:1px solid rgba(255,255,255,.3); padding:6px 10px; font-family:var(--mono); font-size:8px; letter-spacing:1.5px; color:rgba(255,255,255,.7); text-transform:uppercase; display:grid; gap:2px; }
+  .bp .ttl b { color:var(--gold); font-weight:500; }
+  .bp text { font-family:var(--mono); font-size:8.5px; letter-spacing:1px; fill:rgba(255,255,255,.75); }
+  .bp text.big { font-family:var(--serif); font-size:17px; letter-spacing:0; fill:#fff; }
+  .bp text.pr { font-family:var(--serif); font-size:15px; letter-spacing:0; fill:#ffc93c; }
+  .bp .wall { fill:none; stroke:#fff; stroke-width:1.4; } .bp .hatch { fill:url(#h); stroke:#ffc93c; stroke-width:1.6; }
+  .bp .dim { stroke:rgba(255,255,255,.55); stroke-width:.8; } .bp .gl { stroke:#ffc93c; stroke-width:1; stroke-dasharray:3 3; }
+
+  /* I build log */
+  .term { margin:40px auto 0; max-width:760px; background:#0d0c12; border:1px solid #2b2935; border-radius:10px; box-shadow:0 40px 80px -40px rgba(0,0,0,.6); overflow:hidden; }
+  .term .bar { display:flex; gap:6px; padding:10px 14px; border-bottom:1px solid #2b2935; } .term .bar i { width:10px; height:10px; border-radius:50%; background:#2b2935; } .term .bar i:first-child { background:#ffc93c; }
+  .term .bar span { margin-left:auto; font-family:var(--mono); font-size:9px; letter-spacing:1px; color:#6c6980; text-transform:uppercase; }
+  .term pre { margin:0; padding:22px 26px; font-family:var(--mono); font-size:12.5px; line-height:1.75; color:#d9d6e3; white-space:pre-wrap; min-height:330px; }
+  .term .c { color:#6c6980; } .term .g { color:#ffc93c; } .term .ok { color:#7fd1a5; } .term .w { color:#fff; font-weight:500; } .term .cr { color:#7fd1a5; }
+  .term .cur { display:inline-block; width:7px; height:14px; background:#ffc93c; vertical-align:-2px; animation:blink 1s steps(2) infinite; } @keyframes blink { 50% { opacity:0; } }
+
+  /* J calendar */
+  .gantt { margin-top:40px; border:1px solid var(--line); border-radius:8px; background:var(--paper); overflow:hidden; }
+  .gantt .head, .gantt .row { display:grid; grid-template-columns:220px repeat(14,1fr); }
+  .gantt .head { border-bottom:1px solid var(--line); background:var(--dim); } .gantt .head div { font-family:var(--mono); font-size:8.5px; letter-spacing:1px; color:var(--muted); text-align:center; padding:8px 0; border-left:1px solid var(--line); } .gantt .head div:first-child { border:0; text-align:left; padding-left:16px; text-transform:uppercase; }
+  .gantt .row { border-bottom:1px solid var(--line); min-height:64px; position:relative; } .gantt .row:last-child { border:0; }
+  .gantt .row > div:first-child { padding:12px 16px; } .gantt .row > div:first-child h4 { margin:0; font-family:var(--serif); font-weight:400; font-size:1.05rem; color:var(--ink); } .gantt .row > div:first-child .dur { display:block; }
+  .gantt .cell { border-left:1px solid var(--line); } .gantt .cell:nth-child(2) { border-left:0; }
+  .gantt .bar { position:absolute; top:16px; height:32px; border-radius:4px; background:var(--ink); color:var(--paper); display:flex; align-items:center; justify-content:space-between; padding:0 10px; font-family:var(--mono); font-size:10px; letter-spacing:.5px; transform-origin:left; animation:bar 1s cubic-bezier(.2,.8,.2,1) both; }
+  .gantt .bar.gold { background:var(--gold); color:#17161f; } .gantt .bar.ghost { background:transparent; border:1.5px dashed var(--accent); color:var(--accent); }
+  .gantt .bar .price { font-size:12px; color:inherit; }
+  @keyframes bar { from { transform:scaleX(0); } }
+  .gantt .ms { position:absolute; top:22px; width:12px; height:12px; background:var(--gold); transform:rotate(45deg); border:2px solid var(--paper); z-index:2; } .gantt .ms + small { position:absolute; top:40px; font-family:var(--mono); font-size:7.5px; letter-spacing:.8px; text-transform:uppercase; color:var(--accent); white-space:nowrap; }
+  .gantt .decide { position:absolute; top:0; bottom:0; width:0; border-left:1.5px dashed var(--accent); z-index:1; } .gantt .decide::after { content:"you decide"; position:absolute; top:4px; left:5px; font-family:var(--mono); font-size:7px; letter-spacing:.8px; text-transform:uppercase; color:var(--accent); }
+  @media (max-width:860px) { .gantt { overflow-x:auto; } .gantt .head, .gantt .row { min-width:860px; } }
+
+  /* K circuit */
+  .cir { margin-top:40px; }
+  .cir svg { width:100%; height:auto; display:block; overflow:visible; }
+  .cir .tr { fill:none; stroke:var(--line); stroke-width:1.5; } .cir .tg { fill:none; stroke:var(--gold); stroke-width:2; stroke-dasharray:28 320; animation:flow 5.5s linear infinite; }
+  @keyframes flow { to { stroke-dashoffset:-348; } }
+  .cir .chip { fill:var(--paper); stroke:var(--line); stroke-width:1.5; } .cir .chip.on { stroke:var(--gold); fill:var(--soft); }
+  .cir .pin { stroke:var(--muted); stroke-width:1.5; }
+  .cir .lbl { font-family:var(--mono); font-size:8px; letter-spacing:1.2px; fill:var(--accent); text-transform:uppercase; }
+  .cir .nm { font-family:var(--serif); font-size:14.5px; fill:var(--ink); } .cir .pr { font-family:var(--serif); font-size:13px; fill:var(--ink); } .cir .sm { font-family:var(--mono); font-size:7.5px; letter-spacing:1px; fill:var(--muted); }
+  .cir .io { fill:var(--ink); } .cir .iot { font-family:var(--mono); font-size:8px; letter-spacing:1px; fill:var(--paper); text-transform:uppercase; }
+  .cir .node { fill:var(--gold); }
+
+  /* L stack */
+  .stk { display:grid; grid-template-columns:1fr 1.1fr; gap:48px; align-items:center; margin-top:40px; }
+  .stk .pile { display:flex; flex-direction:column-reverse; align-items:center; gap:6px; min-height:300px; justify-content:flex-start; }
+  .stk .blk { position:relative; background:var(--paper); border:1px solid var(--line); border-radius:6px; padding:12px 18px; display:flex; justify-content:space-between; align-items:baseline; gap:20px; box-shadow:0 14px 30px -20px rgba(0,0,0,.35); animation:drop .7s cubic-bezier(.2,.9,.3,1.2) both; }
+  .stk .blk::after { content:""; position:absolute; right:-7px; top:6px; bottom:-1px; width:7px; background:var(--line); border-radius:0 4px 4px 0; transform:skewY(45deg); transform-origin:top left; opacity:.6; }
+  .stk .blk:nth-child(1) { width:100%; background:var(--soft); border-color:var(--gold); animation-delay:.1s; } .stk .blk:nth-child(1)::after { background:var(--accent); }
+  .stk .blk:nth-child(2) { width:86%; animation-delay:.5s; } .stk .blk:nth-child(3) { width:72%; animation-delay:.9s; } .stk .blk:nth-child(4) { width:58%; animation-delay:1.3s; border-style:dashed; }
+  .stk .blk h4 { margin:0; font-family:var(--serif); font-weight:400; font-size:1.05rem; color:var(--ink); } .stk .blk h4 small { display:block; font-family:var(--mono); font-size:8.5px; letter-spacing:1px; color:var(--accent); text-transform:uppercase; font-weight:400; margin-bottom:2px; }
+  .stk .blk .price { font-size:1rem; white-space:nowrap; }
+  @keyframes drop { from { transform:translateY(-160px); opacity:0; } }
+  .stk .ground { width:100%; height:2px; background:var(--ink); order:-1; margin-bottom:0; }
+  .stk ol { margin:0; padding:0; list-style:none; display:grid; gap:14px; } .stk ol li { display:grid; grid-template-columns:34px 1fr; gap:12px; font-size:13.5px; font-weight:300; color:var(--muted); } .stk ol li b { font-family:var(--mono); font-size:11px; color:var(--accent); font-weight:500; padding-top:3px; } .stk ol li strong { display:block; font-weight:500; color:var(--fg); }
+  @media (max-width:860px) { .stk { grid-template-columns:1fr; } }
+
+  /* M numerals */
+  .num { display:grid; grid-template-columns:repeat(4,1fr); margin-top:32px; border-top:1px solid var(--line); }
+  .num .col { position:relative; padding:28px 22px 24px; border-left:1px solid var(--line); min-height:300px; overflow:hidden; cursor:default; transition:background .3s; } .num .col:first-child { border-left:0; }
+  .num .col:hover { background:var(--paper); }
+  .num .big { font-family:var(--serif); font-weight:200; font-size:7.5rem; line-height:.9; letter-spacing:-.04em; color:var(--line); transition:color .35s, transform .35s; display:block; }
+  .num .col:hover .big, .num .col.on .big { color:var(--gold); transform:translateY(-6px); }
+  .num h4 { margin:18px 0 0; font-family:var(--serif); font-weight:400; font-size:1.2rem; color:var(--ink); } .num .price { display:block; font-size:1.3rem; margin-top:4px; } .num .dur { display:block; margin-top:4px; }
+  .num .dr { position:absolute; left:0; right:0; bottom:0; background:var(--ink); color:var(--paper); padding:16px 22px; font-size:12.5px; font-weight:300; line-height:1.5; transform:translateY(100%); transition:transform .4s cubic-bezier(.2,.8,.2,1); }
+  .num .col:hover .dr, .num .col.on .dr { transform:none; } .num .dr .who { color:var(--gold); display:block; margin-top:6px; }
+  @media (max-width:860px) { .num { grid-template-columns:1fr 1fr; } .num .col { border-top:1px solid var(--line); } .num .big { font-size:5rem; } }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div><h1>"Four steps" — round two</h1><p class="lede">Seven more. The spine accordion (F) stays on the table; these go further on metaphor and motion. All use the same four steps and prices.</p></div>
+    <button type="button" id="theme">Night</button>
+  </div>
+
+  <!-- G -->
+  <div class="label"><span class="n">G</span><h2>Tube map</h2><p>A London line with four stations. The interchange roundel is the Assessment (every journey starts there); "alight here" at every stop — you can get off whenever you like. Fares at each station. Very UK, very memorable.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">02 · How the work is structured</p>
+    <h3 class="t">Four stops. <span class="em">Alight at any of them.</span></h3>
+    <div class="tube">
+      <svg viewBox="0 0 1000 300">
+        <path class="br" d="M860 160 H 980" />
+        <path class="ln" d="M40 160 H 860" pathLength="1" />
+        <!-- stations -->
+        <circle class="ich" cx="140" cy="160" r="15" /><rect x="118" y="157" width="44" height="6" fill="var(--ink)" />
+        <circle class="stn" cx="380" cy="160" r="10" /><circle class="stn" cx="620" cy="160" r="10" /><circle class="stn" cx="860" cy="160" r="10" />
+        <!-- labels above -->
+        <g transform="translate(140 128)"><text class="st" text-anchor="middle">Reporting Assessment</text><text class="tm" y="-20" text-anchor="middle">Interchange · all journeys start here</text></g>
+        <g transform="translate(380 128)"><text class="st" text-anchor="middle">Single Source of Truth</text><text class="tm" y="-20" text-anchor="middle">4–6 weeks from previous</text></g>
+        <g transform="translate(620 128)"><text class="st" text-anchor="middle">Decision Dashboards</text><text class="tm" y="-20" text-anchor="middle">3–4 weeks from previous</text></g>
+        <g transform="translate(860 128)"><text class="st" text-anchor="middle">Managed BI</text><text class="tm" y="-20" text-anchor="middle">Ongoing · optional</text></g>
+        <!-- fares below -->
+        <g transform="translate(140 200)"><text class="fare" text-anchor="middle">£2,500</text><text class="tm" y="18" text-anchor="middle">2 weeks · fixed</text><text class="exit" y="42" text-anchor="middle">↑ ALIGHT HERE WITH A COSTED PLAN</text></g>
+        <g transform="translate(380 200)"><text class="fare" text-anchor="middle">£8,000 – £15,000</text><text class="tm" y="18" text-anchor="middle">Assessment fare credited</text><text class="exit" y="42" text-anchor="middle">↑ ALIGHT HERE WITH ONE MODEL</text></g>
+        <g transform="translate(620 200)"><text class="fare" text-anchor="middle">£6,000 – £12,000</text><text class="tm" y="18" text-anchor="middle">Power BI</text><text class="exit" y="42" text-anchor="middle">↑ ALIGHT HERE WITH DASHBOARDS</text></g>
+        <g transform="translate(860 200)"><text class="fare" text-anchor="middle">from £750 / month</text><text class="tm" y="18" text-anchor="middle">Cancel monthly</text></g>
+      </svg>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap"><span class="roundel"></span><p class="note" style="max-width:48ch;margin-top:36px">Prices exclude VAT. The Assessment fare is credited against any onward journey within twelve months. No season ticket.</p></div>
+  </div></div>
+
+  <!-- H -->
+  <div class="label"><span class="n">H</span><h2>Blueprint</h2><p>A section drawing on drafting paper: the Assessment is the surveyed foundation (hatched gold), the model is the structure, dashboards are what people see, Managed BI is the maintenance schedule. Dimension lines carry weeks and prices. Engineering rigour as a brand signal.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">02 · How the work is structured</p>
+    <h3 class="t">Four steps. <span class="em">Drawn before anything is built.</span></h3>
+    <div class="bp">
+      <svg viewBox="0 0 1000 360">
+        <defs><pattern id="h" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 8 L8 0" stroke="#ffc93c" stroke-width=".8" opacity=".7"/></pattern></defs>
+        <!-- foundation -->
+        <rect class="hatch" x="120" y="280" width="560" height="44" />
+        <text class="big" x="140" y="310">01 · Reporting Assessment</text><text class="pr" x="560" y="310">£2,500</text>
+        <!-- structure -->
+        <rect class="wall" x="160" y="190" width="480" height="90" />
+        <line class="wall" x1="160" y1="235" x2="640" y2="235" /><line class="wall" x1="300" y1="190" x2="300" y2="280" /><line class="wall" x1="500" y1="190" x2="500" y2="280" />
+        <text class="big" x="178" y="220">02 · Single Source of Truth</text><text class="pr" x="520" y="265">£8–15k</text>
+        <!-- dashboards floor with windows -->
+        <rect class="wall" x="200" y="110" width="400" height="80" />
+        <rect class="wall" x="220" y="130" width="60" height="40" /><rect class="wall" x="300" y="130" width="60" height="40" /><rect class="wall" x="380" y="130" width="60" height="40" /><rect class="wall" x="460" y="130" width="60" height="40" />
+        <text class="big" x="218" y="100">03 · Decision Dashboards</text><text class="pr" x="535" y="158">£6–12k</text>
+        <!-- roof / maintenance -->
+        <path class="gl" d="M180 110 L400 40 L620 110" /><text x="400" y="30" text-anchor="middle">04 · MANAGED BI · from £750/mo · OPTIONAL</text>
+        <!-- dimension lines right -->
+        <line class="dim" x1="720" y1="280" x2="720" y2="324" /><line class="dim" x1="712" y1="280" x2="728" y2="280" /><line class="dim" x1="712" y1="324" x2="728" y2="324" /><text x="735" y="306">2 WKS · FIXED</text>
+        <line class="dim" x1="720" y1="190" x2="720" y2="278" /><line class="dim" x1="712" y1="190" x2="728" y2="190" /><text x="735" y="238">4–6 WKS</text>
+        <line class="dim" x1="720" y1="110" x2="720" y2="188" /><line class="dim" x1="712" y1="110" x2="728" y2="110" /><text x="735" y="152">3–4 WKS</text>
+        <!-- dimension bottom -->
+        <line class="dim" x1="120" y1="345" x2="680" y2="345" /><line class="dim" x1="120" y1="338" x2="120" y2="352" /><line class="dim" x1="680" y1="338" x2="680" y2="352" /><text x="400" y="358" text-anchor="middle">SURVEYED FIRST · CREDITED AGAINST ANYTHING ABOVE</text>
+        <!-- callouts left -->
+        <line class="gl" x1="40" y1="302" x2="118" y2="302" /><text x="40" y="294">FOUNDATION</text>
+        <line class="gl" x1="40" y1="235" x2="158" y2="235" /><text x="40" y="227">STRUCTURE</text>
+        <line class="gl" x1="40" y1="150" x2="198" y2="150" /><text x="40" y="142">WHAT PEOPLE SEE</text>
+        <text x="860" y="60">REV A</text><text x="860" y="76">SCALE: EACH STEP OPTIONAL</text><text x="860" y="92">PRICES EX VAT</text>
+      </svg>
+      <div class="ttl"><span>Drawing</span><b>ABI / D&amp;BI / 02</b><span>Checked: before each step</span></div>
+    </div>
+  </div></div>
+
+  <!-- I -->
+  <div class="label"><span class="n">I</span><h2>Build log</h2><p>A terminal that types out the plan like a deployment log — each step, its duration and price, the credit applied, ticks for deliverables. Speaks to the technical buyer and makes "fixed, scoped, verifiable" feel literal.</p></div>
+  <div class="frame"><div class="sec dark">
+    <p class="marker">02 · How the work is structured</p>
+    <h3 class="t">Four steps. <span class="em">Scoped like code, not like consulting.</span></h3>
+    <div class="term"><div class="bar"><i></i><i></i><i></i><span>abi · engagement plan</span></div><pre id="log"></pre></div>
+  </div></div>
+
+  <!-- J -->
+  <div class="label"><span class="n">J</span><h2>The calendar</h2><p>A week-by-week plan: when each step runs, what lands at each milestone, and dashed "you decide" lines between them. The honest answer to "how long will this take?" — about twelve weeks to live dashboards.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">02 · How the work is structured</p>
+    <h3 class="t">Four steps. <span class="em">About twelve weeks, start to live.</span></h3>
+    <div class="gantt">
+      <div class="head"><div>Week</div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>→</div></div>
+      <div class="row"><div><h4>01 · Reporting Assessment</h4><span class="dur">Fixed · where every client starts</span></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="bar gold" style="left:calc(220px + 0*(100% - 220px)/14);width:calc(2*(100% - 220px)/14 - 4px)"><span>Assessment</span><span class="price">£2,500</span></div>
+        <div class="ms" style="left:calc(220px + 2*(100% - 220px)/14 - 10px)"></div><small style="left:calc(220px + 2*(100% - 220px)/14 + 6px)">Costed plan in your hands</small>
+        <div class="decide" style="left:calc(220px + 2*(100% - 220px)/14)"></div>
+      </div>
+      <div class="row"><div><h4>02 · Single Source of Truth</h4><span class="dur">Assessment credited</span></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="bar" style="left:calc(220px + 2*(100% - 220px)/14 + 4px);width:calc(6*(100% - 220px)/14 - 8px);animation-delay:.4s"><span>One model, reconciled</span><span class="price">£8–15k</span></div>
+        <div class="decide" style="left:calc(220px + 8*(100% - 220px)/14)"></div>
+      </div>
+      <div class="row"><div><h4>03 · Decision Dashboards</h4><span class="dur">Power BI</span></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="bar" style="left:calc(220px + 8*(100% - 220px)/14 + 4px);width:calc(4*(100% - 220px)/14 - 8px);animation-delay:.8s"><span>Five views</span><span class="price">£6–12k</span></div>
+        <div class="ms" style="left:calc(220px + 12*(100% - 220px)/14 - 10px)"></div><small style="left:calc(220px + 12*(100% - 220px)/14 + 6px)">Live</small>
+      </div>
+      <div class="row"><div><h4>04 · Managed BI</h4><span class="dur">Optional · cancel monthly</span></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="bar ghost" style="left:calc(220px + 12*(100% - 220px)/14 + 4px);width:calc(2*(100% - 220px)/14 - 8px);animation-delay:1.2s"><span>Kept running</span><span class="price">£750/mo</span></div>
+      </div>
+    </div>
+    <p class="note">Indicative. The Assessment fixes the dates for everything after it. Prices exclude VAT.</p>
+  </div></div>
+
+  <!-- K -->
+  <div class="label"><span class="n">K</span><h2>Circuit route</h2><p>The same gold traces as the home carousel: your spreadsheets enter on the left, pass through four chips, one trusted number exits on the right. Pulses flow continuously. Ties this page visually to the rest of the site.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">02 · How the work is structured</p>
+    <h3 class="t">Four steps. <span class="em">From spreadsheets to one number.</span></h3>
+    <div class="cir">
+      <svg viewBox="0 0 1000 260">
+        <!-- traces -->
+        <path class="tr" d="M60 130 H160 M300 130 H370 M510 130 H580 M720 130 H790 M930 130 H960" />
+        <path class="tg" d="M60 130 H160 M300 130 H370 M510 130 H580 M720 130 H790 M930 130 H960" />
+        <!-- junction dots -->
+        <circle class="node" cx="160" cy="130" r="3.5"/><circle class="node" cx="370" cy="130" r="3.5"/><circle class="node" cx="580" cy="130" r="3.5"/><circle class="node" cx="790" cy="130" r="3.5"/>
+        <!-- input / output -->
+        <rect class="io" x="0" y="112" width="60" height="36" rx="4"/><text class="iot" x="30" y="134" text-anchor="middle">IN</text>
+        <text class="sm" x="30" y="166" text-anchor="middle">Excel · CSV</text><text class="sm" x="30" y="178" text-anchor="middle">Xero · CRM</text>
+        <rect class="io" x="960" y="112" width="40" height="36" rx="4"/><text class="iot" x="980" y="134" text-anchor="middle">OUT</text>
+        <text class="sm" x="980" y="166" text-anchor="middle">One number</text><text class="sm" x="980" y="178" text-anchor="middle">everyone trusts</text>
+        <!-- chips -->
+        <g transform="translate(160 70)">
+          <g class="pin"><line x1="20" y1="-8" x2="20" y2="0"/><line x1="50" y1="-8" x2="50" y2="0"/><line x1="90" y1="-8" x2="90" y2="0"/><line x1="120" y1="-8" x2="120" y2="0"/><line x1="20" y1="120" x2="20" y2="128"/><line x1="50" y1="120" x2="50" y2="128"/><line x1="90" y1="120" x2="90" y2="128"/><line x1="120" y1="120" x2="120" y2="128"/></g>
+          <rect class="chip on" width="140" height="120" rx="6"/><text class="lbl" x="14" y="24">01 · 2 wks</text><text class="nm" x="14" y="50">Reporting</text><text class="nm" x="14" y="68">Assessment</text><text class="pr" x="14" y="100">£2,500</text>
+        </g>
+        <g transform="translate(370 70)">
+          <g class="pin"><line x1="20" y1="-8" x2="20" y2="0"/><line x1="50" y1="-8" x2="50" y2="0"/><line x1="90" y1="-8" x2="90" y2="0"/><line x1="120" y1="-8" x2="120" y2="0"/><line x1="20" y1="120" x2="20" y2="128"/><line x1="50" y1="120" x2="50" y2="128"/><line x1="90" y1="120" x2="90" y2="128"/><line x1="120" y1="120" x2="120" y2="128"/></g>
+          <rect class="chip" width="140" height="120" rx="6"/><text class="lbl" x="14" y="24">02 · 4–6 wks</text><text class="nm" x="14" y="50">Single Source</text><text class="nm" x="14" y="68">of Truth</text><text class="pr" x="14" y="100">£8–15k</text>
+        </g>
+        <g transform="translate(580 70)">
+          <g class="pin"><line x1="20" y1="-8" x2="20" y2="0"/><line x1="50" y1="-8" x2="50" y2="0"/><line x1="90" y1="-8" x2="90" y2="0"/><line x1="120" y1="-8" x2="120" y2="0"/><line x1="20" y1="120" x2="20" y2="128"/><line x1="50" y1="120" x2="50" y2="128"/><line x1="90" y1="120" x2="90" y2="128"/><line x1="120" y1="120" x2="120" y2="128"/></g>
+          <rect class="chip" width="140" height="120" rx="6"/><text class="lbl" x="14" y="24">03 · 3–4 wks</text><text class="nm" x="14" y="50">Decision</text><text class="nm" x="14" y="68">Dashboards</text><text class="pr" x="14" y="100">£6–12k</text>
+        </g>
+        <g transform="translate(790 70)">
+          <g class="pin"><line x1="20" y1="-8" x2="20" y2="0"/><line x1="50" y1="-8" x2="50" y2="0"/><line x1="90" y1="-8" x2="90" y2="0"/><line x1="120" y1="-8" x2="120" y2="0"/><line x1="20" y1="120" x2="20" y2="128"/><line x1="50" y1="120" x2="50" y2="128"/><line x1="90" y1="120" x2="90" y2="128"/><line x1="120" y1="120" x2="120" y2="128"/></g>
+          <rect class="chip" width="140" height="120" rx="6" stroke-dasharray="4 3"/><text class="lbl" x="14" y="24">04 · ongoing</text><text class="nm" x="14" y="50">Managed</text><text class="nm" x="14" y="68">BI</text><text class="pr" x="14" y="100">£750/mo</text>
+        </g>
+        <text class="sm" x="230" y="230" text-anchor="middle">CREDITED FORWARD →</text>
+        <text class="sm" x="500" y="230" text-anchor="middle">EACH CHIP WORKS ON ITS OWN · STOP AT ANY POINT</text>
+      </svg>
+    </div>
+  </div></div>
+
+  <!-- L -->
+  <div class="label"><span class="n">L</span><h2>The stack</h2><p>Four blocks drop into place, Assessment at the base in gold, each narrower than the last; the Managed layer is dashed because it's optional. Reads as "this is built on something solid" — and the copy on the right does the selling.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">02 · How the work is structured</p>
+    <h3 class="t">Four steps. <span class="em">Built on the first one.</span></h3>
+    <div class="stk">
+      <div class="pile">
+        <div class="ground"></div>
+        <div class="blk"><h4><small>01 · 2 weeks</small>Reporting Assessment</h4><span class="price">£2,500</span></div>
+        <div class="blk"><h4><small>02 · 4–6 weeks</small>Single Source of Truth</h4><span class="price">£8–15k</span></div>
+        <div class="blk"><h4><small>03 · 3–4 weeks</small>Decision Dashboards</h4><span class="price">£6–12k</span></div>
+        <div class="blk"><h4><small>04 · optional</small>Managed BI</h4><span class="price">£750/mo</span></div>
+      </div>
+      <ol>
+        <li><b>01</b><span><strong>Everything starts with the Assessment.</strong>Two weeks, fixed price. You get an inventory, your key figures reconciled, and a costed plan. The fee is credited against any step above it.</span></li>
+        <li><b>02</b><span><strong>One model sits on that plan.</strong>Pipelines from your systems into a single documented model that reconciles to the ledger on every refresh.</span></li>
+        <li><b>03</b><span><strong>Dashboards sit on the model.</strong>Five to ten views that drive decisions, built in Power BI with the people who'll use them.</span></li>
+        <li><b>04</b><span><strong>Managed BI is optional.</strong>We keep it running and add the next question. Cancel monthly; you keep everything.</span></li>
+      </ol>
+    </div>
+  </div></div>
+
+  <!-- M -->
+  <div class="label"><span class="n">M</span><h2>Numerals</h2><p>Typographic and quiet: four huge Spectral numerals in hairline grey. Hover (or tap) turns one gold and slides a charcoal drawer up with the detail and who it's for. Premium editorial feel; detail on demand.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">02 · How the work is structured</p>
+    <h3 class="t">Four steps. <span class="em">Each one stands on its own.</span></h3>
+    <div class="num">
+      <div class="col on"><span class="big">01</span><h4>Reporting Assessment</h4><span class="price">£2,500</span><span class="dur">2 weeks · fixed</span><div class="dr">Inventory, reconciliation, costed plan. Credited against any later step.<span class="who">Where every client starts.</span></div></div>
+      <div class="col"><span class="big">02</span><h4>Single Source of Truth</h4><span class="price">£8–15k</span><span class="dur">4–6 weeks</span><div class="dr">One documented model that reconciles to the ledger on every refresh.<span class="who">For "two reports, two numbers".</span></div></div>
+      <div class="col"><span class="big">03</span><h4>Decision Dashboards</h4><span class="price">£6–12k</span><span class="dur">3–4 weeks</span><div class="dr">Five to ten views that drive decisions, in Power BI, built with the people who use them.<span class="who">For "I can't see margin by client".</span></div></div>
+      <div class="col"><span class="big">04</span><h4>Managed BI</h4><span class="price">from £750/mo</span><span class="dur">ongoing · optional</span><div class="dr">Kept running, extended, reviewed monthly. Cancel monthly; you keep everything.<span class="who">After go-live.</span></div></div>
+    </div>
+  </div></div>
+</div>
+
+<script>
+document.getElementById("theme").addEventListener("click", () => { const r=document.documentElement; const dark=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches); r.setAttribute("data-theme",dark?"light":"dark"); theme.textContent=dark?"Night":"Day"; });
+/* I: typed log */
+const LINES = [
+  ['<span class="c">$</span> abi plan <span class="c">--client</span> "your company"', 0],
+  ['', 300],
+  ['<span class="g">▸ step 01</span>  <span class="w">reporting-assessment</span>        2 wks     <span class="w">£2,500</span>   <span class="g">[start here]</span>', 200],
+  ['           inventory <span class="ok">✓</span>   reconciliation <span class="ok">✓</span>   costed-plan <span class="ok">✓</span>', 120],
+  ['', 200],
+  ['<span class="g">▸ step 02</span>  <span class="w">single-source-of-truth</span>      4–6 wks   <span class="w">£8–15k</span>   <span class="c">[optional]</span>', 200],
+  ['           pipelines <span class="ok">✓</span>   one model <span class="ok">✓</span>   reconciles-on-refresh <span class="ok">✓</span>', 120],
+  ['           <span class="cr">credit  −£2,500  (assessment fee applied)</span>', 120],
+  ['', 200],
+  ['<span class="g">▸ step 03</span>  <span class="w">decision-dashboards</span>         3–4 wks   <span class="w">£6–12k</span>   <span class="c">[optional]</span>', 200],
+  ['           5–10 views <span class="ok">✓</span>   power-bi <span class="ok">✓</span>   training <span class="ok">✓</span>', 120],
+  ['', 200],
+  ['<span class="g">▸ step 04</span>  <span class="w">managed-bi</span>                  ongoing   <span class="w">£750/mo</span>  <span class="c">[optional · cancel monthly]</span>', 200],
+  ['', 300],
+  ['<span class="c">#</span> each step priced before it starts · stop after any · you keep the deliverables · ex VAT', 200],
+  ['<span class="c">$</span> <span class="cur"></span>', 400],
+];
+(async () => { const el=document.getElementById("log"); for (const [html,delay] of LINES) { await new Promise(r=>setTimeout(r,delay)); el.innerHTML += html + "\n"; } })();
+/* M: tap support */
+document.querySelectorAll(".num .col").forEach(c => c.addEventListener("click", () => { document.querySelectorAll(".num .col").forEach(x=>x.classList.remove("on")); c.classList.add("on"); }));
+</script>

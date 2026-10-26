@@ -1,0 +1,212 @@
+<title>Four Steps Section Options</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --ink:#17161f; --paper:#fff; --dim:#f7f5f0; --soft:#fbf3dc; --gold:#e9b324; --accent:#c98a06; --good:#1f9d61;
+    --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:66ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .top { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+  .top button { font:inherit; font-size:13px; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:44px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; }
+  .frame { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--dim); }
+  .sec { padding:64px 48px; }
+  @media (max-width:860px) { .sec { padding:40px 20px; } }
+  .marker { display:inline-flex; align-items:center; gap:12px; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .marker::before { content:""; width:28px; height:1px; background:var(--accent); }
+  h3.t { font-family:var(--serif); font-weight:400; font-size:clamp(1.8rem,3.4vw,2.6rem); line-height:1.12; letter-spacing:-.015em; margin:14px 0 0; color:var(--ink); text-wrap:balance; max-width:22ch; }
+  .em { font-style:italic; font-weight:300; color:var(--accent); }
+  .sub { font-weight:300; color:var(--muted); font-size:1.05rem; max-width:40rem; margin:14px 0 0; }
+  .mono { font-family:var(--mono); }
+  .price { font-family:var(--serif); font-weight:400; color:var(--ink); }
+  .dur { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .who { font-size:12px; font-style:italic; color:var(--accent); }
+  .btn { display:inline-flex; align-items:center; gap:8px; font:inherit; font-size:13px; font-weight:600; padding:9px 14px; border-radius:6px; text-decoration:none; cursor:pointer; border:0; background:var(--gold); color:#17161f; }
+
+  /* A staircase */
+  .stair { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; align-items:end; margin-top:40px; }
+  .step { background:var(--paper); border:1px solid var(--line); border-radius:8px 8px 0 0; padding:18px; position:relative; }
+  .step:nth-child(1){ min-height:220px; background:var(--soft); border-color:var(--gold); } .step:nth-child(2){min-height:270px} .step:nth-child(3){min-height:320px} .step:nth-child(4){min-height:370px}
+  .step .n { font-family:var(--mono); font-size:11px; color:var(--accent); }
+  .step h4 { margin:8px 0 2px; font-family:var(--serif); font-weight:400; font-size:1.15rem; color:var(--ink); }
+  .step .price { font-size:1.5rem; margin-top:10px; display:block; }
+  .step p { margin:10px 0 0; font-size:12.5px; color:var(--muted); font-weight:300; }
+  .step .who { display:block; margin-top:10px; }
+  .step::after { content:""; position:absolute; left:0; right:0; bottom:-1px; height:3px; background:var(--gold); opacity:.35; } .step:nth-child(1)::after { opacity:1; }
+  .ground { height:1px; background:var(--line); }
+  @media (max-width:860px) { .stair { grid-template-columns:1fr; } .step { min-height:auto !important; } }
+
+  /* B roadmap */
+  .road { margin-top:48px; position:relative; }
+  .road .track { position:relative; height:2px; background:var(--line); margin:0 6% 28px; }
+  .road .track i { position:absolute; left:0; top:0; height:2px; background:var(--gold); width:0; animation:grow 2.2s ease-out .3s forwards; }
+  @keyframes grow { to { width:100%; } }
+  .road .nodes { display:grid; grid-template-columns:repeat(4,1fr); }
+  .road .node { text-align:center; position:relative; padding:0 10px; }
+  .road .node::before { content:""; position:absolute; left:50%; top:-36px; width:12px; height:12px; border-radius:50%; background:var(--paper); border:2px solid var(--gold); transform:translateX(-50%); }
+  .road .node:first-child::before { background:var(--gold); }
+  .road .node .n { font-family:var(--mono); font-size:10px; color:var(--accent); }
+  .road .node h4 { margin:6px 0 0; font-family:var(--serif); font-weight:400; font-size:1.15rem; color:var(--ink); }
+  .road .node .price { display:block; font-size:1.4rem; margin-top:6px; }
+  .road .node .dur { display:block; margin-top:4px; }
+  .road .node p { margin:10px 0 0; font-size:12.5px; color:var(--muted); font-weight:300; }
+  .road .seg { display:grid; grid-template-columns:repeat(3,1fr); margin:-56px 18% 40px; font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); text-align:center; }
+  @media (max-width:860px) { .road .nodes { grid-template-columns:1fr; gap:24px; } .road .track, .road .seg { display:none; } .road .node::before { display:none; } .road .node { text-align:left; } }
+
+  /* D quote document */
+  .quote { margin:36px auto 0; max-width:620px; background:#fff; border:1px solid var(--line); padding:30px 34px; font-size:13px; color:#222; box-shadow:0 30px 60px -36px rgba(0,0,0,.35); position:relative; }
+  .quote .hd { display:flex; justify-content:space-between; border-bottom:2px solid #17161f; padding-bottom:10px; margin-bottom:6px; }
+  .quote .hd h4 { margin:0; font-family:var(--serif); font-weight:400; font-size:1.3rem; }
+  .quote .hd span { font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:#777; text-align:right; }
+  .quote table { width:100%; border-collapse:collapse; }
+  .quote td { padding:11px 0; border-bottom:1px solid #eee; vertical-align:top; }
+  .quote td.n { text-align:right; font-family:var(--serif); font-size:1.1rem; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .quote td b { font-weight:500; display:block; } .quote td small { color:#777; font-weight:300; font-size:12px; }
+  .quote td.credit { color:var(--good); } .quote td.credit b { color:var(--good); }
+  .quote tr.tot td { border-bottom:0; border-top:2px solid #17161f; padding-top:12px; font-weight:500; } .quote tr.tot td.n { font-size:1.4rem; }
+  .quote .ft { margin-top:14px; font-family:var(--mono); font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:#777; display:flex; justify-content:space-between; }
+  .quote .stamp { position:absolute; right:26px; top:18px; border:2px solid var(--accent); color:var(--accent); font-family:var(--mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; padding:4px 8px; transform:rotate(-6deg); opacity:.85; }
+  :root:not([data-theme="light"]) .quote { background:#1e1d26; color:#eee; } :root:not([data-theme="light"]) .quote .hd, :root:not([data-theme="light"]) .quote tr.tot td { border-color:#eee; } :root:not([data-theme="light"]) .quote td { border-color:#2b2935; } :root:not([data-theme="light"]) .quote td small, :root:not([data-theme="light"]) .quote .ft, :root:not([data-theme="light"]) .quote .hd span { color:#9b99aa; }
+
+  /* E path builder */
+  .pb { display:grid; grid-template-columns:1.4fr 1fr; gap:24px; margin-top:36px; align-items:start; }
+  .pb .opt { display:grid; gap:10px; }
+  .pb label { display:grid; grid-template-columns:22px 1fr auto; gap:14px; align-items:start; border:1px solid var(--line); background:var(--paper); border-radius:8px; padding:14px 16px; cursor:pointer; }
+  .pb label.on { border-color:var(--gold); background:var(--soft); }
+  .pb label input { margin-top:5px; accent-color:var(--gold); }
+  .pb label h4 { margin:0; font-family:var(--serif); font-weight:400; font-size:1.1rem; color:var(--ink); } .pb label p { margin:3px 0 0; font-size:12.5px; color:var(--muted); font-weight:300; }
+  .pb label .price { font-size:1.1rem; white-space:nowrap; }
+  .pb .tot { border:1px solid var(--line); background:var(--paper); border-radius:8px; padding:22px; position:sticky; top:20px; }
+  .pb .tot small { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); display:block; }
+  .pb .tot .big { font-family:var(--serif); font-weight:300; font-size:2.6rem; line-height:1; color:var(--ink); margin-top:6px; font-variant-numeric:tabular-nums; }
+  .pb .tot .lines { margin-top:14px; border-top:1px solid var(--line); font-size:12.5px; }
+  .pb .tot .lines div { display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid var(--line); color:var(--muted); } .pb .tot .lines div span:last-child { font-family:var(--mono); color:var(--ink); } .pb .tot .lines div.cr span { color:var(--good); }
+  .pb .tot .dur { margin-top:12px; display:block; }
+  .pb .tot .btn { margin-top:14px; }
+  @media (max-width:860px) { .pb { grid-template-columns:1fr; } }
+
+  /* F spine accordion */
+  .spine { margin-top:36px; position:relative; padding-left:48px; }
+  .spine::before { content:""; position:absolute; left:15px; top:8px; bottom:8px; width:2px; background:var(--line); }
+  .spine details { position:relative; border-bottom:1px solid var(--line); }
+  .spine details::before { content:attr(data-n); position:absolute; left:-48px; top:16px; width:32px; height:32px; border-radius:50%; background:var(--paper); border:2px solid var(--line); font-family:var(--mono); font-size:10px; display:grid; place-items:center; color:var(--muted); }
+  .spine details[open]::before, .spine details:first-child::before { border-color:var(--gold); color:var(--accent); background:var(--soft); }
+  .spine summary { list-style:none; cursor:pointer; display:grid; grid-template-columns:1fr auto auto; gap:24px; align-items:baseline; padding:18px 0; }
+  .spine summary::-webkit-details-marker { display:none; }
+  .spine summary h4 { margin:0; font-family:var(--serif); font-weight:400; font-size:1.3rem; color:var(--ink); } .spine summary .who { display:block; margin-top:2px; }
+  .spine summary .price { font-size:1.3rem; } .spine summary .dur { align-self:center; }
+  .spine .body { padding:0 0 20px; display:grid; grid-template-columns:1.3fr 1fr; gap:28px; font-size:13.5px; color:var(--fg); font-weight:300; }
+  .spine .body ul { margin:0; padding-left:16px; color:var(--muted); } .spine .body h5 { margin:0 0 6px; font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:500; }
+  @media (max-width:860px) { .spine summary { grid-template-columns:1fr; gap:4px; } .spine .body { grid-template-columns:1fr; } }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div><h1>"Four steps" — five treatments</h1><p class="lede">Same four steps and prices. They differ in whether the section reads as a path, a price list, a document, or a tool.</p></div>
+    <button type="button" id="theme">Night</button>
+  </div>
+
+  <!-- A -->
+  <div class="label"><span class="n">A</span><h2>Staircase</h2><p>The ladder, literally: four risers of increasing height, the first in gold. Reads as progression at a glance; details live inside each step.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">02 · How the work is structured</p>
+    <h3 class="t">Four steps. <span class="em">Each one stands on its own.</span></h3>
+    <p class="sub">Start with the Assessment. Continue only if the plan it produces makes sense to you. Prices exclude VAT.</p>
+    <div class="stair">
+      <div class="step"><span class="n">01</span><h4>Reporting Assessment</h4><span class="dur">2 weeks</span><span class="price">£2,500</span><p>Inventory, reconciliation, costed plan. Credited against any step below.</p><span class="who">Where every client starts.</span></div>
+      <div class="step"><span class="n">02</span><h4>Single Source of Truth</h4><span class="dur">4–6 weeks</span><span class="price">£8–15k</span><p>Pipelines into one documented model that reconciles to the ledger on every refresh.</p><span class="who">For "two reports, two numbers".</span></div>
+      <div class="step"><span class="n">03</span><h4>Decision Dashboards</h4><span class="dur">3–4 weeks</span><span class="price">£6–12k</span><p>The five to ten views that drive decisions, built in Power BI on the model above.</p><span class="who">For "I can't see margin by client".</span></div>
+      <div class="step"><span class="n">04</span><h4>Managed BI</h4><span class="dur">Ongoing</span><span class="price">from £750/mo</span><p>We keep it running, add the next question, review monthly. Your team owns it.</p><span class="who">After go-live.</span></div>
+    </div>
+    <div class="ground"></div>
+  </div></div>
+
+  <!-- B -->
+  <div class="label"><span class="n">B</span><h2>Roadmap</h2><p>A horizontal track with four nodes; the gold progress line draws across on load. Segment labels between nodes show the gap ("then 4–6 weeks"). Calm and linear.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">02 · How the work is structured</p>
+    <h3 class="t">Four steps. <span class="em">Each one stands on its own.</span></h3>
+    <div class="road">
+      <div class="track"><i></i></div>
+      <div class="nodes">
+        <div class="node"><span class="n">01</span><h4>Reporting Assessment</h4><span class="price">£2,500</span><span class="dur">2 weeks · fixed</span><p>Inventory, reconciliation, costed plan.</p></div>
+        <div class="node"><span class="n">02</span><h4>Single Source of Truth</h4><span class="price">£8–15k</span><span class="dur">4–6 weeks</span><p>One documented model, reconciled on every refresh.</p></div>
+        <div class="node"><span class="n">03</span><h4>Decision Dashboards</h4><span class="price">£6–12k</span><span class="dur">3–4 weeks</span><p>Five to ten views that drive decisions, in Power BI.</p></div>
+        <div class="node"><span class="n">04</span><h4>Managed BI</h4><span class="price">from £750/mo</span><span class="dur">ongoing · optional</span><p>Kept running, extended, reviewed monthly.</p></div>
+      </div>
+    </div>
+  </div></div>
+
+  <!-- D -->
+  <div class="label"><span class="n">D</span><h2>The quote, as a document</h2><p>An itemised quote on paper showing the credit mechanic explicitly: the Assessment fee appears as a line, then as a −£2,500 credit against the next step. Makes "fixed price, credited" tangible.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">02 · How the work is structured</p>
+    <h3 class="t">Four steps. <span class="em">Each one priced before it starts.</span></h3>
+    <div class="quote">
+      <span class="stamp">Illustrative</span>
+      <div class="hd"><h4>Typical engagement</h4><span>Fixed prices · ex VAT<br>Each step optional</span></div>
+      <table>
+        <tr><td><b>01 · Reporting Assessment</b><small>2 weeks · inventory, reconciliation, costed plan</small></td><td class="n">£2,500</td></tr>
+        <tr><td><b>02 · Single Source of Truth</b><small>4–6 weeks · one model, reconciled to the ledger</small></td><td class="n">£11,000</td></tr>
+        <tr><td class="credit"><b>Assessment fee credited</b><small style="color:var(--good)">against follow-on work within 12 months</small></td><td class="n credit">−£2,500</td></tr>
+        <tr><td><b>03 · Decision Dashboards</b><small>3–4 weeks · five views, Power BI</small></td><td class="n">£8,000</td></tr>
+        <tr class="tot"><td>Total, delivered in ~10 weeks</td><td class="n">£19,000</td></tr>
+        <tr><td><b>04 · Managed BI</b><small>ongoing, optional · kept running and extended</small></td><td class="n">from £750 / mo</td></tr>
+      </table>
+      <div class="ft"><span>Stop after any step and keep the deliverables</span><span>No lock-in</span></div>
+    </div>
+  </div></div>
+
+  <!-- E -->
+  <div class="label"><span class="n">E</span><h2>Path builder</h2><p>Tick the steps you think you need; the panel totals it, applies the Assessment credit, and sums the duration. Interactive pricing that answers "what would this actually cost us?".</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">02 · Build your path</p>
+    <h3 class="t">Four steps. <span class="em">Take the ones you need.</span></h3>
+    <div class="pb">
+      <div class="opt" id="opt">
+        <label class="on"><input type="checkbox" checked disabled data-p="2500" data-w="2"><div><h4>01 · Reporting Assessment</h4><p>Always first. Credited against anything below.</p></div><span class="price">£2,500</span></label>
+        <label><input type="checkbox" data-p="11000" data-w="5"><div><h4>02 · Single Source of Truth</h4><p>One documented model, reconciled on every refresh.</p></div><span class="price">£8–15k</span></label>
+        <label><input type="checkbox" data-p="8000" data-w="3.5"><div><h4>03 · Decision Dashboards</h4><p>Five to ten views that drive decisions.</p></div><span class="price">£6–12k</span></label>
+        <label><input type="checkbox" data-p="750" data-m="1"><div><h4>04 · Managed BI</h4><p>Kept running, extended, reviewed monthly.</p></div><span class="price">£750/mo</span></label>
+      </div>
+      <div class="tot">
+        <small>Your path · indicative</small>
+        <div class="big" id="big">£2,500</div>
+        <div class="lines" id="lines"></div>
+        <span class="dur" id="dur">2 weeks</span>
+        <a class="btn" href="#">Book a conversation →</a>
+      </div>
+    </div>
+  </div></div>
+
+  <!-- F -->
+  <div class="label"><span class="n">F</span><h2>Spine accordion</h2><p>A vertical gold spine with numbered nodes; each step is a row (name · duration · price) that expands to show deliverables and who it's for. Compact, scannable, detail on demand.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">02 · How the work is structured</p>
+    <h3 class="t">Four steps. <span class="em">Each one stands on its own.</span></h3>
+    <div class="spine">
+      <details data-n="01" open><summary><div><h4>Reporting Assessment</h4><span class="who">Where every client starts.</span></div><span class="dur">2 weeks</span><span class="price">£2,500</span></summary><div class="body"><div><h5>You receive</h5><ul><li>Inventory of every report and data source</li><li>Key figures reconciled to the accounts</li><li>Costed plan, in priority order</li></ul></div><div><h5>Then</h5><p style="margin:0">Fee credited against any step below within 12 months. Stop here and keep the report.</p></div></div></details>
+      <details data-n="02"><summary><div><h4>Single Source of Truth</h4><span class="who">For "two reports, two numbers".</span></div><span class="dur">4–6 weeks</span><span class="price">£8,000 – £15,000</span></summary><div class="body"><div><h5>You receive</h5><ul><li>Pipelines from your systems into one model</li><li>One definition per figure, documented</li><li>Reconciliation visible on every refresh</li></ul></div><div><h5>Then</h5><p style="margin:0">Everything else sits on this. Dashboards built elsewhere can point at it.</p></div></div></details>
+      <details data-n="03"><summary><div><h4>Decision Dashboards</h4><span class="who">For "I can't see margin by client".</span></div><span class="dur">3–4 weeks</span><span class="price">£6,000 – £12,000</span></summary><div class="body"><div><h5>You receive</h5><ul><li>Five to ten views in Power BI</li><li>Designed with the people who use them</li><li>Training and documentation</li></ul></div><div><h5>Then</h5><p style="margin:0">Your team runs it. Managed BI is optional.</p></div></div></details>
+      <details data-n="04"><summary><div><h4>Managed BI</h4><span class="who">After go-live.</span></div><span class="dur">Ongoing</span><span class="price">from £750 / month</span></summary><div class="body"><div><h5>You receive</h5><ul><li>Monitoring and fixes</li><li>New questions added as they come up</li><li>Monthly review of the numbers with you</li></ul></div><div><h5>Then</h5><p style="margin:0">Cancel monthly. You keep everything.</p></div></div></details>
+    </div>
+  </div></div>
+</div>
+
+<script>
+document.getElementById("theme").addEventListener("click", () => { const r=document.documentElement; const dark=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches); r.setAttribute("data-theme",dark?"light":"dark"); theme.textContent=dark?"Night":"Day"; });
+/* E */
+const fmt=n=>"£"+n.toLocaleString("en-GB");
+function calc(){ const boxes=[...document.querySelectorAll("#opt input")]; let total=0, weeks=0, monthly=0, lines=[]; boxes.forEach(b=>{ b.closest("label").classList.toggle("on",b.checked); if(!b.checked) return; const p=+b.dataset.p; if(b.dataset.m){ monthly+=p; lines.push([b.closest("label").querySelector("h4").textContent, fmt(p)+"/mo"]); return;} total+=p; weeks+=+b.dataset.w||0; lines.push([b.closest("label").querySelector("h4").textContent, fmt(p)]); });
+  const follow = boxes.some(b=>b.checked && !b.disabled && !b.dataset.m); if(follow){ total-=2500; lines.push(["Assessment credited","−£2,500","cr"]); }
+  document.getElementById("big").textContent=fmt(total)+(monthly?` + ${fmt(monthly)}/mo`:""); document.getElementById("lines").innerHTML=lines.map(l=>`<div class="${l[2]||""}"><span>${l[0]}</span><span>${l[1]}</span></div>`).join(""); document.getElementById("dur").textContent=`about ${weeks} weeks${monthly?" · then ongoing":""}`; }
+document.querySelectorAll("#opt input").forEach(b=>b.addEventListener("change",calc)); calc();
+</script>
