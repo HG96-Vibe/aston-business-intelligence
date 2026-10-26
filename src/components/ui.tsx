@@ -126,10 +126,10 @@ export function PhotoBand({ src, position = "center", children, note, tall = fal
 }
 
 export function CtaBand() {
+  /* A charcoal card that overlaps the top of the footer photograph (the footer adds the matching top padding). */
   return (
-    <section className="relative overflow-hidden bg-deep text-white">
-      <div className="absolute inset-0 bg-cover bg-center opacity-[0.14] mix-blend-screen" style={{ backgroundImage: "url(/img/plexus.jpg)" }} aria-hidden="true" />
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-6 px-4 py-16 md:flex-row md:items-center md:justify-between md:px-6">
+    <section className="relative z-10 -mb-24 px-4 md:px-6">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 rounded-lg border border-[#ffc93c]/30 bg-[#17161f] px-6 py-10 text-white shadow-[0_40px_80px_-30px_rgba(0,0,0,.6)] md:flex-row md:items-center md:justify-between md:px-10">
         <div>
           <h2 className="text-2xl md:text-3xl">Talk to us about <span className="em" style={{ color: "#ffc93c" }}>your business.</span></h2>
           <p className="mt-2 max-w-xl font-light text-white/70">

@@ -18,8 +18,8 @@ export function SiteFooter() {
     <footer className="relative overflow-hidden bg-[#17161f] text-white">
       {/* St Paul's and the City at golden hour, under a charcoal wash */}
       <div className="absolute inset-0 bg-cover bg-[position:center_38%]" style={{ backgroundImage: "url(/img/london-stpauls.jpg)" }} aria-hidden="true" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#17161f]/72 via-[#17161f]/66 to-[#0e0d13]/92" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-6xl gap-x-10 gap-y-10 px-4 py-14 md:grid-cols-[1.3fr_1fr_1fr] md:px-6">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#17161f]/55 via-[#17161f]/70 to-[#0e0d13]/92" aria-hidden="true" />
+      <div className="relative mx-auto grid max-w-6xl gap-x-10 gap-y-10 px-4 pb-14 pt-40 md:grid-cols-[1.3fr_1fr_1fr] md:px-6">
         <div>
           <Logo height={36} reversed />
           <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-white/70">
