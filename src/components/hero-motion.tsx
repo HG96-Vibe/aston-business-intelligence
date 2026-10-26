@@ -49,10 +49,10 @@ export function HeroMotion({ forceDark = false }: { forceDark?: boolean } = {}) 
       for (let y = g / 2; y < H; y += g) for (let x = g / 2; x < W; x += g) dots.push({ x, y, l: 0 });
     }
     function mono() {
-      // fit the 120x100 monogram into the left ~50% of the hero, behind the copy, never taller than 85% of it
-      const s = Math.min((H * 0.85) / 100, (W * 0.5) / 120);
-      const x = W * 0.03;
-      const y = (H - 100 * s) / 2;
+      // small signature mark, bottom-right corner (about 110px wide on desktop, 72px on phones)
+      const s = (W < 768 ? 72 : 110) / 120;
+      const x = W - 120 * s - Math.max(16, W * 0.035);
+      const y = H - 100 * s - 34;
       return { x, y, s };
     }
 
@@ -76,11 +76,11 @@ export function HeroMotion({ forceDark = false }: { forceDark?: boolean } = {}) 
       const fade = phase > 1.3 ? 1 - (phase - 1.3) / 0.3 : 1;
       const m = mono();
       ctx.save(); ctx.translate(m.x, m.y); ctx.scale(m.s, m.s);
-      ctx.lineWidth = 1.2 / m.s; ctx.lineJoin = "round";
+      ctx.lineWidth = 1.5 / m.s; ctx.lineJoin = "round";
       ctx.setLineDash([600, 600]); ctx.lineDashOffset = 600 - prog * 600;
       paths.forEach((p, i) => {
         const isInk = INK_PARTS.has(i);
-        ctx.strokeStyle = `rgba(${isInk ? ink : gold},${(isInk ? 0.18 : 0.4) * fade})`;
+        ctx.strokeStyle = `rgba(${isInk ? ink : gold},${(isInk ? 0.3 : 0.85) * fade})`;
         ctx.stroke(p);
       });
       ctx.restore();
