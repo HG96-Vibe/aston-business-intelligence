@@ -1,0 +1,190 @@
+<title>Aston Hero Motion Board</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Six ambient background treatments behind the real Aston hero. */
+  :root {
+    --bg: #f7f5f0; --fg: #17161f; --muted: #625f6e; --card: #ffffff; --line: #e6e2d8;
+    --ink: #17161f; --paper: #ffffff; --paperDim: #f7f5f0; --gold: #e9b324; --accent: #c98a06;
+    --gold-rgb: 233,179,36; --ink-rgb: 23,22,31;
+    --serif: "Spectral", Georgia, serif; --sans: "Albert Sans", ui-sans-serif, system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --paperDim:#19181f; --gold:#ffc93c; --accent:#ffc93c; --gold-rgb:255,201,60; --ink-rgb:243,241,247; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --paperDim:#19181f; --gold:#ffc93c; --accent:#ffc93c; --gold-rgb:255,201,60; --ink-rgb:243,241,247; color-scheme: dark; }
+
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 64px; padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:66ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .tabs { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 14px; align-items:center; }
+  .tabs button { font:inherit; font-size:13px; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .tabs button[aria-pressed="true"] { border-color:var(--gold); background:var(--gold); color:#17161f; font-weight:600; }
+  .tabs .theme { margin-left:auto; }
+  .tabs button:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+
+  .stage { position:relative; overflow:hidden; border:1px solid var(--line); border-radius:12px; background:var(--paper); min-height:520px; }
+  .stage canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+  .hero { position:relative; z-index:1; padding:84px 48px 64px; max-width:860px; }
+  .marker { display:inline-flex; align-items:center; gap:12px; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .marker::before { content:""; width:28px; height:1px; background:var(--accent); }
+  .hero h2 { font-family:var(--serif); font-weight:400; font-size:clamp(2.2rem,5.2vw,4rem); line-height:1.08; letter-spacing:-.015em; margin:22px 0 0; color:var(--ink); text-wrap:balance; }
+  .hero h2 .em { font-style:italic; font-weight:300; color:var(--accent); }
+  .hero p { font-weight:300; font-size:1.15rem; line-height:1.6; color:var(--muted); max-width:38rem; margin:28px 0 0; }
+  .btns { display:flex; flex-wrap:wrap; gap:10px; margin-top:34px; }
+  .btn { font:inherit; font-size:14px; font-weight:600; padding:12px 20px; border-radius:6px; text-decoration:none; }
+  .btn.p { background:var(--gold); color:#17161f; } .btn.g { border:1px solid var(--line); color:var(--ink); background:var(--paper); }
+  .note { margin-top:14px; padding:16px 18px; background:var(--card); border:1px solid var(--line); border-radius:10px; font-size:14px; line-height:1.55; color:var(--muted); }
+  .note b { color:var(--fg); }
+  @media (max-width:640px) { .hero { padding:56px 20px 44px; } .stage { min-height:460px; } }
+  @media (prefers-reduced-motion: reduce) { .stage canvas { display:none; } }
+</style>
+
+<div class="wrap">
+  <h1>Hero background motion — six treatments</h1>
+  <p class="lede">The real hero, with each animation running behind it. Move your cursor over the stage (or scroll on a phone) — some react. Switch day/night to check both. Every option is canvas-based, pointer-transparent, and switched off for people who prefer reduced motion.</p>
+
+  <div class="tabs" id="tabs">
+    <button type="button" data-k="signals" aria-pressed="true">1 · Signal lines</button>
+    <button type="button" data-k="dust" aria-pressed="false">2 · Gold dust</button>
+    <button type="button" data-k="contours" aria-pressed="false">3 · Contours</button>
+    <button type="button" data-k="constellation" aria-pressed="false">4 · Constellation</button>
+    <button type="button" data-k="monogram" aria-pressed="false">5 · Monogram echo</button>
+    <button type="button" data-k="grid" aria-pressed="false">6 · Reactive grid</button>
+    <button type="button" data-k="combo" aria-pressed="false">★ 1 + 6 combined</button>
+    <button type="button" class="theme" id="theme">Night</button>
+  </div>
+
+  <div class="stage" id="stage">
+    <canvas id="c"></canvas>
+    <div class="hero">
+      <p class="marker">Business intelligence consultancy in London</p>
+      <h2>Business intelligence for companies that want <span class="em">decisions, not just dashboards.</span></h2>
+      <p>Aston helps UK SMEs see their business clearly, decide faster and deliver what they decide — through data analysis, business analysis, AI consulting and project delivery.</p>
+      <div class="btns"><a class="btn p" href="#">Book a 30-minute conversation →</a><a class="btn g" href="#">See what we do</a></div>
+    </div>
+  </div>
+  <div class="note" id="note"></div>
+</div>
+
+<script>
+const notes = {
+  signals: "<b>Signal lines.</b> Four thin gold traces drift right-to-left like sparklines; now and then one ticks upward. Says 'data' without a single chart icon. Lowest visual weight of the six. Non-interactive.",
+  dust: "<b>Gold dust.</b> A field of tiny gold points that drift and twinkle, denser near the headline. Ties to the metallic logo. Must stay faint — at higher density this reads as crypto.",
+  contours: "<b>Contours.</b> Soft concentric lines that slowly morph, like a terrain or elevation map — 'seeing the shape of the business'. Calm, editorial, best in night mode.",
+  constellation: "<b>Constellation.</b> Sparse nodes joined by hairlines, gently breathing; nodes near the cursor warm to gold. The familiar 'data network' — effective, slightly expected.",
+  monogram: "<b>Monogram echo.</b> The ABi geometry at huge scale and ~4% opacity, slowly rotating behind the text. Pure brand. More watermark than animation.",
+  grid: "<b>Reactive grid.</b> A faint dot grid; dots near the cursor lift and warm to gold, then settle. On a phone it responds to scroll. Feels premium and alive without moving on its own.",
+  combo: "<b>1 + 6 combined.</b> Drifting signal lines plus the reactive grid underneath. Two quiet layers: one ambient, one responsive. This is my recommendation.",
+};
+
+const canvas = document.getElementById("c"), ctx = canvas.getContext("2d");
+const stage = document.getElementById("stage");
+let W = 0, H = 0, DPR = 1, mode = "signals", t0 = performance.now(), mouse = { x: -9999, y: -9999 }, raf = 0;
+function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function resize() {
+  DPR = Math.min(2, window.devicePixelRatio || 1);
+  W = stage.clientWidth; H = stage.clientHeight;
+  canvas.width = W * DPR; canvas.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  init();
+}
+stage.addEventListener("pointermove", (e) => { const r = stage.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+stage.addEventListener("pointerleave", () => { mouse.x = -9999; mouse.y = -9999; });
+window.addEventListener("scroll", () => { if (matchMedia("(pointer:coarse)").matches) { mouse.x = W * 0.7; mouse.y = (window.scrollY * 0.6) % H; } }, { passive: true });
+
+// ---------- state per mode ----------
+let S = {};
+function rand(a, b) { return a + Math.random() * (b - a); }
+function init() {
+  S = {};
+  if (mode === "signals" || mode === "combo") {
+    S.lines = Array.from({ length: 4 }, (_, i) => ({ y: H * (0.18 + i * 0.2), amp: rand(10, 26), f: rand(0.004, 0.009), sp: rand(12, 24), off: rand(0, 1000), w: rand(0.6, 1.1), tick: 0 }));
+  }
+  if (mode === "dust") S.p = Array.from({ length: Math.round(W * H / 6000) }, () => ({ x: rand(0, W), y: rand(0, H), r: rand(0.6, 1.8), vx: rand(-0.08, 0.08), vy: rand(-0.12, -0.03), ph: rand(0, 6.28) }));
+  if (mode === "constellation") S.n = Array.from({ length: Math.round(W * H / 22000) }, () => ({ x: rand(0, W), y: rand(0, H), vx: rand(-0.12, 0.12), vy: rand(-0.12, 0.12) }));
+  if (mode === "grid" || mode === "combo") { const g = 34; S.g = g; S.d = []; for (let y = g; y < H; y += g) for (let x = g; x < W; x += g) S.d.push({ x, y, l: 0 }); }
+}
+
+// ---------- draw per mode ----------
+function draw(now) {
+  const t = (now - t0) / 1000;
+  ctx.clearRect(0, 0, W, H);
+  const gold = css("--gold-rgb"), ink = css("--ink-rgb");
+
+  if (mode === "signals" || mode === "combo") {
+    for (const L of S.lines) {
+      ctx.beginPath();
+      for (let x = -10; x <= W + 10; x += 6) {
+        const u = (x + t * L.sp + L.off);
+        let y = L.y + Math.sin(u * L.f) * L.amp + Math.sin(u * L.f * 2.7) * L.amp * 0.3;
+        if (L.tick > 0 && x > L.tx && x < L.tx + 90) y -= Math.sin((x - L.tx) / 90 * Math.PI) * 38 * L.tick;
+        x === -10 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = `rgba(${gold},${0.28 * L.w})`; ctx.lineWidth = L.w; ctx.stroke();
+      if (L.tick > 0) L.tick -= 0.01; else if (Math.random() < 0.003) { L.tick = 1; L.tx = rand(W * 0.35, W * 0.85); }
+    }
+  }
+  if (mode === "dust") {
+    for (const p of S.p) {
+      p.x += p.vx; p.y += p.vy; if (p.y < -4) { p.y = H + 4; p.x = rand(0, W); }
+      const near = 1 - Math.min(1, Math.hypot(p.x - W * 0.3, p.y - H * 0.42) / (W * 0.5));
+      const a = (0.18 + 0.5 * near) * (0.6 + 0.4 * Math.sin(t * 2 + p.ph));
+      ctx.fillStyle = `rgba(${gold},${a})`; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.28); ctx.fill();
+    }
+  }
+  if (mode === "contours") {
+    const cx = W * 0.72, cy = H * 0.5;
+    for (let i = 1; i <= 14; i++) {
+      ctx.beginPath();
+      for (let a = 0; a <= 6.3; a += 0.05) {
+        const r = i * 42 + Math.sin(a * 3 + t * 0.35 + i) * 14 + Math.sin(a * 5 - t * 0.2) * 7;
+        const x = cx + Math.cos(a) * r * 1.35, y = cy + Math.sin(a) * r;
+        a === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.closePath(); ctx.strokeStyle = `rgba(${i % 4 === 0 ? gold : ink},${i % 4 === 0 ? 0.35 : 0.08})`; ctx.lineWidth = 1; ctx.stroke();
+    }
+  }
+  if (mode === "constellation") {
+    const N = S.n;
+    for (const n of N) { n.x += n.vx; n.y += n.vy; if (n.x < 0 || n.x > W) n.vx *= -1; if (n.y < 0 || n.y > H) n.vy *= -1; }
+    for (let i = 0; i < N.length; i++) for (let j = i + 1; j < N.length; j++) {
+      const d = Math.hypot(N[i].x - N[j].x, N[i].y - N[j].y); if (d < 150) { ctx.strokeStyle = `rgba(${ink},${0.12 * (1 - d / 150)})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(N[i].x, N[i].y); ctx.lineTo(N[j].x, N[j].y); ctx.stroke(); }
+    }
+    for (const n of N) { const m = Math.hypot(n.x - mouse.x, n.y - mouse.y); const hot = Math.max(0, 1 - m / 160); ctx.fillStyle = hot > 0 ? `rgba(${gold},${0.4 + 0.6 * hot})` : `rgba(${ink},0.28)`; ctx.beginPath(); ctx.arc(n.x, n.y, 1.8 + hot * 2, 0, 6.28); ctx.fill(); }
+  }
+  if (mode === "monogram") {
+    ctx.save(); ctx.translate(W * 0.78, H * 0.52); ctx.rotate(Math.sin(t * 0.08) * 0.08); const s = H / 100 * 1.25; ctx.scale(s, s); ctx.translate(-58, -50);
+    const P = (d, a) => { ctx.fillStyle = `rgba(${gold},${a})`; ctx.fill(new Path2D(d), "evenodd"); };
+    P("M38 4 L0 92 H76 Z M38 34 L18 92 H58 Z", 0.05); P("M45.5 14 H64 A19 19 0 0 1 64 52 H70 A20 20 0 0 1 70 92 H79.5 Z M53 26 H62 A7 7 0 0 1 62 40 H59 Z M66.5 60 H70 A11 11 0 0 1 70 82 H76 Z", 0.05);
+    ctx.fillStyle = `rgba(${ink},0.04)`; ctx.fill(new Path2D("M38 48 L27 92 H49 Z")); ctx.fill(new Path2D("M96 36 H110 V92 H96 Z")); P("M111 18 A8 8 0 1 1 95 18 A8 8 0 1 1 111 18 Z", 0.07);
+    ctx.restore();
+  }
+  if (mode === "grid" || mode === "combo") {
+    for (const d of S.d) {
+      const m = Math.hypot(d.x - mouse.x, d.y - mouse.y); const target = Math.max(0, 1 - m / 140);
+      d.l += (target - d.l) * 0.08;
+      const a = 0.10 + d.l * 0.8;
+      ctx.fillStyle = d.l > 0.02 ? `rgba(${gold},${a})` : `rgba(${ink},0.10)`;
+      ctx.beginPath(); ctx.arc(d.x, d.y - d.l * 4, 1 + d.l * 1.4, 0, 6.28); ctx.fill();
+    }
+  }
+  raf = requestAnimationFrame(draw);
+}
+
+// ---------- controls ----------
+function setMode(k) {
+  mode = k; init();
+  for (const b of document.querySelectorAll("#tabs [data-k]")) b.setAttribute("aria-pressed", String(b.dataset.k === k));
+  document.getElementById("note").innerHTML = notes[k];
+}
+document.getElementById("tabs").addEventListener("click", (e) => { const b = e.target.closest("[data-k]"); if (b) setMode(b.dataset.k); });
+document.getElementById("theme").addEventListener("click", () => {
+  const r = document.documentElement; const dark = r.getAttribute("data-theme") === "dark" || (!r.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+  r.setAttribute("data-theme", dark ? "light" : "dark"); document.getElementById("theme").textContent = dark ? "Night" : "Day";
+});
+document.addEventListener("visibilitychange", () => { if (document.hidden) cancelAnimationFrame(raf); else { t0 = performance.now(); raf = requestAnimationFrame(draw); } });
+window.addEventListener("resize", resize);
+resize(); setMode("signals");
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) raf = requestAnimationFrame(draw);
+</script>
