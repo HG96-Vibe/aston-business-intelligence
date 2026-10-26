@@ -1,0 +1,154 @@
+<title>FAQ Section Options</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --ink:#17161f; --paper:#fff; --dim:#f7f5f0; --soft:#fbf3dc; --gold:#e9b324; --accent:#c98a06; --good:#1f9d61; --deep:#17161f;
+    --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; --good:#7fd1a5; --deep:#0d0c12; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; --good:#7fd1a5; --deep:#0d0c12; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:66ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .top { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+  .top button { font:inherit; font-size:13px; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:44px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; }
+  .frame { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--dim); }
+  .sec { padding:64px 48px; }
+  @media (max-width:860px) { .sec { padding:40px 20px; } }
+  .marker { font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0; }
+  h3.t { font-family:var(--serif); font-weight:400; font-size:clamp(1.8rem,3.4vw,2.6rem); line-height:1.12; letter-spacing:-.015em; margin:14px 0 0; color:var(--ink); text-wrap:balance; max-width:20ch; }
+  .em { font-style:italic; font-weight:300; color:var(--accent); }
+  .sub { font-weight:300; color:var(--muted); font-size:1.02rem; max-width:34rem; margin:14px 0 0; }
+  .two { display:grid; grid-template-columns:1fr 1.5fr; gap:48px; align-items:start; }
+  @media (max-width:860px) { .two { grid-template-columns:1fr; } }
+  .mono { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .q { font-family:var(--serif); color:var(--ink); }
+  .a { font-weight:300; color:var(--muted); line-height:1.6; font-size:14px; }
+  .btn { display:inline-flex; align-items:center; gap:8px; font:inherit; font-size:13px; font-weight:600; padding:9px 14px; border-radius:6px; text-decoration:none; cursor:pointer; border:0; background:var(--gold); color:#17161f; }
+
+  /* A short answer first */
+  .sa { border-top:1px solid var(--line); }
+  .sa .row { display:grid; grid-template-columns:1.1fr 1.4fr; gap:36px; padding:26px 0; border-bottom:1px solid var(--line); }
+  .sa .q { font-size:1.3rem; line-height:1.25; } .sa .q small { display:block; font-family:var(--mono); font-size:9px; letter-spacing:1.2px; text-transform:uppercase; color:var(--accent); margin-bottom:6px; }
+  .sa .short { font-family:var(--serif); font-weight:400; font-size:1.35rem; color:var(--ink); line-height:1.2; } .sa .short b { font-weight:400; color:var(--accent); font-style:italic; }
+  .sa .a { margin-top:8px; }
+  @media (max-width:860px) { .sa .row { grid-template-columns:1fr; gap:10px; } }
+
+  /* B chat */
+  .chat { display:grid; gap:14px; max-width:620px; }
+  .chat .msg { max-width:82%; padding:12px 16px; border-radius:14px; font-size:14px; line-height:1.5; opacity:0; transform:translateY(8px); animation:in .5s ease-out forwards; }
+  .chat .you { justify-self:end; background:var(--paper); border:1px solid var(--line); border-bottom-right-radius:4px; font-family:var(--serif); font-size:15.5px; color:var(--ink); }
+  .chat .us { justify-self:start; background:var(--ink); color:var(--paper); border-bottom-left-radius:4px; font-weight:300; }
+  .chat .us b { display:block; font-family:var(--mono); font-size:8.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--gold); margin-bottom:4px; font-weight:500; }
+  .chat .you small { display:block; font-family:var(--mono); font-size:8.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); margin-bottom:4px; text-align:right; }
+  @keyframes in { to { opacity:1; transform:none; } }
+  .chat .ask { justify-self:stretch; display:flex; gap:8px; margin-top:8px; } .chat .ask input { flex:1; font:inherit; font-size:14px; padding:10px 14px; border:1px solid var(--line); border-radius:8px; background:var(--paper); color:var(--fg); } .chat .ask input::placeholder { color:var(--muted); }
+
+  /* C objections */
+  .obj { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:36px; }
+  .obj .card { background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:22px; display:flex; flex-direction:column; }
+  .obj .card .blunt { font-family:var(--serif); font-style:italic; font-weight:300; font-size:1.35rem; line-height:1.2; color:var(--ink); }
+  .obj .card .blunt::before { content:"“"; color:var(--accent); } .obj .card .blunt::after { content:"”"; color:var(--accent); }
+  .obj .card .a { margin-top:14px; } .obj .card .tag { margin-top:auto; padding-top:16px; font-family:var(--mono); font-size:9px; letter-spacing:1.2px; text-transform:uppercase; color:var(--accent); }
+  .obj .card.cta { background:var(--soft); border-color:var(--gold); justify-content:center; } .obj .card.cta .q { font-size:1.2rem; } .obj .card.cta p { font-size:13px; color:var(--muted); margin:8px 0 14px; }
+  @media (max-width:860px) { .obj { grid-template-columns:1fr; } }
+
+  /* D accordion+ */
+  .acc { border-top:1px solid var(--line); }
+  .acc details { border-bottom:1px solid var(--line); } .acc summary { list-style:none; cursor:pointer; display:grid; grid-template-columns:40px 1fr 24px; gap:14px; align-items:baseline; padding:20px 0; }
+  .acc summary::-webkit-details-marker { display:none; }
+  .acc summary .n { font-family:var(--mono); font-size:10px; color:var(--accent); } .acc summary .q { font-size:1.2rem; } .acc summary .pm { font-family:var(--mono); color:var(--accent); text-align:right; }
+  .acc details[open] summary .pm::before { content:"–"; } .acc details:not([open]) summary .pm::before { content:"+"; }
+  .acc .body { display:grid; grid-template-columns:40px 1fr; gap:14px; padding:0 0 22px; } .acc .body .a { max-width:60ch; }
+  .acc .body .more { margin-top:10px; font-family:var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:var(--accent); text-decoration:none; }
+  .side { position:sticky; top:20px; } .side .card { margin-top:28px; background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:20px; } .side .card p { margin:0 0 12px; font-size:13.5px; color:var(--muted); font-weight:300; } .side .card .q { font-size:1.1rem; display:block; margin-bottom:6px; }
+
+  /* E ask */
+  .ask2 { margin-top:36px; max-width:720px; }
+  .ask2 .in { display:flex; align-items:center; gap:12px; border:1px solid var(--line); background:var(--paper); border-radius:10px; padding:14px 18px; }
+  .ask2 .in span { color:var(--accent); font-family:var(--mono); } .ask2 .in input { flex:1; font:inherit; font-family:var(--serif); font-size:1.2rem; border:0; background:none; color:var(--ink); outline:none; } .ask2 .in input::placeholder { color:var(--muted); font-style:italic; }
+  .ask2 .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; } .ask2 .chips button { font:inherit; font-size:12.5px; padding:6px 12px; border-radius:999px; border:1px solid var(--line); background:none; color:var(--muted); cursor:pointer; } .ask2 .chips button:hover { border-color:var(--gold); color:var(--ink); }
+  .ask2 .res { margin-top:22px; border-top:1px solid var(--line); } .ask2 .res .r { padding:18px 0; border-bottom:1px solid var(--line); } .ask2 .res .q { font-size:1.15rem; display:block; } .ask2 .res .a { margin-top:6px; }
+  .ask2 .res .r mark { background:var(--soft); color:inherit; padding:0 2px; }
+  .ask2 .none { padding:22px; background:var(--soft); border:1px solid var(--gold); border-radius:8px; margin-top:16px; display:none; } .ask2 .none .q { display:block; font-size:1.1rem; margin-bottom:6px; } .ask2 .none p { margin:0 0 12px; font-size:13.5px; color:var(--muted); }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div><h1>FAQ — five treatments</h1><p class="lede">Section 05 of the Data &amp; BI page, and the last before the CTA. Five questions today, in a plain accordion. These treat the FAQ as the final objection-handler rather than a footnote.</p></div>
+    <button type="button" id="theme">Night</button>
+  </div>
+
+  <!-- A -->
+  <div class="label"><span class="n">A</span><h2>Short answer first</h2><p>Every question gets a one-line verdict in large serif — "No.", "Power BI.", "Two weeks." — then the explanation underneath. All open, no clicking. Reads as confident and respects the reader's time.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">05 · Questions</p><h3 class="t">Before you ask.</h3>
+    <div class="sa" id="sa" style="margin-top:32px"></div>
+  </div></div>
+
+  <!-- B -->
+  <div class="label"><span class="n">B</span><h2>The conversation</h2><p>The FAQ as a chat: your questions on the right in serif, our answers on the left in charcoal, arriving one by one as you scroll into it. Ends with an input: "Ask something else" → opens the contact form with it pre-filled. Warm, and in the page's "owner asks" voice.</p></div>
+  <div class="frame"><div class="sec two">
+    <div><p class="marker">05 · Questions</p><h3 class="t">The ones <span class="em">everyone asks.</span></h3><p class="sub">Five questions from first calls, answered the way we'd answer them on the phone.</p></div>
+    <div class="chat" id="chat"></div>
+  </div></div>
+
+  <!-- C -->
+  <div class="label"><span class="n">C</span><h2>Objections, said bluntly</h2><p>Six cards. Each is headed with the thing people actually think, in quotes — "Our data is a mess", "Won't this replace our finance team?" — with the answer beneath and a tag for which step addresses it. The sixth card is the CTA. Scannable, slightly disarming.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">05 · Questions</p><h3 class="t">What people are <span class="em">actually thinking.</span></h3>
+    <div class="obj" id="obj"></div>
+  </div></div>
+
+  <!-- D -->
+  <div class="label"><span class="n">D</span><h2>Accordion, finished properly</h2><p>Keep the accordion but finish it: numbered, first one open by default, each answer ends with a "see: Reporting Assessment →" link to the relevant step, and a sticky side card "Not here? Ask us" with a mailto that pre-fills the subject. The lowest-risk upgrade.</p></div>
+  <div class="frame"><div class="sec two">
+    <div class="side"><p class="marker">05 · Questions</p><h3 class="t">Before you ask.</h3>
+      <div class="card"><span class="q">Not answered here?</span><p>Email the question. You'll get a straight answer from whoever will run the work, within a working day.</p><a class="btn" href="#">Ask a question →</a></div></div>
+    <div class="acc" id="acc"></div>
+  </div></div>
+
+  <!-- E -->
+  <div class="label"><span class="n">E</span><h2>Ask us anything</h2><p>A search box in serif — "Type your question…" — with suggestion chips. It filters the answers as you type and highlights matches. If nothing matches, a gold card appears: "We haven't written that one yet — send it and we'll answer by email", which pre-fills the contact form. Turns the FAQ into a lead capture.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">05 · Questions</p><h3 class="t">Ask us <span class="em">anything.</span></h3>
+    <div class="ask2">
+      <div class="in"><span>?</span><input id="qin" placeholder="Type your question — e.g. which tool, how long, what if our data is a mess…"></div>
+      <div class="chips" id="chips"></div>
+      <div class="res" id="res"></div>
+      <div class="none" id="none"><span class="q">We haven't written that one yet.</span><p>Send it over and you'll get a straight answer by email within a working day.</p><a class="btn" href="#">Send this question →</a></div>
+    </div>
+  </div></div>
+</div>
+
+<script>
+document.getElementById("theme").addEventListener("click", () => { const r=document.documentElement; const dark=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches); r.setAttribute("data-theme",dark?"light":"dark"); theme.textContent=dark?"Night":"Day"; });
+const F=[
+  {q:"Which tool will you build in?", s:"<b>Power BI</b>, by default.", a:"It is included in most Microsoft 365 plans and your team can learn it. If you already use Looker Studio or Tableau, we build in that. We never resell licences.", blunt:"We don't want to buy another platform.", step:"Tooling", link:"#tooling"},
+  {q:"Our data is a mess. Do we need to clean it first?", s:"<b>No.</b> That's the Assessment.", a:"Finding and fixing the mess is most of the Assessment. If a source is unusable we will say so in writing and propose the cheapest way to make it usable.", blunt:"Our data is a mess.", step:"Reporting Assessment", link:"#ladder"},
+  {q:"Will this replace our finance team or our accountant?", s:"<b>No.</b> It removes the copying.", a:"It removes the manual assembly work so they spend their time on judgement rather than copying numbers between spreadsheets.", blunt:"Won't this replace our finance team?", step:"Single Source of Truth", link:"#ladder"},
+  {q:"How do we know the dashboard is right?", s:"It's <b>reconciled</b> on every refresh.", a:"Every refresh is reconciled to your accounting system and the reconciliation is visible on the dashboard. If a number does not tie back, it is flagged — not hidden.", blunt:"How do we know it's right?", step:"Five views", link:"#views"},
+  {q:"What happens after you leave?", s:"<b>You own it.</b> We're optional.", a:"You receive documentation, a recorded training session, and a defined support window. Managed BI is optional; many clients run it themselves.", blunt:"What happens when you leave?", step:"Managed BI", link:"#ladder"},
+];
+/* A */
+document.getElementById("sa").innerHTML=F.map((f,i)=>`<div class="row"><div class="q"><small>0${i+1}</small>${f.q}</div><div><div class="short">${f.s}</div><p class="a">${f.a}</p></div></div>`).join("");
+/* B */
+(()=>{ const c=document.getElementById("chat"); let d=0; F.forEach(f=>{ c.insertAdjacentHTML("beforeend",`<div class="msg you" style="animation-delay:${d}s"><small>You</small>${f.q}</div>`); d+=.6; c.insertAdjacentHTML("beforeend",`<div class="msg us" style="animation-delay:${d}s"><b>ABI</b>${f.a}</div>`); d+=.9; }); c.insertAdjacentHTML("beforeend",`<div class="ask msg" style="animation-delay:${d}s;max-width:100%;padding:0;background:none"><input placeholder="Ask something else…"><a class="btn" href="#">Send</a></div>`); })();
+/* C */
+document.getElementById("obj").innerHTML=F.map(f=>`<div class="card"><div class="blunt">${f.blunt}</div><p class="a">${f.a}</p><span class="tag">→ ${f.step}</span></div>`).join("")+`<div class="card cta"><span class="q">Thinking something else?</span><p>Ask it. You'll get a straight answer from whoever would run the work, within a working day.</p><a class="btn" href="#">Book a conversation →</a></div>`;
+/* D */
+document.getElementById("acc").innerHTML=F.map((f,i)=>`<details ${i===0?"open":""}><summary><span class="n">0${i+1}</span><span class="q">${f.q}</span><span class="pm"></span></summary><div class="body"><span></span><div><p class="a" style="margin:0">${f.a}</p><a class="more" href="${f.link}">See: ${f.step} →</a></div></div></details>`).join("");
+/* E */
+(()=>{ const inp=document.getElementById("qin"), res=document.getElementById("res"), none=document.getElementById("none"), chips=document.getElementById("chips");
+  ["which tool","data is a mess","replace finance","is it right","after you leave"].forEach(t=>chips.insertAdjacentHTML("beforeend",`<button type="button">${t}</button>`));
+  chips.addEventListener("click",e=>{ if(e.target.tagName==="BUTTON"){ inp.value=e.target.textContent; render(); } });
+  const hl=(s,t)=>t?s.replace(new RegExp(`(${t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")})`,"ig"),"<mark>$1</mark>"):s;
+  const render=()=>{ const t=inp.value.trim().toLowerCase(); const terms=t.split(/\s+/).filter(Boolean); const hits=F.filter(f=>!terms.length||terms.some(w=>(f.q+" "+f.a).toLowerCase().includes(w)));
+    res.innerHTML=hits.map(f=>`<div class="r"><span class="q">${hl(f.q,t)}</span><p class="a">${hl(f.a,t)}</p></div>`).join(""); none.style.display=hits.length?"none":"block"; };
+  inp.addEventListener("input",render); render(); })();
+</script>
