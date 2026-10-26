@@ -6,11 +6,11 @@ import { Section, SectionHead } from "@/components/ui";
 import { bookHref } from "@/components/offers";
 
 /* ── Live dashboard card ──────────────────────────────────────────────────── */
-type Scene = { title: string; tag: string; kpis: [string, string, string, boolean?][]; spark: number[]; rows: [string, string, "ok" | "warn"][]; foot: [string, string] };
+type Scene = { title: string; tag: string; kpis: [string, string, string, boolean?][]; spark: number[]; rows: [string, string, "ok" | "warn"][]; foot: [string, string]; sources: string[]; outputs: string[] };
 const scenes: Scene[] = [
-  { title: "Finance · month-end", tag: "example", kpis: [["Revenue MTD", "£412k", "+6.1% vs plan"], ["Gross margin", "38.2%", "+1.4 pts"], ["Debtors > 60d", "£61k", "−£18k", true]], spark: [31, 34, 33, 37, 40, 39, 43, 45, 44, 48, 51, 53], rows: [["Month-end close", "1 day", "ok"], ["Reports reconciled to Xero", "✓ 14 / 14", "ok"], ["Margin by client", "12 of 40 below 25%", "warn"], ["Spreadsheets retired", "11", "ok"]], foot: ["Refreshed 06:00 daily", "Xero · Sheets · HubSpot"] },
-  { title: "Sales · pipeline", tag: "example", kpis: [["Pipeline", "£1.9m", "+£240k"], ["Win rate", "31%", "+4 pts"], ["Days to close", "34", "−9 days", true]], spark: [12, 15, 14, 18, 17, 21, 24, 22, 27, 29, 31, 34], rows: [["Deals stalled > 30d", "9 flagged", "warn"], ["Forecast vs actual", "within 5%", "ok"], ["Lead source ROI", "Referrals 4.2×", "ok"], ["Rep activity", "auto-logged", "ok"]], foot: ["Live from HubSpot", "dbt · BigQuery"] },
-  { title: "Operations · AI assistant", tag: "pilot", kpis: [["Enquiries triaged", "142", "this week"], ["Hours returned", "26h", "to the team"], ["Errors caught", "7", "before invoicing"]], spark: [2, 4, 7, 9, 12, 14, 19, 21, 24, 26, 27, 26], rows: [["Supplier invoices matched", "118 / 121", "ok"], ["Quotes drafted for sign-off", "23", "ok"], ["Exceptions escalated", "3", "warn"], ["Customer data left systems", "none", "ok"]], foot: ["Pilot · week 3 of 6", "vs baseline"] },
+  { title: "Finance · month-end", tag: "example", kpis: [["Revenue MTD", "£412k", "+6.1% vs plan"], ["Gross margin", "38.2%", "+1.4 pts"], ["Debtors > 60d", "£61k", "−£18k", true]], spark: [31, 34, 33, 37, 40, 39, 43, 45, 44, 48, 51, 53], rows: [["Month-end close", "1 day", "ok"], ["Reports reconciled to Xero", "✓ 14 / 14", "ok"], ["Margin by client", "12 of 40 below 25%", "warn"], ["Spreadsheets retired", "11", "ok"]], foot: ["Refreshed 06:00 daily", "Xero · Sheets · HubSpot"], sources: ["Xero", "Sheets", "HubSpot", "Bank feed"], outputs: ["Power BI", "Board pack", "Email digest", "Slack alert"] },
+  { title: "Sales · pipeline", tag: "example", kpis: [["Pipeline", "£1.9m", "+£240k"], ["Win rate", "31%", "+4 pts"], ["Days to close", "34", "−9 days", true]], spark: [12, 15, 14, 18, 17, 21, 24, 22, 27, 29, 31, 34], rows: [["Deals stalled > 30d", "9 flagged", "warn"], ["Forecast vs actual", "within 5%", "ok"], ["Lead source ROI", "Referrals 4.2×", "ok"], ["Rep activity", "auto-logged", "ok"]], foot: ["Live from HubSpot", "dbt · BigQuery"], sources: ["HubSpot", "Website", "Calendar", "Xero"], outputs: ["Looker", "Weekly forecast", "Rep scorecard", "CRM tasks"] },
+  { title: "Operations · AI assistant", tag: "pilot", kpis: [["Enquiries triaged", "142", "this week"], ["Hours returned", "26h", "to the team"], ["Errors caught", "7", "before invoicing"]], spark: [2, 4, 7, 9, 12, 14, 19, 21, 24, 26, 27, 26], rows: [["Supplier invoices matched", "118 / 121", "ok"], ["Quotes drafted for sign-off", "23", "ok"], ["Exceptions escalated", "3", "warn"], ["Customer data left systems", "none", "ok"]], foot: ["Pilot · week 3 of 6", "vs baseline"], sources: ["Inbox", "Phone", "Web form", "WhatsApp"], outputs: ["CRM", "Quote draft", "Invoice", "Exception log"] },
 ];
 function Spark({ pts }: { pts: number[] }) {
   const w = 300, h = 60, max = Math.max(...pts), min = Math.min(...pts);
@@ -25,6 +25,39 @@ function Spark({ pts }: { pts: number[] }) {
     </svg>
   );
 }
+
+/* Circuit traces: four nodes feeding into (or out of) the card. Pure SVG; gold pulse travels each trace. */
+function Circuit({ labels, dir, seed }: { labels: string[]; dir: "in" | "out"; seed: number }) {
+  // 4 columns across a 400x110 box; card edge is at y=110 (in) or y=0 (out)
+  const xs = [50, 150, 250, 350];
+  const targets = [140, 180, 220, 260];
+  return (
+    <div className="relative hidden h-[110px] w-full md:block" aria-hidden="true">
+      <svg viewBox="0 0 400 110" className="absolute inset-0 h-full w-full" preserveAspectRatio="none">
+        {xs.map((x, i) => {
+          const tx = targets[i];
+          const d = dir === "in"
+            ? `M${x} 34 V62 Q${x} 72 ${x + Math.sign(tx - x) * 10} 72 H${tx - Math.sign(tx - x) * 10} Q${tx} 72 ${tx} 82 V110`
+            : `M${tx} 0 V28 Q${tx} 38 ${tx + Math.sign(x - tx) * 10} 38 H${x - Math.sign(x - tx) * 10} Q${x} 38 ${x} 48 V76`;
+          return (
+            <g key={i}>
+              <path d={d} fill="none" className="stroke-line" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+              <path d={d} fill="none" className="stroke-gold" strokeWidth="2" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeDasharray="14 400" style={{ animation: `trace 2.4s linear ${(i * 0.45 + seed * 0.2).toFixed(2)}s infinite` }} />
+            </g>
+          );
+        })}
+      </svg>
+      {labels.map((l, i) => (
+        <div key={l} className={`absolute flex -translate-x-1/2 flex-col items-center gap-1.5 ${dir === "in" ? "top-0" : "bottom-0"}`} style={{ left: `${(xs[i] / 400) * 100}%` }}>
+          {dir === "out" && <span className="h-5 w-5 rounded border border-line bg-paper" />}
+          <span className="whitespace-nowrap font-mono text-[9.5px] uppercase tracking-[0.14em] text-muted">{l}</span>
+          {dir === "in" && <span className="h-5 w-5 rounded border border-line bg-paper" />}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function LiveDashboard({ number }: { number?: string }) {
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -48,6 +81,8 @@ export function LiveDashboard({ number }: { number?: string }) {
             <span className="ml-1">Up next: {scenes[(i + 1) % scenes.length].title.split(" · ")[1]}</span>
           </div>
         </div>
+        <div>
+        <Circuit labels={s.sources} dir="in" seed={i} />
         <div key={i} className="overflow-hidden rounded-lg border border-line bg-paper text-[13px] shadow-[0_30px_60px_-30px_rgba(0,0,0,.25)]">
           <div className="flex items-center justify-between border-b border-line px-4 py-3">
             <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-ink"><span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-gold" />{s.title}</span>
@@ -71,6 +106,8 @@ export function LiveDashboard({ number }: { number?: string }) {
             ))}
           </div>
           <div className="flex justify-between bg-paper-dim px-4 py-3 font-mono text-[10.5px] uppercase tracking-[0.08em] text-muted"><span>{s.foot[0]}</span><span>{s.foot[1]}</span></div>
+        </div>
+        <Circuit labels={s.outputs} dir="out" seed={i + 1} />
         </div>
       </div>
     </Section>
