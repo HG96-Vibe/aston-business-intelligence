@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHero, Section, SectionHead, CtaBand, Placeholder, Button } from "@/components/ui";
+import { Section, SectionHead, CtaBand, Placeholder, Button } from "@/components/ui";
 import { WeekOne, Guarantee, bookHref } from "@/components/offers";
 import { dataBi } from "@/lib/offers";
+import { SheetsToScreen } from "@/components/sheets-to-screen";
 
 export const metadata: Metadata = {
   title: "Data & Business Intelligence",
@@ -13,17 +14,24 @@ export default function DataBiPage() {
   const d = dataBi;
   return (
     <>
-      <PageHero
-        eyebrow="Services · Data & Business Intelligence"
-        title="One set of numbers the whole business trusts,"
-        em="refreshed without anyone touching a spreadsheet."
-        intro="You already have the data — in Xero, your CRM, a few spreadsheets and one person's head. We join it up, make it reconcile to the accounts, and put it on the screens that drive decisions."
-      >
-        <div className="flex flex-wrap gap-3">
-          <Button href={bookHref()}>Book a conversation</Button>
-          <Button href="/scorecard" variant="ghost">Score your reporting in 2 minutes</Button>
+      <section className="border-b border-accent/20 bg-accent-soft">
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 md:grid-cols-[1.05fr_1fr] md:items-center md:px-6 md:py-28">
+          <div>
+            <p className="marker">Services · Data &amp; Business Intelligence</p>
+            <h1 className="mt-5 text-4xl text-ink md:text-5xl">
+              One set of numbers the whole business trusts, <span className="em">refreshed without anyone touching a spreadsheet.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-muted">
+              You already have the data — in Xero, your CRM, a few spreadsheets and one person&apos;s head. We join it up, make it reconcile to the accounts, and put it on the screens that drive decisions.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button href={bookHref()}>Book a conversation</Button>
+              <Button href="/scorecard" variant="ghost">Score your reporting in 2 minutes</Button>
+            </div>
+          </div>
+          <SheetsToScreen />
         </div>
-      </PageHero>
+      </section>
 
       {/* Pains */}
       <Section>
