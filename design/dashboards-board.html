@@ -1,0 +1,182 @@
+<title>Five Views Section Options</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --ink:#17161f; --paper:#fff; --dim:#f7f5f0; --soft:#fbf3dc; --gold:#e9b324; --accent:#c98a06; --deep:#17161f;
+    --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; --deep:#0d0c12; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; --deep:#0d0c12; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:66ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .top { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+  .top button { font:inherit; font-size:13px; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:44px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; }
+  .frame { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--paper); }
+  .sec { padding:64px 48px; }
+  @media (max-width:860px) { .sec { padding:40px 20px; } }
+  .marker { display:inline-flex; align-items:center; gap:12px; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .marker::before { content:""; width:28px; height:1px; background:var(--accent); }
+  h3.t { font-family:var(--serif); font-weight:400; font-size:clamp(1.8rem,3.4vw,2.6rem); line-height:1.12; letter-spacing:-.015em; margin:14px 0 0; color:var(--ink); text-wrap:balance; max-width:24ch; }
+  .em { font-style:italic; font-weight:300; color:var(--accent); }
+  .sub { font-weight:300; color:var(--muted); font-size:1.05rem; max-width:40rem; margin:14px 0 0; }
+  .q { font-family:var(--serif); font-style:italic; font-weight:300; color:var(--ink); }
+  .mono { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+
+  /* mini dashboard (charcoal) */
+  .dash { background:#17161f; color:#fff; border:1px solid rgba(255,201,60,.25); border-radius:10px; overflow:hidden; font-size:10px; box-shadow:0 40px 80px -36px rgba(0,0,0,.6); }
+  .dash .hd { display:flex; justify-content:space-between; align-items:center; padding:9px 13px; border-bottom:1px solid rgba(255,255,255,.1); font-family:var(--mono); font-size:9px; letter-spacing:1px; text-transform:uppercase; }
+  .dash .hd i { display:inline-block; width:7px; height:7px; border-radius:50%; background:#ffc93c; margin-right:8px; }
+  .dash .hd em { font-style:normal; color:#ffc93c; border:1px solid #ffc93c; border-radius:3px; padding:1px 6px; font-size:8px; }
+  .dash .kp { display:grid; grid-template-columns:repeat(var(--n,4),1fr); gap:1px; background:rgba(255,255,255,.1); }
+  .dash .kp div { background:#17161f; padding:9px 11px; } .dash .kp small { display:block; font-family:var(--mono); font-size:7.5px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.5); } .dash .kp b { display:block; font-family:var(--serif); font-weight:400; font-size:19px; line-height:1; margin-top:3px; } .dash .kp i { font-style:normal; font-size:8.5px; color:#7fd1a5; } .dash .kp i.d { color:#ffb37f; }
+  .dash .bd { padding:10px 13px; } .dash .cap { font-family:var(--mono); font-size:7.5px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.5); margin:0 0 6px; }
+  .dash .bars { display:flex; align-items:flex-end; gap:4px; height:52px; } .dash .bars i { flex:1; background:#ffc93c; border-radius:2px 2px 0 0; } .dash .bars i.neg { background:#ffb37f; } .dash .bars i.g { background:rgba(255,255,255,.18); }
+  .dash .hb { display:grid; gap:5px; } .dash .hb div { display:grid; grid-template-columns:62px 1fr 38px; gap:8px; align-items:center; font-family:var(--mono); font-size:7.5px; color:rgba(255,255,255,.7); } .dash .hb span { height:8px; background:#ffc93c; border-radius:2px; } .dash .hb b { text-align:right; font-weight:400; color:#fff; }
+  .dash .funnel { display:grid; gap:3px; } .dash .funnel div { height:14px; background:#ffc93c; margin:0 auto; border-radius:2px; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:7px; color:#17161f; }
+  .dash .heat { display:grid; grid-template-columns:repeat(10,1fr); gap:3px; } .dash .heat i { aspect-ratio:1; border-radius:2px; background:#ffc93c; }
+  .dash .ft { display:flex; justify-content:space-between; padding:7px 13px; border-top:1px solid rgba(255,255,255,.1); background:rgba(255,201,60,.1); font-family:var(--mono); font-size:7.5px; letter-spacing:.8px; text-transform:uppercase; color:#ffc93c; }
+  .dash svg.ln { display:block; width:100%; height:48px; }
+  .dash table { width:100%; border-collapse:collapse; font-size:8.5px; } .dash td { padding:4px 0; border-bottom:1px solid rgba(255,255,255,.08); } .dash td:last-child { text-align:right; font-family:var(--mono); } .dash td.r { color:#ffb37f; }
+
+  /* A workstation */
+  .ws { display:grid; grid-template-columns:1fr 1.4fr; gap:36px; margin-top:40px; align-items:start; }
+  .ws .tabs { display:grid; } .ws .tab { text-align:left; background:none; border:0; border-left:2px solid var(--line); padding:14px 18px; cursor:pointer; font:inherit; color:inherit; transition:border-color .3s; position:relative; }
+  .ws .tab .mono { display:block; } .ws .tab .q { display:block; font-size:1.2rem; margin-top:3px; line-height:1.3; }
+  .ws .tab.on { border-left-color:var(--gold); } .ws .tab.on .q { color:var(--accent); }
+  .ws .tab .pg { position:absolute; left:-2px; top:0; width:2px; height:0; background:var(--gold); } .ws .tab.on .pg { animation:pg 6s linear forwards; }
+  @keyframes pg { to { height:100%; } }
+  .ws .stage { position:relative; min-height:300px; } .ws .stage .dash { position:absolute; inset:0 auto auto 0; width:100%; opacity:0; transform:translateY(10px); transition:opacity .5s, transform .5s; } .ws .stage .dash.on { opacity:1; transform:none; position:relative; }
+  @media (max-width:860px) { .ws { grid-template-columns:1fr; } }
+
+  /* B question cards flip */
+  .flip { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:40px; perspective:1400px; }
+  .flip .card { position:relative; aspect-ratio:3/4; transform-style:preserve-3d; transition:transform .7s cubic-bezier(.2,.8,.2,1); cursor:pointer; }
+  .flip .card:hover, .flip .card.on { transform:rotateY(180deg); }
+  .flip .face { position:absolute; inset:0; backface-visibility:hidden; border-radius:10px; overflow:hidden; }
+  .flip .front { background:var(--paper); border:1px solid var(--line); padding:18px; display:flex; flex-direction:column; } .flip .front .mono { color:var(--accent); } .flip .front .q { font-size:1.25rem; line-height:1.25; margin-top:auto; } .flip .front .nm { font-size:11px; color:var(--muted); margin-top:10px; }
+  .flip .front::after { content:"↻"; position:absolute; right:12px; top:12px; color:var(--line); font-size:14px; }
+  .flip .back { transform:rotateY(180deg); background:#17161f; } .flip .back .dash { border:0; border-radius:0; box-shadow:none; height:100%; font-size:8px; } .flip .back .kp b { font-size:14px; }
+  @media (max-width:860px) { .flip { grid-template-columns:1fr 1fr; } }
+
+  /* C a month in the business */
+  .month { margin-top:40px; position:relative; }
+  .month::before { content:""; position:absolute; left:0; right:0; top:22px; height:1px; background:var(--line); }
+  .month .days { display:grid; grid-template-columns:repeat(5,1fr); gap:18px; }
+  .month .day { position:relative; padding-top:50px; }
+  .month .day::before { content:""; position:absolute; top:17px; left:0; width:11px; height:11px; border-radius:50%; background:var(--gold); }
+  .month .when { position:absolute; top:0; left:20px; font-family:var(--mono); font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--accent); white-space:nowrap; }
+  .month .day .who { font-size:12px; color:var(--muted); margin:0 0 4px; font-weight:300; }
+  .month .day .q { font-size:1.05rem; line-height:1.3; display:block; min-height:3.9em; }
+  .month .day .dash { margin-top:14px; font-size:8px; } .month .day .kp b { font-size:14px; } .month .day .bd { padding:8px 10px; }
+  .month .day .nm { margin-top:10px; font-size:11.5px; color:var(--muted); }
+  @media (max-width:860px) { .month::before { display:none; } .month .days { grid-template-columns:1fr; } }
+
+  /* E fan */
+  .fan { position:relative; height:420px; margin-top:40px; }
+  .fan .dash { position:absolute; left:50%; top:30px; width:min(560px,80%); transform-origin:50% 120%; transition:transform .6s cubic-bezier(.2,.8,.2,1), filter .4s, opacity .4s; cursor:pointer; }
+  .fan .dash:nth-child(1) { transform:translateX(-50%) rotate(-14deg) translateY(10px); } .fan .dash:nth-child(2) { transform:translateX(-50%) rotate(-7deg) translateY(4px); } .fan .dash:nth-child(3) { transform:translateX(-50%); } .fan .dash:nth-child(4) { transform:translateX(-50%) rotate(7deg) translateY(4px); } .fan .dash:nth-child(5) { transform:translateX(-50%) rotate(14deg) translateY(10px); }
+  .fan .dash:not(.on) { filter:brightness(.55); } .fan .dash.on { transform:translateX(-50%) translateY(-16px) scale(1.04) !important; z-index:10; }
+  .fan .cap2 { text-align:center; margin-top:16px; } .fan .cap2 .q { font-size:1.4rem; display:block; } .fan .cap2 .mono { display:block; margin-top:6px; }
+  .fanwrap .dots { display:flex; justify-content:center; gap:8px; margin-top:14px; } .fanwrap .dots i { width:8px; height:8px; border-radius:50%; background:var(--line); } .fanwrap .dots i.on { background:var(--gold); }
+
+  /* F question → answer */
+  .qa { margin-top:36px; border-top:1px solid var(--line); }
+  .qa .row { display:grid; grid-template-columns:1.3fr 180px 1fr 1fr; gap:28px; align-items:center; padding:26px 0; border-bottom:1px solid var(--line); }
+  .qa .row .q { font-size:1.5rem; line-height:1.2; } .qa .row .q small { display:block; font-family:var(--mono); font-style:normal; font-size:9px; letter-spacing:1.2px; text-transform:uppercase; color:var(--accent); margin-bottom:6px; }
+  .qa .ans { font-family:var(--serif); font-weight:300; font-size:2.6rem; line-height:1; color:var(--ink); font-variant-numeric:tabular-nums; } .qa .ans small { display:block; font-family:var(--mono); font-size:8.5px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-top:6px; }
+  .qa svg { width:100%; height:46px; display:block; } .qa .det { font-size:12.5px; font-weight:300; color:var(--muted); } .qa .det b { display:block; font-weight:500; color:var(--fg); font-size:13px; }
+  @media (max-width:860px) { .qa .row { grid-template-columns:1fr 1fr; } }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div><h1>"Five views" — five treatments</h1><p class="lede">Section 03 of the Data &amp; BI page: the five dashboards. All five options use real mini-dashboards (illustrative numbers, labelled). They differ in how the owner's <em>question</em> is tied to the <em>screen</em>.</p></div>
+    <button type="button" id="theme">Night</button>
+  </div>
+
+  <!-- A -->
+  <div class="label"><span class="n">A</span><h2>Workstation</h2><p>Five questions down the left; the dashboard on the right swaps to answer whichever is selected. Autoplays through all five (6s each) with a gold progress rail; click any question to jump. One big, legible screen at a time.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">03 · What we build</p>
+    <h3 class="t">Five views that answer <span class="em">the questions owners actually ask.</span></h3>
+    <p class="sub">Every business is different; the questions are not. We start from these five and adapt them to your sector and systems.</p>
+    <div class="ws" id="ws"><div class="tabs"></div><div class="stage"></div></div>
+  </div></div>
+
+  <!-- B -->
+  <div class="label"><span class="n">B</span><h2>Question cards</h2><p>Five paper cards, each carrying one question in italic serif. Hover or tap flips a card to reveal the dashboard that answers it. Playful, compact; all five visible at once.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">03 · What we build</p>
+    <h3 class="t">Five questions. <span class="em">Turn one over.</span></h3>
+    <div class="flip" id="flip"></div>
+  </div></div>
+
+  <!-- C -->
+  <div class="label"><span class="n">C</span><h2>A month in the business</h2><p>A timeline across the month: who opens which screen, and when — Monday cash, Friday pipeline, the board pack on the 3rd. Grounds the dashboards in real routines rather than features.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">03 · What we build</p>
+    <h3 class="t">Five screens, <span class="em">and when people actually open them.</span></h3>
+    <div class="month" id="month"><div class="days"></div></div>
+  </div></div>
+
+  <!-- E -->
+  <div class="label"><span class="n">E</span><h2>The fan</h2><p>Five screens fanned like a hand of cards. Hover or click brings one forward and shows its question beneath; auto-cycles when idle. Cinematic — the page's big visual moment.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">03 · What we build</p>
+    <h3 class="t">Five views that answer <span class="em">the questions owners actually ask.</span></h3>
+    <div class="fanwrap"><div class="fan" id="fan"></div><div class="cap2" id="fancap"></div><div class="dots" id="fandots"></div></div>
+  </div></div>
+
+  <!-- F -->
+  <div class="label"><span class="n">F</span><h2>Question → answer</h2><p>No screenshots. Each row is the owner's question in large serif, then the single number that answers it (with a sparkline), then what's on the screen. Typographic and confident: the dashboard reduced to its point.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">03 · What we build</p>
+    <h3 class="t">Five questions, <span class="em">each with one number that answers it.</span></h3>
+    <div class="qa" id="qa"></div>
+    <p class="mono" style="margin-top:16px">Figures illustrative</p>
+  </div></div>
+</div>
+
+<script>
+document.getElementById("theme").addEventListener("click", () => { const r=document.documentElement; const dark=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches); r.setAttribute("data-theme",dark?"light":"dark"); theme.textContent=dark?"Night":"Day"; });
+
+const line = (pts) => { const w=300,h=48,max=Math.max(...pts),min=Math.min(...pts); const xy=pts.map((p,i)=>[(i/(pts.length-1))*w, h-((p-min)/(max-min||1))*(h-8)-4]); const d=xy.map((p,i)=>`${i?"L":"M"}${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(" "); const l=xy.at(-1); return `<svg class="ln" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><path d="${d}" fill="none" stroke="#ffc93c" stroke-width="2"/><circle cx="${l[0]}" cy="${l[1]}" r="3" fill="#ffc93c"/></svg>`; };
+
+const V = [
+  { name:"Cash & runway", q:"How long have we got, and what is coming in this month?", det:"Bank balances, debtors by age, committed costs, 13-week cash view.", who:"Owner · Monday 08:00", when:"Mon · week 1", ans:"7.4 mo", ansl:"runway at current burn", spark:[6.1,6.4,6.2,6.8,7.0,6.9,7.4],
+    html:`<div class="hd"><span><i></i>Cash & runway</span><em>example</em></div><div class="kp"><div><small>Bank today</small><b>£214k</b><i>+£31k wk</i></div><div><small>Due in 30d</small><b>£96k</b><i>14 invoices</i></div><div><small>Committed out</small><b>£142k</b><i class="d">payroll 28th</i></div><div><small>Runway</small><b>7.4 mo</b><i>+0.6</i></div></div><div class="bd"><p class="cap">13-week cash position</p><div class="bars">${[62,70,58,66,74,80,72,78,86,82,90,94,98].map((h,i)=>`<i style="height:${h}%" class="${i>8?'g':''}"></i>`).join("")}</div></div><div class="ft"><span>✓ Reconciled to Xero · 06:02</span><span>Debtors > 60d: £61k</span></div>` },
+  { name:"Margin by client, product or job", q:"Which customers are actually worth having?", det:"Revenue, direct cost and contribution per client, product line or job — ranked.", who:"MD · before pricing reviews", when:"Tue · week 1", ans:"38.2%", ansl:"blended gross margin", spark:[34,35,36.5,36,37,37.8,38.2],
+    html:`<div class="hd"><span><i></i>Margin by client</span><em>example</em></div><div class="kp" style="--n:3"><div><small>Gross margin</small><b>38.2%</b><i>+1.4 pts</i></div><div><small>Top 5 clients</small><b>61%</b><i>of contribution</i></div><div><small>Below 20%</small><b>4 clients</b><i class="d">£88k revenue</i></div></div><div class="bd"><p class="cap">Contribution margin, ranked</p><div class="hb">${[["Acme",92,"52%"],["Birch",80,"47%"],["Cole",70,"41%"],["Dunn",52,"31%"],["Ealing",30,"18%"],["Fox",14,"9%"]].map(r=>`<div><span style="width:${r[1]}%;${r[1]<35?'background:#ffb37f':''}"></span><b>${r[2]}</b></div>`).join("").replace(/<div><span/g,(m,i)=>m)}</div></div><div class="ft"><span>✓ Costs allocated from timesheets</span><span>Updated nightly</span></div>` },
+  { name:"Sales pipeline & forecast", q:"What will we invoice in 90 days, honestly?", det:"Weighted pipeline by stage and source, win rate, stalled deals, forecast vs actual.", who:"Sales lead · Friday 16:00", when:"Fri · weekly", ans:"£386k", ansl:"weighted 90-day forecast", spark:[290,310,300,340,352,370,386],
+    html:`<div class="hd"><span><i></i>Pipeline & forecast</span><em>example</em></div><div class="kp"><div><small>Open pipeline</small><b>£1.2m</b><i>48 deals</i></div><div><small>Weighted 90d</small><b>£386k</b><i>+£34k</i></div><div><small>Win rate</small><b>31%</b><i>+3 pts</i></div><div><small>Stalled > 30d</small><b>9</b><i class="d">£212k</i></div></div><div class="bd" style="display:grid;grid-template-columns:1fr 1fr;gap:14px"><div><p class="cap">By stage</p><div class="funnel"><div style="width:100%">Qualified £520k</div><div style="width:78%">Proposal £410k</div><div style="width:50%">Negotiation £190k</div><div style="width:30%">Verbal £80k</div></div></div><div><p class="cap">Forecast vs actual, 6 mo</p><div class="bars">${[60,70,55,80,75,90].map((h,i)=>`<i style="height:${h}%"></i><i class="g" style="height:${h-8}%"></i>`).join("")}</div></div></div><div class="ft"><span>✓ Pulled from HubSpot</span><span>Refreshed hourly</span></div>` },
+  { name:"Operations & utilisation", q:"Where is the team's time going?", det:"Billable vs non-billable, capacity by person, job cost-to-complete.", who:"Ops manager · daily stand-up", when:"Daily · 09:15", ans:"71%", ansl:"billable utilisation", spark:[64,66,68,67,70,69,71],
+    html:`<div class="hd"><span><i></i>Operations & utilisation</span><em>example</em></div><div class="kp" style="--n:3"><div><small>Billable</small><b>71%</b><i>target 75%</i></div><div><small>Capacity next 2 wks</small><b>340 h</b><i>of 480</i></div><div><small>Jobs over budget</small><b>3</b><i class="d">£14k exposure</i></div></div><div class="bd"><p class="cap">Utilisation by person × week</p><div class="heat">${Array.from({length:40},(_,i)=>`<i style="opacity:${(0.25+((i*7)%10)/12).toFixed(2)}"></i>`).join("")}</div></div><div class="ft"><span>✓ From timesheets + job costing</span><span>12 people</span></div>` },
+  { name:"The board pack", q:"One page, on the 3rd of the month, without anyone compiling it.", det:"Headline KPIs, variance to plan, the three things that need a decision.", who:"Board · 3rd of the month", when:"3rd · monthly", ans:"06:02", ansl:"ready on the 3rd, compiled by nobody", spark:[1,1,1,1,1,1,1],
+    html:`<div class="hd"><span><i></i>Board pack · October</span><em>example</em></div><div class="kp"><div><small>Revenue</small><b>£412k</b><i>+6% vs plan</i></div><div><small>Gross margin</small><b>38.2%</b><i>+1.4 pts</i></div><div><small>Cash</small><b>£214k</b><i>7.4 mo</i></div><div><small>Pipeline 90d</small><b>£386k</b><i>+£34k</i></div></div><div class="bd" style="display:grid;grid-template-columns:1.2fr 1fr;gap:14px"><div><p class="cap">Revenue vs plan, 12 mo</p>${line([31,34,33,37,40,39,43,45,44,48,51,53])}</div><div><p class="cap">Needs a decision</p><table><tr><td>Fox — margin 9%, re-price or exit</td><td class="r">●</td></tr><tr><td>Hire #13 — capacity 70% booked</td><td>●</td></tr><tr><td>Debtors > 60d up £18k</td><td class="r">●</td></tr></table></div></div><div class="ft"><span>✓ All figures reconciled</span><span>Generated 3 Oct 06:02</span></div>` },
+];
+const dash = (v, extra="") => `<div class="dash ${extra}">${v.html}</div>`;
+
+/* A */
+(() => { const tabs=document.querySelector("#ws .tabs"), stage=document.querySelector("#ws .stage"); let cur=0, t;
+  V.forEach((v,i)=>{ tabs.insertAdjacentHTML("beforeend",`<button class="tab" data-i="${i}"><i class="pg"></i><span class="mono">0${i+1} · ${v.name}</span><span class="q">${v.q}</span></button>`); stage.insertAdjacentHTML("beforeend",dash(v)); });
+  const show=(i)=>{ cur=i; tabs.querySelectorAll(".tab").forEach((b,j)=>{ b.classList.toggle("on",j===i); if(j===i){ const p=b.querySelector(".pg"); p.style.animation="none"; p.offsetHeight; p.style.animation=""; } }); stage.querySelectorAll(".dash").forEach((d,j)=>d.classList.toggle("on",j===i)); clearTimeout(t); t=setTimeout(()=>show((cur+1)%5),6000); };
+  tabs.addEventListener("click",e=>{ const b=e.target.closest(".tab"); if(b) show(+b.dataset.i); }); show(0); })();
+/* B */
+(() => { const f=document.getElementById("flip"); V.forEach((v,i)=>f.insertAdjacentHTML("beforeend",`<div class="card"><div class="face front"><span class="mono">0${i+1}</span><span class="q">${v.q}</span><span class="nm">${v.name}</span></div><div class="face back">${dash(v)}</div></div>`)); f.addEventListener("click",e=>{const c=e.target.closest(".card"); if(c) c.classList.toggle("on");}); })();
+/* C */
+(() => { const m=document.querySelector("#month .days"); V.forEach((v,i)=>m.insertAdjacentHTML("beforeend",`<div class="day"><span class="when">${v.when}</span><p class="who">${v.who}</p><span class="q">${v.q}</span>${dash(v)}<p class="nm">${v.name}</p></div>`)); })();
+/* E */
+(() => { const f=document.getElementById("fan"), cap=document.getElementById("fancap"), dots=document.getElementById("fandots"); let cur=2, t;
+  V.forEach((v,i)=>{ f.insertAdjacentHTML("beforeend",dash(v)); dots.insertAdjacentHTML("beforeend","<i></i>"); });
+  const show=(i)=>{ cur=i; f.querySelectorAll(".dash").forEach((d,j)=>d.classList.toggle("on",j===i)); dots.querySelectorAll("i").forEach((d,j)=>d.classList.toggle("on",j===i)); cap.innerHTML=`<span class="q">${V[i].q}</span><span class="mono">0${i+1} · ${V[i].name}</span>`; clearTimeout(t); t=setTimeout(()=>show((cur+1)%5),4500); };
+  f.querySelectorAll(".dash").forEach((d,i)=>{ d.addEventListener("mouseenter",()=>show(i)); d.addEventListener("click",()=>show(i)); }); show(2); })();
+/* F */
+(() => { const q=document.getElementById("qa"); const sp=(pts)=>{const w=300,h=46,max=Math.max(...pts),min=Math.min(...pts); const xy=pts.map((p,i)=>[(i/(pts.length-1))*w, h-((p-min)/(max-min||1))*(h-8)-4]); const d=xy.map((p,i)=>`${i?"L":"M"}${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(" "); const l=xy.at(-1); return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><path d="${d}" fill="none" stroke="var(--gold)" stroke-width="2"/><circle cx="${l[0]}" cy="${l[1]}" r="3.5" fill="var(--gold)"/></svg>`; };
+  V.forEach((v,i)=>q.insertAdjacentHTML("beforeend",`<div class="row"><span class="q"><small>0${i+1}</small>${v.q}</span><div class="ans">${v.ans}<small>${v.ansl}</small></div>${sp(v.spark)}<p class="det"><b>${v.name}</b>${v.det}</p></div>`)); })();
+</script>
