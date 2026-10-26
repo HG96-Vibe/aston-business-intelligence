@@ -3,25 +3,32 @@ import { Section, SectionHead } from "@/components/ui";
 import { bookHref } from "@/components/offers";
 
 /* ── Six problems ─────────────────────────────────────────────────────────── */
-const problems = [
-  ["“Month-end takes a week and I still don't trust it.”", "Numbers are assembled by hand from four places; every step is a chance to break something.", "Reporting Assessment", "/services/data-bi"],
-  ["“Two reports, same thing, different numbers.”", "Two definitions of ‘revenue’, two spreadsheets, and a meeting spent arguing about which is right.", "One data model, reconciled", "/services/data-bi"],
-  ["“If one person left, nobody could run the reports.”", "The process lives in one person's head and one person's laptop.", "Documented, automated, handed over", "/services/data-bi"],
-  ["“I know total margin. I don't know margin by client.”", "So you can't see which customers cost you money, and you price them all the same.", "Margin by client, product, job", "/services/data-bi"],
-  ["“Everyone says do AI. Nobody says where.”", "You've seen the demos; you haven't seen the business case for your business.", "AI Readiness Assessment", "/services#ai-consulting"],
-  ["“The supplier's late and nobody owns it.”", "The project is live, the vendor is drifting, and your team has day jobs.", "Fractional Project Lead", "/services#project-delivery"],
+// [quote, body, fix, href, image, object-position]
+const problems: [string, string, string, string, string, string][] = [
+  ["“Month-end takes a week and I still don't trust it.”", "Numbers are assembled by hand from four places; every step is a chance to break something.", "Reporting Assessment", "/services/data-bi", "/img/paper-stack.jpg", "center 30%"],
+  ["“Two reports, same thing, different numbers.”", "Two definitions of ‘revenue’, two spreadsheets, and a meeting spent arguing about which is right.", "One data model, reconciled", "/services/data-bi", "/img/two-at-monitor.jpg", "center 40%"],
+  ["“If one person left, nobody could run the reports.”", "The process lives in one person's head and one person's laptop.", "Documented, automated, handed over", "/services/data-bi", "/img/night-manager.jpg", "center 35%"],
+  ["“I know total margin. I don't know margin by client.”", "So you can't see which customers cost you money, and you price them all the same.", "Margin by client, product, job", "/services/data-bi", "/img/wall-dashboard.jpg", "center 40%"],
+  ["“Everyone says do AI. Nobody says where.”", "You've seen the demos; you haven't seen the business case for your business.", "AI Readiness Assessment", "/services#ai-consulting", "/img/tablet-pair.jpg", "center 35%"],
+  ["“The supplier's late and nobody owns it.”", "The project is live, the vendor is drifting, and your team has day jobs.", "Fractional Project Lead", "/services#project-delivery", "/img/conference.jpg", "center 40%"],
 ];
 
 export function Problems({ number }: { number?: string }) {
   return (
     <Section dim>
       <SectionHead number={number} eyebrow="Recognise any of these?" title="Six problems every growing business knows," em="and what we do about them." />
-      <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-3">
-        {problems.map(([q, body, fix, href]) => (
-          <Link key={q} href={href} className="group bg-paper p-6 transition hover:bg-paper-dim">
-            <p className="font-display text-xl font-light italic leading-snug text-ink">{q}</p>
-            <p className="mt-3 text-sm font-light leading-relaxed text-muted">{body}</p>
-            <p className="mt-5 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-accent group-hover:underline">→ {fix}</p>
+      <div className="mt-12 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        {problems.map(([q, body, fix, href, img, pos]) => (
+          <Link key={q} href={href} className="group overflow-hidden rounded-lg border border-line bg-paper transition hover:border-gold/60">
+            <div className="duotone relative h-44">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={img} alt="" style={{ objectPosition: pos }} className="transition duration-700 group-hover:scale-[1.04]" loading="lazy" />
+              <p className="absolute inset-x-4 bottom-3.5 z-10 font-display text-xl font-light italic leading-snug text-white">{q}</p>
+            </div>
+            <div className="p-5">
+              <p className="text-sm font-light leading-relaxed text-muted">{body}</p>
+              <p className="mt-4 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-accent group-hover:underline">→ {fix}</p>
+            </div>
           </Link>
         ))}
       </div>
