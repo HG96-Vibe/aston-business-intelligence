@@ -168,3 +168,9 @@ h3 {
   -webkit-mask-size: 260% 100%; mask-size: 260% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
   animation: hero-drift 26s ease-in-out infinite alternate, hero-sweep 7s linear infinite; }
 @media (prefers-reduced-motion: reduce) { .hero-photo { animation: none; transform: scale(1.06); } .hero-shimmer { display: none; } }
+
+/* Surface rhythm: sections that keep their own tokens regardless of theme. */
+.tone-dark { --c-ink:#f3f1f7; --c-ink-soft:#d8d5e2; --c-deep:#0c0b11; --c-deep-soft:#1b1a24; --c-paper:#17161f; --c-paper-dim:#1f1e28; --c-line:#2d2b37; --c-muted:#b3afbf; --c-body:#d8d5e2; --c-gold:#ffc93c; --c-gold-strong:#e9b324; --c-accent:#ffc93c; --c-accent-strong:#e9b324; --c-accent-soft:#26220f; color-scheme:dark; }
+.tone-gold { --c-ink:#17161f; --c-ink-soft:#2a2410; --c-deep:#17161f; --c-deep-soft:#2a2834; --c-paper:#c9962b; --c-paper-dim:#d5a63f; --c-line:rgba(0,0,0,.16); --c-muted:#4a3a12; --c-body:#2a2410; --c-gold:#17161f; --c-gold-strong:#000; --c-accent:#17161f; --c-accent-strong:#000; --c-accent-soft:#d5a63f; color-scheme:light; }
+.tone-gold .bg-gold { color:#f4f1ea; }
+.tone-gold input[type="range"] { accent-color:#17161f; }

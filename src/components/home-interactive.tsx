@@ -219,7 +219,7 @@ export function LiveDashboard({ number }: { number?: string }) {
   }, [i, paused]);
   const s = scenes[i];
   return (
-    <Section>
+    <Section tone="dark">
       <div className="grid min-w-0 gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-center [&>*]:min-w-0">
         <div>
           <SectionHead number={number} eyebrow="What good looks like" title="One screen the whole business" em="can agree on." intro="Not a demo of a product — there isn't one. This is the kind of view we build on top of the tools you already have, refreshed without anyone touching a spreadsheet." />
@@ -271,7 +271,7 @@ export function CostCalculator({ number }: { number?: string }) {
   const yr = useMemo(() => p * h * c * 12, [p, h, c]);
   const x = yr / 2500;
   return (
-    <Section dim>
+    <Section tone="gold">
       <SectionHead number={number} eyebrow="The arithmetic" title="What is manual reporting" em="actually costing you?" />
       <div className="mt-12 grid gap-8 md:grid-cols-2 md:items-start">
         <div className="grid gap-5">

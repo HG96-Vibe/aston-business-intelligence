@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { services } from "@/lib/site";
-import { Button, CtaBand, Section, SectionHead } from "@/components/ui";
+import { Button, CtaBand, Section, SectionHead, PhotoBand } from "@/components/ui";
 import { HeroMotion } from "@/components/hero-motion";
 import { Availability, Guarantee, PricingLadder, ProofStrip, WeekOne, bookHref } from "@/components/offers";
 import { serviceOutcomes } from "@/lib/offers";
@@ -32,14 +32,14 @@ export default function Home() {
   return (
     <>
       {/* Hero — charcoal over the gold dot-wave photograph; live dot grid and traced monogram on top */}
-      <section className="relative overflow-hidden bg-[#0e0d13]">
+      <section className="relative overflow-hidden bg-[#0e0c09]">
         <div className="relative">
         {/* Photograph, slowly drifting; a second copy masked to a travelling light band makes the dots shimmer along the curve */}
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-          <div className="hero-photo absolute inset-0 bg-cover bg-[position:70%_center] md:bg-center" style={{ backgroundImage: "url(/img/hero-wave.jpg)" }} />
-          <div className="hero-photo hero-shimmer absolute inset-0 bg-cover bg-[position:70%_center] md:bg-center" style={{ backgroundImage: "url(/img/hero-wave.jpg)" }} />
+          <div className="hero-photo absolute inset-0 bg-cover bg-[position:75%_center] md:bg-center" style={{ backgroundImage: "url(/img/hero-helix.jpg)" }} />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0e0d13]/95 via-[#0e0d13]/70 to-[#0e0d13]/10" aria-hidden="true" />
+        {/* charcoal on the left for the copy, the gold left almost untouched on the right; the monogram traces at the seam */}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#0e0c09_0%,rgba(14,12,9,.96)_34%,rgba(14,12,9,.6)_52%,rgba(14,12,9,.12)_72%,rgba(14,12,9,0)_100%)]" aria-hidden="true" />
         <HeroMotion forceDark />
         <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pb-24 md:pt-28">
           <p className="marker !text-[#ffc93c]">Business intelligence consultancy in London</p>
@@ -76,7 +76,7 @@ export default function Home() {
 
       <LiveDashboard number="02" />
 
-      <Section dim>
+      <Section>
         <SectionHead
           number="03"
           eyebrow="What we do"
@@ -110,6 +110,8 @@ export default function Home() {
         </div>
       </Section>
 
+      <PhotoBand duotone src="/img/wall-dashboard.jpg" position="center 40%" note="What the first month looks like">One screen, <i>and a conversation about what to do — not which number is right.</i></PhotoBand>
+
       <PricingLadder compact number="04" />
 
       <CostCalculator number="05" />
@@ -120,7 +122,7 @@ export default function Home() {
 
       <Guarantee />
 
-      <Section>
+      <Section tone="dark">
         <SectionHead number="08" eyebrow="How we work" title="Scoped before it starts." em="Handed over when it's done." />
         <ol className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-3">
           {[
@@ -152,6 +154,8 @@ export default function Home() {
       <ProofStrip />
 
       <SectorTabs number="10" />
+
+      <PhotoBand duotone src="/img/corridor.jpg" position="center 30%" note="Est. 2024 · London">Built in London, <i>for companies that run on their numbers.</i></PhotoBand>
 
       <Faq number="11" />
 

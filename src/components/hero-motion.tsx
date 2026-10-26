@@ -49,10 +49,10 @@ export function HeroMotion({ forceDark = false }: { forceDark?: boolean } = {}) 
       for (let y = g / 2; y < H; y += g) for (let x = g / 2; x < W; x += g) dots.push({ x, y, l: 0 });
     }
     function mono() {
-      // small signature mark, bottom-right corner (about 110px wide on desktop, 72px on phones)
-      const s = (W < 768 ? 72 : 110) / 120;
-      const x = W - 120 * s - Math.max(16, W * 0.035);
-      const y = H - 100 * s - 34;
+      // traced monogram at the charcoal→gold seam: 30% of the width, vertically centred (signature-sized on phones)
+      const s = W < 768 ? 72 / 120 : Math.min((H * 0.72) / 100, (W * 0.3) / 120);
+      const x = W < 768 ? W - 120 * s - 16 : W * 0.44;
+      const y = W < 768 ? H - 100 * s - 34 : (H - 100 * s) / 2;
       return { x, y, s };
     }
 

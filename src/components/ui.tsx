@@ -6,15 +6,19 @@ export function Section({
   children,
   className = "",
   dim = false,
+  tone,
   id,
 }: {
   children: ReactNode;
   className?: string;
   dim?: boolean;
+  /** Surface rhythm: "dark" (charcoal, stays dark in both themes) or "gold" (solid gold, charcoal type). */
+  tone?: "dark" | "gold";
   id?: string;
 }) {
+  const toneClass = tone === "dark" ? "tone-dark bg-paper" : tone === "gold" ? "tone-gold bg-paper" : dim ? "bg-paper-dim" : "";
   return (
-    <section id={id} className={`${dim ? "bg-paper-dim" : ""} ${className}`}>
+    <section id={id} className={`${toneClass} ${className}`}>
       <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">{children}</div>
     </section>
   );
