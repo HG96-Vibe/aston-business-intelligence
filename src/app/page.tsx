@@ -4,7 +4,7 @@ import { Button, CtaBand, Section, SectionHead, PhotoBand } from "@/components/u
 import { HeroMotion } from "@/components/hero-motion";
 import { Availability, Guarantee, PricingLadder, ProofStrip, WeekOne, bookHref } from "@/components/offers";
 import { serviceOutcomes } from "@/lib/offers";
-import { Problems, Deliverables, Faq } from "@/components/home-blocks";
+import {Problems, Faq } from "@/components/home-blocks";
 import { LiveDashboard, CostCalculator, SectorTabs } from "@/components/home-interactive";
 
 const principles = [
@@ -118,12 +118,10 @@ export default function Home() {
 
       <WeekOne number="06" />
 
-      <Deliverables number="07" />
-
       <Guarantee />
 
       <Section tone="dark">
-        <SectionHead number="08" eyebrow="How we work" title="Scoped before it starts." em="Handed over when it's done." />
+        <SectionHead number="07" eyebrow="How we work" title="Scoped before it starts." em="Handed over when it's done." />
         <ol className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-3">
           {[
             ["Discover", "A short, fixed-fee piece of work to understand your business, your data and the decisions that matter. You get a written assessment and a costed plan — whether or not you continue with us."],
@@ -140,7 +138,7 @@ export default function Home() {
       </Section>
 
       <Section dim>
-        <SectionHead number="09" eyebrow="Why ABI" title="What you can" em="hold us to." />
+        <SectionHead number="08" eyebrow="Why ABI" title="What you can" em="hold us to." />
         <div className="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2">
           {principles.map(([title, body]) => (
             <div key={title} className="hairline pt-5">
@@ -153,11 +151,11 @@ export default function Home() {
 
       <ProofStrip />
 
-      <SectorTabs number="10" />
+      <SectorTabs number="09" />
 
       <PhotoBand duotone src="/img/corridor.jpg" position="center 30%">Built in London, <i>for companies that run on their numbers.</i></PhotoBand>
 
-      <Faq number="11" />
+      <Faq number="10" />
 
       <CtaBand />
     </>

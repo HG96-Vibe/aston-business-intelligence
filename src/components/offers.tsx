@@ -71,6 +71,8 @@ export function WeekOne({ number }: { number?: string }) {
               <li key={k} className="flex justify-between gap-4 border-b border-line py-2"><span className="text-body">{k}</span><span className="font-mono text-xs text-ink">{v}</span></li>
             ))}
           </ul>
+          <p className="mt-4 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted">And then</p>
+          <p className="mt-1 text-sm font-light leading-relaxed text-muted"><span className="font-medium text-ink">End of week two:</span> your costed plan. <span className="font-medium text-ink">During any build:</span> a one-page note every Friday, short enough to forward to the board unedited.</p>
         </aside>
       </div>
     </Section>
