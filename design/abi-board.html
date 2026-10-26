@@ -6,7 +6,7 @@
      every card shows light + dark lockup, the mark alone, and 16/32/64 px. */
   :root {
     --bg: #f5f4f0; --fg: #17161f; --muted: #605e6e; --card: #ffffff; --line: #e3e1da;
-    --paper: #ffffff; --inkp: #1b1a2e; --gold: #c9a227;
+    --paper: #ffffff; --inkp: #1b1a2e; --gold: #e9b324;
     --font-ui: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   }
@@ -61,8 +61,8 @@
   </div>
 
   <div class="toolbar">
-    <label>Gold <input type="color" id="gold" value="#c9a227"></label>
-    <label>Gold on dark <input type="color" id="goldlt" value="#f2c811"></label>
+    <label>Gold <input type="color" id="gold" value="#e9b324"></label>
+    <label>Gold on dark <input type="color" id="goldlt" value="#ffc93c"></label>
     <label>Ink <input type="color" id="ink" value="#1b1a2e"></label>
     <button type="button" id="p-charcoal">Ink: charcoal</button>
     <button type="button" id="p-indigo">Ink: indigo</button>
@@ -93,8 +93,8 @@ function palette() {
   const mid = document.getElementById("gold").value;
   const lt  = document.getElementById("goldlt").value;
   return {
-    light: { ink, paper: "#ffffff", gold: { light: "#f3d77c", mid, deep: "#8d6d0e" }, tile: ink, tileInk: "#ffffff" },
-    dark:  { ink: "#ffffff", paper: "#1b1a2e", gold: { light: "#fbe59a", mid: lt, deep: mid }, tile: "#ffffff", tileInk: ink },
+    light: { ink, paper: "#ffffff", gold: { light: "#ffe58a", mid, deep: "#b47a06" }, tile: ink, tileInk: "#ffffff", wordGold: "#c98a06" },
+    dark:  { ink: "#ffffff", paper: "#1b1a2e", gold: { light: "#fff0b3", mid: lt, deep: "#d99a0b" }, tile: "#ffffff", tileInk: ink },
   };
 }
 function render() {
@@ -118,6 +118,6 @@ function render() {
 for (const id of ["ink", "gold", "goldlt"]) document.getElementById(id).addEventListener("input", render);
 document.getElementById("p-charcoal").addEventListener("click", () => { document.getElementById("ink").value = "#17161f"; render(); });
 document.getElementById("p-indigo").addEventListener("click", () => { document.getElementById("ink").value = "#1e1b4b"; render(); });
-document.getElementById("reset").addEventListener("click", () => { ink.value = "#1b1a2e"; gold.value = "#c9a227"; goldlt.value = "#f2c811"; render(); });
+document.getElementById("reset").addEventListener("click", () => { ink.value = "#1b1a2e"; gold.value = "#e9b324"; goldlt.value = "#ffc93c"; render(); });
 render();
 </script>

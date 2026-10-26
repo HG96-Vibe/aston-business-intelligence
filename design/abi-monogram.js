@@ -84,7 +84,7 @@
     return `<svg viewBox="0 0 560 100" xmlns="http://www.w3.org/2000/svg">
       <svg x="0" y="2" width="118" height="96" viewBox="${vb}">${inner}</svg>
       <text x="138" y="47" font-family="Manrope, sans-serif" font-weight="800" font-size="36" letter-spacing="-0.5" fill="${o.ink}">Aston Business</text>
-      <text x="138" y="84" font-family="Manrope, sans-serif" font-weight="500" font-size="30" letter-spacing="4" fill="${o.gold.mid}">INTELLIGENCE</text>
+      <text x="138" y="84" font-family="Manrope, sans-serif" font-weight="500" font-size="30" letter-spacing="4" fill="${o.wordGold || o.gold.mid}">INTELLIGENCE</text>
     </svg>`;
   }
 
