@@ -1,0 +1,203 @@
+<title>Three Problems Section Options</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --ink:#17161f; --paper:#fff; --dim:#f7f5f0; --soft:#fbf3dc; --gold:#e9b324; --accent:#c98a06; --good:#1f9d61; --bad:#c2410c;
+    --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding-block:24px 80px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); line-height:1.5; }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; letter-spacing:-.01em; }
+  .lede { color:var(--muted); max-width:66ch; line-height:1.55; margin:8px 0 0; font-weight:300; }
+  .top { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+  .top button { font:inherit; font-size:13px; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:44px 0 12px; flex-wrap:wrap; }
+  .label .n { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em; }
+  .label h2 { font-family:var(--sans); font-weight:600; font-size:1rem; margin:0; }
+  .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; }
+  .frame { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--paper); }
+  .sec { padding:64px 48px; }
+  @media (max-width:860px) { .sec { padding:40px 20px; } }
+  .marker { display:inline-flex; align-items:center; gap:12px; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .marker::before { content:""; width:28px; height:1px; background:var(--accent); }
+  h3.t { font-family:var(--serif); font-weight:400; font-size:clamp(1.8rem,3.4vw,2.6rem); line-height:1.12; letter-spacing:-.015em; margin:14px 0 0; color:var(--ink); text-wrap:balance; max-width:22ch; }
+  .em { font-style:italic; font-weight:300; color:var(--accent); }
+  .sub { font-weight:300; color:var(--muted); font-size:1.05rem; max-width:40rem; margin:14px 0 0; }
+  .mono { font-family:var(--mono); }
+  .grid { display:grid; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; } .grid > * { background:var(--paper); min-width:0; }
+
+  /* 1 convergence */
+  .conv { display:grid; grid-template-columns:1fr 160px 1fr; gap:0; align-items:center; margin-top:40px; }
+  .conv .left { display:grid; gap:14px; }
+  .pbox { border:1px solid var(--line); border-radius:8px; padding:16px 18px; background:var(--card); position:relative; }
+  .pbox h4 { margin:0; font-family:var(--serif); font-weight:400; font-size:1.15rem; color:var(--ink); }
+  .pbox p { margin:6px 0 0; font-size:13px; color:var(--muted); font-weight:300; }
+  .pbox .pin { position:absolute; right:-6px; top:50%; width:10px; height:10px; border-radius:50%; background:var(--gold); transform:translateY(-50%); }
+  .conv svg { width:100%; height:300px; display:block; }
+  .conv svg path { fill:none; stroke:var(--line); stroke-width:1.5; }
+  .conv svg path.g { stroke:var(--gold); stroke-width:2; stroke-dasharray:1; stroke-dashoffset:1; animation:drawin 1.6s ease-out forwards; }
+  .conv svg path.g:nth-child(4){animation-delay:.3s}.conv svg path.g:nth-child(6){animation-delay:.6s}
+  @keyframes drawin { to { stroke-dashoffset:0; } }
+  .cause { border:1px solid var(--gold); background:var(--soft); border-radius:8px; padding:22px 22px; }
+  .cause small { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+  .cause h4 { margin:8px 0 0; font-family:var(--serif); font-weight:400; font-size:1.5rem; line-height:1.15; color:var(--ink); }
+  .cause p { margin:10px 0 0; font-size:13.5px; color:var(--muted); font-weight:300; }
+  .cause a { display:inline-block; margin-top:12px; font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); text-decoration:none; }
+  @media (max-width:860px) { .conv { grid-template-columns:1fr; } .conv svg { display:none; } .pbox .pin { display:none; } }
+
+  /* 2 symptom/cause/cost rows */
+  .rows { margin-top:36px; border-top:1px solid var(--line); }
+  .rowx { display:grid; grid-template-columns:48px 1.2fr 1fr 160px; gap:24px; padding:22px 0; border-bottom:1px solid var(--line); align-items:baseline; cursor:pointer; }
+  .rowx .i { font-family:var(--mono); font-size:11px; color:var(--accent); }
+  .rowx h4 { margin:0; font-family:var(--serif); font-weight:400; font-size:1.25rem; color:var(--ink); }
+  .rowx .c { font-size:13.5px; color:var(--muted); font-weight:300; }
+  .rowx .cost { text-align:right; } .rowx .cost b { display:block; font-family:var(--serif); font-weight:400; font-size:1.7rem; color:var(--ink); line-height:1; } .rowx .cost small { font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .rowx .more { grid-column:2 / -1; font-size:13px; color:var(--fg); font-weight:300; display:none; padding-top:6px; }
+  .rowx.open .more { display:block; }
+  .rowx .more a { font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); text-decoration:none; margin-left:8px; }
+  .root { margin-top:22px; padding:18px 22px; border:1px solid var(--gold); background:var(--soft); border-radius:8px; display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:center; }
+  .root small { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); } .root p { margin:0; font-family:var(--serif); font-size:1.2rem; color:var(--ink); }
+  @media (max-width:860px) { .rowx { grid-template-columns:32px 1fr; } .rowx .c, .rowx .cost { grid-column:2; text-align:left; } }
+
+  /* 3 which one is you */
+  .pick { display:grid; grid-template-columns:1fr 1.3fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin-top:36px; }
+  .pick .opts { background:var(--paper); display:grid; }
+  .pick button { font:inherit; text-align:left; background:var(--paper); border:0; border-bottom:1px solid var(--line); padding:18px 20px; cursor:pointer; color:var(--ink); display:grid; gap:4px; }
+  .pick button:last-child { border-bottom:0; }
+  .pick button[aria-selected="true"] { background:var(--soft); box-shadow:inset 3px 0 0 var(--gold); }
+  .pick button h4 { margin:0; font-family:var(--serif); font-weight:400; font-size:1.15rem; }
+  .pick button span { font-size:12.5px; color:var(--muted); font-weight:300; }
+  .pick .pane { background:var(--paper); padding:26px 28px; }
+  .pick .pane small { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); display:block; }
+  .pick .pane .q { font-family:var(--serif); font-style:italic; font-weight:300; font-size:1.3rem; color:var(--ink); margin:6px 0 16px; }
+  .pick .pane p { margin:0 0 12px; font-size:14px; color:var(--fg); font-weight:300; }
+  .pick .pane .step { border-top:1px solid var(--line); padding-top:12px; margin-top:12px; }
+  .pick .pane .step b { color:var(--ink); font-weight:500; }
+  @media (max-width:860px) { .pick { grid-template-columns:1fr; } }
+
+  /* 4 bad month timeline */
+  .tl { margin-top:40px; position:relative; }
+  .tl .bar { position:absolute; left:0; right:0; top:14px; height:1px; background:var(--line); }
+  .tl .ev { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; position:relative; }
+  .tl .e { padding-top:28px; position:relative; }
+  .tl .e::before { content:""; position:absolute; top:10px; left:0; width:9px; height:9px; border-radius:50%; background:var(--line); border:2px solid var(--paper); box-shadow:0 0 0 1px var(--line); }
+  .tl .e.hot::before { background:var(--gold); box-shadow:0 0 0 1px var(--gold); }
+  .tl .e small { font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); display:block; }
+  .tl .e h4 { margin:6px 0 4px; font-family:var(--serif); font-weight:400; font-size:1.05rem; color:var(--ink); }
+  .tl .e p { margin:0; font-size:12.5px; color:var(--muted); font-weight:300; }
+  .tl .e .tag { display:inline-block; margin-top:8px; font-family:var(--mono); font-size:8.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); border-radius:3px; padding:1px 5px; }
+  .tl .sum { margin-top:28px; border-top:1px solid var(--line); padding-top:18px; display:flex; flex-wrap:wrap; gap:28px; align-items:baseline; }
+  .tl .sum b { font-family:var(--serif); font-weight:400; font-size:1.3rem; color:var(--ink); } .tl .sum span { font-size:13px; color:var(--muted); font-weight:300; }
+  @media (max-width:860px) { .tl .ev { grid-template-columns:1fr; } .tl .bar { display:none; } }
+
+  /* 5 big numbers + pull quote */
+  .nums { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin-top:36px; }
+  .nums div { background:var(--paper); padding:26px 24px; }
+  .nums b { display:block; font-family:var(--serif); font-weight:300; font-size:3.4rem; line-height:1; color:var(--ink); letter-spacing:-.02em; }
+  .nums b em { font-style:italic; color:var(--accent); font-size:1.6rem; margin-left:6px; }
+  .nums h4 { margin:12px 0 4px; font-family:var(--sans); font-weight:600; font-size:.95rem; color:var(--ink); }
+  .nums p { margin:0; font-size:13px; color:var(--muted); font-weight:300; }
+  .pull { margin-top:34px; padding-left:24px; border-left:2px solid var(--gold); font-family:var(--serif); font-weight:300; font-size:1.55rem; line-height:1.3; color:var(--ink); max-width:34ch; }
+  .pull .em { font-weight:300; }
+  @media (max-width:860px) { .nums { grid-template-columns:1fr; } }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div><h1>"Three problems, one cause" — five treatments</h1><p class="lede">Same three problems, same single cause. They differ in whether the section explains, quantifies, lets the visitor self-select, or tells a story.</p></div>
+    <button type="button" id="theme">Night</button>
+  </div>
+
+  <!-- 1 -->
+  <div class="label"><span class="n">A</span><h2>Convergence diagram</h2><p>Three problems on the left wire into one cause on the right; the gold traces draw in on load. Same visual language as the circuits on the home page. Explains the "one cause" claim visually rather than asserting it.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">01 · Why companies call us</p>
+    <h3 class="t">Three problems, <span class="em">one underlying cause.</span></h3>
+    <div class="conv">
+      <div class="left">
+        <div class="pbox"><h4>Month-end is slow and manual</h4><p>Numbers assembled by hand from several systems. Days, not hours.</p><span class="pin"></span></div>
+        <div class="pbox"><h4>Nobody fully trusts the numbers</h4><p>Two reports, two figures for the same thing. Meetings spent arguing.</p><span class="pin"></span></div>
+        <div class="pbox"><h4>You can't see where the money is made</h4><p>Total margin known. Margin by client, product or job — not.</p><span class="pin"></span></div>
+      </div>
+      <svg viewBox="0 0 160 300" preserveAspectRatio="none">
+        <path d="M0 50 C 60 50, 100 150, 160 150"/><path class="g" pathLength="1" d="M0 50 C 60 50, 100 150, 160 150"/>
+        <path d="M0 150 L160 150"/><path class="g" pathLength="1" d="M0 150 L160 150"/>
+        <path d="M0 250 C 60 250, 100 150, 160 150"/><path class="g" pathLength="1" d="M0 250 C 60 250, 100 150, 160 150"/>
+      </svg>
+      <div class="cause"><small>The cause</small><h4>The numbers are assembled by hand.</h4><p>So they are slow, inconsistent and shallow — and every month someone rebuilds them from scratch. Fix the assembly and all three symptoms go.</p><a href="#">→ How we fix it: the Reporting Assessment</a></div>
+    </div>
+  </div></div>
+
+  <!-- 2 -->
+  <div class="label"><span class="n">B</span><h2>Symptom · cause · cost rows</h2><p>Ledger-style rows with a quantified cost on the right ("5 days", "2 answers", "0 visibility"). Click a row to expand what's underneath. The root cause sits in a gold bar beneath.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">01 · Why companies call us</p>
+    <h3 class="t">Three problems, <span class="em">one underlying cause.</span></h3>
+    <div class="rows" id="rows">
+      <div class="rowx open"><span class="i">01</span><h4>Month-end is slow and manual</h4><span class="c">Numbers pulled from Xero, the CRM and spreadsheets by hand, every month, by the same person.</span><div class="cost"><b>5 days</b><small>typical close</small></div><div class="more">Each hand-off is a chance to break a link or copy a stale tab. By the time the pack is ready, the month it describes is two weeks old. <a href="#">Reporting Assessment →</a></div></div>
+      <div class="rowx"><span class="i">02</span><h4>Nobody fully trusts the numbers</h4><span class="c">Two reports show two figures for the same thing. Nobody is sure which definition is right.</span><div class="cost"><b>2 answers</b><small>to one question</small></div><div class="more">Usually two definitions of "revenue" living in two spreadsheets. The fix is one agreed source, reconciled to the ledger on every refresh. <a href="#">Single Source of Truth →</a></div></div>
+      <div class="rowx"><span class="i">03</span><h4>You can't see where the money is made</h4><span class="c">Total margin is known. Margin by client, product or job is not.</span><div class="cost"><b>0</b><small>clients ranked by margin</small></div><div class="more">So effort and pricing are spread evenly across customers that are not equal. Most businesses find 20–30% of clients sit below target margin. <a href="#">Decision Dashboards →</a></div></div>
+    </div>
+    <div class="root"><small>The cause</small><p>All three come from the same place: the numbers are assembled by hand.</p></div>
+  </div></div>
+
+  <!-- 3 -->
+  <div class="label"><span class="n">C</span><h2>"Which one is you?"</h2><p>Self-select. Pick the problem on the left; the right pane shows what's really going on and the first step. Turns a passive list into a two-second diagnosis.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">01 · Which one is you?</p>
+    <h3 class="t">Three problems, <span class="em">one underlying cause.</span></h3>
+    <div class="pick" id="pick">
+      <div class="opts" role="tablist"></div>
+      <div class="pane" id="pane"></div>
+    </div>
+  </div></div>
+
+  <!-- 4 -->
+  <div class="label"><span class="n">D</span><h2>Anatomy of a bad month-end</h2><p>A five-day timeline that tells the story — Jo chases, Sam's totals differ, the board pack goes out late and stale. Each problem is tagged where it appears. Narrative rather than list.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">01 · Anatomy of a month-end</p>
+    <h3 class="t">Five days, three problems, <span class="em">one cause.</span></h3>
+    <div class="tl">
+      <div class="bar"></div>
+      <div class="ev">
+        <div class="e hot"><small>Day 1 · Mon</small><h4>The chase begins</h4><p>Jo emails three people for their spreadsheets. Two reply. One is on holiday.</p><span class="tag">Slow &amp; manual</span></div>
+        <div class="e"><small>Day 2 · Tue</small><h4>Rebuild</h4><p>Pivot tables refreshed by hand. A link to Debtors.xlsx breaks. #REF!</p><span class="tag">Slow &amp; manual</span></div>
+        <div class="e hot"><small>Day 3 · Wed</small><h4>Two revenue figures</h4><p>Sam's version says £427k. Jo's says £412k. Forty minutes on which is right.</p><span class="tag">Not trusted</span></div>
+        <div class="e"><small>Day 4 · Thu</small><h4>Margin question</h4><p>Owner asks which clients are losing money. Nobody can say — only the total is known.</p><span class="tag">No visibility</span></div>
+        <div class="e hot"><small>Day 5 · Fri</small><h4>Board pack, late</h4><p>Sent at 17:40 with September's chart still on slide 4.</p><span class="tag">All three</span></div>
+      </div>
+      <div class="sum"><b>One cause.</b><span>Every step is a person moving numbers by hand. Automate the assembly and the week collapses to a morning.</span></div>
+    </div>
+  </div></div>
+
+  <!-- 5 -->
+  <div class="label"><span class="n">E</span><h2>Big numbers and a pull quote</h2><p>Three stark figures in light serif — 5 days, 2 answers, 0 — then the cause as a pull quote. Minimal, editorial, fast to read. Least explanation, most confidence.</p></div>
+  <div class="frame"><div class="sec">
+    <p class="marker">01 · Why companies call us</p>
+    <h3 class="t">Three problems, <span class="em">one underlying cause.</span></h3>
+    <div class="nums">
+      <div><b>5<em>days</em></b><h4>to close the month</h4><p>Assembled by hand from several systems, every month, by the same person.</p></div>
+      <div><b>2<em>answers</em></b><h4>to "what was revenue?"</h4><p>Two reports, two definitions, one meeting spent arguing about which is right.</p></div>
+      <div><b>0<em>clients</em></b><h4>ranked by margin</h4><p>Total margin is known. Which customers actually make money is not.</p></div>
+    </div>
+    <p class="pull">They look like three issues. They are one: <span class="em">the numbers are assembled by hand</span> — so they are slow, inconsistent and shallow.</p>
+  </div></div>
+</div>
+
+<script>
+document.getElementById("theme").addEventListener("click", () => { const r=document.documentElement; const dark=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches); r.setAttribute("data-theme",dark?"light":"dark"); theme.textContent=dark?"Night":"Day"; });
+/* B rows */
+document.querySelectorAll("#rows .rowx").forEach(r=>r.addEventListener("click",()=>{document.querySelectorAll("#rows .rowx").forEach(x=>x.classList.remove("open"));r.classList.add("open");}));
+/* C pick */
+const P=[
+ ["Month-end takes too long","It's five days of chasing and rebuilding.","“We know the numbers eventually. Just not when we need them.”","Reporting is assembled by hand: exports, copy-paste, pivot tables, links between files. Each step takes time and each step can break.","Reporting Assessment — two weeks. We inventory every report and source, time the process, and show you which steps can run themselves."],
+ ["Two reports, two numbers","Nobody is sure which figure is right.","“Finance says £412k. Sales says £427k. Both have spreadsheets.”","Two definitions of the same thing living in two places. Neither is wrong; they just measure differently and nobody wrote the rule down.","Single Source of Truth — one data model, one definition per figure, reconciled to the ledger on every refresh and visible on the screen."],
+ ["Margin by client is a mystery","Total margin is known. Per client, it isn't.","“I know we made 36%. I don't know who we made it on.”","Cost sits in one system, revenue in another, and nothing joins them at the client level. So pricing and effort are spread evenly across customers that are not equal.","Decision Dashboards — margin by client, product and job, ranked, with the three worst flagged every month."],
+];
+const opts=document.querySelector("#pick .opts"), pane=document.getElementById("pane");
+P.forEach((p,i)=>{const b=document.createElement("button");b.setAttribute("role","tab");b.innerHTML=`<h4>${p[0]}</h4><span>${p[1]}</span>`;b.onclick=()=>show(i);opts.appendChild(b);});
+function show(i){[...opts.children].forEach((b,k)=>b.setAttribute("aria-selected",String(k===i)));const p=P[i];pane.innerHTML=`<small>What we usually hear</small><div class="q">${p[2]}</div><small>What's actually going on</small><p>${p[3]}</p><div class="step"><small>First step</small><p><b>${p[4].split(" — ")[0]}</b> — ${p[4].split(" — ")[1]}</p></div>`;}
+show(0);
+</script>
