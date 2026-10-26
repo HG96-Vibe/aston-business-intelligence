@@ -1,28 +1,68 @@
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /*
   Aston design tokens.
   Layout: generous left-aligned editorial grid, dark "ink" hero, white body,
   one accent used only for emphasis and primary actions.
 */
-@theme {
+/* Brand tokens (see design/assets/brand.json). Day values on :root, night under [data-theme="dark"]. */
+:root {
+  --c-ink: #17161f;        /* primary text */
+  --c-ink-soft: #26242f;
+  --c-deep: #17161f;       /* dark surfaces: hero, CTA band, primary buttons */
+  --c-deep-soft: #2a2834;
+  --c-paper: #ffffff;
+  --c-paper-dim: #f6f5f1;
+  --c-line: #e4e2db;
+  --c-muted: #625f6e;
+  --c-body: #24222c;
+  --c-gold: #e9b324;
+  --c-gold-strong: #d9a315;
+  --c-accent: #c98a06;
+  --c-accent-strong: #b47a06;
+  --c-accent-soft: #fbf3dc;
+  --c-eyebrow-light: #ffc93c;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --c-ink: #f3f1f7;
+  --c-ink-soft: #d8d5e2;
+  --c-deep: #0c0b11;
+  --c-deep-soft: #1b1a24;
+  --c-paper: #121118;
+  --c-paper-dim: #19181f;
+  --c-line: #2b2935;
+  --c-muted: #a09db0;
+  --c-body: #d8d5e2;
+  --c-gold: #ffc93c;
+  --c-gold-strong: #e9b324;
+  --c-accent: #ffc93c;
+  --c-accent-strong: #e9b324;
+  --c-accent-soft: #26220f;
+  --c-eyebrow-light: #ffc93c;
+  color-scheme: dark;
+}
+
+@theme inline {
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-display), var(--font-body), ui-sans-serif, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Brand: charcoal ink, white paper, gold accent (see design/assets/brand.json) */
-  --color-ink: #17161f;
-  --color-ink-soft: #26242f;
-  --color-paper: #ffffff;
-  --color-paper-dim: #f6f5f1;
-  --color-line: #e4e2db;
-  --color-muted: #625f6e;
-  --color-body: #24222c;
-  --color-gold: #e9b324;
-  --color-gold-strong: #d9a315;
-  --color-accent: #c98a06;
-  --color-accent-strong: #b47a06;
-  --color-accent-soft: #fbf3dc;
+  --color-ink: var(--c-ink);
+  --color-ink-soft: var(--c-ink-soft);
+  --color-deep: var(--c-deep);
+  --color-deep-soft: var(--c-deep-soft);
+  --color-paper: var(--c-paper);
+  --color-paper-dim: var(--c-paper-dim);
+  --color-line: var(--c-line);
+  --color-muted: var(--c-muted);
+  --color-body: var(--c-body);
+  --color-gold: var(--c-gold);
+  --color-gold-strong: var(--c-gold-strong);
+  --color-accent: var(--c-accent);
+  --color-accent-strong: var(--c-accent-strong);
+  --color-accent-soft: var(--c-accent-soft);
 }
 
 html {
@@ -31,8 +71,9 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-body);
-  background: var(--color-paper);
+  color: var(--c-body);
+  background: var(--c-paper);
+  transition: background-color .25s ease, color .25s ease;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -47,11 +88,11 @@ h1, h2, h3 {
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--c-accent);
 }
 
 .eyebrow-light {
-  color: #ffc93c;
+  color: var(--c-eyebrow-light);
 }
 
 .prose-muted p + p {
@@ -62,6 +103,10 @@ h1, h2, h3 {
   border: 1px dashed #d59b2b;
   background: #fff8e8;
   color: #7a5200;
+}
+:root[data-theme="dark"] .placeholder {
+  background: #2a2210;
+  color: #f1d58a;
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
   font-size: 0.875rem;
@@ -70,3 +115,7 @@ h1, h2, h3 {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* Logo swaps with theme */
+:root[data-theme="dark"] .logo-day { display: none; }
+:root:not([data-theme="dark"]) .logo-night { display: none; }

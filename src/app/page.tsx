@@ -35,7 +35,7 @@ const sectors = [
 export default function Home() {
   return (
     <>
-      <section className="bg-ink text-white">
+      <section className="bg-deep text-white">
         <div className="mx-auto max-w-6xl px-4 pb-20 pt-24 md:px-6 md:pb-28 md:pt-36">
           <p className="eyebrow eyebrow-light">Business intelligence consultancy · London, UK</p>
           <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.1] md:text-6xl">

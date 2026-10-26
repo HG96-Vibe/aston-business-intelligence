@@ -3,6 +3,7 @@ import { Manrope, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { site } from "@/lib/site";
 
 const display = Manrope({ variable: "--font-display", subsets: ["latin"], weight: ["600", "700", "800"] });
@@ -26,11 +27,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-GB" className={`${display.variable} ${body.variable} ${mono.variable} h-full`}>
+    <html lang="en-GB" className={`${display.variable} ${body.variable} ${mono.variable} h-full`} suppressHydrationWarning>
+      <head>
+        {/* Set the theme before first paint: saved choice, else system preference. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("aston-theme");if(!t){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <ThemeToggle />
       </body>
     </html>
   );

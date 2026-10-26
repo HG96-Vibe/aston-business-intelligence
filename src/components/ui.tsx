@@ -49,7 +49,7 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="bg-ink text-white">
+    <section className="bg-deep text-white">
       <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
         {eyebrow && <p className="eyebrow eyebrow-light">{eyebrow}</p>}
         <h1 className="mt-4 max-w-3xl text-4xl font-bold md:text-5xl">{title}</h1>
@@ -90,7 +90,7 @@ export function Placeholder({ children }: { children: ReactNode }) {
 
 export function CtaBand() {
   return (
-    <section className="bg-ink text-white">
+    <section className="bg-deep text-white">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-16 md:flex-row md:items-center md:justify-between md:px-6">
         <div>
           <h2 className="text-2xl font-bold md:text-3xl">Talk to us about your business</h2>

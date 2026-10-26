@@ -47,7 +47,7 @@ export function ContactForm() {
         />
       </div>
       {state.status === "error" && (
-        <p role="alert" className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <p role="alert" className="rounded-md border border-red-300/60 bg-red-500/10 px-4 py-3 text-sm text-red-700 dark:text-red-300">
           {state.message}
         </p>
       )}
