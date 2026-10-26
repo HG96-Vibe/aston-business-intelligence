@@ -288,7 +288,7 @@ export function CostCalculator({ number }: { number?: string }) {
           <p className="mt-2 font-display text-5xl tabular-nums text-ink">{fmt(yr)}<span className="font-sans text-base text-muted"> / year</span></p>
           <div className="mt-4 h-2 overflow-hidden rounded bg-line"><div className="h-full rounded bg-gold transition-all" style={{ width: `${Math.min(100, (yr / 120000) * 100)}%` }} /></div>
           <p className="mt-4 border-t border-line pt-4 text-sm text-muted">That&apos;s <b className="text-ink">{x.toFixed(x < 10 ? 1 : 0)}×</b> the price of a Reporting Assessment — before counting a single bad decision made on a wrong number.</p>
-          <Link href="/services#data-bi" className="mt-5 inline-flex rounded-md bg-gold px-4 py-2.5 text-sm font-semibold text-ink hover:bg-gold-strong">See what the Reporting Assessment covers →</Link>
+          <Link href="/services/data-bi" className="mt-5 inline-flex rounded-md bg-gold px-4 py-2.5 text-sm font-semibold text-ink hover:bg-gold-strong">See what the Reporting Assessment covers →</Link>
         </div>
       </div>
     </Section>

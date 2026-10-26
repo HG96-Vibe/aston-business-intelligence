@@ -112,3 +112,39 @@ export const proof = {
   sectors: 8,
   responseTime: "1 working day",
 };
+
+/* ─── Data & BI deep-dive ────────────────────────────────────────────────── */
+export const dataBi = {
+  pains: [
+    ["Month-end is slow and manual", "Numbers are assembled by hand from several systems. It takes days, and every step is a chance to introduce an error."],
+    ["Nobody fully trusts the numbers", "Two reports show two figures for the same thing. Meetings are spent arguing about which is right instead of what to do."],
+    ["You can't see where the money is made", "Total margin is known. Margin by client, product or job is not — so pricing and effort are spread evenly across customers that are not equal."],
+  ],
+  ladder: [
+    { step: "01", name: "Reporting Assessment", price: "£2,500", duration: "2 weeks", body: "Inventory of every report and data source, reconciliation of your key figures to the accounts, and a costed, prioritised plan. The fee is credited against any of the steps below.", forWho: "Where every client starts." },
+    { step: "02", name: "Single Source of Truth", price: "£8,000 – £15,000", duration: "4–6 weeks", body: "Pipelines from your systems into one clean, documented data model that reconciles to the ledger on every refresh. This is the foundation; everything else sits on it.", forWho: "For “two reports, two numbers”." },
+    { step: "03", name: "Decision Dashboards", price: "£6,000 – £12,000", duration: "3–4 weeks", body: "The five to ten views that actually drive decisions, built in Power BI on the model above. Designed with the people who will use them, not for them.", forWho: "For “I can't see margin by client”." },
+    { step: "04", name: "Managed BI", price: "from £750 / month", duration: "ongoing", body: "We keep it running, add the next question when it comes up, and review the numbers with you monthly. Your team owns it; we maintain it.", forWho: "After go-live." },
+  ],
+  dashboards: [
+    ["Cash & runway", "How long have we got, and what is coming in this month?", "Bank balances, debtors by age, committed costs, 13-week cash view."],
+    ["Margin by client, product or job", "Which customers are actually worth having?", "Revenue, direct cost and contribution per client, product line or job — ranked."],
+    ["Sales pipeline & forecast", "What will we invoice in 90 days, honestly?", "Weighted pipeline by stage and source, win rate, stalled deals, forecast vs actual."],
+    ["Operations & utilisation", "Where is the team's time going?", "Billable vs non-billable, capacity by person, job cost-to-complete."],
+    ["The board pack", "One page, on the 3rd of the month, without anyone compiling it.", "Headline KPIs, variance to plan, the three things that need a decision."],
+  ],
+  reconciliation: [
+    ["Revenue", "£412,380", "£412,380", true],
+    ["Gross margin", "£157,529", "£157,529", true],
+    ["Debtors", "£188,204", "£188,204", true],
+    ["Overheads", "£96,110", "£96,110", true],
+  ] as [string, string, string, boolean][],
+  tools: ["Power BI", "Xero", "Sage", "QuickBooks", "HubSpot", "Google Sheets", "Excel", "SQL Server", "BigQuery", "dbt"],
+  faqs: [
+    ["Which tool will you build in?", "Power BI by default — it is included in most Microsoft 365 plans and your team can learn it. If you already use Looker Studio or Tableau, we build in that. We never resell licences."],
+    ["Our data is a mess. Do we need to clean it first?", "No. Finding and fixing the mess is most of the Assessment. If a source is unusable we will say so in writing and propose the cheapest way to make it usable."],
+    ["Will this replace our finance team or our accountant?", "No. It removes the manual assembly work so they spend their time on judgement rather than copying numbers between spreadsheets."],
+    ["How do we know the dashboard is right?", "Every refresh is reconciled to your accounting system and the reconciliation is visible on the dashboard. If a number does not tie back, it is flagged — not hidden."],
+    ["What happens after you leave?", "You receive documentation, a recorded training session, and a defined support window. Managed BI is optional; many clients run it themselves."],
+  ],
+};

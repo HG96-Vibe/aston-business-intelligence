@@ -81,6 +81,7 @@ export default function ServicesPage() {
                   ))}
                 </ul>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{s.outcome}</p>
+                {s.slug === "data-bi" && <Link href="/services/data-bi" className="mt-4 inline-block font-mono text-xs uppercase tracking-[0.12em] text-accent hover:underline">Full detail: Data &amp; BI →</Link>}
               </div>
             </div>
           </div>

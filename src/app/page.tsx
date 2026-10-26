@@ -71,7 +71,7 @@ export default function Home() {
         />
         <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-2">
           {services.map((s, i) => (
-            <Link key={s.slug} href={`/services#${s.slug}`} className="group bg-paper p-7 transition hover:bg-paper-dim">
+            <Link key={s.slug} href={s.slug === "data-bi" ? "/services/data-bi" : `/services#${s.slug}`} className="group bg-paper p-7 transition hover:bg-paper-dim">
               <p className="font-mono text-xs text-accent">{String(i + 1).padStart(2, "0")}</p>
               <h3 className="mt-3 text-xl text-ink">{s.title}</h3>
               <p className="mt-2 font-light text-muted">{s.short}</p>
