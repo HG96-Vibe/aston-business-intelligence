@@ -1,0 +1,123 @@
+<title>ABi Monogram Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  /* Studio board for the rebuilt ABi monogram: one card per treatment,
+     every card shows light + dark lockup, the mark alone, and 16/32/64 px. */
+  :root {
+    --bg: #f5f4f0; --fg: #17161f; --muted: #605e6e; --card: #ffffff; --line: #e3e1da;
+    --paper: #ffffff; --inkp: #1b1a2e; --gold: #c9a227;
+    --font-ui: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg:#121218; --fg:#ebe9f2; --muted:#9b99aa; --card:#1a1a24; --line:#2b2b38; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg:#121218; --fg:#ebe9f2; --muted:#9b99aa; --card:#1a1a24; --line:#2b2b38; color-scheme: dark; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--font-ui);
+    padding-block:32px 64px; padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-family:"Manrope",var(--font-ui); font-size:clamp(1.6rem,3vw,2.2rem); margin:0; letter-spacing:-0.02em; text-wrap:balance; }
+  .lede { color:var(--muted); max-width:66ch; line-height:1.55; margin:10px 0 0; }
+  .compare { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0 0; }
+  .compare > div { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; display:grid; gap:8px; place-items:center; }
+  .compare small { font-family:var(--font-mono); font-size:11px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; }
+  .compare img { max-width:100%; height:auto; image-rendering:auto; }
+  .toolbar { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; margin:22px 0 28px; }
+  .toolbar label { font-size:13px; color:var(--muted); display:inline-flex; gap:8px; align-items:center; }
+  .toolbar input[type=color] { width:34px; height:26px; border:1px solid var(--line); border-radius:6px; padding:0; background:none; }
+  .toolbar button { font:inherit; font-size:13px; padding:6px 12px; border-radius:6px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .toolbar :focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+  .grid { display:grid; gap:22px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .card-head { padding:16px 18px 0; }
+  .card-head h2 { font-family:"Manrope",var(--font-ui); font-size:1.05rem; margin:0; display:flex; gap:10px; align-items:baseline; }
+  .num { font-family:var(--font-mono); font-size:12px; color:var(--gold); letter-spacing:.08em; }
+  .card-head p { margin:6px 0 0; color:var(--muted); font-size:13.5px; max-width:72ch; line-height:1.5; }
+  .stage { display:grid; grid-template-columns:1fr 1fr; margin-top:14px; border-top:1px solid var(--line); }
+  .stage > div { min-width:0; display:grid; place-items:center; padding:30px 22px; }
+  .stage svg { width:100%; max-width:460px; height:auto; }
+  .on-paper { background:var(--paper); } .on-ink { background:var(--inkp); }
+  .tests { display:grid; grid-template-columns:1fr 1fr 1.2fr; border-top:1px solid var(--line); }
+  .tests > div { min-width:0; display:grid; place-items:center; gap:8px; padding:18px 10px; border-right:1px solid var(--line); }
+  .tests > div:last-child { border-right:0; }
+  .tests svg { width:84px; height:84px; }
+  .tests small { font-family:var(--font-mono); font-size:11px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; }
+  .tests .on-ink small { color:#a7a5b8; }
+  .fav { display:flex; gap:12px; align-items:center; }
+  .fav svg:nth-child(1) { width:16px; height:16px; } .fav svg:nth-child(2) { width:32px; height:32px; } .fav svg:nth-child(3) { width:64px; height:64px; }
+  .notes { padding:14px 18px 18px; font-size:13.5px; color:var(--muted); line-height:1.55; border-top:1px solid var(--line); }
+  .notes b { color:var(--fg); font-weight:600; }
+  @media (max-width:640px) { .stage, .compare { grid-template-columns:1fr; } }
+</style>
+
+<div class="wrap">
+  <h1>ABi monogram — rebuilt in white &amp; gold</h1>
+  <p class="lede">The existing mark's idea is kept: the A's right leg is the B's spine, a dark counter sits inside the A, and a lowercase i closes it. It's been redrawn as exact vector geometry so it's sharp at any size, then given five treatments from quiet to futuristic.</p>
+
+  <div class="compare">
+    <div><img src="old-logo.png" alt="Existing Aston Business Intelligence logo: red ABi monogram with black serif wordmark" width="250" height="100"><small>Existing (250 × 100 px raster)</small></div>
+    <div id="newref"><small>Rebuilt (vector)</small></div>
+  </div>
+
+  <div class="toolbar">
+    <label>Gold <input type="color" id="gold" value="#c9a227"></label>
+    <label>Gold on dark <input type="color" id="goldlt" value="#f2c811"></label>
+    <label>Ink <input type="color" id="ink" value="#1b1a2e"></label>
+    <button type="button" id="p-charcoal">Ink: charcoal</button>
+    <button type="button" id="p-indigo">Ink: indigo</button>
+    <button type="button" id="reset">Reset</button>
+  </div>
+
+  <div class="grid" id="board"></div>
+</div>
+
+<script src="abi-monogram.js"></script>
+<script>
+const meta = [
+  ["solid", "Solid", "The faithful rebuild. Flat gold monogram, ink counter and i. This is the version that goes on documents, invoices and anywhere printed."],
+  ["metallic", "Metallic", "Same geometry with a brushed-gold gradient and a soft sheen across the A and B. Reads as 'HD' on screens and in the hero; print would use the solid version."],
+  ["tech", "Chamfer", "The B's bowls become 45° chamfers and the i picks up a thin light-gold edge. Angular, circuit-board feel without becoming a different logo."],
+  ["outline", "Monoline", "Open outlines in gold with a glowing dot on the i. The most futuristic read — good for dark hero backgrounds, animations and watermarks. Not for small sizes."],
+  ["badge", "Badge", "Monogram on a rounded ink tile in brushed gold. The app icon, LinkedIn avatar, favicon and social-share mark."],
+];
+const bestFor = {
+  solid: "website header, PDFs, email signature, print.",
+  metallic: "homepage hero, slide title pages, video idents.",
+  tech: "a more technical sub-brand, AI-consulting collateral.",
+  outline: "dark backgrounds, loading animations, watermarks.",
+  badge: "favicon, avatars, app icon, social cards.",
+};
+function palette() {
+  const ink = document.getElementById("ink").value;
+  const mid = document.getElementById("gold").value;
+  const lt  = document.getElementById("goldlt").value;
+  return {
+    light: { ink, paper: "#ffffff", gold: { light: "#f3d77c", mid, deep: "#8d6d0e" }, tile: ink, tileInk: "#ffffff" },
+    dark:  { ink: "#ffffff", paper: "#1b1a2e", gold: { light: "#fbe59a", mid: lt, deep: mid }, tile: "#ffffff", tileInk: ink },
+  };
+}
+function render() {
+  const P = palette();
+  document.getElementById("newref").innerHTML = `<div style="width:250px">${ABI.lockup("solid", { ...P.light, id: "ref" })}</div><small>Rebuilt (vector)</small>`;
+  document.getElementById("board").innerHTML = meta.map(([key, name, desc], i) => `
+    <article class="card" id="${key}">
+      <div class="card-head"><h2><span class="num">0${i+1}</span> ${name}</h2><p>${desc}</p></div>
+      <div class="stage">
+        <div class="on-paper">${ABI.lockup(key, { ...P.light, id: `L${key}` })}</div>
+        <div class="on-ink">${ABI.lockup(key, { ...P.dark, id: `D${key}` })}</div>
+      </div>
+      <div class="tests">
+        <div class="on-paper">${ABI.mark(key, { ...P.light, id: `m${key}` })}<small>Mark</small></div>
+        <div class="on-ink">${ABI.mark(key, { ...P.dark, id: `n${key}` })}<small>Mark · reversed</small></div>
+        <div class="on-paper"><div class="fav">${ABI.mark(key, { ...P.light, id: `f1${key}` })}${ABI.mark(key, { ...P.light, id: `f2${key}` })}${ABI.mark(key, { ...P.light, id: `f3${key}` })}</div><small>16 / 32 / 64 px</small></div>
+      </div>
+      <div class="notes"><b>Best for:</b> ${bestFor[key]}</div>
+    </article>`).join("");
+}
+for (const id of ["ink", "gold", "goldlt"]) document.getElementById(id).addEventListener("input", render);
+document.getElementById("p-charcoal").addEventListener("click", () => { document.getElementById("ink").value = "#17161f"; render(); });
+document.getElementById("p-indigo").addEventListener("click", () => { document.getElementById("ink").value = "#1e1b4b"; render(); });
+document.getElementById("reset").addEventListener("click", () => { ink.value = "#1b1a2e"; gold.value = "#c9a227"; goldlt.value = "#f2c811"; render(); });
+render();
+</script>
