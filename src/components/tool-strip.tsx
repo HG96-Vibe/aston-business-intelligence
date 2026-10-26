@@ -5,12 +5,12 @@ const TOOLS: { id: string; name: string; w: number; h?: number }[] = [
   { id: "power-bi", name: "Power BI", w: 588, h: 34 },
   { id: "excel", name: "Microsoft Excel", w: 172, h: 40 },
   { id: "xero", name: "Xero", w: 593, h: 30 },
-  { id: "sage", name: "Sage", w: 284, h: 34 },
-  { id: "hubspot", name: "HubSpot", w: 563, h: 32 },
-  { id: "sql-server", name: "SQL Server", w: 128, h: 40 },
-  { id: "mysql", name: "MySQL", w: 236, h: 42 },
-  { id: "python", name: "Python", w: 160, h: 40 },
-  { id: "tableau", name: "Tableau", w: 279, h: 42 },
+  { id: "sage", name: "Sage", w: 284, h: 44 },
+  { id: "hubspot", name: "HubSpot", w: 563, h: 40 },
+  { id: "sql-server", name: "SQL Server", w: 128, h: 52 },
+  { id: "mysql", name: "MySQL", w: 236, h: 56 },
+  { id: "python", name: "Python", w: 160, h: 52 },
+  { id: "tableau", name: "Tableau", w: 279, h: 56 },
 ];
 
 export function ToolStrip() {
