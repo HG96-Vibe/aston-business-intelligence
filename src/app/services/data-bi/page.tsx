@@ -5,6 +5,7 @@ import { WeekOne, Guarantee, bookHref } from "@/components/offers";
 import { dataBi } from "@/lib/offers";
 import { SheetsToScreen } from "@/components/sheets-to-screen";
 import { Convergence } from "@/components/convergence";
+import { TubeMap } from "@/components/tube-map";
 
 export const metadata: Metadata = {
   title: "Data & Business Intelligence",
@@ -51,19 +52,8 @@ export default function DataBiPage() {
 
       {/* Ladder */}
       <Section dim id="ladder">
-        <SectionHead number="02" eyebrow="How the work is structured" title="Four steps." em="Each one stands on its own." intro="Start with the Assessment. Continue only if the plan it produces makes sense to you. Prices exclude VAT." />
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-4">
-          {d.ladder.map((l, i) => (
-            <li key={l.name} className={`flex flex-col bg-paper p-6 ${i === 0 ? "md:bg-accent-soft" : ""}`}>
-              <span className="font-mono text-xs text-accent">{l.step}</span>
-              <h3 className="mt-3 text-lg text-ink">{l.name}</h3>
-              <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-muted">{l.duration}</p>
-              <p className="mt-4 font-display text-2xl text-ink">{l.price}</p>
-              <p className="mt-4 flex-1 text-sm font-light leading-relaxed text-muted">{l.body}</p>
-              <p className="mt-4 text-xs italic text-accent">{l.forWho}</p>
-            </li>
-          ))}
-        </ol>
+        <SectionHead number="02" eyebrow="How the work is structured" title="Four stops." em="Alight at any of them." intro="Every journey starts with the Assessment. Continue only if the plan it produces makes sense to you." />
+        <TubeMap steps={d.ladder} />
       </Section>
 
       {/* Five dashboards */}
