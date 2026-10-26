@@ -2,7 +2,6 @@ import Link from "next/link";
 import { services } from "@/lib/site";
 import { Button, CtaBand, Section, SectionHead } from "@/components/ui";
 import { HeroMotion } from "@/components/hero-motion";
-import { CertBadge } from "@/components/cert-badge";
 
 const principles = [
   ["Senior-led, specialist-delivered", "Every engagement is scoped and overseen by a senior consultant and delivered by a team matched to the problem — analysts, engineers, AI specialists or project leads as needed."],
@@ -17,6 +16,8 @@ const sectors = [
 ];
 
 const credentials = [
+  { label: "NVIDIA", detail: "NVIDIA Certified" },
+  { label: "Google Cloud", detail: "Google Cloud Certified" },
   { label: "Companies House", detail: "No. 15571977" },
   { label: "Based in", detail: "London, UK" },
 ];
@@ -45,11 +46,9 @@ export default function Home() {
 
         {/* Credentials strip */}
         <div className="hairline relative bg-paper">
-          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-5 px-4 py-6 md:grid-cols-4 md:px-6">
-            <CertBadge src="/brand/certs/nvidia.png" label="NVIDIA" detail="NVIDIA Certified" />
-            <CertBadge src="/brand/certs/google-cloud.png" label="Google Cloud" detail="Google Cloud Certified" wide />
+          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-4 px-4 py-6 md:grid-cols-4 md:px-6">
             {credentials.map((c) => (
-              <div key={c.label} className="min-w-0 self-center">
+              <div key={c.label} className="min-w-0">
                 <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">{c.label}</p>
                 <p className="mt-1 text-sm font-medium text-ink">{c.detail}</p>
               </div>
