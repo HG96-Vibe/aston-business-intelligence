@@ -52,16 +52,27 @@ export function PricingLadder({ compact = false, number }: { compact?: boolean; 
 export function WeekOne({ number }: { number?: string }) {
   return (
     <Section>
-      <SectionHead number={number} eyebrow="Week one" title="What actually happens" em="in the first five days." intro="Most hesitation comes from not knowing what the first week involves. This is it." />
-      <ol className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-4">
-        {weekOne.map(([day, title, body]) => (
-          <li key={day} className="bg-paper p-6">
-            <span className="font-mono text-xs uppercase tracking-[0.12em] text-accent">{day}</span>
-            <h3 className="mt-3 text-lg text-ink">{title}</h3>
-            <p className="mt-2 text-sm font-light leading-relaxed text-muted">{body}</p>
-          </li>
-        ))}
-      </ol>
+      <SectionHead number={number} eyebrow="Week one" title="By Friday" em="you'll have:" />
+      <div className="mt-10 grid gap-10 md:grid-cols-[1.2fr_1fr] md:gap-14">
+        <ul className="m-0 list-none p-0">
+          {weekOne.youGet.map(([t, b]) => (
+            <li key={t} className="grid grid-cols-[28px_1fr] gap-3 border-b border-line py-4">
+              <span className="mt-0.5 grid h-6 w-6 place-items-center rounded-full border border-gold bg-accent-soft text-xs text-accent" aria-hidden="true">✓</span>
+              <div><p className="font-medium text-ink">{t}</p><p className="mt-0.5 text-sm font-light leading-relaxed text-muted">{b}</p></div>
+            </li>
+          ))}
+        </ul>
+        <aside className="self-start rounded-md border border-line bg-paper p-6 md:sticky md:top-24">
+          <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted">What it costs you</p>
+          <p className="mt-2 font-display text-5xl font-light leading-none text-ink">{weekOne.hours}<span className="ml-2 text-lg text-muted">hours</span></p>
+          <p className="mt-3 text-sm font-light leading-relaxed text-muted">{weekOne.costNote}</p>
+          <ul className="mt-4 border-t border-line text-sm">
+            {weekOne.yourTime.map(([k, v]) => (
+              <li key={k} className="flex justify-between gap-4 border-b border-line py-2"><span className="text-body">{k}</span><span className="font-mono text-xs text-ink">{v}</span></li>
+            ))}
+          </ul>
+        </aside>
+      </div>
     </Section>
   );
 }

@@ -98,12 +98,22 @@ export const serviceOutcomes: Record<string, string[]> = {
 };
 
 /* What happens in the first week of any engagement */
-export const weekOne = [
-  ["Day 1", "Kick-off call", "An hour with you and whoever owns the numbers. We agree what 'good' looks like and who we need to talk to."],
-  ["Days 2–3", "Access and interviews", "Read-only access to your systems and 30-minute conversations with the people who use them. No disruption."],
-  ["Day 4", "Data map", "A one-page picture of where your data lives, how it flows, and where it breaks. You'll recognise it immediately."],
-  ["Day 5", "First findings", "A short written note: three things we've already seen, and the questions for week two."],
-] as const;
+/* Week one, told as what you have by Friday and what it costs you */
+export const weekOne = {
+  youGet: [
+    ["A one-page map of your data", "Where it lives, how it flows between systems, and where it breaks."],
+    ["Three things we've already found", "In writing. Usually one of them is the reason two reports disagree."],
+    ["A clear list of what's next", "The questions for week two, and what we'd need from you to answer them."],
+    ["Nothing you have to decide yet", "The costed plan comes at the end of week two. Week one is looking, not selling."],
+  ],
+  hours: 3,
+  costNote: "Spread across the week. No prep, no slides, no disruption to the day job.",
+  yourTime: [
+    ["Kick-off call, Monday", "1 hr"],
+    ["Short chats with your team", "3 × 30 min"],
+    ["First findings call, Friday", "30 min"],
+  ],
+} as const;
 
 /* Honest proof — things that are true today */
 export const proof = {
