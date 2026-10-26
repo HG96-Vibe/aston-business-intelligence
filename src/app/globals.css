@@ -99,7 +99,7 @@ h3 {
   font-weight: 300;
   color: var(--c-accent);
 }
-/* Numbered section marker: "— 01  WHAT WE DO" */
+/* Numbered section marker: "01  WHAT WE DO" */
 .marker {
   display: inline-flex;
   align-items: center;
@@ -109,12 +109,6 @@ h3 {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--c-accent);
-}
-.marker::before {
-  content: "";
-  width: 28px;
-  height: 1px;
-  background: var(--c-accent);
 }
 .hairline { border-top: 1px solid var(--c-line); }
 

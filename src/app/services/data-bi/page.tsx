@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Section, SectionHead, CtaBand, Placeholder, Button } from "@/components/ui";
+import { Section, SectionHead, CtaBand, Button } from "@/components/ui";
 import { Guarantee, bookHref } from "@/components/offers";
 import { dataBi } from "@/lib/offers";
 import { SheetsToScreen } from "@/components/sheets-to-screen";
@@ -75,23 +75,12 @@ export default function DataBiPage() {
       </Section>
 
 
-      {/* Proof */}
-      <Section dim>
-        <SectionHead number="05" eyebrow="What changed" title="Before and after," em="in numbers." />
-        <div className="mt-10"><Placeholder><strong>Placeholder — awaiting a real example.</strong> This block will show one anonymised engagement: month-end days before/after, spreadsheets retired, reports reconciled, hours returned per month.</Placeholder></div>
-        <div className="mt-6 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 md:grid-cols-4">
-          {[["Month-end close", "5 days", "1 day"], ["Spreadsheets in use", "14", "0"], ["Reports that reconcile", "3 of 11", "11 of 11"], ["Hours on reporting / month", "48", "6"]].map(([k, a, b]) => (
-            <div key={k} className="bg-paper p-5"><p className="font-mono text-[0.65rem] uppercase tracking-[0.12em] text-muted">{k}</p><p className="mt-2 font-display text-2xl text-ink"><span className="text-muted line-through decoration-accent/60">{a}</span> → {b}</p><p className="mt-1 text-xs italic text-accent">[example figures]</p></div>
-          ))}
-        </div>
-      </Section>
-
       <Guarantee />
 
       {/* FAQ */}
       <Section dim>
         <div className="grid gap-10 md:grid-cols-[1fr_1.4fr]">
-          <SectionHead number="06" eyebrow="Questions" title="Before you ask" />
+          <SectionHead number="05" eyebrow="Questions" title="Before you ask" />
           <div className="border-t border-line">
             {d.faqs.map(([q, a]) => (
               <details key={q} className="group border-b border-line">
