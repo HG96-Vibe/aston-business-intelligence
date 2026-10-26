@@ -26,16 +26,16 @@ export async function sendResults(_prev: FormState, data: FormData): Promise<For
   const internal = await sendMail({
     to: process.env.MAIL_TO_HELLO ?? site.emails.hello,
     replyTo: email,
-    subject: `Health check: ${b.label} (${risk}/10) — ${company || email}`,
+    subject: `Scorecard: ${b.label} (${risk}/10) — ${company || email}`,
     text: [`Email: ${email}`, `Company: ${company || "—"}`, `Score: ${risk}/10 — ${b.label}`, "", ...lines].join("\n"),
   });
 
   // Their copy
   await sendMail({
     to: email,
-    subject: `Your reporting health check: ${b.label}`,
+    subject: `Your reporting reporting scorecard: ${b.label}`,
     text: [
-      `Thanks for taking the ABI reporting health check.`,
+      `Thanks for taking the ABI reporting reporting scorecard.`,
       ``,
       `Result: ${b.label} (${risk} of 10 warning signs)`,
       b.summary,
@@ -50,7 +50,7 @@ export async function sendResults(_prev: FormState, data: FormData): Promise<For
       `• Insight — if you can't see margin by client or product, you're pricing blind.`,
       `• Waste — a dashboard nobody uses was built without asking what decisions it serves.`,
       ``,
-      `If you'd like us to look properly, the Reporting Health Check is £2,500, takes two weeks, and is credited against any follow-on work: ${site.url}/services`,
+      `If you'd like us to look properly, the Reporting Assessment is £2,500, takes two weeks, and is credited against any follow-on work: ${site.url}/services`,
       ``,
       `Aston Business Intelligence Ltd · ${site.emails.hello}`,
     ].join("\n"),

@@ -57,15 +57,15 @@ export function SelfCheck() {
             </div>
           </>
         ) : (
-          <p className="mt-3 font-light text-muted">Answer all ten and your score appears here instantly. No email needed to see it.</p>
+          <p className="mt-3 font-light text-muted">Answer all ten questions and your score appears here. No email address required.</p>
         )}
       </div>
 
       {done && state.status !== "ok" && (
         <div className="grid gap-5 rounded-md border border-accent/30 bg-accent-soft p-6">
           <div>
-            <h3 className="text-lg text-ink">Want the detailed version?</h3>
-            <p className="mt-1 text-sm font-light text-muted">We&apos;ll email you a breakdown of what each warning sign usually means and what fixes it. One email, no sequence.</p>
+            <h3 className="text-lg text-ink">Would you like the detailed version?</h3>
+            <p className="mt-1 text-sm font-light text-muted">We&apos;ll email a breakdown of what each warning sign usually indicates and how it is typically resolved. One email, no follow-up sequence.</p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <Field id="email" label="Work email" type="email" required autoComplete="email" />
@@ -73,14 +73,14 @@ export function SelfCheck() {
           </div>
           {state.status === "error" && <p role="alert" className="text-sm text-red-700 dark:text-red-300">{state.message}</p>}
           <div className="flex flex-wrap gap-3">
-            <SubmitButton pending={pending}>Email me the breakdown</SubmitButton>
-            <Link href={bookHref()} className="inline-flex items-center rounded-md border border-line bg-paper px-5 py-3 text-sm font-semibold text-ink hover:bg-paper-dim">Or just book a call</Link>
+            <SubmitButton pending={pending}>Email the breakdown</SubmitButton>
+            <Link href={bookHref()} className="inline-flex items-center rounded-md border border-line bg-paper px-5 py-3 text-sm font-semibold text-ink hover:bg-paper-dim">Or book a conversation</Link>
           </div>
         </div>
       )}
       {state.status === "ok" && (
         <div className="rounded-md border border-accent/30 bg-accent-soft p-6">
-          <p className="font-semibold text-ink">Sent. Check your inbox.</p>
+          <p className="font-semibold text-ink">Sent — please check your inbox.</p>
           <p className="mt-1 text-sm text-body">If you&apos;d like to talk it through, <Link href={bookHref()} className="underline">book a 30-minute conversation</Link>.</p>
         </div>
       )}

@@ -42,7 +42,7 @@ export default function CareersPage() {
           </div>
           <div>
             <h2 className="text-2xl text-ink">Join the talent pool</h2>
-            <p className="mt-2 mb-6 text-muted">Takes two minutes. We read every one.</p>
+            <p className="mt-2 mb-6 text-muted">Two minutes. Every submission is read.</p>
             <CareersForm />
           </div>
         </div>

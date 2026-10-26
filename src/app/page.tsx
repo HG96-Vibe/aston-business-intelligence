@@ -39,7 +39,7 @@ export default function Home() {
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Button href={bookHref()}>Book a 30-minute conversation →</Button>
-            <Button href="/health-check" variant="ghost">Take the 2-minute health check</Button>
+            <Button href="/scorecard" variant="ghost">Score your reporting in 2 minutes</Button>
           </div>
           <div className="mt-6"><Availability /></div>
         </div>

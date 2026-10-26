@@ -4,18 +4,18 @@ import { bookHref } from "@/components/offers";
 
 /* ── Six problems ─────────────────────────────────────────────────────────── */
 const problems = [
-  ["“Month-end takes a week and I still don't trust it.”", "Numbers are assembled by hand from four places; every step is a chance to break something.", "Reporting Health Check", "/services#data-bi"],
+  ["“Month-end takes a week and I still don't trust it.”", "Numbers are assembled by hand from four places; every step is a chance to break something.", "Reporting Assessment", "/services#data-bi"],
   ["“Two reports, same thing, different numbers.”", "Two definitions of ‘revenue’, two spreadsheets, and a meeting spent arguing about which is right.", "One data model, reconciled", "/services#data-bi"],
-  ["“If Priya left, nobody could run the reports.”", "The process lives in one person's head and one person's laptop.", "Documented, automated, handed over", "/services#data-bi"],
+  ["“If one person left, nobody could run the reports.”", "The process lives in one person's head and one person's laptop.", "Documented, automated, handed over", "/services#data-bi"],
   ["“I know total margin. I don't know margin by client.”", "So you can't see which customers cost you money, and you price them all the same.", "Margin by client, product, job", "/services#data-bi"],
-  ["“Everyone says do AI. Nobody says where.”", "You've seen the demos; you haven't seen the business case for your business.", "AI Readiness Review", "/services#ai-consulting"],
+  ["“Everyone says do AI. Nobody says where.”", "You've seen the demos; you haven't seen the business case for your business.", "AI Readiness Assessment", "/services#ai-consulting"],
   ["“The supplier's late and nobody owns it.”", "The project is live, the vendor is drifting, and your team has day jobs.", "Fractional Project Lead", "/services#project-delivery"],
 ];
 
 export function Problems({ number }: { number?: string }) {
   return (
     <Section dim>
-      <SectionHead number={number} eyebrow="Sound familiar?" title="Six problems every growing business knows," em="and what we do about them." />
+      <SectionHead number={number} eyebrow="Recognise any of these?" title="Six problems every growing business knows," em="and what we do about them." />
       <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-3">
         {problems.map(([q, body, fix, href]) => (
           <Link key={q} href={href} className="group bg-paper p-6 transition hover:bg-paper-dim">

@@ -16,13 +16,13 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="Tell us what's"
         em="slow, broken or unclear."
-        intro="A 30-minute conversation is usually enough to tell you whether we can help and what it would involve. No pitch deck."
+        intro="A 30-minute conversation is usually enough to establish whether we can help and what it would involve."
       />
       <Section>
         <div id="book" className="mb-10 scroll-mt-24 max-w-2xl">
           <p className="marker">Book a conversation</p>
-          <h2 className="mt-3 text-2xl text-ink">Tell us what&apos;s going on and when suits you</h2>
-          <p className="mt-2 font-light text-muted">A member of the team will come back within one working day to confirm a 30-minute slot. No preparation needed.</p>
+          <h2 className="mt-3 text-2xl text-ink">Tell us what you need and when suits you</h2>
+          <p className="mt-2 font-light text-muted">A member of the team will come back within one working day to confirm a 30-minute slot. No preparation required.</p>
           <div className="mt-4"><Availability /></div>
         </div>
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr]">

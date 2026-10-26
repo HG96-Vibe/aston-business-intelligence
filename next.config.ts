@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [{ source: "/health-check", destination: "/scorecard", permanent: true }];
+  },
   /* config options here */
   turbopack: {
     rules: {

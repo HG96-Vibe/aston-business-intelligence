@@ -9,7 +9,7 @@ export const commercial = {
   firstCallWithin: "5 working days",
   guarantee: {
     title: "No open-ended bills. No lock-in.",
-    body: "Every first engagement is fixed price and fixed scope. If a Health Check or Readiness Review concludes you shouldn't proceed, you still walk away with a written report you can hand to anyone — and the fee is credited against any follow-on project with us within 12 months.",
+    body: "Every first engagement is fixed price and fixed scope. If a Reporting Assessment or AI Readiness Assessment concludes that you should not proceed, you still receive a written report you can share with anyone — and the fee is credited against any follow-on project with us within 12 months.",
   },
 } as const;
 
@@ -27,8 +27,8 @@ export type Offer = {
 
 export const offers: Offer[] = [
   {
-    slug: "reporting-health-check",
-    name: "Reporting Health Check",
+    slug: "reporting-assessment",
+    name: "Reporting Assessment",
     price: "£2,500",
     duration: "2 weeks",
     forWho: "You have reports, but nobody fully trusts them and month-end takes too long.",
@@ -44,7 +44,7 @@ export const offers: Offer[] = [
   },
   {
     slug: "ai-readiness-review",
-    name: "AI Readiness Review",
+    name: "AI Readiness Assessment",
     price: "£2,500",
     duration: "2 weeks",
     forWho: "You're being told to 'do something with AI' and want a straight answer on where it pays.",

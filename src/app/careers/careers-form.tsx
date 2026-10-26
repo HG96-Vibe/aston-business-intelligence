@@ -14,7 +14,7 @@ export function CareersForm() {
   if (state.status === "ok") {
     return (
       <div className="rounded-lg border border-accent/30 bg-accent-soft p-6">
-        <p className="font-bold text-ink">Thanks — you&apos;re in the pool.</p>
+        <p className="font-bold text-ink">Thank you — you&apos;re in the talent pool.</p>
         <p className="mt-2 text-body">We&apos;ll be in touch when there&apos;s a project that matches your profile.</p>
       </div>
     );

@@ -25,7 +25,7 @@ export function score(answers: Partial<Record<QuestionId, boolean>>) {
 }
 
 export function band(risk: number) {
-  if (risk <= 2) return { label: "Healthy", tone: "good", summary: "Your reporting is in better shape than most. The gains now are in speed and depth rather than repair." };
-  if (risk <= 5) return { label: "Strained", tone: "warn", summary: "It works, but it's costing you time and the occasional bad call. A two-week Health Check would pay for itself in the first quarter." };
-  return { label: "Urgent", tone: "bad", summary: "Reporting is actively holding decisions back and probably hiding a margin problem. This is exactly what the Reporting Health Check is for." };
+  if (risk <= 2) return { label: "Sound", tone: "good", summary: "Your reporting is in better shape than most. The gains now lie in speed and depth rather than repair." };
+  if (risk <= 5) return { label: "Strained", tone: "warn", summary: "It works, but it's costing you time and the occasional bad call. A two-week Reporting Assessment would pay for itself in the first quarter." };
+  return { label: "Urgent", tone: "bad", summary: "Reporting is actively holding decisions back and probably hiding a margin problem. This is exactly what the Reporting Assessment is for." };
 }

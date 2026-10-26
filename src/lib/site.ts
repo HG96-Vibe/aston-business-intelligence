@@ -12,7 +12,7 @@ export const site = {
   },
   nav: [
     { href: "/services", label: "Services" },
-    { href: "/health-check", label: "Health check" },
+    { href: "/scorecard", label: "Scorecard" },
     { href: "/work", label: "Work" },
     { href: "/about", label: "About" },
     { href: "/careers", label: "Careers" },
@@ -34,7 +34,7 @@ export const services = [
       "Training so your own team can maintain and extend what we build",
     ],
     outcome: "One place where the whole business looks at the same numbers.",
-    entry: "Reporting Health Check — 2 weeks, fixed fee",
+    entry: "Reporting Assessment — 2 weeks, fixed fee",
   },
   {
     slug: "business-analysis",
@@ -64,7 +64,7 @@ export const services = [
       "Governance: data handling, UK GDPR, vendor selection and staff guidance",
     ],
     outcome: "AI that is deployed on one real problem with a number attached, not a slide deck.",
-    entry: "AI Readiness Review — 2 weeks, fixed fee",
+    entry: "AI Readiness Assessment — 2 weeks, fixed fee",
   },
   {
     slug: "project-delivery",

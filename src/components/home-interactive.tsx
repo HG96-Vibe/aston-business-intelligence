@@ -272,7 +272,7 @@ export function CostCalculator({ number }: { number?: string }) {
   const x = yr / 2500;
   return (
     <Section dim>
-      <SectionHead number={number} eyebrow="Do the sum" title="What is manual reporting" em="actually costing you?" />
+      <SectionHead number={number} eyebrow="The arithmetic" title="What is manual reporting" em="actually costing you?" />
       <div className="mt-12 grid gap-8 md:grid-cols-2 md:items-start">
         <div className="grid gap-5">
           {([["People involved in producing reports", p, setP, 1, 15, 1, (v: number) => String(v)], ["Hours each spends per month on it", h, setH, 2, 60, 1, (v: number) => String(v)], ["Average loaded hourly cost", c, setC, 15, 120, 5, (v: number) => "£" + v]] as const).map(([label, val, set, min, max, step, show]) => (
@@ -281,14 +281,14 @@ export function CostCalculator({ number }: { number?: string }) {
               <input type="range" min={min} max={max} step={step} value={val} onChange={(e) => set(+e.target.value)} className="w-full accent-gold" />
             </label>
           ))}
-          <p className="text-xs text-muted">Rough is fine. Most owners underestimate the hours by half.</p>
+          <p className="text-xs text-muted">Estimates are fine. Most owners underestimate the hours by half.</p>
         </div>
         <div className="rounded-md border border-line bg-paper p-6">
           <p className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-muted">Cost of producing reports</p>
           <p className="mt-2 font-display text-5xl tabular-nums text-ink">{fmt(yr)}<span className="font-sans text-base text-muted"> / year</span></p>
           <div className="mt-4 h-2 overflow-hidden rounded bg-line"><div className="h-full rounded bg-gold transition-all" style={{ width: `${Math.min(100, (yr / 120000) * 100)}%` }} /></div>
-          <p className="mt-4 border-t border-line pt-4 text-sm text-muted">That&apos;s <b className="text-ink">{x.toFixed(x < 10 ? 1 : 0)}×</b> the price of a Reporting Health Check — before counting a single bad decision made on a wrong number.</p>
-          <Link href="/services#data-bi" className="mt-5 inline-flex rounded-md bg-gold px-4 py-2.5 text-sm font-semibold text-ink hover:bg-gold-strong">See what the Health Check covers →</Link>
+          <p className="mt-4 border-t border-line pt-4 text-sm text-muted">That&apos;s <b className="text-ink">{x.toFixed(x < 10 ? 1 : 0)}×</b> the price of a Reporting Assessment — before counting a single bad decision made on a wrong number.</p>
+          <Link href="/services#data-bi" className="mt-5 inline-flex rounded-md bg-gold px-4 py-2.5 text-sm font-semibold text-ink hover:bg-gold-strong">See what the Reporting Assessment covers →</Link>
         </div>
       </div>
     </Section>

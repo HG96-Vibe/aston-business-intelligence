@@ -11,7 +11,7 @@ export function ContactForm() {
   if (state.status === "ok") {
     return (
       <div className="rounded-lg border border-accent/30 bg-accent-soft p-6">
-        <p className="font-semibold text-ink">Thanks — we&apos;ve got it.</p>
+        <p className="font-semibold text-ink">Thank you — received.</p>
         <p className="mt-2 text-body">A member of the team will email you within one working day to confirm a time.</p>
       </div>
     );
@@ -46,14 +46,14 @@ export function ContactForm() {
         </select>
       </div>
       <div className="grid gap-1.5">
-        <label htmlFor="message" className="text-sm font-medium text-ink">Tell us about the problem</label>
+        <label htmlFor="message" className="text-sm font-medium text-ink">Tell us about the situation</label>
         <textarea
           id="message"
           name="message"
           required
           rows={5}
           className="rounded-md border border-line bg-paper px-3 py-2.5 text-body"
-          placeholder="What's slow, broken or unclear right now? Rough is fine."
+          placeholder="What is slow, unreliable or unclear at the moment? A few lines is enough."
         />
       </div>
       {state.status === "error" && (

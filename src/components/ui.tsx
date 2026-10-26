@@ -114,13 +114,13 @@ export function CtaBand() {
         <div>
           <h2 className="text-2xl md:text-3xl">Talk to us about <span className="em" style={{ color: "#ffc93c" }}>your business.</span></h2>
           <p className="mt-2 max-w-xl font-light text-white/70">
-            A 30-minute call, no slides. We&apos;ll tell you plainly whether and how we can help — and what it would cost.
+            A 30-minute conversation. We&apos;ll tell you whether we can help, how, and what it would cost.
           </p>
           <p className="mt-3 text-sm text-white/60">Taking on {commercial.newEngagementsPerMonth} new engagements a month · first call within {commercial.firstCallWithin}.</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <Button href="/contact#book">Book a conversation</Button>
-          <Button href="/health-check" variant="light">2-minute health check</Button>
+          <Button href="/scorecard" variant="light">2-minute reporting scorecard</Button>
         </div>
       </div>
     </section>

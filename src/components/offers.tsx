@@ -18,7 +18,7 @@ export function PricingLadder({ compact = false, number }: { compact?: boolean; 
           intro="Start small. Every first engagement is a defined piece of work with a defined price, so you know the bill before you say yes."
         />
         <p className="max-w-xs text-sm text-muted md:text-right">
-          Prices exclude VAT. Fees for a Health Check or Readiness Review are credited against follow-on work within 12 months.
+          Prices exclude VAT. Fees for a Reporting Assessment or AI Readiness Assessment are credited against follow-on work within 12 months.
         </p>
       </div>
       <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-4">
@@ -52,7 +52,7 @@ export function PricingLadder({ compact = false, number }: { compact?: boolean; 
 export function WeekOne({ number }: { number?: string }) {
   return (
     <Section>
-      <SectionHead number={number} eyebrow="Week one" title="What actually happens" em="in the first five days." intro="People hesitate because they can't picture the first week. Here it is." />
+      <SectionHead number={number} eyebrow="Week one" title="What actually happens" em="in the first five days." intro="Most hesitation comes from not knowing what the first week involves. This is it." />
       <ol className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-4">
         {weekOne.map(([day, title, body]) => (
           <li key={day} className="bg-paper p-6">
