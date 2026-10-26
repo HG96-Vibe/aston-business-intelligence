@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Spectral, Albert_Sans, JetBrains_Mono } from "next/font/google";
+import { Spectral, Albert_Sans, JetBrains_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -10,6 +10,7 @@ import { site } from "@/lib/site";
 const display = Spectral({ variable: "--font-display", subsets: ["latin"], weight: ["300", "400", "500"], style: ["normal", "italic"] });
 const body = Albert_Sans({ variable: "--font-body", subsets: ["latin"], weight: ["300", "400", "500", "600"] });
 const mono = JetBrains_Mono({ variable: "--font-mono", subsets: ["latin"], weight: ["400", "500"] });
+const hand = Caveat({ variable: "--font-hand", subsets: ["latin"], weight: ["500"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-GB" className={`${display.variable} ${body.variable} ${mono.variable} h-full`} suppressHydrationWarning>
+    <html lang="en-GB" className={`${display.variable} ${body.variable} ${mono.variable} ${hand.variable} h-full`} suppressHydrationWarning>
       <head>
         {/* Set the theme before first paint: saved choice, else system preference. */}
         <script
