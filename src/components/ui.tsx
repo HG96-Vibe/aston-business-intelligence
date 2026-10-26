@@ -70,7 +70,7 @@ export function Button({
   variant?: "primary" | "secondary" | "light";
 }) {
   const styles = {
-    primary: "bg-accent text-white hover:bg-accent-strong",
+    primary: "bg-gold text-ink hover:bg-gold-strong",
     secondary: "border border-line text-ink hover:bg-paper-dim",
     light: "border border-white/30 text-white hover:bg-white/10",
   }[variant];

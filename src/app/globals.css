@@ -10,16 +10,19 @@
   --font-display: var(--font-display), var(--font-body), ui-sans-serif, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
 
-  --color-ink: #0c1a2b;
-  --color-ink-soft: #16283f;
+  /* Brand: charcoal ink, white paper, gold accent (see design/assets/brand.json) */
+  --color-ink: #17161f;
+  --color-ink-soft: #26242f;
   --color-paper: #ffffff;
-  --color-paper-dim: #f4f6f9;
-  --color-line: #dbe1ea;
-  --color-muted: #5b6b80;
-  --color-body: #223042;
-  --color-accent: #0e8a7a;
-  --color-accent-strong: #0b6f63;
-  --color-accent-soft: #e3f3f0;
+  --color-paper-dim: #f6f5f1;
+  --color-line: #e4e2db;
+  --color-muted: #625f6e;
+  --color-body: #24222c;
+  --color-gold: #e9b324;
+  --color-gold-strong: #d9a315;
+  --color-accent: #c98a06;
+  --color-accent-strong: #b47a06;
+  --color-accent-soft: #fbf3dc;
 }
 
 html {
@@ -48,7 +51,7 @@ h1, h2, h3 {
 }
 
 .eyebrow-light {
-  color: #7fd1c4;
+  color: #ffc93c;
 }
 
 .prose-muted p + p {

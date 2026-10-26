@@ -7,7 +7,7 @@ export function SiteFooter() {
     <footer className="border-t border-line bg-paper-dim">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-[1.4fr_1fr_1fr] md:px-6">
         <div>
-          <Logo />
+          <Logo height={40} />
           <p className="mt-4 max-w-sm text-sm text-muted">
             Business intelligence, business analysis, AI consulting and project delivery for UK SMEs.
           </p>
