@@ -7,6 +7,7 @@ const company = [
   { href: "/services", label: "Services" },
   { href: "/services/data-bi", label: "Data & BI" },
   { href: "/services/business-analysis", label: "Business Analysis" },
+  { href: "/services/ai-consulting", label: "AI Consulting" },
   { href: "/scorecard", label: "Reporting Scorecard" },
   { href: "/about", label: "About" },
   { href: "/careers", label: "Careers" },
