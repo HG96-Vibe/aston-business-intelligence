@@ -171,8 +171,8 @@ export const subServices: SubService[] = [
   { slug: "process-requirements", category: "business-analysis", name: "Process Mapping & Requirements", line: "How work actually flows, written so a vendor can't misread it.", href: "/services/business-analysis", image: "/img/svc/process-requirements.jpg", position: "center 50%" },
   { slug: "ai-readiness", category: "ai-consulting", name: "AI Readiness Assessment", line: "Where AI pays back in your business, and where it won't.", tag: "2 weeks · £2,500", href: "/services/ai-consulting", image: "/img/svc/ai-readiness.jpg", position: "center 60%" },
   { slug: "ai-pilot", category: "ai-consulting", name: "AI Pilot on One Problem", line: "Built on one real process, with the result measured.", href: "/services/ai-consulting", image: "/img/tablet-pair.jpg", position: "center 35%" },
-  { slug: "fractional-project-lead", category: "project-delivery", name: "Fractional Project Lead", line: "Delivered on the date you told the board.", tag: "from £750 / day", href: "/services#project-delivery", image: "/img/conference.jpg", position: "center 40%" },
-  { slug: "supplier-oversight", category: "project-delivery", name: "Supplier & Vendor Oversight", line: "Holding the people you've already hired to what they promised.", href: "/services#project-delivery", image: "/img/svc/supplier-oversight.jpg", position: "center 40%" },
+  { slug: "fractional-project-lead", category: "project-delivery", name: "Fractional Project Lead", line: "Delivered on the date you told the board.", tag: "from £750 / day", href: "/services/project-delivery", image: "/img/conference.jpg", position: "center 40%" },
+  { slug: "supplier-oversight", category: "project-delivery", name: "Supplier & Vendor Oversight", line: "Holding the people you've already hired to what they promised.", href: "/services/project-delivery", image: "/img/svc/supplier-oversight.jpg", position: "center 40%" },
 ];
 export const categoryLabel: Record<SubService["category"], string> = { "data-bi": "Data & BI", "business-analysis": "Business Analysis", "ai-consulting": "AI Consulting", "project-delivery": "Project Delivery" };
 

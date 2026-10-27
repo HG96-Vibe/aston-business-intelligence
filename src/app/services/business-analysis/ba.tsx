@@ -107,7 +107,7 @@ export function BaPage({ photo = ["/img/corridor.jpg", "60% 30%"] as [string, st
             </div>
           ))}
         </dl>
-        <p className="pt-6 text-sm text-muted">See also: <Link href="/services/data-bi" className="underline hover:text-ink">Data &amp; BI</Link> · <Link href="/services#project-delivery" className="underline hover:text-ink">Project Delivery</Link></p>
+        <p className="pt-6 text-sm text-muted">See also: <Link href="/services/data-bi" className="underline hover:text-ink">Data &amp; BI</Link> · <Link href="/services/project-delivery" className="underline hover:text-ink">Project Delivery</Link></p>
       </Section>
 
       <section className="bg-paper">
