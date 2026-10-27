@@ -5,7 +5,7 @@ import { offers, serviceOutcomes, subServices } from "@/lib/offers";
 export const photo: Record<string, { src: string; pos: string }> = {
   "data-bi": { src: "/img/svc/decision-dashboards.jpg", pos: "center 35%" },
   "business-analysis": { src: "/img/svc/process-requirements.jpg", pos: "center 45%" },
-  "ai-consulting": { src: "/img/night-manager.jpg", pos: "center 35%" },
+  "ai-consulting": { src: "/img/tablet-pair.jpg", pos: "center 40%" },
   "project-delivery": { src: "/img/conference.jpg", pos: "center 40%" },
 };
 

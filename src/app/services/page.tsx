@@ -14,28 +14,31 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      {/* Hero: charcoal, headline left, four photo cards as the way in */}
-      <section className="bg-[#0e0c09] text-white">
-        <div className="wrap pb-14 pt-20 md:pb-20 md:pt-24">
-          <p className="marker !text-[#ffc93c]">Services</p>
-          <h1 className="mt-5 max-w-3xl text-[2.4rem] leading-[1.08] text-white md:text-[3.8rem]">
-            From unclear data to <span className="em !text-[#ffc93c]">delivered change.</span>
+      {/* Hero: light editorial — headline, then the four services as clean photos with the text set below */}
+      <section className="bg-paper-dim">
+        <div className="wrap pb-16 pt-20 md:pb-20 md:pt-24">
+          <p className="marker">Services</p>
+          <h1 className="mt-5 max-w-3xl text-[2.4rem] leading-[1.08] text-ink md:text-[3.8rem]">
+            From unclear data to <span className="em">delivered change.</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-white/70">
+          <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-muted">
             Four services that work alone or in sequence: understand the numbers, define what to change, apply AI where it pays, and get it delivered.
           </p>
-          <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {svc.map((s) => (
-              <a key={s.slug} href={`#${s.slug}`} className="group relative block h-64 overflow-hidden rounded-lg md:h-80">
-                <div className="duotone cover inset-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={s.photo.src} alt="" style={{ objectPosition: s.photo.pos }} className="transition duration-700 group-hover:scale-[1.04]" />
+          <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            {svc.map((s, i) => (
+              <a key={s.slug} href={`#${s.slug}`} className="group block">
+                <div className="relative h-52 overflow-hidden rounded-lg md:h-60">
+                  <div className="duotone cover inset-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={s.photo.src} alt="" style={{ objectPosition: s.photo.pos }} className="transition duration-700 group-hover:scale-[1.04]" />
+                  </div>
                 </div>
-                <div className="absolute inset-x-5 bottom-5 z-10">
-                  <h2 className="font-display text-2xl leading-tight text-white">{s.label}</h2>
-                  <p className="mt-2 text-sm font-light leading-snug text-white/75">{s.short}</p>
-                  <p className="mt-3 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#ffc93c]">Starts at {s.offer.price} →</p>
-                </div>
+                <p className="mt-5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-accent">0{i + 1}</p>
+                <h2 className="mt-1 font-display text-2xl leading-tight text-ink">{s.label}</h2>
+                <p className="mt-2 text-sm font-light leading-snug text-muted">{s.short}</p>
+                <p className="mt-3 inline-block text-sm font-medium text-ink underline decoration-accent underline-offset-4 group-hover:decoration-2">
+                  {s.offer.price.startsWith("from ") ? `Starts ${s.offer.price}` : `Starts at ${s.offer.price}`} →
+                </p>
               </a>
             ))}
           </div>
