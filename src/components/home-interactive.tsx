@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Section, SectionHead } from "@/components/ui";
 import { bookHref } from "@/components/offers";
+import { howWeWork } from "@/lib/offers";
 
 /* ── Live dashboards ─────────────────────────────────────────────────────── */
 type Kpi = { label: string; value: number; prefix?: string; suffix?: string; decimals?: number; delta: string; down?: boolean };
@@ -320,6 +321,79 @@ export function SectorTabs({ number }: { number?: string }) {
       <div className="mt-4 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-2">
         <div className="bg-paper p-6"><p className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-accent">What we usually hear</p><p className="mt-2 font-display text-xl font-light italic text-ink">{q}</p></div>
         <div className="bg-paper p-6"><p className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-accent">What we build first</p><ul className="mt-2 grid gap-1.5 text-sm font-light text-body">{fixes.map((f) => <li key={f} className="flex gap-2"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />{f}</li>)}</ul></div>
+      </div>
+    </Section>
+  );
+}
+
+/* ── How we work: week scrubber ──────────────────────────────────────────── */
+export function WeekScrubber({ number }: { number?: string }) {
+  const [week, setWeek] = useState(1);
+  const cur = howWeWork.weeks[week - 1];
+  return (
+    <Section dim>
+      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <SectionHead number={number} eyebrow="How we work" title="Pick a week." em="See what's on your desk." />
+        <p className="max-w-xs text-sm text-muted md:text-right">{howWeWork.note}</p>
+      </div>
+
+      <div className="mt-10 grid gap-3">
+        <div className="grid grid-cols-8 gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.14em]">
+          {howWeWork.phases.map(([name, span, cols]) => {
+            const active = cur.phase === name;
+            return (
+              <span key={name} className={`border-b-2 pb-2 ${active ? "border-gold text-accent" : "border-line text-muted"}`} style={{ gridColumn: `span ${cols}` }}>
+                <span className="hidden sm:inline">{name} · {span}</span><span className="sm:hidden">{name.split(" ")[0]}</span>
+              </span>
+            );
+          })}
+        </div>
+        <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-8" role="tablist" aria-label="Week of the engagement">
+          {howWeWork.weeks.map((w) => {
+            const on = w.n === week, past = w.n < week;
+            return (
+              <button
+                key={w.n} type="button" role="tab" aria-selected={on} onClick={() => setWeek(w.n)}
+                className={`flex min-h-16 flex-col items-center justify-center gap-0.5 rounded-md border py-2 transition-colors ${on ? "border-deep bg-deep text-white" : past ? "border-gold bg-accent-soft text-ink" : "border-line bg-paper text-ink hover:border-gold"}`}
+              >
+                <span className="font-mono text-[0.62rem] uppercase tracking-[0.12em] opacity-70">Week</span>
+                <span className="font-display text-[1.75rem] leading-none">{w.n}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="mt-6 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-[1.4fr_1fr]" aria-live="polite">
+        <div className="flex flex-col gap-3.5 bg-paper p-7 md:p-8">
+          <div className="flex items-baseline justify-between gap-4">
+            <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-accent">{cur.phase}</span>
+            <span className="font-mono text-xs text-muted">By Friday of week {cur.n}</span>
+          </div>
+          <h3 className="text-2xl leading-snug text-ink">{cur.headline}</h3>
+          <ul className="m-0 grid list-none gap-2.5 p-0">
+            {cur.items.map((it) => (
+              <li key={it} className="grid grid-cols-[22px_1fr] items-start gap-2.5 text-[0.95rem] leading-relaxed text-body">
+                <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full border border-gold bg-accent-soft" aria-hidden="true">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.6" className="text-accent"><path d="M2 5.2 4.2 7.4 8 3" /></svg>
+                </span>
+                <span>{it}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex flex-col gap-4 bg-accent-soft p-7 md:p-8">
+          <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted">What it costs you this week</span>
+          <div className="flex items-baseline gap-2.5">
+            <span className="font-display text-6xl font-light leading-none text-ink">{cur.hours}</span>
+            <span className="text-sm text-muted">hours of your time</span>
+          </div>
+          <p className="text-sm font-light leading-relaxed text-muted">{cur.yourTime}</p>
+          <div className="mt-auto grid gap-1.5 border-t border-accent/30 pt-3.5">
+            <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted">Decision needed</span>
+            <span className="text-[0.95rem] font-medium text-ink">{cur.decision}</span>
+          </div>
+        </div>
       </div>
     </Section>
   );

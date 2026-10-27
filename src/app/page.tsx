@@ -3,7 +3,7 @@ import { ServicesGrid } from "@/components/services-grid";
 import { HeroMotion } from "@/components/hero-motion";
 import { Availability, EngagementLadder, Guarantee, ProofStrip, WeekOne, bookHref } from "@/components/offers";
 import { Problems, Faq } from "@/components/home-blocks";
-import { LiveDashboard, CostCalculator, SectorTabs } from "@/components/home-interactive";
+import { LiveDashboard, CostCalculator, SectorTabs, WeekScrubber } from "@/components/home-interactive";
 
 const principles = [
   ["Senior-led, specialist-delivered", "Every engagement is scoped and overseen by a senior consultant and delivered by a team matched to the problem — analysts, engineers, AI specialists or project leads as needed."],
@@ -88,22 +88,7 @@ export default function Home() {
 
       <Guarantee />
 
-      <Section tone="dark">
-        <SectionHead number="07" eyebrow="How we work" title="Scoped before it starts." em="Handed over when it's done." />
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-3">
-          {[
-            ["Discover", "A short, fixed-fee piece of work to understand your business, your data and the decisions that matter. You get a written assessment and a costed plan — whether or not you continue with us."],
-            ["Build", "Delivered in two-week increments you can see and test. Weekly written updates. No surprises at invoice time."],
-            ["Hand over", "Documentation, training and a support window. Your team owns the result."],
-          ].map(([title, body], i) => (
-            <li key={title} className="bg-paper p-7">
-              <span className="font-mono text-xs text-accent">Step {String(i + 1).padStart(2, "0")}</span>
-              <h3 className="mt-3 text-xl text-ink">{title}</h3>
-              <p className="mt-3 font-light leading-relaxed text-muted">{body}</p>
-            </li>
-          ))}
-        </ol>
-      </Section>
+      <WeekScrubber number="07" />
 
       <Section dim>
         <SectionHead number="08" eyebrow="Why ABI" title="What you can" em="hold us to." />
