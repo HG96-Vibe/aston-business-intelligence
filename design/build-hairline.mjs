@@ -67,6 +67,8 @@ const P = {
   AST: outline(DISPLAY, "AST", PAD, BASE, SIZE, LS),
   N: outline(DISPLAY, "N", xN, BASE, SIZE, LS),
   SUB: outline(TEXT, SUB, PAD + 1, SUB_Y, SUB_SIZE, SUB_LS),
+  // screen cut: larger subline, still spanning exactly the width of ASTON
+  SUB_S: outline(TEXT, SUB, PAD + 1, SUB_Y + 1.2, 12.6, (WORD_W - 2 - width(TEXT, SUB, 12.6, 0)) / (SUB.length - 1)),
   A_MARK: outline(DISPLAY, "A", 50 - width(DISPLAY, "A", 54) / 2, 68, 54),
   A_ICON: outline(DISPLAY, "A", 50 - width(DISPLAY, "A", 60) / 2, 71, 60),
 };
@@ -75,14 +77,19 @@ const svg = (vb, body) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb
 const gradient = (id, stops) =>
   `<linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1">${stops.map((c, i) => `<stop offset="${(i / (stops.length - 1)).toFixed(3)}" stop-color="${c}"/>`).join("")}</linearGradient>`;
 
-function lockup({ ink, gold, id }) {
+/* `screen` is the small-size cut used on the website: the same shapes, with hairlines thickened by a
+   fine outline, a heavier ring, a darker rule and a full-strength subline, so it stays crisp at 50–70px tall.
+   The default cut is the full-detail master for print and large sizes. */
+function lockup({ ink, gold, id, screen = false }) {
   const paint = Array.isArray(gold) ? `url(#${id})` : gold;
+  const ring = screen ? 3.8 : RING;
+  const thicken = (w) => (screen ? ` stroke="${ink}" stroke-width="${w}" stroke-linejoin="round"` : "");
   return svg(`0 0 ${W} ${H}`, `${Array.isArray(gold) ? `<defs>${gradient(id, gold)}</defs>` : ""}
-  <path d="${P.AST}" fill="${ink}"/>
-  <path d="${P.N}" fill="${ink}"/>
-  <circle cx="${cx.toFixed(2)}" cy="${cy.toFixed(2)}" r="${(D / 2 - RING / 2).toFixed(2)}" fill="none" stroke="${paint}" stroke-width="${RING}"/>
-  <rect x="${PAD}" y="${RULE_Y.toFixed(2)}" width="${WORD_W.toFixed(2)}" height="1.2" fill="${ink}" fill-opacity=".22"/>
-  <path d="${P.SUB}" fill="${ink}" fill-opacity=".8"/>`);
+  <path d="${P.AST}" fill="${ink}"${thicken(1.15)}/>
+  <path d="${P.N}" fill="${ink}"${thicken(1.15)}/>
+  <circle cx="${cx.toFixed(2)}" cy="${cy.toFixed(2)}" r="${(D / 2 - ring / 2).toFixed(2)}" fill="none" stroke="${paint}" stroke-width="${ring}"/>
+  <rect x="${PAD}" y="${RULE_Y.toFixed(2)}" width="${WORD_W.toFixed(2)}" height="${screen ? 1.4 : 1.2}" fill="${ink}" fill-opacity="${screen ? ".4" : ".22"}"/>
+  <path d="${screen ? P.SUB_S : P.SUB}" fill="${ink}" fill-opacity="${screen ? "1" : ".8"}"${thicken(0.35)}/>`);
 }
 // Symbol: the hairline ring with a serif A. `icon` thickens the ring so it survives at 16–48 px.
 function mark({ ink, gold, id, icon = false, tile = null }) {
@@ -97,6 +104,8 @@ function mark({ ink, gold, id, icon = false, tile = null }) {
 const v = {
   "lockup": lockup({ ink: BRAND.ink, gold: BRAND.goldOnLight, id: "hl" }),
   "lockup-reversed": lockup({ ink: BRAND.inkOnDark, gold: BRAND.goldOnDark, id: "hd" }),
+  "lockup-screen": lockup({ ink: BRAND.ink, gold: BRAND.goldOnLight, id: "hsl", screen: true }),
+  "lockup-screen-reversed": lockup({ ink: BRAND.inkOnDark, gold: BRAND.goldOnDark, id: "hsd", screen: true }),
   "lockup-flat": lockup({ ink: BRAND.ink, gold: BRAND.goldFlat }),
   "lockup-mono-ink": lockup({ ink: BRAND.ink, gold: BRAND.ink }),
   "lockup-mono-white": lockup({ ink: "#FFFFFF", gold: "#FFFFFF" }),
@@ -139,8 +148,9 @@ fs.writeFileSync(path.join(OUT, "favicon.ico"), await toIco([fav[16], fav[32], f
 await browser.close();
 
 // ---- Wire into the site ------------------------------------------------------------
-fs.copyFileSync(path.join(OUT, "lockup.svg"), path.join(PUB, "lockup-solid.svg"));
-fs.copyFileSync(path.join(OUT, "lockup-reversed.svg"), path.join(PUB, "lockup-solid-reversed.svg"));
+// The website shows the logo small, so it uses the screen cut.
+fs.copyFileSync(path.join(OUT, "lockup-screen.svg"), path.join(PUB, "lockup-solid.svg"));
+fs.copyFileSync(path.join(OUT, "lockup-screen-reversed.svg"), path.join(PUB, "lockup-solid-reversed.svg"));
 fs.copyFileSync(path.join(OUT, "mark.svg"), path.join(PUB, "mark-solid.svg"));
 fs.copyFileSync(path.join(OUT, "icon.svg"), path.join(PUB, "badge.svg"));
 fs.copyFileSync(path.join(OUT, "favicon.ico"), "src/app/favicon.ico");
