@@ -1,10 +1,8 @@
-import Link from "next/link";
-import { services } from "@/lib/site";
 import { Button, CtaBand, Section, SectionHead, PhotoBand } from "@/components/ui";
+import { ServicesAccordion } from "@/components/services-accordion";
 import { HeroMotion } from "@/components/hero-motion";
 import { Availability, Guarantee, PricingLadder, ProofStrip, WeekOne, bookHref } from "@/components/offers";
-import { serviceOutcomes } from "@/lib/offers";
-import {Problems, Faq } from "@/components/home-blocks";
+import { Problems, Faq } from "@/components/home-blocks";
 import { LiveDashboard, CostCalculator, SectorTabs } from "@/components/home-interactive";
 
 const principles = [
@@ -13,13 +11,6 @@ const principles = [
   ["Built to be handed over", "We document everything and train your people. You should be able to run what we build without us."],
   ["Plain English", "No jargon in meetings, no jargon in reports. If we can't explain a recommendation simply, we haven't finished thinking about it."],
 ];
-
-const serviceImages: Record<string, { src: string; duotone: boolean; position: string }> = {
-  "data-bi": { src: "/img/streaks.jpg", duotone: false, position: "center" },
-  "business-analysis": { src: "/img/corridor.jpg", duotone: true, position: "center 30%" },
-  "ai-consulting": { src: "/img/tablet-pair.jpg", duotone: true, position: "center 35%" },
-  "project-delivery": { src: "/img/conference.jpg", duotone: true, position: "center 40%" },
-};
 
 const credentials = [
   { label: "NVIDIA", detail: "NVIDIA Certified" },
@@ -84,30 +75,7 @@ export default function Home() {
           em="a business that runs on evidence."
           intro="Most companies don't have a data problem. They have a decision problem — the information exists, but it isn't in front of the right people in a form they can act on."
         />
-        <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-2">
-          {services.map((s, i) => (
-            <Link key={s.slug} href={s.slug === "data-bi" ? "/services/data-bi" : `/services#${s.slug}`} className="group bg-paper transition hover:bg-paper-dim">
-              <div className={`relative h-40 ${serviceImages[s.slug].duotone ? "duotone" : "bg-[#17161f]"}`}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={serviceImages[s.slug].src} alt="" className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" style={{ objectPosition: serviceImages[s.slug].position }} loading="lazy" />
-                {!serviceImages[s.slug].duotone && <div className="absolute inset-0 bg-gradient-to-t from-[#17161f]/70 to-transparent" />}
-                <p className="absolute bottom-3 left-7 z-10 font-mono text-xs text-[#ffc93c]">{String(i + 1).padStart(2, "0")}</p>
-              </div>
-              <div className="p-7 pt-5">
-              <h3 className="mt-3 text-xl text-ink">{s.title}</h3>
-              <p className="mt-2 font-light text-muted">{s.short}</p>
-              <ul className="mt-4 grid gap-1 text-sm text-body">
-                {serviceOutcomes[s.slug].map((o) => (
-                  <li key={o} className="flex gap-2"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />{o}</li>
-                ))}
-              </ul>
-              <p className="mt-5 font-mono text-xs uppercase tracking-[0.12em] text-accent group-hover:underline">
-                Learn more →
-              </p>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <ServicesAccordion />
       </Section>
 
       <PhotoBand duotone src="/img/wall-dashboard.jpg" position="center 40%" note="What the first month looks like">One screen, <i>and a conversation about what to do — not which number is right.</i></PhotoBand>
