@@ -27,7 +27,7 @@ export function ServicesGrid() {
             className={`group relative block overflow-hidden rounded-lg transition-[flex,min-height] duration-700 ease-[cubic-bezier(.2,.8,.2,1)] ${active ? "min-h-[300px] md:min-h-0 md:flex-[3.4]" : "min-h-[76px] md:min-h-0 md:flex-1"}`}
           >
             <div className="absolute inset-0">
-              <div className={`h-full w-full ${s.duotone === false ? "bg-[#17161f]" : "duotone"}`}>
+              <div className="h-full w-full bg-[#17161f]">{/* photos in their original colour (no gold tint) in this section */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={s.image} alt="" className="h-full w-full object-cover" style={{ objectPosition: s.position ?? "center 35%" }} loading="lazy" />
               </div>

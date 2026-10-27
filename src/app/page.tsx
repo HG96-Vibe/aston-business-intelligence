@@ -61,7 +61,7 @@ export default function Home() {
         <ServicesGrid />
       </Section>
 
-      <PhotoBand duotone src="/img/wall-dashboard.jpg" position="center 40%" note="What the first month looks like">One screen, <i>and a conversation about what to do — not which number is right.</i></PhotoBand>
+      <PhotoBand src="/img/wall-dashboard.jpg" position="center 40%" note="What the first month looks like">One screen, <i>and a conversation about what to do — not which number is right.</i></PhotoBand>
 
       <EngagementLadder number="04" />
 
