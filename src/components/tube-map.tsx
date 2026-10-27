@@ -7,7 +7,8 @@ import { useEffect, useRef, useState } from "react";
 
 type Step = { step: string; name: string; price: string; duration: string; body: string; forWho: string };
 
-const META = [
+export type Meta = { above: string; fare: string; under: string; alight: string };
+const META: Meta[] = [
   { above: "Interchange · all journeys start here", fare: "£2,500", under: "2 weeks · fixed", alight: "Alight here with a costed plan" },
   { above: "4–6 weeks from previous", fare: "£8,000 – £15,000", under: "Assessment fare credited", alight: "Alight here with one model" },
   { above: "3–4 weeks from previous", fare: "£6,000 – £12,000", under: "Power BI", alight: "Alight here with dashboards" },
@@ -15,7 +16,9 @@ const META = [
 ];
 const X = [125, 375, 625, 875];
 
-export function TubeMap({ steps }: { steps: Step[] }) {
+const NOTE = "Prices exclude VAT. The Assessment fare is credited against any onward journey within twelve months. No season ticket.";
+
+export function TubeMap({ steps, meta = META, note = NOTE }: { steps: Step[]; meta?: Meta[]; note?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [drawn, setDrawn] = useState(false);
   useEffect(() => {
@@ -32,7 +35,7 @@ export function TubeMap({ steps }: { steps: Step[] }) {
         <path d="M875 160 H 990" fill="none" className="stroke-line" strokeWidth="9" strokeLinecap="round" strokeDasharray="14 12" />
         <path d="M20 160 H 875" fill="none" className="stroke-gold" strokeWidth="9" strokeLinecap="round" pathLength={1} strokeDasharray="1" strokeDashoffset={drawn ? 0 : 1} style={{ transition: "stroke-dashoffset 2.4s ease-out .2s" }} />
         {steps.map((s, i) => {
-          const m = META[i], x = X[i], ich = i === 0;
+          const m = meta[i], x = X[i], ich = i === 0;
           return (
             <g key={s.step} style={{ opacity: drawn ? 1 : 0, transition: `opacity .6s ${0.4 + i * 0.5}s` }}>
               <circle cx={x} cy="160" r={ich ? 15 : 10} className="fill-paper stroke-ink" strokeWidth={ich ? 4 : 3.5} />
@@ -60,7 +63,7 @@ export function TubeMap({ steps }: { steps: Step[] }) {
       {/* Mobile vertical line */}
       <ol className="relative ml-3 border-l-[6px] border-gold pl-8 md:hidden">
         {steps.map((s, i) => {
-          const m = META[i], ich = i === 0;
+          const m = meta[i], ich = i === 0;
           return (
             <li key={s.step} className={`relative pb-10 last:pb-0 ${i === steps.length - 1 ? "" : ""}`}>
               <span className={`absolute top-1 rounded-full border-ink bg-paper ${ich ? "-left-[47px] h-7 w-7 border-4" : "-left-[43px] h-5 w-5 border-[3px]"}`} />
@@ -79,7 +82,7 @@ export function TubeMap({ steps }: { steps: Step[] }) {
         <span className="relative inline-grid h-16 w-16 place-items-center rounded-full border-[7px] border-gold" aria-hidden="true">
           <span className="absolute whitespace-nowrap bg-ink px-3 py-[3px] font-mono text-[8px] tracking-[1.5px] text-paper">ABI LINE</span>
         </span>
-        <p className="max-w-[48ch] text-sm font-light text-muted">Prices exclude VAT. The Assessment fare is credited against any onward journey within twelve months. No season ticket.</p>
+        <p className="max-w-[48ch] text-sm font-light text-muted">{note}</p>
       </div>
     </div>
   );

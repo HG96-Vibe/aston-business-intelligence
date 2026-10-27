@@ -119,6 +119,7 @@ export default function ServicesPage() {
               <div className="flex flex-wrap items-baseline justify-between gap-4">
                 <p className="marker">Ways in</p>
                 {s.slug === "data-bi" && <Link href="/services/data-bi" className="text-sm font-semibold text-accent underline underline-offset-4">Full detail: Data &amp; BI →</Link>}
+                {s.slug === "business-analysis" && <Link href="/services/business-analysis" className="text-sm font-semibold text-accent underline underline-offset-4">Full detail: Business Analysis →</Link>}
               </div>
               <div className={`mt-6 grid gap-3 sm:grid-cols-2 ${s.subs.length > 2 ? "lg:grid-cols-4" : ""}`}>
                   {s.subs.map((x) => (

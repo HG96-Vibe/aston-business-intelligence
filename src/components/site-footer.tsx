@@ -6,6 +6,7 @@ import { CookieSettingsLink } from "@/components/cookie-banner";
 const company = [
   { href: "/services", label: "Services" },
   { href: "/services/data-bi", label: "Data & BI" },
+  { href: "/services/business-analysis", label: "Business Analysis" },
   { href: "/scorecard", label: "Reporting Scorecard" },
   { href: "/about", label: "About" },
   { href: "/careers", label: "Careers" },
