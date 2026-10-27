@@ -6,6 +6,13 @@
 
 type Tool = { id: string; name: string; w: number; h: number };
 
+/* Optical size multiplier for every logo, and the shared scroll speed (both rows move at this). */
+const SCALE = 1.3;
+const PX_PER_S = 86;
+const GAP = 64;
+const size = (t: Tool) => { const h = Math.round(t.h * SCALE); return { h, w: Math.round((t.w / 160) * h) }; };
+const rowWidth = (tools: Tool[]) => tools.reduce((a, t) => a + size(t).w + GAP, 0);
+
 /* Row 1 — how we build: BI, data and cloud */
 const ROW_BUILD: Tool[] = [
   { id: "power-bi", name: "Power BI", w: 588, h: 34 },
@@ -59,13 +66,13 @@ function Logos({ tools, ariaHidden }: { tools: Tool[]; ariaHidden?: boolean }) {
   return (
     <ul aria-hidden={ariaHidden} className="flex shrink-0 items-center gap-x-16 pr-16 motion-reduce:flex-wrap motion-reduce:gap-y-7 motion-reduce:pr-0">
       {tools.map((t) => {
-        const w = Math.round((t.w / 160) * t.h);
+        const { w, h } = size(t);
         return (
           <li key={t.id} className="flex shrink-0 items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/brand/tools/${t.id}.png`} alt={ariaHidden ? "" : t.name} title={t.name} width={w} height={t.h} className="logo-day block" style={{ height: t.h, width: w }} loading="lazy" />
+            <img src={`/brand/tools/${t.id}.png`} alt={ariaHidden ? "" : t.name} title={t.name} width={w} height={h} className="logo-day block" style={{ height: h, width: w }} loading="lazy" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/brand/tools/${t.id}-dark.png`} alt={ariaHidden ? "" : t.name} title={t.name} width={w} height={t.h} className="logo-night block" style={{ height: t.h, width: w }} loading="lazy" />
+            <img src={`/brand/tools/${t.id}-dark.png`} alt={ariaHidden ? "" : t.name} title={t.name} width={w} height={h} className="logo-night block" style={{ height: h, width: w }} loading="lazy" />
           </li>
         );
       })}
@@ -73,7 +80,8 @@ function Logos({ tools, ariaHidden }: { tools: Tool[]; ariaHidden?: boolean }) {
   );
 }
 
-function Row({ tools, loopS, offsetS = 0 }: { tools: Tool[]; loopS: number; offsetS?: number }) {
+function Row({ tools, offsetS = 0 }: { tools: Tool[]; offsetS?: number }) {
+  const loopS = Math.round(rowWidth(tools) / PX_PER_S);
   return (
     <div className="group relative overflow-hidden motion-safe:[mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
       <div
@@ -87,12 +95,13 @@ function Row({ tools, loopS, offsetS = 0 }: { tools: Tool[]; loopS: number; offs
   );
 }
 
-/** Two rows, both sliding left, at different speeds so they never line up. */
+/** Two rows, both sliding left at the same speed; the second starts part-way so they never line up.
+    Full-bleed: breaks out of the page container to run edge to edge. */
 export function ToolRows() {
   return (
-    <div className="grid gap-8">
-      <Row tools={ROW_BUILD} loopS={70} />
-      <Row tools={ROW_RUN} loopS={48} offsetS={17} />
+    <div className="relative left-1/2 grid w-screen -translate-x-1/2 gap-10">
+      <Row tools={ROW_BUILD} />
+      <Row tools={ROW_RUN} offsetS={23} />
       <style>{`@keyframes toolstrip { from { transform: translateX(0) } to { transform: translateX(-50%) } }`}</style>
     </div>
   );
