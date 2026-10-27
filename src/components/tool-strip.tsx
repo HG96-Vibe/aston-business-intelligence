@@ -35,7 +35,15 @@ const ROW_RUN: Tool[] = [
   { id: "quickbooks", name: "QuickBooks", w: 160, h: 46 },
   { id: "hubspot", name: "HubSpot", w: 563, h: 40 },
   { id: "salesforce", name: "Salesforce", w: 228, h: 52 },
+  { id: "pipedrive", name: "Pipedrive", w: 734, h: 32 },
   { id: "shopify", name: "Shopify", w: 552, h: 40 },
+  { id: "openai", name: "OpenAI", w: 580, h: 40 },
+  { id: "claude", name: "Claude", w: 740, h: 36 },
+  { id: "copilot", name: "Microsoft Copilot", w: 669, h: 38 },
+  { id: "gemini", name: "Google Gemini", w: 710, h: 34 },
+  { id: "jira", name: "Jira", w: 486, h: 42 },
+  { id: "asana", name: "Asana", w: 243, h: 56 },
+  { id: "confluence", name: "Confluence", w: 1249, h: 30 },
 ];
 
 function Logos({ tools, ariaHidden }: { tools: Tool[]; ariaHidden?: boolean }) {
