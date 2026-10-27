@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import type { ReactNode } from "react";
 import { site } from "@/lib/site";
 import { CtaBand, PhotoBand } from "@/components/ui";
 
@@ -20,14 +19,12 @@ function Photo({ src, pos = "center", natural = false, className = "" }: { src: 
   );
 }
 
-/* Simple line icons for the roles */
-const ico = (d: ReactNode) => <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{d}</svg>;
-const roles: [string, string, ReactNode][] = [
-  ["Data engineer", "Connects your systems and builds the pipelines, so nobody copies and pastes again.", ico(<><ellipse cx="12" cy="5.5" rx="7" ry="2.5" /><path d="M5 5.5v13c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-13" /><path d="M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5" /></>)],
-  ["BI developer", "Builds the model and dashboards in the tools you already pay for.", ico(<><rect x="3" y="4" width="18" height="14" rx="2" /><path d="M7 14v-3M11 14V8M15 14v-5M8 21h8" /></>)],
-  ["Business analyst", "Maps how the work really flows and writes requirements a supplier can't misread.", ico(<><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></>)],
-  ["AI practitioner", "Finds where AI pays back, builds the pilot and measures it against a number.", ico(<><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z" /><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z" /></>)],
-  ["Project lead", "Runs delivery week by week, holds suppliers to account and lands it on time.", ico(<><path d="M4 21V4" /><path d="M4 4h12l-2 4 2 4H4" /></>)],
+const roles: [string, string][] = [
+  ["Data engineer", "Connects your systems and builds the pipelines, so nobody copies and pastes again."],
+  ["BI developer", "Builds the model and dashboards in the tools you already pay for."],
+  ["Business analyst", "Maps how the work really flows and writes requirements a supplier can't misread."],
+  ["AI practitioner", "Finds where AI pays back, builds the pilot and measures it against a number."],
+  ["Project lead", "Runs delivery week by week, holds suppliers to account and lands it on time."],
 ];
 
 const promises = [
@@ -118,15 +115,13 @@ export default function AboutPage() {
                   <p className="mt-2 text-sm font-light leading-relaxed text-white/75">Scopes the work, owns the plan and the price, reviews everything before you see it, and is the person you call. Named in your proposal and with you throughout.</p>
                 </div>
               </div>
-              {roles.map(([t, b, icon], i) => (
-                <div
-                  key={t}
-                  className={`flex gap-4 rounded-xl border border-gold/60 bg-paper p-5 shadow-[0_20px_40px_-30px_rgba(233,179,36,.7)] transition hover:-translate-y-0.5 hover:border-gold ${["lg:col-start-1 lg:row-start-1", "lg:col-start-3 lg:row-start-1", "lg:col-start-1 lg:row-start-2", "lg:col-start-3 lg:row-start-2", "lg:col-start-2 lg:row-start-3"][i]}`}
-                >
-                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gold text-[#17161f]">{icon}</span>
-                  <div>
-                    <h3 className="text-lg font-medium text-ink">{t}</h3>
-                    <p className="mt-1 text-sm font-light leading-relaxed text-muted">{b}</p>
+              {roles.map(([t, b], i) => (
+                <div key={t} className={`overflow-hidden rounded-xl bg-paper shadow-[0_24px_50px_-30px_rgba(23,22,31,.35)] ${["lg:col-start-1 lg:row-start-1", "lg:col-start-3 lg:row-start-1", "lg:col-start-1 lg:row-start-2", "lg:col-start-3 lg:row-start-2", "lg:col-start-2 lg:row-start-3"][i]}`}>
+                  <div className="h-1 bg-gradient-to-r from-gold via-[#ffd664] to-gold" aria-hidden="true" />
+                  <div className="p-6">
+                    <p className="font-mono text-[0.6rem] uppercase tracking-[0.16em] text-accent">Specialist · {String(i + 1).padStart(2, "0")}</p>
+                    <h3 className="mt-2 font-display text-[1.6rem] leading-tight text-ink">{t}</h3>
+                    <p className="mt-2 text-sm font-light leading-relaxed text-muted">{b}</p>
                   </div>
                 </div>
               ))}
