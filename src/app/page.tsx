@@ -1,5 +1,5 @@
 import { Button, CtaBand, Section, SectionHead, PhotoBand } from "@/components/ui";
-import { ServicesAccordion } from "@/components/services-accordion";
+import { ServicesGrid } from "@/components/services-grid";
 import { HeroMotion } from "@/components/hero-motion";
 import { Availability, Guarantee, PricingLadder, ProofStrip, WeekOne, bookHref } from "@/components/offers";
 import { Problems, Faq } from "@/components/home-blocks";
@@ -71,11 +71,11 @@ export default function Home() {
         <SectionHead
           number="03"
           eyebrow="What we do"
-          title="Four services. One goal:"
+          title="Ten ways in. One goal:"
           em="a business that runs on evidence."
           intro="Most companies don't have a data problem. They have a decision problem — the information exists, but it isn't in front of the right people in a form they can act on."
         />
-        <ServicesAccordion />
+        <ServicesGrid />
       </Section>
 
       <PhotoBand duotone src="/img/wall-dashboard.jpg" position="center 40%" note="What the first month looks like">One screen, <i>and a conversation about what to do — not which number is right.</i></PhotoBand>
