@@ -39,8 +39,6 @@ export default function DataBiPage() {
         </div>
       </section>
 
-      <PhotoBand duotone src="/img/paper-stack.jpg" position="center 30%" note="Month-end, as it happens today">Somewhere in your business, <i>someone is doing this tonight.</i></PhotoBand>
-
       {/* Pains → one cause */}
       <Section>
         <SectionHead number="01" eyebrow="Why companies call us" title="Three problems," em="one underlying cause." />
