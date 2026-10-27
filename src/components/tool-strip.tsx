@@ -39,6 +39,7 @@ const ROW_RUN: Tool[] = [
   { id: "freeagent", name: "FreeAgent", w: 676, h: 36 },
   { id: "pipedrive", name: "Pipedrive", w: 734, h: 32 },
   { id: "zoho", name: "Zoho", w: 371, h: 56 },
+  { id: "dynamics-365", name: "Microsoft Dynamics 365", w: 533, h: 40 },
   { id: "shopify", name: "Shopify", w: 552, h: 40 },
   { id: "zapier", name: "Zapier", w: 350, h: 40 },
   { id: "openai", name: "OpenAI", w: 580, h: 40 },
