@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { Section, SectionHead } from "@/components/ui";
 import { bookHref } from "@/components/offers";
@@ -296,31 +296,84 @@ export function CostCalculator({ number }: { number?: string }) {
   );
 }
 
-/* ── Sector tabs ──────────────────────────────────────────────────────────── */
-const sectors: [string, string, string[]][] = [
-  ["Training & education", "“We know enrolments, not which course actually makes money.”", ["Margin by course, cohort and tutor", "Enrolment funnel from enquiry to start date", "Automated Ofsted / awarding-body reporting"]],
-  ["Recruitment & staffing", "“Placements are up, cash isn't.”", ["Fee, cost and margin per consultant and per client", "Time-to-fill and drop-out by source", "Debtor days by client with auto-chasing"]],
-  ["Professional services", "“Utilisation is a guess and WIP is a mystery.”", ["Utilisation and recovery rate by person and job", "WIP ageing from the practice system", "Profit by client, not just revenue"]],
-  ["Retail & e-commerce", "“Sales are fine; I can't see which SKUs lose money after returns.”", ["Contribution margin per SKU after returns, ads and shipping", "Stock cover and re-order points", "Channel ROI side by side"]],
-  ["Property & construction", "“Every job starts profitable and ends somewhere else.”", ["Cost-to-complete by job, weekly", "Variations and retentions tracked", "Subcontractor spend vs budget"]],
-  ["Healthcare & care", "“Rotas, agency spend and occupancy live in three systems.”", ["Agency vs permanent cost per shift", "Occupancy and fee mix by site", "CQC evidence reporting without the spreadsheet"]],
-  ["Logistics & distribution", "“Margin per route is anyone's guess.”", ["Cost and margin per route, vehicle and customer", "On-time delivery from the TMS, daily", "Fuel and maintenance variance alerts"]],
-  ["Financial services", "“Compliance reporting eats the team's month.”", ["Regulatory returns from source systems, reconciled", "Client profitability by product line", "Complaint and breach tracking with audit trail"]],
+/* ── Who we work with: sector rail + panel ─────────────────────────────────
+   Deep-linkable: /?sector=<slug>#sectors opens on that sector (for outbound follow-ups).
+   KPI figures are illustrative and labelled as such on the page. */
+type Sector = { slug: string; name: string; short: string; problem: string; builds: string[]; kpis: [string, string][] };
+const sectors: Sector[] = [
+  { slug: "financial-services", name: "Financial services", short: "financial services", problem: "Compliance reporting eats the team's month.", builds: ["Regulatory returns from source systems, reconciled", "Client profitability by product line", "Complaint and breach tracking with an audit trail"], kpis: [["Regulatory returns", "Reconciled"], ["Client profit", "By product"], ["Open complaints", "7 · 2 overdue"]] },
+  { slug: "recruitment", name: "Recruitment & staffing", short: "recruitment", problem: "Placements are up, but cash isn't.", builds: ["Fee, cost and margin per consultant and per client", "Time-to-fill and drop-out by source", "Debtor days by client with automatic chasing"], kpis: [["Margin per consultant", "£11.2k / mo"], ["Time to fill", "23 days"], ["Debtor days", "38 → 29"]] },
+  { slug: "retail", name: "Retail & e-commerce", short: "retail", problem: "Sales are fine, but you can't see which SKUs lose money after returns.", builds: ["Contribution margin per SKU after returns, ads and shipping", "Stock cover and re-order points", "Channel ROI side by side"], kpis: [["SKUs losing money", "37 of 412"], ["Stock cover", "6.2 weeks"], ["Return rate", "11%"]] },
+  { slug: "care", name: "Healthcare & care", short: "care", problem: "Rotas, agency spend and occupancy live in three different systems.", builds: ["Agency against permanent cost per shift", "Occupancy and fee mix by site", "CQC evidence reporting without the spreadsheet"], kpis: [["Agency share of shifts", "17%"], ["Occupancy", "91%"], ["CQC evidence pack", "Monthly"]] },
+  { slug: "professional-services", name: "Professional services", short: "professional services", problem: "Utilisation is a guess and WIP is a mystery.", builds: ["Utilisation and recovery rate by person and job", "WIP ageing from the practice system", "Profit by client, not just revenue"], kpis: [["Utilisation", "72%"], ["Recovery rate", "88%"], ["WIP over 90 days", "£64k"]] },
+  { slug: "construction", name: "Property & construction", short: "construction", problem: "Every job starts profitable and ends somewhere else.", builds: ["Cost-to-complete by job, weekly", "Variations and retentions tracked", "Subcontractor spend against budget"], kpis: [["Jobs over budget", "4 of 19"], ["Cost to complete", "£1.18m"], ["Retentions due", "£92k"]] },
+  { slug: "logistics", name: "Logistics & distribution", short: "logistics", problem: "Margin per route is anyone's guess.", builds: ["Cost and margin per route, vehicle and customer", "On-time delivery from the TMS, daily", "Fuel and maintenance variance alerts"], kpis: [["Margin per route", "22% · −3%"], ["On-time delivery", "96.4%"], ["Fuel vs plan", "+4%"]] },
+  { slug: "training", name: "Training & education", short: "training", problem: "You know enrolments, but not which course actually makes money.", builds: ["Margin by course, cohort and tutor", "Enrolment funnel from enquiry to start date", "Automated awarding-body reporting"], kpis: [["Margin by course", "41% best · 6% worst"], ["Enquiry to start", "18%"], ["Awarding-body returns", "Automated"]] },
 ];
+
+const noopSubscribe = () => () => {};
+
 export function SectorTabs({ number }: { number?: string }) {
-  const [i, setI] = useState(0);
-  const [, q, fixes] = sectors[i];
+  // ?sector=<slug> picks the starting tab; read without an effect so there is no flash or hydration mismatch.
+  const urlSlug = useSyncExternalStore(noopSubscribe, () => new URLSearchParams(window.location.search).get("sector"), () => null);
+  const [picked, setI] = useState<number | null>(null);
+  const fromUrl = sectors.findIndex((s) => s.slug === urlSlug);
+  const i = picked ?? (fromUrl >= 0 ? fromUrl : 0);
+  const cur = sectors[i];
   return (
-    <Section dim>
-      <SectionHead number={number} eyebrow="Who we work with" title="Owner-managed UK businesses," em="£1m–£30m." intro="Large enough that spreadsheets have stopped working, small enough that a big consultancy doesn't make sense." />
-      <div role="tablist" className="mt-8 flex flex-wrap gap-1.5">
-        {sectors.map(([name], k) => (
-          <button key={name} role="tab" aria-selected={k === i} onClick={() => setI(k)} type="button" className={`rounded-full border px-3 py-1.5 text-sm transition ${k === i ? "border-gold bg-gold font-semibold text-[#17161f]" : "border-line bg-paper text-body hover:border-accent"}`}>{name}</button>
-        ))}
+    <Section dim id="sectors">
+      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <SectionHead number={number} eyebrow="Who we work with" title="Owner-managed UK businesses," em="£1m–£30m." />
+        <p className="max-w-sm text-[0.95rem] font-light leading-relaxed text-muted md:text-right">Large enough that spreadsheets have stopped working, small enough that a big consultancy doesn&apos;t make sense.</p>
       </div>
-      <div className="mt-4 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-2">
-        <div className="bg-paper p-6"><p className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-accent">What we usually hear</p><p className="mt-2 font-display text-xl font-light italic text-ink">{q}</p></div>
-        <div className="bg-paper p-6"><p className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-accent">What we build first</p><ul className="mt-2 grid gap-1.5 text-sm font-light text-body">{fixes.map((f) => <li key={f} className="flex gap-2"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />{f}</li>)}</ul></div>
+
+      <div className="mt-10 grid overflow-hidden rounded-md border border-line bg-paper md:grid-cols-[290px_1fr]">
+        <div role="tablist" aria-label="Sector" className="flex overflow-x-auto border-b border-line bg-paper-dim md:flex-col md:overflow-visible md:border-b-0 md:border-r">
+          {sectors.map((s, k) => {
+            const on = k === i;
+            return (
+              <button
+                key={s.slug} type="button" role="tab" aria-selected={on} onClick={() => setI(k)}
+                className={`flex min-h-11 shrink-0 items-center gap-2.5 whitespace-nowrap border-line px-4 text-left text-[0.95rem] transition-colors md:flex-1 md:border-b md:last:border-b-0 ${on ? "border-b-2 border-b-gold bg-accent-soft font-semibold text-ink md:border-b md:border-b-line md:border-l-[3px] md:border-l-gold md:pl-[13px]" : "text-body hover:bg-accent-soft/50"}`}
+              >
+                <span className={`hidden w-5 font-mono text-[0.68rem] md:inline ${on ? "text-accent" : "text-muted"}`}>{String(k + 1).padStart(2, "0")}</span>
+                <span className="md:flex-1">{s.name}</span>
+                <span className={`hidden text-sm text-accent md:inline ${on ? "" : "invisible"}`} aria-hidden="true">→</span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex min-w-0 flex-col gap-5 p-6 md:p-9" aria-live="polite">
+          <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-accent">The problem we usually find</p>
+          <p className="font-display text-[1.65rem] font-light leading-snug text-ink md:text-[1.9rem]">{cur.problem}</p>
+
+          <div className="grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-3">
+            {cur.kpis.map(([label, value]) => (
+              <div key={label} className="flex flex-col gap-1.5 bg-paper px-4 py-3.5">
+                <span className="text-xs text-muted">{label}</span>
+                <span className="font-display text-2xl leading-tight text-ink">{value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid gap-2.5">
+            <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted">What we build first</p>
+            {cur.builds.map((b) => (
+              <div key={b} className="grid grid-cols-[22px_1fr] items-start gap-2.5 text-[0.95rem] leading-relaxed text-body">
+                <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full border border-gold bg-accent-soft" aria-hidden="true">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.6" className="text-accent"><path d="M2 5.2 4.2 7.4 8 3" /></svg>
+                </span>
+                <span>{b}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-line pt-5">
+            <span className="text-xs text-muted">Figures are illustrative examples of what the dashboard shows.</span>
+            <Link href={bookHref()} className="inline-flex min-h-11 items-center justify-center rounded-md bg-gold px-5 text-sm font-semibold text-[#17161f] hover:bg-gold-strong">Talk to us about {cur.short} →</Link>
+          </div>
+        </div>
       </div>
     </Section>
   );
