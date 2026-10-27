@@ -112,11 +112,11 @@ export function Placeholder({ children }: { children: ReactNode }) {
 }
 
 /* Full-width photograph with a charcoal wash and one line of copy. Used between sections. */
-export function PhotoBand({ src, position = "center", children, note, tall = false, duotone = false, natural = false }: { src: string; position?: string; children: ReactNode; note?: string; tall?: boolean; duotone?: boolean; natural?: boolean }) {
+export function PhotoBand({ src, position = "center", children, note, tall = false, duotone = false, natural = false, overlay = false }: { src: string; position?: string; children: ReactNode; note?: string; tall?: boolean; duotone?: boolean; natural?: boolean; overlay?: boolean }) {
   return (
     <section className={`relative overflow-hidden bg-[#17161f] ${tall ? "min-h-[340px] md:min-h-[420px]" : "min-h-[240px] md:min-h-[300px]"}`} aria-label="Photograph">
       {duotone ? (
-        <div className={`duotone absolute inset-0 ${natural ? "natural" : ""}`}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={src} alt="" style={{ objectPosition: position }} /></div>
+        <div className={`duotone ${overlay ? "cover" : "absolute"} inset-0 ${natural ? "natural" : ""}`}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={src} alt="" style={{ objectPosition: position }} /></div>
       ) : (
         <div className="absolute inset-0 bg-cover" style={{ backgroundImage: `url(${src})`, backgroundPosition: position }} />
       )}
