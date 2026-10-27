@@ -12,7 +12,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
+      <div className="wrap flex items-center justify-between py-3">
         <Link href="/" aria-label={site.name} onClick={() => setOpen(false)}>
           <Logo height={36} />
         </Link>
@@ -50,7 +50,7 @@ export function SiteHeader() {
       </div>
 
       <div id="mobile-nav" hidden={!open} className="border-t border-line bg-paper md:hidden">
-        <nav className="mx-auto grid max-w-6xl gap-1 px-4 py-3">
+        <nav className="wrap grid gap-1 py-3">
           {site.nav.map((item) => (
             <Link
               key={item.href}

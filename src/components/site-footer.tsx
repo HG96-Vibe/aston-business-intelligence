@@ -19,7 +19,7 @@ export function SiteFooter() {
       {/* St Paul's and the City at golden hour, under a charcoal wash */}
       <div className="absolute inset-0 bg-cover bg-[position:center_38%]" style={{ backgroundImage: "url(/img/london-stpauls.jpg)" }} aria-hidden="true" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#17161f]/55 via-[#17161f]/70 to-[#0e0d13]/92" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-6xl gap-x-10 gap-y-10 px-4 pb-14 pt-40 md:grid-cols-[1.3fr_1fr_1fr] md:px-6">
+      <div className="wrap relative grid gap-x-10 gap-y-10 pb-14 pt-40 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
           <Logo height={36} reversed />
           <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-white/70">
@@ -41,7 +41,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="relative border-t border-white/15">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 text-xs text-white/60 md:flex-row md:items-center md:justify-between md:px-6 [&_a]:hover:text-white [&_button]:hover:text-white">
+        <div className="wrap flex flex-col gap-2 py-4 text-xs text-white/60 md:flex-row md:items-center md:justify-between [&_a]:hover:text-white [&_button]:hover:text-white">
           <p>© {new Date().getFullYear()} {site.name} Ltd · Registered in England &amp; Wales, no. {site.companyNumber}</p>
           <div className="flex flex-wrap gap-x-5 gap-y-1">
             <Link href="/privacy" className="hover:text-white">Privacy</Link>

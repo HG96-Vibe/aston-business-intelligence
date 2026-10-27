@@ -19,7 +19,7 @@ export function Section({
   const toneClass = tone === "dark" ? "tone-dark bg-paper" : tone === "gold" ? "tone-gold bg-paper" : dim ? "bg-paper-dim" : "";
   return (
     <section id={id} className={`${toneClass} ${className}`}>
-      <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">{children}</div>
+      <div className="wrap py-16 md:py-24">{children}</div>
     </section>
   );
 }
@@ -69,7 +69,7 @@ export function PageHero({
 }) {
   return (
     <section className="border-b border-accent/20 bg-accent-soft">
-      <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+      <div className="wrap py-20 md:py-28">
         {eyebrow && <p className="marker">{eyebrow}</p>}
         <h1 className="mt-5 max-w-3xl text-4xl text-ink md:text-5xl">
           {title}
@@ -121,7 +121,7 @@ export function PhotoBand({ src, position = "center", children, note, tall = fal
         <div className="absolute inset-0 bg-cover" style={{ backgroundImage: `url(${src})`, backgroundPosition: position }} />
       )}
       <div className="absolute inset-0 bg-gradient-to-b from-[#17161f]/55 via-[#17161f]/25 to-[#17161f]/60" />
-      <div className="relative mx-auto flex h-full min-h-[inherit] max-w-6xl items-end justify-between gap-6 px-4 pb-9 pt-16 md:px-6">
+      <div className="wrap relative flex h-full min-h-[inherit] items-end justify-between gap-6 pb-9 pt-16">
         <p className="max-w-[30ch] font-display text-2xl font-light leading-tight text-white md:text-3xl [&_em]:not-italic [&_em]:text-[#ffc93c] [&_i]:text-[#ffc93c]">{children}</p>
         {note && <p className="hidden shrink-0 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-white/70 md:block">{note}</p>}
       </div>
@@ -132,8 +132,8 @@ export function PhotoBand({ src, position = "center", children, note, tall = fal
 export function CtaBand() {
   /* A charcoal card that overlaps the top of the footer photograph (the footer adds the matching top padding). */
   return (
-    <section className="relative z-10 -mb-24 px-4 md:px-6">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 rounded-lg border border-[#ffc93c]/30 bg-[#17161f] px-6 py-10 text-white shadow-[0_40px_80px_-30px_rgba(0,0,0,.6)] md:flex-row md:items-center md:justify-between md:px-10">
+    <section className="relative z-10 -mb-24 px-[var(--gutter)]">
+      <div className="mx-auto flex max-w-[1600px] flex-col gap-6 rounded-lg border border-[#ffc93c]/30 bg-[#17161f] px-6 py-10 text-white shadow-[0_40px_80px_-30px_rgba(0,0,0,.6)] md:flex-row md:items-center md:justify-between md:px-10">
         <div>
           <h2 className="text-2xl md:text-3xl">Talk to us about <span className="em" style={{ color: "#ffc93c" }}>your business.</span></h2>
           <p className="mt-2 max-w-xl font-light text-white/70">

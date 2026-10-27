@@ -39,7 +39,7 @@ export default function ServicesPage() {
           id={s.slug}
           className={`scroll-mt-20 ${i % 2 === 1 ? "bg-paper-dim" : ""}`}
         >
-          <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-[1fr_1.3fr] md:px-6 md:py-24">
+          <div className="wrap grid gap-10 py-16 md:grid-cols-[1fr_1.3fr] md:py-24">
             <div>
               <p className="marker">{String(i + 1).padStart(2, "0")}</p>
               <h2 className="mt-4 text-3xl text-ink md:text-[2.6rem]">{s.title}</h2>
@@ -91,7 +91,7 @@ export default function ServicesPage() {
       <PricingLadder />
 
       <section>
-        <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+        <div className="wrap py-16 md:py-24">
           <div className="max-w-2xl">
             <p className="eyebrow">Not sure which you need?</p>
             <h2 className="mt-3 text-3xl text-ink md:text-[2.6rem]">That&apos;s normal. <span className="em">Start with a conversation.</span></h2>

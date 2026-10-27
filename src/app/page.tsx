@@ -32,7 +32,7 @@ export default function Home() {
         {/* charcoal on the left for the copy, the gold left almost untouched on the right; the monogram traces at the seam */}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#0e0c09_0%,rgba(14,12,9,.96)_34%,rgba(14,12,9,.6)_52%,rgba(14,12,9,.12)_72%,rgba(14,12,9,0)_100%)]" aria-hidden="true" />
         <HeroMotion forceDark />
-        <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pb-24 md:pt-28">
+        <div className="wrap relative pb-16 pt-20 md:pb-24 md:pt-28">
           <p className="marker !text-[#ffc93c]">Business intelligence consultancy in London</p>
           <h1 className="mt-6 max-w-4xl text-[2.6rem] leading-[1.08] text-white md:text-[4.2rem]">
             Business intelligence for companies that want{" "}
@@ -52,7 +52,7 @@ export default function Home() {
 
         {/* Credentials strip */}
         <div className="hairline relative bg-paper">
-          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-4 px-4 py-6 md:grid-cols-4 md:px-6">
+          <div className="wrap grid grid-cols-2 gap-x-6 gap-y-4 py-6 md:grid-cols-4">
             {credentials.map((c) => (
               <div key={c.label} className="min-w-0">
                 <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">{c.label}</p>

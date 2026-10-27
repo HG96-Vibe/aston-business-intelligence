@@ -178,3 +178,16 @@ h3 {
 /* Footer name marquee */
 @keyframes footer-name { to { transform: translateX(-50%); } }
 .footer-name { animation: footer-name 55s linear infinite; }
+
+/* Page container: one width for header, sections, hero and footer.
+   Fluid side gutter (16px on phones → 80px on wide screens), content up to 1600px wide. */
+@utility wrap {
+  width: 100%;
+  max-width: calc(1600px + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+:root { --gutter: clamp(1rem, 4vw, 5rem); }
+/* Wide screens: everything sized in rem (type, spacing) steps up a touch so the wider page stays balanced. */
+@media (min-width: 1700px) { html { font-size: 17px; } }
+@media (min-width: 1900px) { html { font-size: 18px; } }

@@ -20,7 +20,7 @@ export default function DataBiPage() {
   return (
     <>
       <section className="border-b border-accent/20 bg-accent-soft">
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 md:grid-cols-[1.05fr_1fr] md:items-center md:px-6 md:py-28">
+        <div className="wrap grid gap-12 py-20 md:grid-cols-[1.05fr_1fr] md:items-center md:py-28">
           <div>
             <p className="marker">Services · Data &amp; Business Intelligence</p>
             <h1 className="mt-5 text-4xl text-ink md:text-5xl">
