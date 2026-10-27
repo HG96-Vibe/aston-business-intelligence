@@ -12,12 +12,6 @@ const principles = [
   ["Transparent reporting", "Progress is reported in writing on a weekly basis, in language suitable for a board audience. Issues are raised early, with options, rather than discovered at invoice."],
 ];
 
-const credentials = [
-  { label: "NVIDIA", detail: "NVIDIA Certified" },
-  { label: "Google Cloud", detail: "Google Cloud Certified" },
-  { label: "Companies House", detail: "No. 15571977" },
-  { label: "Based in", detail: "London, UK" },
-];
 
 export default function Home() {
   return (
@@ -50,17 +44,6 @@ export default function Home() {
         </div>
         </div>
 
-        {/* Credentials strip */}
-        <div className="hairline relative bg-paper">
-          <div className="wrap grid grid-cols-2 gap-x-6 gap-y-4 py-6 md:grid-cols-4">
-            {credentials.map((c) => (
-              <div key={c.label} className="min-w-0">
-                <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">{c.label}</p>
-                <p className="mt-1 text-sm font-medium text-ink">{c.detail}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       <Problems number="01" />
