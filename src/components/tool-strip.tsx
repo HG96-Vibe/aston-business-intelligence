@@ -114,3 +114,11 @@ export function ToolStrip() {
     </div>
   );
 }
+
+/** Optical display height for a logo at a given scale (1 = marquee size), by tool id. */
+const ALL = new Map([...ROW_BUILD, ...ROW_RUN].map((t) => [t.id, t]));
+export function toolLogo(id: string, scale = 1) {
+  const t = ALL.get(id);
+  const h = Math.round((t?.h ?? 40) * scale);
+  return { name: t?.name ?? id, h, w: Math.round(((t?.w ?? 160) / 160) * h) };
+}

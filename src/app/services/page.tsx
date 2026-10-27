@@ -4,6 +4,7 @@ import { CtaBand } from "@/components/ui";
 import { PricingLadder, bookHref } from "@/components/offers";
 import { ServiceNav } from "@/components/service-nav";
 import { svc } from "@/lib/services-page";
+import { toolLogo } from "@/components/tool-strip";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -94,6 +95,17 @@ export default function ServicesPage() {
                 ))}
               </ol>
             </div>
+            {/* Tools: only where buyers choose by tool (Data & BI, AI) */}
+            {(s.slug === "data-bi" || s.slug === "ai-consulting") && (
+              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+                <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted">Works with</p>
+                {s.tools.map((t) => {
+                  const l = toolLogo(t, 0.62);
+                  // eslint-disable-next-line @next/next/no-img-element
+                  return <img key={t} src={`/brand/tools/${t}.png`} alt={l.name} title={l.name} width={l.w} height={l.h} style={{ height: l.h, width: l.w }} loading="lazy" />;
+                })}
+              </div>
+            )}
 
             {/* What changes: three bold statements */}
             <div className="mt-14 grid gap-6 border-y border-line py-10 md:grid-cols-3">
@@ -103,10 +115,12 @@ export default function ServicesPage() {
             </div>
 
             {/* Specific services, matching the home page */}
-            <div className="mt-14 grid gap-10 lg:grid-cols-[1.4fr_1fr]">
-              <div>
+            <div className="mt-14">
+              <div className="flex flex-wrap items-baseline justify-between gap-4">
                 <p className="marker">Ways in</p>
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {s.slug === "data-bi" && <Link href="/services/data-bi" className="text-sm font-semibold text-accent underline underline-offset-4">Full detail: Data &amp; BI →</Link>}
+              </div>
+              <div className={`mt-6 grid gap-3 sm:grid-cols-2 ${s.subs.length > 2 ? "lg:grid-cols-4" : ""}`}>
                   {s.subs.map((x) => (
                     <Link key={x.slug} href={x.href} className="group relative block h-44 overflow-hidden rounded-lg">
                       {/* Original colour with a neutral scrim for the text, except AI Readiness which keeps the gold tint */}
@@ -122,19 +136,6 @@ export default function ServicesPage() {
                       {x.tag && <span className="absolute right-3 top-3 z-10 rounded bg-black/40 px-2 py-1 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-[#ffc93c]">{x.tag}</span>}
                     </Link>
                   ))}
-                </div>
-              </div>
-              <div>
-                <p className="marker">Tools we use here</p>
-                <ul className="mt-6 grid grid-cols-3 gap-x-6 gap-y-6">
-                  {s.tools.map((t) => (
-                    <li key={t} className="flex h-10 items-center">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={`/brand/tools/${t}.png`} alt={t} className="max-h-8 w-auto max-w-full object-contain" />
-                    </li>
-                  ))}
-                </ul>
-                {s.slug === "data-bi" && <Link href="/services/data-bi" className="mt-8 inline-block text-sm font-semibold text-accent underline underline-offset-4">Full detail: Data &amp; BI →</Link>}
               </div>
             </div>
           </div>
