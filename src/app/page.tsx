@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       {/* Hero — charcoal over the gold dot-wave photograph; live dot grid and traced monogram on top */}
-      <section className="relative overflow-hidden bg-[#0e0c09]">
+      <section data-cursor-off className="relative overflow-hidden bg-[#0e0c09]">
         <div className="relative">
         {/* Photograph, slowly drifting; a second copy masked to a travelling light band makes the dots shimmer along the curve */}
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
