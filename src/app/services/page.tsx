@@ -28,7 +28,7 @@ export default function ServicesPage() {
             {svc.map((s, i) => (
               <a key={s.slug} href={`#${s.slug}`} className="group block">
                 <div className="relative h-52 overflow-hidden rounded-lg md:h-60">
-                  <div className="duotone cover inset-0">
+                  <div className="duotone natural cover inset-0">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={s.photo.src} alt="" style={{ objectPosition: s.photo.pos }} className="transition duration-700 group-hover:scale-[1.04]" />
                   </div>
@@ -109,10 +109,12 @@ export default function ServicesPage() {
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   {s.subs.map((x) => (
                     <Link key={x.slug} href={x.href} className="group relative block h-44 overflow-hidden rounded-lg">
-                      <div className="duotone cover inset-0">
+                      {/* Original colour with a neutral scrim for the text, except AI Readiness which keeps the gold tint */}
+                      <div className={`duotone cover inset-0 ${x.slug === "ai-readiness" ? "" : "natural"}`}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={x.image} alt="" style={{ objectPosition: x.position ?? "center" }} />
                       </div>
+                      {x.slug !== "ai-readiness" && <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 via-45% to-black/5" aria-hidden="true" />}
                       <div className="absolute inset-x-4 bottom-4 z-10 text-white">
                         <p className="font-display text-xl leading-tight">{x.name}</p>
                         <p className="mt-1 text-sm font-light text-white/75">{x.line}</p>
