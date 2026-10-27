@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { offers, commercial, weekOne, proof } from "@/lib/offers";
 import { Section, SectionHead } from "@/components/ui";
 
@@ -8,7 +9,7 @@ export function bookHref() {
 
 export function PricingLadder({ compact = false, number }: { compact?: boolean; number?: string }) {
   return (
-    <Section dim={!compact}>
+    <Section dim={!compact} id="pricing">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <SectionHead
           number={number}
@@ -42,6 +43,61 @@ export function PricingLadder({ compact = false, number }: { compact?: boolean; 
             <Link href={bookHref()} className="mt-6 inline-flex items-center justify-center rounded-md bg-gold px-4 py-2.5 text-sm font-semibold text-ink hover:bg-gold-strong">
               Book a conversation
             </Link>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+/* Home-page version of the ladder: the shape of an engagement (assess → build → run)
+   with the entry price shown once, as the headline number. Full ladder with every
+   price stays on /services via PricingLadder. */
+const entryPrice = offers.find((o) => o.slug === "reporting-assessment")?.price ?? "£2,500";
+
+export function EngagementLadder({ number }: { number?: string }) {
+  const steps: { n: string; label: string; title: ReactNode; body: string; cta: ReactNode; featured?: boolean }[] = [
+    {
+      n: "01", label: "Assess", featured: true,
+      title: <>Reporting Assessment<br />or AI Readiness Assessment</>,
+      body: "About three hours of your time. A written report and a costed, prioritised plan, whether or not you continue with us.",
+      cta: <Link href={bookHref()} className="inline-flex min-h-11 items-center justify-center self-start rounded-md bg-gold px-[18px] text-sm font-semibold text-[#17161f] hover:bg-gold-strong">Book a conversation</Link>,
+    },
+    {
+      n: "02", label: "Build",
+      title: <>Fixed price,<br />quoted in your report</>,
+      body: "Single Source of Truth, Decision Dashboards, a scoped system change or an AI pilot. Two-week increments, a written update every Friday.",
+      cta: <Link href="/services/data-bi#ladder" className="self-start border-b border-accent pb-0.5 text-sm font-medium text-ink hover:text-accent">What each step covers →</Link>,
+    },
+    {
+      n: "03", label: "Run",
+      title: <>Your team owns it.<br />We&apos;re optional</>,
+      body: "Documentation, training and a support window come with every build. Managed BI monthly, or a project lead by the day, if you want us around.",
+      cta: <Link href="/services#pricing" className="self-start border-b border-accent pb-0.5 text-sm font-medium text-ink hover:text-accent">Full price list →</Link>,
+    },
+  ];
+  return (
+    <Section tone="dark">
+      <div className="grid gap-10 md:grid-cols-2 md:items-end md:gap-16">
+        <SectionHead number={number} eyebrow="How engagements start" title="Start small." em="Know the bill before you say yes." />
+        <div className="flex flex-wrap items-end justify-between gap-6 border-b border-line pb-5">
+          <div>
+            <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-accent">Every first engagement</p>
+            <p className="mt-2 font-display text-6xl font-light leading-none text-ink md:text-7xl">{entryPrice}</p>
+          </div>
+          <p className="max-w-[220px] text-sm font-light leading-relaxed text-muted md:pb-1.5">Fixed fee, two weeks, ex VAT. Credited against whatever you build next.</p>
+        </div>
+      </div>
+      <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-3">
+        {steps.map((s) => (
+          <div key={s.n} className={`flex flex-col gap-3.5 p-7 ${s.featured ? "border-t-2 border-gold bg-paper-dim" : "bg-paper"}`}>
+            <div className="flex items-baseline justify-between">
+              <span className={`font-mono text-xs ${s.featured ? "text-accent" : "text-muted"}`}>{s.n}&nbsp;&nbsp;{s.label}</span>
+              {s.featured && <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-accent">Most start here</span>}
+            </div>
+            <h3 className="text-[1.2rem] font-medium leading-snug text-ink">{s.title}</h3>
+            <p className="flex-1 text-sm font-light leading-relaxed text-muted">{s.body}</p>
+            {s.cta}
           </div>
         ))}
       </div>

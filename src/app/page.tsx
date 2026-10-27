@@ -1,7 +1,7 @@
 import { Button, CtaBand, Section, SectionHead, PhotoBand } from "@/components/ui";
 import { ServicesGrid } from "@/components/services-grid";
 import { HeroMotion } from "@/components/hero-motion";
-import { Availability, Guarantee, PricingLadder, ProofStrip, WeekOne, bookHref } from "@/components/offers";
+import { Availability, EngagementLadder, Guarantee, ProofStrip, WeekOne, bookHref } from "@/components/offers";
 import { Problems, Faq } from "@/components/home-blocks";
 import { LiveDashboard, CostCalculator, SectorTabs } from "@/components/home-interactive";
 
@@ -80,7 +80,7 @@ export default function Home() {
 
       <PhotoBand duotone src="/img/wall-dashboard.jpg" position="center 40%" note="What the first month looks like">One screen, <i>and a conversation about what to do — not which number is right.</i></PhotoBand>
 
-      <PricingLadder compact number="04" />
+      <EngagementLadder number="04" />
 
       <CostCalculator number="05" />
 
