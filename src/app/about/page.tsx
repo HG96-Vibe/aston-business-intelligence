@@ -92,42 +92,44 @@ export default function AboutPage() {
 
       <PhotoBand src="/img/london-city.jpg" position="center 35%" note="London · Croydon CR0">The City runs on numbers. <i>So should every company in it.</i></PhotoBand>
 
-      {/* How a team is built: a photo-led senior lead card, then the specialist roles with icons */}
-      <section className="bg-paper">
+      {/* How a team is built: the senior lead at the centre, the specialist roles joined around them */}
+      <section className="bg-paper-dim">
         <div className="wrap py-16 md:py-24">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:items-start">
-            <div className="lg:sticky lg:top-28">
-              <p className="marker">How a team is built for you</p>
-              <h2 className="mt-4 text-3xl text-ink md:text-[2.6rem]">Senior-led. <span className="em">Specialist-delivered.</span></h2>
-              <p className="mt-5 text-lg font-light leading-relaxed text-muted">
-                Every engagement has one senior lead, accountable to you from the first call to handover. Around them, we assemble the specialists your project needs from our network of experienced consultants and strong early-career analysts.
-              </p>
-              <p className="mt-4 font-light leading-relaxed text-muted">
-                Your lead is named in your proposal and stays with you throughout. You get the right skills for the problem, one point of accountability, and a cost base that isn&apos;t paying for a glass-fronted office.
-              </p>
-            </div>
-            <div>
-              <div className="relative overflow-hidden rounded-xl">
-                <div className="relative h-72 md:h-80"><Photo src="/img/svc/managed-bi.jpg" pos="center 30%" /></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0e0c09]/95 via-[#0e0c09]/50 via-50% to-transparent" aria-hidden="true" />
-                <div className="absolute inset-x-0 bottom-0 z-10 p-7 text-white">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="marker justify-center">How a team is built for you</p>
+            <h2 className="mt-4 text-3xl text-ink md:text-[2.6rem]">Senior-led. <span className="em">Specialist-delivered.</span></h2>
+            <p className="mt-5 text-lg font-light leading-relaxed text-muted">
+              Every engagement has one senior lead, accountable to you from the first call to handover. Around them, we assemble the specialists your project needs from our network of experienced consultants and strong early-career analysts.
+            </p>
+          </div>
+          <div className="relative mx-auto mt-14 max-w-6xl">
+            {/* connectors (desktop only) */}
+            <svg className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block" viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
+              {[[296, 94, 336, 94], [296, 315, 336, 315], [664, 94, 704, 94], [664, 315, 704, 315], [500, 410, 500, 446]].map(([x1, y1, x2, y2], i) => (
+                <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#e9b324" strokeWidth="2" strokeDasharray="4 4" vectorEffect="non-scaling-stroke" />
+              ))}
+            </svg>
+            <div className="relative grid gap-4 lg:grid-cols-[1fr_1.1fr_1fr] lg:items-center lg:gap-x-10 lg:gap-y-8">
+              <div className="relative overflow-hidden rounded-2xl bg-[#17161f] text-white shadow-[0_30px_60px_-30px_rgba(23,22,31,.7)] lg:col-start-2 lg:row-span-2 lg:row-start-1">
+                <div className="relative h-56"><Photo src="/img/svc/managed-bi.jpg" pos="center 30%" /></div>
+                <div className="p-7">
                   <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#ffc93c]">Always · one per engagement</p>
                   <h3 className="mt-2 font-display text-3xl">Senior lead</h3>
-                  <p className="mt-2 max-w-xl text-sm font-light leading-relaxed text-white/80">Scopes the work, owns the plan and the price, reviews everything before you see it, and is the person you call.</p>
+                  <p className="mt-2 text-sm font-light leading-relaxed text-white/75">Scopes the work, owns the plan and the price, reviews everything before you see it, and is the person you call. Named in your proposal and with you throughout.</p>
                 </div>
               </div>
-              <p className="mt-8 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted">Plus, as your project needs</p>
-              <ul className="mt-3 grid gap-3 sm:grid-cols-2">
-                {roles.map(([t, b, icon], i) => (
-                  <li key={t} className={`group flex gap-4 rounded-lg border border-line bg-paper p-5 transition hover:border-accent ${i === roles.length - 1 ? "sm:col-span-2" : ""}`}>
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent transition group-hover:bg-gold group-hover:text-[#17161f]">{icon}</span>
-                    <div>
-                      <h3 className="text-lg font-medium text-ink">{t}</h3>
-                      <p className="mt-1 text-sm font-light leading-relaxed text-muted">{b}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+              {roles.map(([t, b, icon], i) => (
+                <div
+                  key={t}
+                  className={`flex gap-4 rounded-xl border border-gold/60 bg-paper p-5 shadow-[0_20px_40px_-30px_rgba(233,179,36,.7)] transition hover:-translate-y-0.5 hover:border-gold ${["lg:col-start-1 lg:row-start-1", "lg:col-start-3 lg:row-start-1", "lg:col-start-1 lg:row-start-2", "lg:col-start-3 lg:row-start-2", "lg:col-start-2 lg:row-start-3"][i]}`}
+                >
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gold text-[#17161f]">{icon}</span>
+                  <div>
+                    <h3 className="text-lg font-medium text-ink">{t}</h3>
+                    <p className="mt-1 text-sm font-light leading-relaxed text-muted">{b}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
