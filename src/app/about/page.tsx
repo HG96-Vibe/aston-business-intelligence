@@ -44,9 +44,9 @@ const sectors = ["Financial services", "Recruitment & staffing", "Retail & e-com
 const tools = ["power-bi", "tableau", "looker-studio", "excel", "snowflake", "azure", "xero", "hubspot"];
 
 const gap = [
-  { k: "On one side", t: "Spreadsheets and one capable person", b: "It works until the business outgrows it. Month-end stretches, numbers stop agreeing, and everything depends on whoever built the workbook.", src: "/img/paper-stack.jpg", pos: "center 40%", us: false },
-  { k: "Where ABI sits", t: "Enterprise-grade work, sized for you", b: "A small first engagement at a fixed price, built on the tools you already have, with a team assembled for your problem. You pay for the work, not the overheads.", src: "/img/svc/decision-dashboards.jpg", pos: "center 30%", us: true },
-  { k: "On the other", t: "Big consultancies", b: "Priced and staffed for enterprise programmes. Long discovery phases, large teams and a platform to license, for a problem that needed six weeks.", src: "/img/conference.jpg", pos: "center 40%", us: false },
+  { k: "On one side", t: "Spreadsheets and one capable person", b: "It works until the business outgrows it. Month-end stretches, numbers stop agreeing, and everything depends on whoever built the workbook.", src: "/img/paper-stack.jpg", pos: "center 40%" },
+  { k: "Where ABI sits", t: "Enterprise-grade work, sized for you", b: "A small first engagement at a fixed price, built on the tools you already have, with a team assembled for your problem. You pay for the work, not the overheads.", src: "/img/svc/decision-dashboards.jpg", pos: "center 30%" },
+  { k: "On the other", t: "Big consultancies", b: "Priced and staffed for enterprise programmes. Long discovery phases, large teams and a platform to license, for a problem that needed six weeks.", src: "/img/conference.jpg", pos: "center 40%" },
 ];
 
 export default function AboutPage() {
@@ -75,17 +75,16 @@ export default function AboutPage() {
         <div className="wrap py-16 md:py-24">
           <p className="marker">Why we exist</p>
           <h2 className="mt-4 max-w-3xl text-3xl text-ink md:text-[2.6rem]">Most growing companies fall into <span className="em">the gap in the middle.</span></h2>
-          <div className="mt-12 grid gap-5 lg:grid-cols-3 lg:items-center">
+          <div className="mt-12 grid gap-5 lg:grid-cols-3">
             {gap.map((g) => (
-              <div key={g.t} className={`overflow-hidden rounded-xl border ${g.us ? "border-gold bg-accent-soft shadow-[0_30px_60px_-30px_rgba(233,179,36,.6)] lg:-my-4" : "border-line bg-paper"}`}>
-                <div className={`relative ${g.us ? "h-64" : "h-52"}`}>
+              <div key={g.t} className="overflow-hidden rounded-xl border border-gold bg-accent-soft shadow-[0_30px_60px_-30px_rgba(233,179,36,.6)]">
+                <div className="relative h-64">
                   <Photo src={g.src} pos={g.pos} natural />
-                  {!g.us && <div className="absolute inset-0 bg-white/25 mix-blend-luminosity" aria-hidden="true" />}
                 </div>
                 <div className="p-7">
-                  <p className={`font-mono text-[0.62rem] uppercase tracking-[0.14em] ${g.us ? "text-accent" : "text-muted"}`}>{g.k}</p>
+                  <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-accent">{g.k}</p>
                   <h3 className="mt-3 font-display text-2xl text-ink">{g.t}</h3>
-                  <p className={`mt-3 text-sm font-light leading-relaxed ${g.us ? "text-body" : "text-muted"}`}>{g.b}</p>
+                  <p className="mt-3 text-sm font-light leading-relaxed text-body">{g.b}</p>
                 </div>
               </div>
             ))}
