@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Section, SectionHead, CtaBand, Button, PhotoBand } from "@/components/ui";
+import { Section, SectionHead, CtaBand, PhotoBand } from "@/components/ui";
 import { bookHref } from "@/components/offers";
 import { dataBi } from "@/lib/offers";
-import { SheetsToScreen } from "@/components/sheets-to-screen";
 import { Convergence } from "@/components/convergence";
 import { TubeMap } from "@/components/tube-map";
 import { FiveViews } from "@/components/five-views";
@@ -19,22 +18,24 @@ export default function DataBiPage() {
   const d = dataBi;
   return (
     <>
-      <section className="border-b border-accent/20 bg-accent-soft">
-        <div className="wrap grid gap-12 py-20 md:grid-cols-[1.05fr_1fr] md:items-center md:py-28">
-          <div>
-            <p className="marker">Services · Data &amp; Business Intelligence</p>
-            <h1 className="mt-5 text-4xl text-ink md:text-5xl">
-              One set of numbers the whole business trusts, <span className="em">refreshed without anyone touching a spreadsheet.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-muted">
-              You already have the data — in Xero, your CRM, a few spreadsheets and one person&apos;s head. We join it up, make it reconcile to the accounts, and put it on the screens that drive decisions.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href={bookHref()}>Book a conversation</Button>
-              <Button href="/scorecard" variant="ghost">Score your reporting in 2 minutes</Button>
-            </div>
+      {/* Hero: dark, gold-toned photo on the right, matching the other pages */}
+      <section className="relative overflow-hidden bg-[#0e0c09]">
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[58%]">
+          <div className="duotone cover inset-0">{/* eslint-disable-next-line @next/next/no-img-element */}<img src="/img/svc/reporting-assessment.jpg" alt="" style={{ objectPosition: "60% 30%" }} /></div>
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#0e0c09_0%,#0e0c09_40%,rgba(14,12,9,.6)_54%,rgba(14,12,9,.05)_78%)] max-lg:bg-[linear-gradient(90deg,rgba(14,12,9,.95),rgba(14,12,9,.7))]" aria-hidden="true" />
+        <div className="wrap relative pb-20 pt-24 md:pb-28 md:pt-32">
+          <p className="marker !text-[#ffc93c]">Services · Data &amp; Business Intelligence</p>
+          <h1 className="mt-5 max-w-2xl text-[2.3rem] leading-[1.08] text-white md:text-[3.4rem]">
+            One set of numbers the whole business trusts, <span className="em !text-[#ffc93c]">refreshed without anyone touching a spreadsheet.</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-white/75">
+            You already have the data — in Xero, your CRM, a few spreadsheets and one person&apos;s head. We join it up, make it reconcile to the accounts, and put it on the screens that drive decisions.
+          </p>
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <Link href={bookHref()} className="inline-flex min-h-12 items-center rounded-md bg-gold px-6 font-semibold text-[#17161f] hover:bg-gold-strong">Book a conversation</Link>
+            <Link href="/scorecard" className="inline-flex min-h-12 items-center rounded-md border border-white/30 px-6 font-semibold text-white hover:border-white/70">Score your reporting in 2 minutes</Link>
           </div>
-          <SheetsToScreen />
         </div>
       </section>
 
