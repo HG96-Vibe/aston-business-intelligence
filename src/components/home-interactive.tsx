@@ -220,7 +220,7 @@ export function LiveDashboard({ number }: { number?: string }) {
   }, [i, paused]);
   const s = scenes[i];
   return (
-    <Section tone="dark">
+    <Section tone="dark" className="overflow-x-clip">
       <div className="grid min-w-0 gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-center [&>*]:min-w-0">
         <div>
           <SectionHead number={number} eyebrow="What good looks like" title="One screen the whole business" em="can agree on." intro="Not a demo of a product — there isn't one. This is the kind of view we build on top of the tools you already have, refreshed without anyone touching a spreadsheet." />
