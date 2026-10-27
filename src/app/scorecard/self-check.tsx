@@ -1,11 +1,8 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { questions, score, band, type QuestionId } from "./questions";
-import { sendResults } from "./actions";
-import type { FormState } from "@/app/contact/actions";
-import { SubmitButton } from "@/components/form";
 import { bookHref } from "@/components/offers";
 
 type Answers = Partial<Record<QuestionId, boolean>>;
@@ -52,7 +49,6 @@ function Meter({ answers }: { answers: Answers }) {
 export function SelfCheck() {
   const [answers, setAnswers] = useState<Answers>({});
   const [step, setStep] = useState(0);
-  const [state, action, pending] = useActionState<FormState, FormData>(sendResults, { status: "idle" });
   const top = useRef<HTMLDivElement>(null);
   const answered = Object.keys(answers).length;
   const done = answered === questions.length && step >= questions.length;
@@ -170,23 +166,6 @@ export function SelfCheck() {
               </div>
             </div>
 
-            {state.status === "ok" ? (
-              <div className="mt-6 rounded-lg border border-line p-6">
-                <p className="font-medium text-ink">Sent. Please check your inbox.</p>
-              </div>
-            ) : (
-              <form action={action} className="mt-6 rounded-lg border border-line p-6">
-                <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-                {questions.map((x) => <input key={x.id} type="hidden" name={x.id} value={answers[x.id] ? "yes" : "no"} />)}
-                <label htmlFor="email" className="text-base font-medium text-ink">Send me this report</label>
-                <p className="mt-1 text-sm font-light text-muted">Your answers and the fix for each area, as one email. No follow-up sequence.</p>
-                <div className="mt-4 flex flex-wrap gap-3">
-                  <input id="email" name="email" type="email" required autoComplete="email" placeholder="Work email" className="min-h-11 flex-1 rounded-md border border-line bg-paper px-3 text-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 sm:max-w-xs" />
-                  <SubmitButton pending={pending}>Email it to me</SubmitButton>
-                </div>
-                {state.status === "error" && <p role="alert" className="mt-3 text-sm text-red-700">{state.message}</p>}
-              </form>
-            )}
           </div>
           <aside className="rounded-xl border border-line bg-paper-dim p-6 lg:sticky lg:top-28">
             <p className="marker">Your ten answers</p>
