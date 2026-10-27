@@ -1,0 +1,23 @@
+{
+  "ink": "#17161F",
+  "inkOnDark": "#F3F1F7",
+  "goldOnDark": [
+    "#FFE2A1",
+    "#FFB93A",
+    "#FFF0C8",
+    "#F7A928",
+    "#FFD27A"
+  ],
+  "goldOnLight": [
+    "#FFCF6B",
+    "#F4A51F",
+    "#FFD98A",
+    "#E8961A",
+    "#FFC55A"
+  ],
+  "goldFlat": "#F4A51F",
+  "lockupViewBox": [
+    244.62,
+    98.94
+  ]
+}

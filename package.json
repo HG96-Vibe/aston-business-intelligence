@@ -14,6 +14,8 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@fontsource/libre-caslon-display": "^5.3.0",
+    "@fontsource/libre-caslon-text": "^5.3.0",
     "@fontsource/manrope": "^5.1.1",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
