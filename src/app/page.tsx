@@ -6,10 +6,10 @@ import { Problems, Faq } from "@/components/home-blocks";
 import { LiveDashboard, CostCalculator, SectorTabs, WeekScrubber } from "@/components/home-interactive";
 
 const principles = [
-  ["Senior-led, specialist-delivered", "Every engagement is scoped and overseen by a senior consultant and delivered by a team matched to the problem — analysts, engineers, AI specialists or project leads as needed."],
-  ["Fixed scope, fixed price", "Our first engagement with you is always a defined piece of work with a defined price. No open-ended day rates until you've seen how we work."],
-  ["Built to be handed over", "We document everything and train your people. You should be able to run what we build without us."],
-  ["Plain English", "No jargon in meetings, no jargon in reports. If we can't explain a recommendation simply, we haven't finished thinking about it."],
+  ["Senior oversight, specialist delivery", "Every engagement is scoped and overseen by a senior consultant, and delivered by a team assembled for the specific problem: analysts, data engineers, AI specialists or project leads as the work requires."],
+  ["Defined scope, defined price", "Our first engagement with any client is a clearly defined piece of work at an agreed fixed price. We do not propose open-ended day rates until you have seen how we work."],
+  ["Designed for handover", "Everything we build is documented and your people are trained to run it. The objective is that you can operate what we deliver without ongoing dependence on us."],
+  ["Transparent reporting", "Progress is reported in writing on a weekly basis, in language suitable for a board audience. Issues are raised early, with options, rather than discovered at invoice."],
 ];
 
 const credentials = [
@@ -91,7 +91,7 @@ export default function Home() {
       <WeekScrubber number="07" />
 
       <Section dim>
-        <SectionHead number="08" eyebrow="Why ABI" title="What you can" em="hold us to." />
+        <SectionHead number="08" eyebrow="Why ABI" title="The commitments we make" em="on every engagement." />
         <div className="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2">
           {principles.map(([title, body]) => (
             <div key={title} className="hairline pt-5">
