@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { offers, commercial, weekOne, proof } from "@/lib/offers";
+import { offers, commercial, weekOne } from "@/lib/offers";
 import { Section, SectionHead } from "@/components/ui";
+import { ToolRows } from "@/components/tool-strip";
 
 export function bookHref() {
   return "/contact#book";
@@ -151,22 +152,18 @@ export function Guarantee() {
 
 export function ProofStrip() {
   return (
-    <section className="hairline">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-[1fr_2fr] md:px-6">
+    <Section>
+      <div className="grid gap-8 md:grid-cols-[1fr_2fr] md:items-end">
         <div>
           <p className="marker">What we work with</p>
-          <p className="mt-3 text-sm font-light text-muted">The tools your team already has, not a platform you need to buy.</p>
+          <h2 className="mt-4 text-3xl text-ink md:text-[2.6rem]">Your tools, <span className="em">not a platform you need to buy.</span></h2>
         </div>
-        <ul className="flex flex-wrap gap-2">
-          {proof.tools.map((t) => (
-            <li key={t} className="rounded-full border border-line px-3 py-1 text-sm text-body">{t}</li>
-          ))}
-          {proof.certifications.map((c) => (
-            <li key={c} className="rounded-full border border-accent/40 bg-accent-soft px-3 py-1 text-sm text-ink">{c}</li>
-          ))}
-        </ul>
+        <p className="max-w-xl text-lg font-light leading-relaxed text-muted md:justify-self-end md:text-right">
+          We build in what your team already has and can keep running. If you have nothing yet, we start you on Power BI. Third-party names and logos are the property of their owners.
+        </p>
       </div>
-    </section>
+      <div className="mt-12"><ToolRows /></div>
+    </Section>
   );
 }
 
