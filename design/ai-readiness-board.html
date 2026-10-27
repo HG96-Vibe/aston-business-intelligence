@@ -1,0 +1,34 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI Readiness photo options</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400&family=Albert+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f4f1ea;--ink:#17161f;--gold:#c9962b;--muted:#5d5a66}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Albert Sans',sans-serif;padding:40px 24px 80px}
+h1{font-family:Spectral,serif;font-weight:300;font-size:34px;margin:0 0 6px}
+.sub{color:var(--muted);font-weight:300;margin:0 0 28px;max-width:70ch;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.card{display:flex;flex-direction:column;gap:10px}
+.panel{position:relative;height:440px;border-radius:10px;overflow:hidden;background:#17161f}
+.panel img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) sepia(1) saturate(1.9) hue-rotate(-6deg) brightness(.72) contrast(1.15)}
+.panel .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(23,22,31,.85),rgba(23,22,31,.25) 50%,transparent)}
+.panel .txt{position:absolute;left:20px;right:20px;bottom:20px;color:#fff}
+.k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#ffc93c}
+.txt h3{font-family:Spectral,serif;font-weight:400;font-size:28px;margin:4px 0 6px;line-height:1.1}
+.txt p{margin:0;font-weight:300;font-size:14px;color:rgba(255,255,255,.8)}
+.cap{font-size:13px;color:var(--muted);line-height:1.45}.cap b{color:var(--ink);font-weight:500;font-family:'JetBrains Mono',monospace;font-size:12px;margin-right:6px}
+.raw{height:70px;border-radius:6px;overflow:hidden}.raw img{width:100%;height:100%;object-fit:cover;display:block}
+</style></head><body>
+<h1>AI Readiness Assessment — photo options</h1>
+<p class="sub">Each shown as the strip panel would render it (gold duotone, charcoal foot). The small strip underneath is the original colour, for reference. All from your library.</p>
+<div class="grid" id="g"></div>
+<script>
+const o=[
+["A","bulb-hand","Hand holding a lit bulb with process diagrams around it","AI & Technology · 2598397951","center 40%"],
+["B","brain-circuit","Brain-in-profile with circuit lines (the current AI Pilot style, abstract)","AI & Technology · 2630124541","center"],
+["C","robot-hand","Robotic hand presenting an “AI assistant” hex","AI & Technology · 2754863397","center 45%"],
+["D","globe-hand","Open palm holding a connected globe over a skyline","AI & Technology · 2762625457","center 40%"],
+["E","brain-book","Pink brain over an open book — playful, quite literal","AI & Technology · 2746750797","center"],
+["F","blue-wave","Abstract dotted wave — quietest option, pure texture","ABI · 2737575911","center"],
+["G","man-white-room","Man walking through an empty white office — “before AI”, calm","ABI · 2043961730","center 50%"],
+["H","turbine-engineer","Engineer with plans at a wind turbine — readiness as an inspection","ABI · 2455968781","center 30%"]];
+document.getElementById('g').innerHTML=o.map(([l,f,c,src,pos])=>`<div class="card"><div class="panel"><img src="img/ai/${l}-${f}.jpg" style="object-position:${pos}"><div class="grad"></div><div class="txt"><span class="k">07 · AI Consulting</span><h3>AI Readiness Assessment</h3><p>Where AI pays back in your business, and where it won't.</p></div></div><div class="raw"><img src="img/ai/${l}-${f}.jpg" style="object-position:${pos}"></div><div class="cap"><b>${l}</b>${c}<br><span style="font-size:11px">${src}</span></div></div>`).join('')
+</script></body></html>
