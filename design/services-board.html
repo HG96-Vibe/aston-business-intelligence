@@ -1,0 +1,88 @@
+<title>What We Do Options</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,300&family=Albert+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg:#f7f5f0; --fg:#17161f; --muted:#625f6e; --card:#fff; --line:#e6e2d8; --ink:#17161f; --paper:#fff; --dim:#f7f5f0; --soft:#fbf3dc; --gold:#e9b324; --accent:#c98a06;
+    --serif:"Spectral",Georgia,serif; --sans:"Albert Sans",ui-sans-serif,system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#121118; --fg:#f3f1f7; --muted:#a09db0; --card:#19181f; --line:#2b2935; --ink:#f3f1f7; --paper:#121118; --dim:#19181f; --soft:#26220f; --gold:#ffc93c; --accent:#ffc93c; color-scheme:dark; }
+  * { box-sizing:border-box; } body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); padding:24px max(16px,env(safe-area-inset-right,0px)) 80px max(16px,env(safe-area-inset-left,0px)); line-height:1.5; }
+  .wrap { max-width:1100px; margin:0 auto; } h1 { font-family:var(--serif); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); margin:0; } .lede { color:var(--muted); max-width:70ch; font-weight:300; margin:8px 0 0; }
+  .top { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; } .top button { font:inherit; font-size:13px; padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  .label { display:flex; align-items:baseline; gap:12px; margin:44px 0 12px; flex-wrap:wrap; } .label .n { font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em; } .label h2 { font-size:1rem; font-weight:600; margin:0; } .label p { margin:0; color:var(--muted); font-size:13.5px; font-weight:300; flex-basis:100%; max-width:90ch; }
+  .frame { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--paper); } .sec { padding:64px 48px; } @media (max-width:860px) { .sec { padding:40px 20px; } }
+  .marker { font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0; }
+  h3.t { font-family:var(--serif); font-weight:400; font-size:clamp(1.8rem,3.4vw,2.6rem); line-height:1.12; letter-spacing:-.015em; margin:14px 0 0; color:var(--ink); max-width:24ch; } .em { font-style:italic; font-weight:300; color:var(--accent); }
+  .sub { font-weight:300; color:var(--muted); max-width:40rem; margin:14px 0 0; }
+  .duo { position:relative; background:#17161f; overflow:hidden; } .duo img { width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1) sepia(1) saturate(1.9) hue-rotate(-6deg) brightness(.72) contrast(1.15); } .duo.raw img { filter:none; } .duo::after { content:""; position:absolute; inset:0; background:linear-gradient(160deg, rgba(233,179,36,.18), rgba(23,22,31,.25) 55%, rgba(23,22,31,.85)); } .duo.raw::after { background:linear-gradient(180deg, transparent 40%, rgba(23,22,31,.75)); }
+  .n { font-family:var(--mono); font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--accent); }
+  ul.o { margin:10px 0 0; padding:0; list-style:none; font-size:13px; } ul.o li { padding:3px 0 3px 14px; position:relative; color:var(--fg); } ul.o li::before { content:""; position:absolute; left:0; top:11px; width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  .more { display:inline-block; margin-top:14px; font-family:var(--mono); font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--accent); }
+
+  /* B accordion strip */
+  .acc { display:flex; gap:6px; height:460px; margin-top:36px; } .acc .p { position:relative; flex:1; border-radius:10px; overflow:hidden; cursor:pointer; transition:flex .6s cubic-bezier(.2,.8,.2,1); } .acc .p.on { flex:3.2; }
+  .acc .p .duo { position:absolute; inset:0; } .acc .p .tx { position:absolute; left:22px; right:22px; bottom:22px; z-index:2; color:#fff; } .acc .p h4 { font-family:var(--serif); font-weight:400; font-size:1.5rem; margin:4px 0 0; line-height:1.1; } .acc .p .n { color:#ffc93c; }
+  .acc .p .more-tx { max-height:0; overflow:hidden; opacity:0; transition:max-height .5s, opacity .4s .15s; } .acc .p.on .more-tx { max-height:220px; opacity:1; } .acc .p .more-tx p { margin:8px 0 0; font-size:13px; font-weight:300; opacity:.85; max-width:44ch; } .acc .p .more-tx ul.o li { color:#fff; } .acc .p .more-tx ul.o li::before { background:#ffc93c; } .acc .p .more { color:#ffc93c; }
+  .acc .p:not(.on) h4 { writing-mode:vertical-rl; transform:rotate(180deg); font-size:1.25rem; position:absolute; left:18px; bottom:22px; top:auto; white-space:nowrap; } .acc .p:not(.on) .n { position:absolute; left:20px; top:18px; }
+  @media (max-width:860px) { .acc { flex-direction:column; height:auto; } .acc .p { min-height:90px; } .acc .p.on { min-height:300px; } .acc .p:not(.on) h4 { writing-mode:horizontal-tb; transform:none; left:22px; bottom:18px; } }
+
+  /* C editorial rows */
+  .rows { margin-top:36px; border-top:1px solid var(--line); }
+  .row { display:grid; grid-template-columns:72px 1fr 1fr 300px; gap:28px; align-items:center; padding:32px 0; border-bottom:1px solid var(--line); }
+  .row .big { font-family:var(--serif); font-weight:200; font-size:3.4rem; color:var(--line); line-height:1; } .row h4 { font-family:var(--serif); font-weight:400; font-size:1.5rem; margin:0; color:var(--ink); } .row p { margin:6px 0 0; font-size:13.5px; color:var(--muted); font-weight:300; }
+  .row .duo { height:150px; border-radius:8px; }
+  .row:nth-child(even) { grid-template-columns:72px 300px 1fr 1fr; } .row:nth-child(even) .duo { order:0; } .row:nth-child(even) .h { order:1; } .row:nth-child(even) .l { order:2; }
+  @media (max-width:860px) { .row, .row:nth-child(even) { grid-template-columns:1fr; gap:12px; } .row .big { display:none; } }
+
+  /* D tabs */
+  .tabs { display:grid; grid-template-columns:1fr 1.4fr; gap:36px; margin-top:36px; align-items:start; }
+  .tabs .list button { display:block; width:100%; text-align:left; background:none; border:0; border-left:2px solid var(--line); padding:16px 18px; cursor:pointer; font:inherit; color:inherit; } .tabs .list button.on { border-left-color:var(--gold); } .tabs .list button .n { display:block; } .tabs .list button h4 { font-family:var(--serif); font-weight:400; font-size:1.35rem; margin:3px 0 0; color:var(--ink); } .tabs .list button.on h4 { color:var(--accent); } .tabs .list button p { margin:4px 0 0; font-size:13px; color:var(--muted); font-weight:300; display:none; } .tabs .list button.on p { display:block; }
+  .tabs .stage { position:relative; } .tabs .stage .pane { display:none; } .tabs .stage .pane.on { display:block; } .tabs .stage .duo { height:300px; border-radius:10px; } .tabs .stage .pane .tx { padding:18px 4px 0; display:grid; grid-template-columns:1fr auto; gap:20px; align-items:start; }
+  @media (max-width:860px) { .tabs { grid-template-columns:1fr; } }
+
+  /* E stacked cards */
+  .stack { margin-top:36px; position:relative; }
+  .stack .sc { position:sticky; border-radius:12px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; min-height:340px; border:1px solid var(--line); background:var(--paper); margin-bottom:24px; box-shadow:0 -10px 40px -20px rgba(0,0,0,.25); }
+  .stack .sc:nth-child(1) { top:24px; } .stack .sc:nth-child(2) { top:48px; } .stack .sc:nth-child(3) { top:72px; } .stack .sc:nth-child(4) { top:96px; }
+  .stack .sc .tx { padding:34px; } .stack .sc h4 { font-family:var(--serif); font-weight:400; font-size:1.7rem; margin:6px 0 0; color:var(--ink); } .stack .sc p { margin:8px 0 0; font-size:14px; color:var(--muted); font-weight:300; max-width:40ch; }
+  .stack .spacer { height:160px; }
+  @media (max-width:860px) { .stack .sc { grid-template-columns:1fr; } .stack .sc .duo { height:180px; } }
+</style>
+<div class="wrap">
+  <div class="top"><div><h1>"What we do" — four treatments</h1><p class="lede">Section 03 of the home page: the four services. Same four photographs. The question is how much room each service gets and how the reader moves between them.</p></div><button type="button" id="theme">Night</button></div>
+
+  <div class="label"><span class="n">B</span><h2>Accordion strip</h2><p>Four tall photo panels side by side; hover (or tap) expands one to show its outcomes and link, the others narrow to a title. Full-height photography, one service in focus at a time. The most striking use of the images.</p></div>
+  <div class="frame"><div class="sec"><p class="marker">03 · What we do</p><h3 class="t">Four services. One goal: <span class="em">a business that runs on evidence.</span></h3>
+    <div class="acc" id="acc"></div></div></div>
+
+  <div class="label"><span class="n">C</span><h2>Editorial rows</h2><p>Each service gets a full-width row: a ghosted number, the name and one line, the three outcomes, and the photo — alternating sides. Generous and unhurried; reads like a magazine spread. Longest of the four.</p></div>
+  <div class="frame"><div class="sec"><p class="marker">03 · What we do</p><h3 class="t">Four services. One goal: <span class="em">a business that runs on evidence.</span></h3>
+    <div class="rows" id="rows"></div></div></div>
+
+  <div class="label"><span class="n">D</span><h2>Tabs with one large image</h2><p>Service names down the left (same pattern as the five views on the Data &amp; BI page); the selected one shows its photo large on the right with outcomes beneath. Compact, consistent with the rest of the site, and the photo gets real size.</p></div>
+  <div class="frame"><div class="sec"><p class="marker">03 · What we do</p><h3 class="t">Four services. One goal: <span class="em">a business that runs on evidence.</span></h3>
+    <div class="tabs"><div class="list" id="tl"></div><div class="stage" id="ts"></div></div></div></div>
+
+  <div class="label"><span class="n">E</span><h2>Stacked cards on scroll</h2><p>Four large cards, each half photo, half text. As you scroll, each one pins and the next slides up over it, so they stack like a deck. Scroll this frame to see it. Tactile and modern; needs the section to be tall, which it earns.</p></div>
+  <div class="frame" style="max-height:620px;overflow:auto"><div class="sec"><p class="marker">03 · What we do</p><h3 class="t">Four services. One goal: <span class="em">a business that runs on evidence.</span></h3>
+    <div class="stack" id="stack"></div><div class="spacer"></div></div></div>
+</div>
+<script>
+document.getElementById("theme").addEventListener("click",()=>{const r=document.documentElement;const dark=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches);r.setAttribute("data-theme",dark?"light":"dark");theme.textContent=dark?"Night":"Day";});
+const S=[
+ {n:"01",t:"Data & Business Intelligence",s:"Dashboards, reporting and a single source of truth.",o:["Month-end from five days to one","Margin by client, not just in total","One set of numbers the whole business trusts"],img:"streaks",raw:true},
+ {n:"02",t:"Business Analysis",s:"Requirements, process mapping and specs developers can build from.",o:["Quotes that don't double halfway through","Requirements a vendor can't misread","Projects that start scoped"],img:"corridor"},
+ {n:"03",t:"AI Consulting",s:"Where AI actually saves money in your business — and then building it.",o:["Hours back from the tasks that eat your team","AI on one real problem, with a measured result","No experiments with customer data"],img:"tablet-pair"},
+ {n:"04",t:"Project Management & Delivery",s:"A delivery lead who lands the project on time and on budget.",o:["Delivered on the date you told the board","A weekly report you can forward unedited","Suppliers held to what they promised"],img:"conference"},
+];
+const duo=s=>`<div class="duo ${s.raw?"raw":""}"><img src="img/${s.img}.jpg" alt=""></div>`;
+const ol=s=>`<ul class="o">${s.o.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+/* B */
+(()=>{const a=document.getElementById("acc"); a.innerHTML=S.map((s,i)=>`<div class="p ${i===0?"on":""}">${duo(s)}<div class="tx"><span class="n">${s.n}</span><h4>${s.t}</h4><div class="more-tx"><p>${s.s}</p>${ol(s)}<span class="more">Learn more →</span></div></div></div>`).join(""); a.querySelectorAll(".p").forEach(p=>{p.addEventListener("mouseenter",()=>{a.querySelectorAll(".p").forEach(x=>x.classList.remove("on"));p.classList.add("on");}); p.addEventListener("click",()=>{a.querySelectorAll(".p").forEach(x=>x.classList.remove("on"));p.classList.add("on");});});})();
+/* C */
+document.getElementById("rows").innerHTML=S.map(s=>`<div class="row"><span class="big">${s.n}</span><div class="h"><h4>${s.t}</h4><p>${s.s}</p></div><div class="l">${ol(s)}<span class="more">Learn more →</span></div>${duo(s)}</div>`).join("");
+/* D */
+(()=>{const l=document.getElementById("tl"),st=document.getElementById("ts"); l.innerHTML=S.map((s,i)=>`<button class="${i===0?"on":""}" data-i="${i}"><span class="n">${s.n}</span><h4>${s.t}</h4><p>${s.s}</p></button>`).join(""); st.innerHTML=S.map((s,i)=>`<div class="pane ${i===0?"on":""}">${duo(s)}<div class="tx">${ol(s)}<span class="more">Learn more →</span></div></div>`).join(""); l.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const i=+b.dataset.i;l.querySelectorAll("button").forEach((x,k)=>x.classList.toggle("on",k===i));st.querySelectorAll(".pane").forEach((x,k)=>x.classList.toggle("on",k===i));});})();
+/* E */
+document.getElementById("stack").innerHTML=S.map(s=>`<div class="sc"><div class="tx"><span class="n">${s.n}</span><h4>${s.t}</h4><p>${s.s}</p>${ol(s)}<span class="more">Learn more →</span></div>${duo(s)}</div>`).join("");
+</script>
