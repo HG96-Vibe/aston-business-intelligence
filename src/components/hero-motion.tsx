@@ -36,7 +36,7 @@ export function HeroMotion({ forceDark = false }: { forceDark?: boolean } = {}) 
     const coarse = matchMedia("(pointer: coarse)").matches;
 
     const theme = () => {
-      const dark = forceDark || document.documentElement.getAttribute("data-theme") === "dark";
+      const dark = forceDark;
       return { gold: dark ? "255,201,60" : "233,179,36", ink: dark ? "243,241,247" : "23,22,31" };
     };
 

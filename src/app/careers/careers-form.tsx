@@ -51,7 +51,7 @@ export function CareersForm() {
         <textarea id="message" name="message" rows={4} className="rounded-md border border-line bg-paper px-3 py-2.5 text-body" placeholder="Tools you're strongest in, availability, the kind of work you want more of." />
       </div>
       {state.status === "error" && (
-        <p role="alert" className="rounded-md border border-red-300/60 bg-red-500/10 px-4 py-3 text-sm text-red-700 dark:text-red-300">{state.message}</p>
+        <p role="alert" className="rounded-md border border-red-300/60 bg-red-500/10 px-4 py-3 text-sm text-red-700">{state.message}</p>
       )}
       <SubmitButton pending={pending}>Join the talent pool</SubmitButton>
       <p className="text-xs text-muted">

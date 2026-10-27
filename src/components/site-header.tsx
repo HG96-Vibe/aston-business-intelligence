@@ -29,7 +29,7 @@ export function SiteHeader() {
           ))}
           <Link
             href="/contact"
-            className="rounded-md bg-deep px-4 py-2 text-sm font-semibold text-white transition hover:bg-deep-soft dark:bg-gold dark:text-ink dark:hover:bg-gold-strong"
+            className="rounded-md bg-deep px-4 py-2 text-sm font-semibold text-white transition hover:bg-deep-soft"
           >
             Talk to us
           </Link>
@@ -64,7 +64,7 @@ export function SiteHeader() {
           <Link
             href="/contact"
             onClick={() => setOpen(false)}
-            className="mt-2 rounded-md bg-deep px-4 py-3 text-center text-sm font-semibold text-white dark:bg-gold dark:text-ink"
+            className="mt-2 rounded-md bg-deep px-4 py-3 text-center text-sm font-semibold text-white"
           >
             Talk to us
           </Link>

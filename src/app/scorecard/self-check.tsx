@@ -15,7 +15,7 @@ export function SelfCheck() {
   const done = answered === questions.length;
   const risk = useMemo(() => score(answers), [answers]);
   const b = band(risk);
-  const tone = { good: "text-emerald-700 dark:text-emerald-300", warn: "text-accent", bad: "text-red-700 dark:text-red-300" }[b.tone];
+  const tone = { good: "text-emerald-700", warn: "text-accent", bad: "text-red-700" }[b.tone];
 
   return (
     <form action={action} className="grid gap-8">
@@ -71,7 +71,7 @@ export function SelfCheck() {
             <Field id="email" label="Work email" type="email" required autoComplete="email" />
             <Field id="company" label="Company (optional)" autoComplete="organization" />
           </div>
-          {state.status === "error" && <p role="alert" className="text-sm text-red-700 dark:text-red-300">{state.message}</p>}
+          {state.status === "error" && <p role="alert" className="text-sm text-red-700">{state.message}</p>}
           <div className="flex flex-wrap gap-3">
             <SubmitButton pending={pending}>Email the breakdown</SubmitButton>
             <Link href={bookHref()} className="inline-flex items-center rounded-md border border-line bg-paper px-5 py-3 text-sm font-semibold text-ink hover:bg-paper-dim">Or book a conversation</Link>

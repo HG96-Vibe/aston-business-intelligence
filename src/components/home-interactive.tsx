@@ -63,7 +63,7 @@ function KpiTile({ k, live }: { k: Kpi; live: boolean }) {
     <div className="bg-paper px-3.5 py-3">
       <span className="block font-mono text-[9.5px] uppercase tracking-[0.1em] text-muted">{k.label}</span>
       <b className="mt-1 block font-display text-[22px] font-normal tabular-nums leading-none text-ink">{k.prefix}{v}{k.suffix}</b>
-      <span className={`mt-1 block text-[10.5px] ${k.down ? "text-orange-700 dark:text-orange-300" : "text-emerald-700 dark:text-emerald-300"}`}>{k.delta}</span>
+      <span className={`mt-1 block text-[10.5px] ${k.down ? "text-orange-700" : "text-emerald-700"}`}>{k.delta}</span>
     </div>
   );
 }
@@ -131,7 +131,7 @@ function DashboardCard({ s, live }: { s: Scene; live: boolean }) {
         <div className="bg-paper">
           {s.rows.map(([a, b, tone], k) => (
             <div key={a} className="flex justify-between gap-3 border-b border-line px-4 py-2.5 last:border-b-0" style={{ opacity: live ? 1 : 0, transform: live ? "none" : "translateY(4px)", transition: `opacity .5s ${1.2 + k * 0.25}s, transform .5s ${1.2 + k * 0.25}s` }}>
-              <span className="text-body">{a}</span><span className={tone === "ok" ? "text-emerald-700 dark:text-emerald-300" : "text-accent"}>{b}</span>
+              <span className="text-body">{a}</span><span className={tone === "ok" ? "text-emerald-700" : "text-accent"}>{b}</span>
             </div>
           ))}
         </div>

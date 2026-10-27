@@ -1,6 +1,6 @@
 /* "Works with" marquee: third-party logos in their own colours (backgrounds removed), one optical
    height, sliding slowly left in an infinite loop. Pauses on hover; edges fade into the page.
-   Night variants have dark wordmark text lightened. Reduced motion → static wrapping rows.
+   Reduced motion → static wrapping rows.
    To add a logo: drop <id>.png and <id>-dark.png (160px tall, transparent) into /public/brand/tools
    and add a line to one of the rows below. `w` is the width at 160px tall; `h` the display height. */
 
@@ -70,9 +70,7 @@ function Logos({ tools, ariaHidden }: { tools: Tool[]; ariaHidden?: boolean }) {
         return (
           <li key={t.id} className="flex shrink-0 items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/brand/tools/${t.id}.png`} alt={ariaHidden ? "" : t.name} title={t.name} width={w} height={h} className="logo-day block" style={{ height: h, width: w }} loading="lazy" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/brand/tools/${t.id}-dark.png`} alt={ariaHidden ? "" : t.name} title={t.name} width={w} height={h} className="logo-night block" style={{ height: h, width: w }} loading="lazy" />
+            <img src={`/brand/tools/${t.id}.png`} alt={ariaHidden ? "" : t.name} title={t.name} width={w} height={h} className="block" style={{ height: h, width: w }} loading="lazy" />
           </li>
         );
       })}

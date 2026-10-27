@@ -1,12 +1,11 @@
 @import "tailwindcss";
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /*
   Aston design tokens.
   Layout: generous left-aligned editorial grid, dark "ink" hero, white body,
   one accent used only for emphasis and primary actions.
 */
-/* Brand tokens (see design/assets/brand.json). Day values on :root, night under [data-theme="dark"]. */
+/* Brand tokens. The site is light only. */
 :root {
   --c-ink: #17161f;        /* primary text */
   --c-ink-soft: #26242f;
@@ -23,27 +22,8 @@
   --c-accent-strong: #b47a06;
   --c-accent-soft: #fbf3dc;
   --c-eyebrow-light: #ffc93c;
-  color-scheme: light;
+  color-scheme: only light;
 }
-:root[data-theme="dark"] {
-  --c-ink: #f3f1f7;
-  --c-ink-soft: #d8d5e2;
-  --c-deep: #0c0b11;
-  --c-deep-soft: #1b1a24;
-  --c-paper: #121118;
-  --c-paper-dim: #19181f;
-  --c-line: #2b2935;
-  --c-muted: #a09db0;
-  --c-body: #d8d5e2;
-  --c-gold: #ffc93c;
-  --c-gold-strong: #e9b324;
-  --c-accent: #ffc93c;
-  --c-accent-strong: #e9b324;
-  --c-accent-soft: #26220f;
-  --c-eyebrow-light: #ffc93c;
-  color-scheme: dark;
-}
-
 @theme inline {
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-display), var(--font-body), ui-sans-serif, sans-serif;
@@ -133,21 +113,11 @@ h3 {
   background: #fff8e8;
   color: #7a5200;
 }
-:root[data-theme="dark"] .placeholder {
-  background: #2a2210;
-  color: #f1d58a;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
-  font-size: 0.875rem;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
 
-/* Logo swaps with theme */
-:root[data-theme="dark"] .logo-day { display: none; }
-:root:not([data-theme="dark"]) .logo-night { display: none; }
+
 
 @keyframes rowin { to { opacity: 1; transform: none; } }
 @keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -156,6 +126,8 @@ h3 {
 
 /* Gold duotone for photographs of people: toned warm gold via filters, then a charcoal gradient for depth. */
 .duotone { position: relative; background: #17161f; overflow: hidden; }
+/* .duotone sits in the page flow by default (full-size photo bands). Add .cover to fill a positioned frame instead. */
+.duotone.cover { position: absolute; }
 .duotone > img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) sepia(1) saturate(1.9) hue-rotate(-6deg) brightness(.72) contrast(1.15); }
 .duotone::after { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(233,179,36,.18), rgba(23,22,31,.25) 55%, rgba(23,22,31,.8)); pointer-events: none; }
 
