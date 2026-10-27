@@ -129,36 +129,44 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Promises: a dark band for contrast, with credentials and sectors */}
-      <section className="tone-dark relative overflow-hidden bg-[#17161f] text-white">
-        <div className="pointer-events-none absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-[#ffc93c]/10 blur-3xl" aria-hidden="true" />
-        <div className="wrap relative py-16 md:py-24">
-          <p className="marker !text-[#ffc93c]">What you can hold us to</p>
-          <h2 className="mt-4 max-w-3xl text-3xl text-white md:text-[2.6rem]">Six promises, <span className="em !text-[#ffc93c]">in writing on every engagement.</span></h2>
-          <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
-            {promises.map(([t, b], i) => (
-              <li key={t} className="bg-[#17161f] p-7 transition hover:bg-[#1f1d28]">
-                <span className="font-display text-4xl font-light text-[#ffc93c]">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-3 text-lg font-medium text-white">{t}</h3>
-                <p className="mt-2 text-sm font-light leading-relaxed text-white/65">{b}</p>
-              </li>
-            ))}
-          </ol>
-
-          <div className="mt-14 grid gap-10 md:grid-cols-[1fr_2fr]">
-            <div>
-              <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#ffc93c]">Across the team</p>
-              <ul className="mt-4 grid gap-2">
-                {["NVIDIA certified", "Google Cloud certified"].map((c) => (
-                  <li key={c} className="flex items-center gap-3 text-white"><span className="grid h-6 w-6 place-items-center rounded-full border border-[#ffc93c]/50 text-[0.7rem] text-[#ffc93c]">✓</span>{c}</li>
-                ))}
-              </ul>
+      {/* Promises: written as a signed commitments page on the dark band */}
+      <section className="relative overflow-hidden bg-[#17161f] text-white">
+        <div className="pointer-events-none absolute -left-40 top-20 h-[520px] w-[520px] rounded-full bg-[#ffc93c]/10 blur-3xl" aria-hidden="true" />
+        <div className="wrap relative grid gap-12 py-16 md:py-24 lg:grid-cols-[0.9fr_1.3fr] lg:items-center">
+          <div>
+            <p className="marker !text-[#ffc93c]">What you can hold us to</p>
+            <h2 className="mt-4 text-3xl text-white md:text-[2.8rem]">Six promises, <span className="em !text-[#ffc93c]">in writing on every engagement.</span></h2>
+            <p className="mt-5 max-w-md font-light leading-relaxed text-white/65">They go into every proposal we send, so you can point to them at any point in the project.</p>
+            <div className="mt-10 grid gap-8">
+              <div>
+                <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#ffc93c]">Across the team</p>
+                <p className="mt-2 text-white">NVIDIA certified · Google Cloud certified</p>
+              </div>
+              <div>
+                <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#ffc93c]">Sectors we work in</p>
+                <ul className="mt-3 flex flex-wrap gap-2">{sectors.map((s) => <li key={s} className="rounded-full border border-white/15 px-3 py-1 text-sm font-light text-white/80">{s}</li>)}</ul>
+              </div>
             </div>
-            <div>
-              <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#ffc93c]">Sectors we work in</p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {sectors.map((s) => <li key={s} className="rounded-full border border-white/15 px-3 py-1 text-sm font-light text-white/80">{s}</li>)}
-              </ul>
+          </div>
+          <div className="relative mx-auto w-full max-w-[640px] rotate-[0.6deg] rounded-sm bg-[#fbf8f1] px-8 py-10 text-ink shadow-[0_40px_80px_-30px_rgba(0,0,0,.7)] md:px-12 md:py-12">
+            <div className="flex items-center justify-between border-b border-line pb-4">
+              <span className="font-display text-sm tracking-[0.22em]">ASTON</span>
+              <span className="font-mono text-[0.55rem] uppercase tracking-[0.14em] text-muted">Our commitments · in every proposal</span>
+            </div>
+            <ol className="mt-6 grid gap-5">
+              {promises.map(([t, b], i) => (
+                <li key={t} className="grid grid-cols-[34px_1fr] gap-2">
+                  <span className="font-display text-xl text-accent">{i + 1}.</span>
+                  <p><b className="font-display text-lg font-normal text-ink">{t}.</b> <span className="text-sm font-light text-muted">{b}</span></p>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-8 flex items-end justify-between border-t border-line pt-5">
+              <div>
+                <p className="font-display text-3xl italic text-ink/80">ABI</p>
+                <p className="mt-1 font-mono text-[0.55rem] uppercase tracking-[0.14em] text-muted">Signed, for every engagement</p>
+              </div>
+              <span className="grid h-20 w-20 -rotate-12 place-items-center rounded-full border-2 border-accent/60 text-center font-mono text-[0.5rem] uppercase leading-tight tracking-[0.1em] text-accent">In<br />writing<br />every time</span>
             </div>
           </div>
         </div>
