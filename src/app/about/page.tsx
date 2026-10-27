@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { site } from "@/lib/site";
 import { CtaBand, PhotoBand } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -159,54 +158,6 @@ export default function AboutPage() {
               <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#ffc93c]">Sectors we work in</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {sectors.map((s) => <li key={s} className="rounded-full border border-white/15 px-3 py-1 text-sm font-light text-white/80">{s}</li>)}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Company details + data handling, beside a London photograph */}
-      <section className="bg-paper">
-        <div className="wrap py-16 md:py-24">
-          <div className="grid gap-8 lg:grid-cols-[0.8fr_1fr_1fr] lg:items-stretch">
-            <div className="relative min-h-[280px] overflow-hidden rounded-xl">
-              <Photo src="/img/canary-wharf.jpg" pos="center 60%" />
-              <div className="absolute inset-x-0 bottom-0 z-10 p-6 text-white">
-                <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#ffc93c]">Registered in</p>
-                <p className="mt-1 font-display text-2xl">England &amp; Wales</p>
-              </div>
-            </div>
-            <div className="min-w-0">
-              <p className="marker">Who you&apos;re dealing with</p>
-              <h2 className="mt-4 text-3xl text-ink">A UK registered company.</h2>
-              <dl className="mt-8 grid gap-4 text-sm">
-                {([
-                  ["Legal name", `${site.name} Ltd`, ""],
-                  ["Company number", site.companyNumber, "font-mono"],
-                  ["Registered office", site.registeredOffice, ""],
-                  ["Email", site.emails.hello, ""],
-                ] as const).map(([k, v, cls], i, all) => (
-                  <div key={k} className={`grid grid-cols-[110px_minmax(0,1fr)] gap-4 sm:grid-cols-[140px_minmax(0,1fr)] ${i < all.length - 1 ? "border-b border-line pb-4" : ""}`}>
-                    <dt className="text-muted">{k}</dt>
-                    <dd className={`break-words font-medium text-ink ${cls}`}>{v}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-            <div className="rounded-xl border border-line bg-paper-dim p-7 md:p-8">
-              <p className="marker">How we handle your data</p>
-              <ul className="mt-6 grid gap-5">
-                {[
-                  ["Read-only access", "We look; we don't change. Access is set up by your team and removed at handover."],
-                  ["NDA on request", "We'll sign one before the first conversation if you prefer."],
-                  ["UK GDPR", "Personal data is handled under UK GDPR, processed in the UK, and only where the plan says it's needed."],
-                  ["Nothing leaves without a reason", "No data leaves your systems unless it's written into the plan you've agreed."],
-                ].map(([t, b]) => (
-                  <li key={t} className="grid grid-cols-[20px_1fr] gap-3">
-                    <span className="mt-1 text-accent" aria-hidden="true">✓</span>
-                    <p><b className="font-medium text-ink">{t}.</b> <span className="font-light text-muted">{b}</span></p>
-                  </li>
-                ))}
               </ul>
             </div>
           </div>
