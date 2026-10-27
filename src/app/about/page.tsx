@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { site } from "@/lib/site";
 import { CtaBand, PhotoBand } from "@/components/ui";
-import { toolLogo } from "@/components/tool-strip";
 
 export const metadata: Metadata = {
   title: "About",
@@ -41,7 +40,6 @@ const promises = [
 ];
 
 const sectors = ["Financial services", "Recruitment & staffing", "Retail & e-commerce", "Healthcare & care", "Professional services", "Property & construction", "Logistics & distribution", "Training & education"];
-const tools = ["power-bi", "tableau", "looker-studio", "excel", "snowflake", "azure", "xero", "hubspot"];
 
 const gap = [
   { k: "On one side", t: "Spreadsheets and one capable person", b: "It works until the business outgrows it. Month-end stretches, numbers stop agreeing, and everything depends on whoever built the workbook.", src: "/img/paper-stack.jpg", pos: "center 40%" },
@@ -135,7 +133,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Promises: a dark band for contrast, with credentials, sectors and real tool logos */}
+      {/* Promises: a dark band for contrast, with credentials and sectors */}
       <section className="tone-dark relative overflow-hidden bg-[#17161f] text-white">
         <div className="pointer-events-none absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-[#ffc93c]/10 blur-3xl" aria-hidden="true" />
         <div className="wrap relative py-16 md:py-24">
@@ -151,7 +149,7 @@ export default function AboutPage() {
             ))}
           </ol>
 
-          <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1.4fr_1.6fr]">
+          <div className="mt-14 grid gap-10 md:grid-cols-[1fr_2fr]">
             <div>
               <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#ffc93c]">Across the team</p>
               <ul className="mt-4 grid gap-2">
@@ -164,20 +162,6 @@ export default function AboutPage() {
               <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#ffc93c]">Sectors we work in</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {sectors.map((s) => <li key={s} className="rounded-full border border-white/15 px-3 py-1 text-sm font-light text-white/80">{s}</li>)}
-              </ul>
-            </div>
-            <div>
-              <p className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#ffc93c]">Tools we build in</p>
-              <ul className="mt-4 flex flex-wrap items-center gap-3">
-                {tools.map((t) => {
-                  const l = toolLogo(t, 0.5);
-                  return (
-                    <li key={t} className="grid h-12 place-items-center rounded-lg bg-white px-4">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={`/brand/tools/${t}.png`} alt={l.name} title={l.name} width={l.w} height={l.h} style={{ height: l.h, width: l.w }} loading="lazy" />
-                    </li>
-                  );
-                })}
               </ul>
             </div>
           </div>
