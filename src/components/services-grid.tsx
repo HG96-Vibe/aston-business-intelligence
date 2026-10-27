@@ -4,19 +4,18 @@ import Link from "next/link";
 import { useState } from "react";
 import { subServices, categoryLabel } from "@/lib/offers";
 
-/* Ten services in the accordion-strip style: two rows of five tall photo panels.
-   The active panel in each row widens to show its name and line; the rest narrow to a number and a vertical title.
+/* Ten services in the accordion-strip style: one full-bleed row of tall photo panels.
+   The active panel widens to show its name and line; the rest narrow to a number and a vertical title.
    Hover or focus on desktop; on phones they stack with the active panel taller. */
 
-const ROWS = [subServices.slice(0, 5), subServices.slice(5, 10)];
-
-function Row({ items, offset }: { items: typeof subServices; offset: number }) {
+export function ServicesGrid() {
   const [on, setOn] = useState(0);
   return (
-    <div className="flex flex-col gap-1.5 md:h-[420px] md:flex-row">
-      {items.map((s, i) => {
+    <div className="relative left-1/2 mt-12 w-screen -translate-x-1/2 px-4 md:px-6">
+    <div className="flex flex-col gap-1.5 md:h-[440px] md:flex-row">
+      {subServices.map((s, i) => {
         const active = i === on;
-        const n = String(offset + i + 1).padStart(2, "0");
+        const n = String(i + 1).padStart(2, "0");
         return (
           <Link
             key={s.slug}
@@ -25,7 +24,7 @@ function Row({ items, offset }: { items: typeof subServices; offset: number }) {
             onFocus={() => setOn(i)}
             onClick={(e) => { if (!active && window.innerWidth < 768) { e.preventDefault(); setOn(i); } }}
             aria-expanded={active}
-            className={`group relative block overflow-hidden rounded-lg transition-[flex,min-height] duration-700 ease-[cubic-bezier(.2,.8,.2,1)] ${active ? "min-h-[300px] md:min-h-0 md:flex-[3]" : "min-h-[76px] md:min-h-0 md:flex-1"}`}
+            className={`group relative block overflow-hidden rounded-lg transition-[flex,min-height] duration-700 ease-[cubic-bezier(.2,.8,.2,1)] ${active ? "min-h-[300px] md:min-h-0 md:flex-[3.4]" : "min-h-[76px] md:min-h-0 md:flex-1"}`}
           >
             <div className="absolute inset-0">
               <div className={`h-full w-full ${s.duotone === false ? "bg-[#17161f]" : "duotone"}`}>
@@ -50,13 +49,6 @@ function Row({ items, offset }: { items: typeof subServices; offset: number }) {
         );
       })}
     </div>
-  );
-}
-
-export function ServicesGrid() {
-  return (
-    <div className="mt-12 flex flex-col gap-1.5">
-      {ROWS.map((items, r) => <Row key={r} items={items} offset={r * 5} />)}
     </div>
   );
 }
