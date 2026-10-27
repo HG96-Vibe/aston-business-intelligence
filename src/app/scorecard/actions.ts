@@ -33,9 +33,9 @@ export async function sendResults(_prev: FormState, data: FormData): Promise<For
   // Their copy
   await sendMail({
     to: email,
-    subject: `Your reporting reporting scorecard: ${b.label}`,
+    subject: `Your reporting scorecard: ${b.label}`,
     text: [
-      `Thanks for taking the ABI reporting reporting scorecard.`,
+      `Thanks for taking the ABI reporting scorecard.`,
       ``,
       `Result: ${b.label} (${risk} of 10 warning signs)`,
       b.summary,
@@ -43,12 +43,7 @@ export async function sendResults(_prev: FormState, data: FormData): Promise<For
       `Your answers:`,
       ...lines,
       ``,
-      `What the warning signs usually mean:`,
-      `• Speed / Process — reporting is manual; the fix is a single data model that refreshes itself.`,
-      `• Trust — two numbers for one thing means two definitions; the fix is one agreed source and reconciliation to the accounts.`,
-      `• Risk — one person holding the process is the most common and most expensive failure; documentation and handover fix it.`,
-      `• Insight — if you can't see margin by client or product, you're pricing blind.`,
-      `• Waste — a dashboard nobody uses was built without asking what decisions it serves.`,
+      ...(risk ? [`Where it's costing you:`, ...questions.filter((q) => answers[q.id]).map((q) => `• ${q.area}: ${q.fix}`)] : []),
       ``,
       `If you'd like us to look properly, the Reporting Assessment is £2,500, takes two weeks, and is credited against any follow-on work: ${site.url}/services`,
       ``,
