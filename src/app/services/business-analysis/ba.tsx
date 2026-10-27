@@ -1,12 +1,12 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
 import { Section, SectionHead, CtaBand, Button } from "@/components/ui";
 import { bookHref } from "@/components/offers";
 import { Convergence } from "@/components/convergence";
 import { TubeMap, type Meta } from "@/components/tube-map";
+import { Toolkit } from "./toolkit";
 
 /* Business Analysis deep-dive. Same structure as Data & BI: hero → problems/cause → ladder →
-   photo band → what you get → FAQ → start here → CTA. */
+   photo band → what you get (documents explorer) → FAQ → start here → CTA. */
 
 const pains: [string, string][] = [
   ["Quotes keep doubling", "Suppliers price what they think you meant. The change requests start in week three."],
@@ -15,10 +15,10 @@ const pains: [string, string][] = [
 ];
 
 const ladder = [
-  { step: "01", name: "Discovery & Scoping", price: "from £4,500", duration: "2–4 weeks", body: "Stakeholder interviews, current-state process maps, prioritised requirements and a specification pack any vendor can price.", forWho: "Where every client starts." },
-  { step: "02", name: "Options & Selection", price: "priced in the plan", duration: "2–3 weeks", body: "Build, buy, configure or do nothing, appraised side by side. Vendor demos run against your requirements, not their script.", forWho: "For “which system should we buy?”." },
-  { step: "03", name: "Delivery Assurance", price: "priced in the plan", duration: "through the build", body: "We stay with the supplier during the build: clarifying requirements, reviewing what's delivered and running acceptance testing.", forWho: "For “we've signed, now keep it on track”." },
-  { step: "04", name: "Change & Adoption", price: "priced in the plan", duration: "around go-live", body: "New process maps, training material and a short review after go-live, so the change sticks once the supplier has left.", forWho: "After go-live." },
+  { step: "01", name: "Discovery & Scoping", price: "from £4,500", duration: "2–4 weeks", body: "You receive: business case, stakeholder map, as-is and to-be process maps, requirements catalogue, user stories, gap analysis and a specification pack any vendor can price.", forWho: "Where every client starts." },
+  { step: "02", name: "Options & Selection", price: "priced in the plan", duration: "2–3 weeks", body: "You receive: options appraisal, cost-benefit analysis and vendor scoring, with demos run against your requirements, not their script.", forWho: "For “which system should we buy?”." },
+  { step: "03", name: "Delivery Assurance", price: "priced in the plan", duration: "through the build", body: "You receive: traceability matrix, UAT test scripts and a change request log, kept up to date with the supplier through the build.", forWho: "For “we've signed, now keep it on track”." },
+  { step: "04", name: "Change & Adoption", price: "priced in the plan", duration: "around go-live", body: "You receive: end-of-project report, benefits review and lessons learned, so the change sticks after the supplier has left.", forWho: "After go-live." },
 ];
 
 const meta: Meta[] = [
@@ -35,57 +35,6 @@ const faqs: [string, [string, string], string][] = [
   ["How much of our team's time will it take?", ["A few hours each.", " Spread over the weeks."], "Short interviews with the people who do the work, a workshop or two, and a read-through of the findings. We work around your diary."],
   ["What do we get at the end?", ["A specification pack.", " Yours to keep and use."], "Process maps, prioritised requirements with acceptance criteria, the options appraisal and a specification any vendor or internal team can price and build. Use it with us or anyone else."],
 ];
-
-/* "What you get": four documents as paper cards with a small sample of each */
-function Paper({ k, title, when, children }: { k: string; title: string; when: string; children: ReactNode }) {
-  return (
-    <div className="flex flex-col">
-      <div className="relative h-56 overflow-hidden rounded-lg border border-line bg-white p-5 shadow-[0_24px_50px_-30px_rgba(23,22,31,.45)]">
-        <span className="absolute right-4 top-4 rounded border border-accent/50 px-1.5 py-px font-mono text-[0.5rem] uppercase tracking-[0.14em] text-accent">Sample</span>
-        <p className="font-mono text-[0.55rem] uppercase tracking-[0.14em] text-muted">{k}</p>
-        <div className="mt-4">{children}</div>
-      </div>
-      <p className="mt-5 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-accent">{when}</p>
-      <h3 className="mt-1 font-display text-2xl text-ink">{title}</h3>
-    </div>
-  );
-}
-const Box = ({ t, warn }: { t: string; warn?: boolean }) => <span className={`rounded border px-2 py-1 text-[0.62rem] ${warn ? "border-[#f0b98c] bg-[#fff6ee] text-[#9a4a12]" : "border-line bg-paper-dim text-ink"}`}>{t}</span>;
-
-function Documents() {
-  return (
-    <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-      <Paper k="01 · Process map" title="How the work really flows" when="Week 1–2">
-        <div className="flex flex-wrap items-center gap-1.5">
-          <Box t="Enquiry" /><span className="text-muted">→</span><Box t="Quote (Excel)" warn /><span className="text-muted">→</span><Box t="Approval" /><span className="text-muted">→</span><Box t="Re-keyed into ERP" warn /><span className="text-muted">→</span><Box t="Invoice" />
-        </div>
-        <p className="mt-4 font-mono text-[0.55rem] uppercase tracking-[0.1em] text-[#9a4a12]">⚠ 2 hand-offs · 1 re-key</p>
-      </Paper>
-      <Paper k="02 · Requirements" title="What the business needs" when="Week 2–3">
-        <ul className="grid gap-1.5 text-[0.62rem]">
-          {[["Must", "Quote generated from the price list"], ["Must", "Approval over £10k routed to FD"], ["Should", "Customer sees order status"], ["Could", "Mobile sign-off"]].map(([p, t]) => (
-            <li key={t} className="flex items-center gap-2 border-b border-line pb-1.5"><span className={`w-11 shrink-0 rounded px-1 text-center font-mono text-[0.5rem] uppercase ${p === "Must" ? "bg-gold text-[#17161f]" : "bg-paper-dim text-muted"}`}>{p}</span><span className="text-ink">{t}</span></li>
-          ))}
-        </ul>
-      </Paper>
-      <Paper k="03 · Options appraisal" title="Build, buy, configure or wait" when="Week 3">
-        <div className="grid grid-cols-4 gap-1.5 text-center text-[0.58rem]">
-          {[["Build", 52], ["Buy", 78], ["Config", 91], ["Wait", 30]].map(([t, v]) => (
-            <div key={t as string}>
-              <div className="flex h-24 items-end rounded bg-paper-dim p-1"><div className={`w-full rounded-sm ${v === 91 ? "bg-gold" : "bg-ink/20"}`} style={{ height: `${v}%` }} /></div>
-              <p className="mt-1 text-ink">{t}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-2 font-mono text-[0.55rem] uppercase tracking-[0.1em] text-accent">Recommended · configure</p>
-      </Paper>
-      <Paper k="04 · Specification pack" title="Something any vendor can price" when="End of Discovery">
-        <div className="grid gap-1.5">{[95, 80, 88, 60, 92, 70, 84].map((w, i) => <span key={i} className="h-1.5 rounded bg-line" style={{ width: `${w}%` }} />)}</div>
-        <p className="mt-5 flex items-center justify-between border-t border-line pt-3 font-mono text-[0.55rem] uppercase tracking-[0.1em] text-muted"><span>v1.0 · 34 pages</span><span className="text-accent">Signed off</span></p>
-      </Paper>
-    </div>
-  );
-}
 
 export function BaPage({ photo = ["/img/corridor.jpg", "60% 30%"] as [string, string] }: { photo?: [string, string] }) {
   return (
@@ -135,8 +84,14 @@ export function BaPage({ photo = ["/img/corridor.jpg", "60% 30%"] as [string, st
       </section>
 
       <Section>
-        <SectionHead number="03" eyebrow="What you get" title="Four documents," em="written to be used." intro="Everything is written so a vendor, an internal team or another consultant could pick it up and act on it. You keep all of it, whoever does the build." />
-        <Documents />
+        <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end">
+          <SectionHead number="03" eyebrow="What you get" title="Everything a business analyst produces," em="at the stage you need it." intro="Start from your question; we'll show you the document that answers it. Each one names the stop on the line it comes with." />
+          <div className="grid gap-3 lg:justify-self-end">
+            <p className="flex items-center gap-3 rounded-xl border border-gold bg-accent-soft px-5 py-4 text-sm text-ink"><span className="font-display text-2xl text-accent">✓</span><span><b className="font-medium">Yours to keep.</b> Every document is written so another supplier or your own team can pick it up and use it.</span></p>
+            <p className="flex items-center gap-3 rounded-xl border border-line px-5 py-4 text-sm text-ink"><span className="font-mono text-[0.62rem] font-medium uppercase tracking-[0.12em] text-accent">BCS</span><span>Our analysts work to BCS business analysis practice.</span></p>
+          </div>
+        </div>
+        <Toolkit />
       </Section>
 
       <Section dim>
