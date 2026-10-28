@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { submitContact, type FormState } from "./actions";
+import { submitContact, type FormState } from "@/lib/forms";
 import { services } from "@/lib/site";
 import { Field, SubmitButton } from "@/components/form";
 

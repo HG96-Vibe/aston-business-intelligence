@@ -1,13 +1,11 @@
 import type { NextConfig } from "next";
 
+/* Static export for Namecheap shared hosting: `npm run build` writes plain HTML/CSS/JS to /out.
+   Redirects (/work, /health-check) live in public/.htaccess; the two forms post to public/send.php. */
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [
-      { source: "/health-check", destination: "/scorecard", permanent: true },
-      { source: "/work", destination: "/services", permanent: true },
-    ];
-  },
-  /* config options here */
+  output: "export",
+  trailingSlash: true,
+  images: { unoptimized: true },
   turbopack: {
     rules: {
       "*.css": {

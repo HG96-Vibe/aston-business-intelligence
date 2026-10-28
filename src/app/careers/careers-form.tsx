@@ -1,8 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { submitApplication } from "./actions";
-import type { FormState } from "@/app/contact/actions";
+import { submitApplication, type FormState } from "@/lib/forms";
 import { Field, SubmitButton } from "@/components/form";
 
 const areas = ["Data analysis & BI", "Data engineering", "Business analysis", "AI / machine learning", "Project management", "Other"];
