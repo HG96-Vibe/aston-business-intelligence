@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Button, CtaBand, Section, SectionHead, PhotoBand } from "@/components/ui";
 import { ServicesGrid } from "@/components/services-grid";
 import { HeroMotion } from "@/components/hero-motion";
@@ -12,6 +13,9 @@ const principles = [
   ["Transparent reporting", "Progress is reported in writing on a weekly basis, in language suitable for a board audience. Issues are raised early, with options, rather than discovered at invoice."],
 ];
 
+
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function Home() {
   return (

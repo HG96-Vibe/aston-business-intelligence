@@ -10,6 +10,7 @@ import { ToolHub } from "@/components/tool-hub";
 import { ToolStrip } from "@/components/tool-strip";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services/data-bi/" },
   title: "Data & Business Intelligence",
   description: "Reporting that reconciles to your accounts and refreshes itself. Reporting Assessment from £2,500; dashboards in Power BI on the tools you already have.",
 };

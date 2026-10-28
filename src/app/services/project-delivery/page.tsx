@@ -7,6 +7,7 @@ import { Convergence } from "@/components/convergence";
 import { TubeMap, type Meta } from "@/components/tube-map";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services/project-delivery/" },
   title: "Project Delivery",
   description: "Delivered on the date you told the board. A fractional project lead from £750 a day, 1–3 days a week: plan, RAID log, weekly written steering report and suppliers held to account.",
 };

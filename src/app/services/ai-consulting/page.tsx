@@ -7,6 +7,7 @@ import { TubeMap, type Meta } from "@/components/tube-map";
 import { toolLogo } from "@/components/tool-strip";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services/ai-consulting/" },
   title: "AI Consulting",
   description: "AI where it pays back, with a number attached. AI Readiness Assessment £2,500: use cases ranked by value, effort and risk, a data-protection review and a pilot proposal.",
 };

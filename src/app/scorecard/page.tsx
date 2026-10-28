@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SelfCheck } from "./self-check";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/scorecard/" },
   title: "Reporting scorecard",
   description: "Ten yes-or-no questions and an instant result. Find out whether your business reporting is sound, strained or urgent, and where it is costing you.",
 };

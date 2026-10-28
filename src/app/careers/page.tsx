@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CareersForm } from "./careers-form";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/careers/" },
   title: "Careers",
   description: "Join the Aston Business Intelligence talent pool — analysts, engineers, AI specialists and project leads, experienced or early-career.",
 };

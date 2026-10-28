@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CtaBand, PhotoBand } from "@/components/ui";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about/" },
   title: "About",
   description: "Why Aston Business Intelligence exists, how a team is built for each engagement, and what you can hold us to.",
 };

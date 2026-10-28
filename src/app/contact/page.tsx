@@ -4,6 +4,7 @@ import { site } from "@/lib/site";
 import { ContactForm } from "./contact-form";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact/" },
   title: "Contact",
   description: "Get in touch with Aston Business Intelligence. We reply to every enquiry within one working day.",
 };

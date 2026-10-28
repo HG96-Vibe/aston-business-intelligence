@@ -7,6 +7,7 @@ import { svc } from "@/lib/services-page";
 import { toolLogo } from "@/components/tool-strip";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services/" },
   title: "Services",
   description:
     "Data & BI, business analysis, AI consulting and project delivery for UK SMEs. Fixed-scope, fixed-price first engagements.",
