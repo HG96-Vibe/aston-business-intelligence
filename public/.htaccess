@@ -21,12 +21,27 @@ ErrorDocument 404 /404.html
   RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
 </IfModule>
 
-# Don't serve hidden files or the PHP rate-limit data
+# Don't serve hidden files (.htaccess, .user.ini) or any log files PHP may write
 <FilesMatch "^\.">
   Require all denied
 </FilesMatch>
+<FilesMatch "(^error_log$|\.log$)">
+  Require all denied
+</FilesMatch>
+
+# send.php is the only script on this site: refuse to run any other PHP file
+<FilesMatch "\.(php|phtml|phar)$">
+  Require all denied
+</FilesMatch>
+<Files "send.php">
+  Require all granted
+</Files>
 
 <IfModule mod_headers.c>
+  # Browsers always use https for this site (1 year)
+  Header always set Strict-Transport-Security "max-age=31536000"
+  # The site never uses the camera, microphone, location, payments or USB
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
